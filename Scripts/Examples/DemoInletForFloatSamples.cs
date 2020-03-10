@@ -21,14 +21,12 @@ namespace LSL4Unity.Scripts.Examples
 
 		private bool pullSamplesContinuously = false;
 
-
-		void Start()
-		{
-			// [optional] call this only, if your gameobject hosting this component
-			// got instantiated during runtime
-
-			// registerAndLookUpStream();
-		}
+		//void Start()
+		//{
+		//	[optional] call this only, if your gameobject hosting this component
+		//	got instantiated during runtime
+		//	registerAndLookUpStream();
+		//}
 
 		protected override bool isTheExpected(LSLStreamInfoWrapper stream)
 		{
