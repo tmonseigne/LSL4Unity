@@ -34,7 +34,7 @@ namespace LSL4Unity.Scripts
 
 		public void FixedUpdate()
 		{
-			if (watch == null) return;
+			if (watch == null) { return; }
 
 			watch.Stop();
 

@@ -71,7 +71,7 @@ namespace LSL4Unity.Scripts
 		/// </summary>
 		void LateUpdate()
 		{
-			if (outlet == null) return;
+			if (outlet == null) { return; }
 
 			sample();
 		}

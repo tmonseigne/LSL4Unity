@@ -2,9 +2,11 @@
 using LSL4Unity.Scripts;
 using UnityEngine;
 using UnityEngine.Assertions;
+
 // Don't forget the Namespace import
 
-namespace LSL4Unity.Demos {
+namespace LSL4Unity.Demos
+{
 	public class RandomMarker : MonoBehaviour
 	{
 		public LSLMarkerStream markerStream;
@@ -13,7 +15,7 @@ namespace LSL4Unity.Demos {
 		{
 			Assert.IsNotNull(markerStream, "You forgot to assign the reference to a marker stream implementation!");
 
-			if (markerStream != null) StartCoroutine(WriteContinouslyMarkerEachSecond());
+			if (markerStream != null) { StartCoroutine(WriteContinouslyMarkerEachSecond()); }
 		}
 
 		IEnumerator WriteContinouslyMarkerEachSecond()

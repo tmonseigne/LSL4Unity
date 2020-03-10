@@ -61,7 +61,7 @@ namespace LSL4Unity.Scripts
 				{
 					if (!results.Any(r => r.name().Equals(item.Name)))
 					{
-						if (onStreamLost.GetPersistentEventCount() > 0) onStreamLost.Invoke(item);
+						if (onStreamLost.GetPersistentEventCount() > 0) { onStreamLost.Invoke(item); }
 					}
 				}
 
@@ -78,7 +78,7 @@ namespace LSL4Unity.Scripts
 						var newStreamInfo = new LSLStreamInfoWrapper(item);
 						knownStreams.Add(newStreamInfo);
 
-						if (onStreamFound.GetPersistentEventCount() > 0) onStreamFound.Invoke(newStreamInfo);
+						if (onStreamFound.GetPersistentEventCount() > 0) { onStreamFound.Invoke(newStreamInfo); }
 					}
 				}
 

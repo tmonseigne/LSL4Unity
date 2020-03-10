@@ -533,10 +533,10 @@ namespace LSL4Unity
 
 		public static StreamInfo[] resolve_streams(double wait_time)
 		{
-			IntPtr[]     buf                     = new IntPtr[1024];
-			int          num                     = dll.lsl_resolve_all(buf, (uint) buf.Length, wait_time);
-			StreamInfo[] res                     = new StreamInfo[num];
-			for (int k = 0; k < num; k++) res[k] = new StreamInfo(buf[k]);
+			IntPtr[]     buf = new IntPtr[1024];
+			int          num = dll.lsl_resolve_all(buf, (uint) buf.Length, wait_time);
+			StreamInfo[] res = new StreamInfo[num];
+			for (int k = 0; k < num; k++) { res[k] = new StreamInfo(buf[k]); }
 			return res;
 		}
 
@@ -556,10 +556,10 @@ namespace LSL4Unity
 
 		public static StreamInfo[] resolve_stream(string prop, string value, int minimum, double timeout)
 		{
-			IntPtr[]     buf                     = new IntPtr[1024];
-			int          num                     = dll.lsl_resolve_byprop(buf, (uint) buf.Length, prop, value, minimum, timeout);
-			StreamInfo[] res                     = new StreamInfo[num];
-			for (int k = 0; k < num; k++) res[k] = new StreamInfo(buf[k]);
+			IntPtr[]     buf = new IntPtr[1024];
+			int          num = dll.lsl_resolve_byprop(buf, (uint) buf.Length, prop, value, minimum, timeout);
+			StreamInfo[] res = new StreamInfo[num];
+			for (int k = 0; k < num; k++) { res[k] = new StreamInfo(buf[k]); }
 			return res;
 		}
 
@@ -579,10 +579,10 @@ namespace LSL4Unity
 
 		public static StreamInfo[] resolve_stream(string pred, int minimum, double timeout)
 		{
-			IntPtr[]     buf                     = new IntPtr[1024];
-			int          num                     = dll.lsl_resolve_bypred(buf, (uint) buf.Length, pred, minimum, timeout);
-			StreamInfo[] res                     = new StreamInfo[num];
-			for (int k = 0; k < num; k++) res[k] = new StreamInfo(buf[k]);
+			IntPtr[]     buf = new IntPtr[1024];
+			int          num = dll.lsl_resolve_bypred(buf, (uint) buf.Length, pred, minimum, timeout);
+			StreamInfo[] res = new StreamInfo[num];
+			for (int k = 0; k < num; k++) { res[k] = new StreamInfo(buf[k]); }
 			return res;
 		}
 
@@ -779,11 +779,11 @@ namespace LSL4Unity
 				check_error(ec);
 				try
 				{
-					for (int k = 0; k < tmp.Length; k++) sample[k] = Marshal.PtrToStringAnsi(tmp[k]);
+					for (int k = 0; k < tmp.Length; k++) { sample[k] = Marshal.PtrToStringAnsi(tmp[k]); }
 				}
 				finally
 				{
-					for (int k = 0; k < tmp.Length; k++) dll.lsl_destroy_string(tmp[k]);
+					for (int k = 0; k < tmp.Length; k++) { dll.lsl_destroy_string(tmp[k]); }
 				}
 				return res;
 			}
@@ -864,14 +864,16 @@ namespace LSL4Unity
 				try
 				{
 					for (int s = 0; s < tmp.GetLength(0); s++)
-						for (int c = 0; c < tmp.GetLength(1); c++)
-							data_buffer[s, c] = Marshal.PtrToStringAnsi(tmp[s, c]);
+					{
+						for (int c = 0; c < tmp.GetLength(1); c++) { data_buffer[s, c] = Marshal.PtrToStringAnsi(tmp[s, c]); }
+					}
 				}
 				finally
 				{
 					for (int s = 0; s < tmp.GetLength(0); s++)
-						for (int c = 0; c < tmp.GetLength(1); c++)
-							dll.lsl_destroy_string(tmp[s, c]);
+					{
+						for (int c = 0; c < tmp.GetLength(1); c++) { dll.lsl_destroy_string(tmp[s, c]); }
+					}
 				}
 				return (int) res / data_buffer.GetLength(1);
 			}
@@ -1071,10 +1073,10 @@ namespace LSL4Unity
 			*/
 			public StreamInfo[] results()
 			{
-				IntPtr[]     buf                     = new IntPtr[1024];
-				int          num                     = dll.lsl_resolver_results(obj, buf, (uint) buf.Length);
-				StreamInfo[] res                     = new StreamInfo[num];
-				for (int k = 0; k < num; k++) res[k] = new StreamInfo(buf[k]);
+				IntPtr[]     buf = new IntPtr[1024];
+				int          num = dll.lsl_resolver_results(obj, buf, (uint) buf.Length);
+				StreamInfo[] res = new StreamInfo[num];
+				for (int k = 0; k < num; k++) { res[k] = new StreamInfo(buf[k]); }
 				return res;
 			}
 
@@ -1113,6 +1115,7 @@ namespace LSL4Unity
 		public static void check_error(int ec)
 		{
 			if (ec < 0)
+			{
 				switch (ec)
 				{
 					case -1: throw new TimeoutException("The operation failed due to a timeout.");
@@ -1121,6 +1124,7 @@ namespace LSL4Unity
 					case -4: throw new InternalException("An internal internal error has occurred.");
 					default: throw new Exception("An unknown error has occurred.");
 				}
+			}
 		}
 
 

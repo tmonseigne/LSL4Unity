@@ -15,14 +15,14 @@ namespace LSL4Unity.Scripts
 
 		public string StreamType;
 
-		liblsl.StreamInfo[] results;
-		liblsl.StreamInlet inlet;
+		liblsl.StreamInfo[]       results;
+		liblsl.StreamInlet        inlet;
 		liblsl.ContinuousResolver resolver;
 
 		private int expectedChannels = 0;
 
 		float[] sample;
-		
+
 		void Start()
 		{
 			var expectedStreamHasAName = !StreamName.Equals("");
@@ -46,15 +46,16 @@ namespace LSL4Unity.Scripts
 				Debug.Log("Creating LSL resolver for stream with type " + StreamType);
 				resolver = new liblsl.ContinuousResolver("type ", StreamType);
 			}
-			
+
 			StartCoroutine(ResolveExpectedStream());
 
 			AdditionalStart();
 		}
+
 		/// <summary>
 		/// Override this method in the subclass to specify what should happen during Start().
 		/// </summary>
-		protected virtual void AdditionalStart() 
+		protected virtual void AdditionalStart()
 		{
 			//By default, do nothing.
 		}
@@ -70,7 +71,7 @@ namespace LSL4Unity.Scripts
 			inlet = new liblsl.StreamInlet(results[0]);
 
 			expectedChannels = inlet.info().channel_count();
-			
+
 			yield return null;
 		}
 
@@ -82,24 +83,20 @@ namespace LSL4Unity.Scripts
 			{
 				double lastTimeStamp = inlet.pull_sample(sample, 0.0f);
 
-				if (lastTimeStamp != 0.0) {
+				if (lastTimeStamp != 0.0)
+				{
 					// do not miss the first one found
 					Process(sample, lastTimeStamp);
 					// pull as long samples are available
-					while ((lastTimeStamp = inlet.pull_sample(sample, 0.0f)) != 0)
-					{
-						Process(sample, lastTimeStamp);
-					}
-
+					while ((lastTimeStamp = inlet.pull_sample(sample, 0.0f)) != 0) { Process(sample, lastTimeStamp); }
 				}
 			}
-			catch(ArgumentException aex)
+			catch (ArgumentException aex)
 			{
 				Debug.LogError("An Error on pulling samples deactivating LSL inlet on...", this);
 				this.enabled = false;
 				Debug.LogException(aex, this);
 			}
-
 		}
 
 		/// <summary>
@@ -110,14 +107,12 @@ namespace LSL4Unity.Scripts
 
 		void FixedUpdate()
 		{
-			if (moment == UpdateMoment.FixedUpdate && inlet != null)
-				pullSamples();
+			if (moment == UpdateMoment.FixedUpdate && inlet != null) { pullSamples(); }
 		}
 
 		void Update()
 		{
-			if (moment == UpdateMoment.Update && inlet != null)
-				pullSamples();
+			if (moment == UpdateMoment.Update && inlet != null) { pullSamples(); }
 		}
 	}
 
@@ -131,8 +126,8 @@ namespace LSL4Unity.Scripts
 
 		public string StreamType;
 
-		liblsl.StreamInfo[] results;
-		liblsl.StreamInlet inlet;
+		liblsl.StreamInfo[]       results;
+		liblsl.StreamInlet        inlet;
 		liblsl.ContinuousResolver resolver;
 
 		private int expectedChannels = 0;
@@ -167,10 +162,11 @@ namespace LSL4Unity.Scripts
 
 			AdditionalStart();
 		}
+
 		/// <summary>
 		/// Override this method in the subclass to specify what should happen during Start().
 		/// </summary>
-		protected virtual void AdditionalStart() 
+		protected virtual void AdditionalStart()
 		{
 			//By default, do nothing.
 		}
@@ -179,8 +175,8 @@ namespace LSL4Unity.Scripts
 		{
 			var results = resolver.results();
 
-			while(inlet == null) {
-
+			while (inlet == null)
+			{
 				yield return new WaitUntil(() => results.Length > 0);
 
 				inlet = new liblsl.StreamInlet(GetStreamInfoFrom(results));
@@ -210,11 +206,7 @@ namespace LSL4Unity.Scripts
 					// do not miss the first one found
 					Process(sample, lastTimeStamp);
 					// pull as long samples are available
-					while ((lastTimeStamp = inlet.pull_sample(sample, 0.0f)) != 0)
-					{
-						Process(sample, lastTimeStamp);
-					}
-
+					while ((lastTimeStamp = inlet.pull_sample(sample, 0.0f)) != 0) { Process(sample, lastTimeStamp); }
 				}
 			}
 			catch (ArgumentException aex)
@@ -223,7 +215,6 @@ namespace LSL4Unity.Scripts
 				this.enabled = false;
 				Debug.LogException(aex, this);
 			}
-
 		}
 
 		/// <summary>
@@ -234,17 +225,15 @@ namespace LSL4Unity.Scripts
 
 		void FixedUpdate()
 		{
-			if (moment == UpdateMoment.FixedUpdate && inlet != null)
-				pullSamples();
+			if (moment == UpdateMoment.FixedUpdate && inlet != null) { pullSamples(); }
 		}
 
 		void Update()
 		{
-			if (moment == UpdateMoment.Update && inlet != null)
-				pullSamples();
+			if (moment == UpdateMoment.Update && inlet != null) { pullSamples(); }
 		}
 	}
-	
+
 	public abstract class ACharInlet : MonoBehaviour
 	{
 		public enum UpdateMoment { FixedUpdate, Update }
@@ -255,8 +244,8 @@ namespace LSL4Unity.Scripts
 
 		public string StreamType;
 
-		liblsl.StreamInfo[] results;
-		liblsl.StreamInlet inlet;
+		liblsl.StreamInfo[]       results;
+		liblsl.StreamInlet        inlet;
 		liblsl.ContinuousResolver resolver;
 
 		private int expectedChannels = 0;
@@ -291,10 +280,11 @@ namespace LSL4Unity.Scripts
 
 			AdditionalStart();
 		}
+
 		/// <summary>
 		/// Override this method in the subclass to specify what should happen during Start().
 		/// </summary>
-		protected virtual void AdditionalStart() 
+		protected virtual void AdditionalStart()
 		{
 			//By default, do nothing.
 		}
@@ -326,11 +316,7 @@ namespace LSL4Unity.Scripts
 					// do not miss the first one found
 					Process(sample, lastTimeStamp);
 					// pull as long samples are available
-					while ((lastTimeStamp = inlet.pull_sample(sample, 0.0f)) != 0)
-					{
-						Process(sample, lastTimeStamp);
-					}
-
+					while ((lastTimeStamp = inlet.pull_sample(sample, 0.0f)) != 0) { Process(sample, lastTimeStamp); }
 				}
 			}
 			catch (ArgumentException aex)
@@ -339,7 +325,6 @@ namespace LSL4Unity.Scripts
 				this.enabled = false;
 				Debug.LogException(aex, this);
 			}
-
 		}
 
 		/// <summary>
@@ -350,17 +335,15 @@ namespace LSL4Unity.Scripts
 
 		void FixedUpdate()
 		{
-			if (moment == UpdateMoment.FixedUpdate && inlet != null)
-				pullSamples();
+			if (moment == UpdateMoment.FixedUpdate && inlet != null) { pullSamples(); }
 		}
 
 		void Update()
 		{
-			if (moment == UpdateMoment.Update && inlet != null)
-				pullSamples();
+			if (moment == UpdateMoment.Update && inlet != null) { pullSamples(); }
 		}
 	}
-	
+
 	public abstract class AShortInlet : MonoBehaviour
 	{
 		public enum UpdateMoment { FixedUpdate, Update }
@@ -371,8 +354,8 @@ namespace LSL4Unity.Scripts
 
 		public string StreamType;
 
-		liblsl.StreamInfo[] results;
-		liblsl.StreamInlet inlet;
+		liblsl.StreamInfo[]       results;
+		liblsl.StreamInlet        inlet;
 		liblsl.ContinuousResolver resolver;
 
 		private int expectedChannels = 0;
@@ -407,10 +390,11 @@ namespace LSL4Unity.Scripts
 
 			AdditionalStart();
 		}
+
 		/// <summary>
 		/// Override this method in the subclass to specify what should happen during Start().
 		/// </summary>
-		protected virtual void AdditionalStart() 
+		protected virtual void AdditionalStart()
 		{
 			//By default, do nothing.
 		}
@@ -441,11 +425,7 @@ namespace LSL4Unity.Scripts
 					// do not miss the first one found
 					Process(sample, lastTimeStamp);
 					// pull as long samples are available
-					while ((lastTimeStamp = inlet.pull_sample(sample, 0.0f)) != 0)
-					{
-						Process(sample, lastTimeStamp);
-					}
-
+					while ((lastTimeStamp = inlet.pull_sample(sample, 0.0f)) != 0) { Process(sample, lastTimeStamp); }
 				}
 			}
 			catch (ArgumentException aex)
@@ -454,7 +434,6 @@ namespace LSL4Unity.Scripts
 				this.enabled = false;
 				Debug.LogException(aex, this);
 			}
-
 		}
 
 		/// <summary>
@@ -465,17 +444,15 @@ namespace LSL4Unity.Scripts
 
 		void FixedUpdate()
 		{
-			if (moment == UpdateMoment.FixedUpdate && inlet != null)
-				pullSamples();
+			if (moment == UpdateMoment.FixedUpdate && inlet != null) { pullSamples(); }
 		}
 
 		void Update()
 		{
-			if (moment == UpdateMoment.Update && inlet != null)
-				pullSamples();
+			if (moment == UpdateMoment.Update && inlet != null) { pullSamples(); }
 		}
 	}
-	
+
 	public abstract class AIntInlet : MonoBehaviour
 	{
 		public enum UpdateMoment { FixedUpdate, Update }
@@ -486,8 +463,8 @@ namespace LSL4Unity.Scripts
 
 		public string StreamType;
 
-		liblsl.StreamInfo[] results;
-		liblsl.StreamInlet inlet;
+		liblsl.StreamInfo[]       results;
+		liblsl.StreamInlet        inlet;
 		liblsl.ContinuousResolver resolver;
 
 		private int expectedChannels = 0;
@@ -522,10 +499,11 @@ namespace LSL4Unity.Scripts
 
 			AdditionalStart();
 		}
+
 		/// <summary>
 		/// Override this method in the subclass to specify what should happen during Start().
 		/// </summary>
-		protected virtual void AdditionalStart() 
+		protected virtual void AdditionalStart()
 		{
 			//By default, do nothing.
 		}
@@ -556,11 +534,7 @@ namespace LSL4Unity.Scripts
 					// do not miss the first one found
 					Process(sample, lastTimeStamp);
 					// pull as long samples are available
-					while ((lastTimeStamp = inlet.pull_sample(sample, 0.0f)) != 0)
-					{
-						Process(sample, lastTimeStamp);
-					}
-
+					while ((lastTimeStamp = inlet.pull_sample(sample, 0.0f)) != 0) { Process(sample, lastTimeStamp); }
 				}
 			}
 			catch (ArgumentException aex)
@@ -569,7 +543,6 @@ namespace LSL4Unity.Scripts
 				this.enabled = false;
 				Debug.LogException(aex, this);
 			}
-
 		}
 
 		/// <summary>
@@ -580,17 +553,15 @@ namespace LSL4Unity.Scripts
 
 		void FixedUpdate()
 		{
-			if (moment == UpdateMoment.FixedUpdate && inlet != null)
-				pullSamples();
+			if (moment == UpdateMoment.FixedUpdate && inlet != null) { pullSamples(); }
 		}
 
 		void Update()
 		{
-			if (moment == UpdateMoment.Update && inlet != null)
-				pullSamples();
+			if (moment == UpdateMoment.Update && inlet != null) { pullSamples(); }
 		}
 	}
-	
+
 	public abstract class AStringInlet : MonoBehaviour
 	{
 		public enum UpdateMoment { FixedUpdate, Update }
@@ -601,8 +572,8 @@ namespace LSL4Unity.Scripts
 
 		public string StreamType;
 
-		liblsl.StreamInfo[] results;
-		liblsl.StreamInlet inlet;
+		liblsl.StreamInfo[]       results;
+		liblsl.StreamInlet        inlet;
 		liblsl.ContinuousResolver resolver;
 
 		private int expectedChannels = 0;
@@ -637,10 +608,11 @@ namespace LSL4Unity.Scripts
 
 			AdditionalStart();
 		}
+
 		/// <summary>
 		/// Override this method in the subclass to specify what should happen during Start().
 		/// </summary>
-		protected virtual void AdditionalStart() 
+		protected virtual void AdditionalStart()
 		{
 			//By default, do nothing.
 		}
@@ -671,11 +643,7 @@ namespace LSL4Unity.Scripts
 					// do not miss the first one found
 					Process(sample, lastTimeStamp);
 					// pull as long samples are available
-					while ((lastTimeStamp = inlet.pull_sample(sample, 0.0f)) != 0)
-					{
-						Process(sample, lastTimeStamp);
-					}
-
+					while ((lastTimeStamp = inlet.pull_sample(sample, 0.0f)) != 0) { Process(sample, lastTimeStamp); }
 				}
 			}
 			catch (ArgumentException aex)
@@ -684,7 +652,6 @@ namespace LSL4Unity.Scripts
 				this.enabled = false;
 				Debug.LogException(aex, this);
 			}
-
 		}
 
 		/// <summary>
@@ -695,14 +662,12 @@ namespace LSL4Unity.Scripts
 
 		void FixedUpdate()
 		{
-			if (moment == UpdateMoment.FixedUpdate && inlet != null)
-				pullSamples();
+			if (moment == UpdateMoment.FixedUpdate && inlet != null) { pullSamples(); }
 		}
 
 		void Update()
 		{
-			if (moment == UpdateMoment.Update && inlet != null)
-				pullSamples();
+			if (moment == UpdateMoment.Update && inlet != null) { pullSamples(); }
 		}
 	}
 }

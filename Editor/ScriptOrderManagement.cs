@@ -17,7 +17,7 @@ namespace LSL4Unity.Editor
 					{
 						var currentOrder = MonoImporter.GetExecutionOrder(monoScript);
 						var newOrder     = ((ScriptOrder) a).order;
-						if (currentOrder != newOrder) MonoImporter.SetExecutionOrder(monoScript, newOrder);
+						if (currentOrder != newOrder) { MonoImporter.SetExecutionOrder(monoScript, newOrder); }
 					}
 				}
 			}

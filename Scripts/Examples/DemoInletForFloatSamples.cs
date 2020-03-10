@@ -67,7 +67,7 @@ namespace LSL4Unity.Scripts.Examples
 
 		private void Update()
 		{
-			if (pullSamplesContinuously) pullSamples();
+			if (pullSamplesContinuously) { pullSamples(); }
 		}
 	}
 }

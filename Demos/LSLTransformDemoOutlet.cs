@@ -25,7 +25,7 @@ namespace LSL4Unity.Demos
 
 		public bool HasConsumer()
 		{
-			if (outlet != null) return outlet.have_consumers();
+			if (outlet != null) { return outlet.have_consumers(); }
 
 			return false;
 		}
@@ -52,7 +52,7 @@ namespace LSL4Unity.Demos
 
 		private void pushSample()
 		{
-			if (outlet == null) return;
+			if (outlet == null) { return; }
 			var rotation = sampleSource.rotation;
 
 			// reuse the array for each sample to reduce allocation costs
@@ -66,17 +66,17 @@ namespace LSL4Unity.Demos
 
 		void FixedUpdate()
 		{
-			if (sampling == MomentForSampling.FixedUpdate) pushSample();
+			if (sampling == MomentForSampling.FixedUpdate) { pushSample(); }
 		}
 
 		void Update()
 		{
-			if (sampling == MomentForSampling.Update) pushSample();
+			if (sampling == MomentForSampling.Update) { pushSample(); }
 		}
 
 		void LateUpdate()
 		{
-			if (sampling == MomentForSampling.LateUpdate) pushSample();
+			if (sampling == MomentForSampling.LateUpdate) { pushSample(); }
 		}
 	}
 }

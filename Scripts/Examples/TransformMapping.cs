@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 
-namespace LSL4Unity.Scripts.Examples {
+namespace LSL4Unity.Scripts.Examples
+{
 	public class TransformMapping : AFloatInlet
 	{
 		public Transform targetTransform;

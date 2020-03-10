@@ -58,7 +58,7 @@ namespace LSL4Unity.Editor
 
 			apiAvailable = File.Exists(Path.Combine(root, wrapperFileName));
 
-			if ((lib64Available || lib32Available) && apiAvailable) return true;
+			if ((lib64Available || lib32Available) && apiAvailable) { return true; }
 
 			Debug.LogError("LabStreamingLayer libraries not available! See " + wikiURL + " for installation instructions");
 			return false;

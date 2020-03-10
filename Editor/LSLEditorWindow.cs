@@ -42,7 +42,7 @@ namespace LSL4Unity.Editor
 
 		void OnGUI()
 		{
-			if (resolver == null) Init();
+			if (resolver == null) { Init(); }
 
 			UpdateStreams();
 

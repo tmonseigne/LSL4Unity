@@ -41,7 +41,7 @@ namespace LSL4Unity.Scripts
 		/// <param name="stream"></param>
 		public virtual void AStreamIsFound(LSLStreamInfoWrapper stream)
 		{
-			if (!isTheExpected(stream)) return;
+			if (!isTheExpected(stream)) { return; }
 
 			Debug.Log(string.Format("LSL Stream {0} found for {1}", stream.Name, name));
 
@@ -57,7 +57,7 @@ namespace LSL4Unity.Scripts
 		/// <param name="stream"></param>
 		public virtual void AStreamGotLost(LSLStreamInfoWrapper stream)
 		{
-			if (!isTheExpected(stream)) return;
+			if (!isTheExpected(stream)) { return; }
 
 			Debug.Log(string.Format("LSL Stream {0} Lost for {1}", stream.Name, name));
 
