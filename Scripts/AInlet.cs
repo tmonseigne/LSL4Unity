@@ -66,7 +66,7 @@ namespace LSL4Unity.Scripts
 
 			yield return new WaitUntil(() => results.Length > 0);
 
-			Debug.Log(string.Format("Resolving Stream: {0}", StreamName));
+			Debug.Log($"Resolving Stream: {StreamName}");
 
 			inlet = new liblsl.StreamInlet(results[0]);
 

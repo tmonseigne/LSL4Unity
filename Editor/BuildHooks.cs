@@ -52,7 +52,7 @@ namespace LSL4Unity.Editor
 
 			var targetFile = Path.Combine(pluginDirectory, LIB_LSL_NAME + fileEnding);
 
-			Debug.Log(string.Format("[LSL BUILD Hook] Renaming: {0} to {1}", sourceFile, targetFile));
+			Debug.Log($"[LSL BUILD Hook] Renaming: {sourceFile} to {targetFile}");
 
 			File.Move(sourceFile, targetFile);
 		}

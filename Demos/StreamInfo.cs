@@ -20,7 +20,7 @@ namespace LSL4Unity.Demos
 		{
 			StreamNameLabel.text  = outlet.StreamName;
 			StreamTypeLabel.text  = outlet.StreamType;
-			DataRate.text         = string.Format("Data Rate: {0}", outlet.GetDataRate());
+			DataRate.text         = $"Data Rate: {outlet.GetDataRate()}";
 			HasConsumerLabel.text = "Has no consumers";
 		}
 

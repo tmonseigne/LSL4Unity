@@ -73,7 +73,7 @@ namespace LSL4Unity.Scripts
 				{
 					if (!knownStreams.Any(s => s.Name == item.name() && s.Type == item.type()))
 					{
-						Debug.Log(string.Format("Found new Stream {0}", item.name()));
+						Debug.Log($"Found new Stream {item.name()}");
 
 						var newStreamInfo = new LSLStreamInfoWrapper(item);
 						knownStreams.Add(newStreamInfo);

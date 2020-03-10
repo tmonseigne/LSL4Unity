@@ -43,7 +43,7 @@ namespace LSL4Unity.Scripts
 		{
 			if (!isTheExpected(stream)) { return; }
 
-			Debug.Log(string.Format("LSL Stream {0} found for {1}", stream.Name, name));
+			Debug.Log($"LSL Stream {stream.Name} found for {name}");
 
 			inlet            = new liblsl.StreamInlet(stream.Item);
 			expectedChannels = stream.ChannelCount;
@@ -59,7 +59,7 @@ namespace LSL4Unity.Scripts
 		{
 			if (!isTheExpected(stream)) { return; }
 
-			Debug.Log(string.Format("LSL Stream {0} Lost for {1}", stream.Name, name));
+			Debug.Log($"LSL Stream {stream.Name} Lost for {name}");
 
 			OnStreamLost();
 		}

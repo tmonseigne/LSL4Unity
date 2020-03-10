@@ -32,8 +32,7 @@ namespace LSL4Unity.Editor
 			var prot_major = protocolVersion / 100;
 			var prot_minor = protocolVersion % 100;
 
-			lslVersionInfos = string.Format("You are using LSL library: {0}.{1} implementing protocol version: {2}.{3}", lib_major, lib_minor, prot_major,
-											prot_minor);
+			lslVersionInfos = $"You are using LSL library: {lib_major}.{lib_minor} implementing protocol version: {prot_major}.{prot_minor}";
 
 			this.titleContent = new GUIContent("LSL Utility");
 		}
@@ -101,7 +100,7 @@ namespace LSL4Unity.Editor
 			{
 				foreach (var item in streamInfos)
 				{
-					listNamesOfStreams.Add(string.Format("{0} {1} {2} {3}", item.name(), item.type(), item.hostname(), item.nominal_srate()));
+					listNamesOfStreams.Add($"{item.name()} {item.type()} {item.hostname()} {item.nominal_srate()}");
 				}
 
 				streamLookUpResult = listNamesOfStreams.Count + nStreamsFound;
