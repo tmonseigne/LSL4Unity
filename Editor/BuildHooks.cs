@@ -4,69 +4,57 @@ using UnityEditor;
 using System.IO;
 
 namespace Assets.LSL4Unity.EditorExtensions
-{ 
+{
+	public class BuildHooks
+	{
+		const string LIB_LSL_NAME = "liblsl";
+		const string PLUGIN_DIR   = "Plugins";
 
-    public class BuildHooks {
+		[PostProcessBuildAttribute(1)]
+		public static void OnPostprocessBuild(BuildTarget target, string pathToBuiltProject)
+		{
+			var buildName = Path.GetFileNameWithoutExtension(pathToBuiltProject);
 
-        const string LIB_LSL_NAME = "liblsl";
-        const string PLUGIN_DIR = "Plugins";
+			var buildHostDirectory = pathToBuiltProject.Replace(Path.GetFileName(pathToBuiltProject), "");
 
-        [PostProcessBuildAttribute(1)]
-        public static void OnPostprocessBuild(BuildTarget target, string pathToBuiltProject)
-        {
-            var buildName = Path.GetFileNameWithoutExtension(pathToBuiltProject);
+			var dataDirectoryName = buildName + "_Data";
 
-            var buildHostDirectory = pathToBuiltProject.Replace(Path.GetFileName(pathToBuiltProject), "");
+			var pathToDataDirectory = Path.Combine(buildHostDirectory, dataDirectoryName);
 
-            var dataDirectoryName = buildName + "_Data";
+			var pluginDirectory = Path.Combine(pathToDataDirectory, PLUGIN_DIR);
 
-            var pathToDataDirectory = Path.Combine(buildHostDirectory, dataDirectoryName);
+			switch (target)
+			{
+				case BuildTarget.StandaloneWindows:
+					RenameLibFile(pluginDirectory, LSLEditorIntegration.lib32Name, LSLEditorIntegration.lib64Name, LSLEditorIntegration.DLL_ENDING);
+					break;
+				case BuildTarget.StandaloneWindows64:
+					RenameLibFile(pluginDirectory, LSLEditorIntegration.lib64Name, LSLEditorIntegration.lib32Name, LSLEditorIntegration.DLL_ENDING);
+					break;
+				case BuildTarget.StandaloneLinux64:
+					RenameLibFile(pluginDirectory, LSLEditorIntegration.lib64Name, LSLEditorIntegration.lib32Name, LSLEditorIntegration.SO_ENDING);
+					break;
+				case BuildTarget.StandaloneOSX:
+					RenameLibFile(pluginDirectory, LSLEditorIntegration.lib64Name, LSLEditorIntegration.lib32Name, LSLEditorIntegration.BUNDLE_ENDING);
+					break;
+			}
+		}
 
-            var pluginDirectory = Path.Combine(pathToDataDirectory, PLUGIN_DIR);
+		private static void RenameLibFile(string pluginDirectory, string sourceName, string nameOfObsoleteFile, string fileEnding)
+		{
+			var obsoleteFile = Path.Combine(pluginDirectory, nameOfObsoleteFile + fileEnding);
 
-            if (target == BuildTarget.StandaloneWindows)
-            {
-                RenameLibFile(pluginDirectory, LSLEditorIntegration.lib32Name, LSLEditorIntegration.lib64Name, LSLEditorIntegration.DLL_ENDING);
-            }
-            else if(target == BuildTarget.StandaloneWindows64)
-            {
-                RenameLibFile(pluginDirectory, LSLEditorIntegration.lib64Name, LSLEditorIntegration.lib32Name, LSLEditorIntegration.DLL_ENDING);
-            }
+			Debug.Log("[LSL BUILD Hook] Delete obsolete file: " + obsoleteFile);
 
-            if (target == BuildTarget.StandaloneLinux)
-            {
-                RenameLibFile(pluginDirectory, LSLEditorIntegration.lib32Name, LSLEditorIntegration.lib64Name, LSLEditorIntegration.SO_ENDING);
-            }
-            else if (target == BuildTarget.StandaloneLinux64)
-            {
-                RenameLibFile(pluginDirectory, LSLEditorIntegration.lib64Name, LSLEditorIntegration.lib32Name, LSLEditorIntegration.SO_ENDING);
-            }
+			File.Delete(obsoleteFile);
 
-            if (target == BuildTarget.StandaloneOSXIntel)
-            {
-                RenameLibFile(pluginDirectory, LSLEditorIntegration.lib32Name, LSLEditorIntegration.lib64Name, LSLEditorIntegration.BUNDLE_ENDING);
-            }
-            else if (target == BuildTarget.StandaloneOSXIntel64)
-            {
-                RenameLibFile(pluginDirectory, LSLEditorIntegration.lib64Name, LSLEditorIntegration.lib32Name, LSLEditorIntegration.BUNDLE_ENDING);
-            }
-        }
+			var sourceFile = Path.Combine(pluginDirectory, sourceName + fileEnding);
 
-        private static void RenameLibFile(string pluginDirectory , string sourceName, string nameOfObsoleteFile, string fileEnding)
-        {
-            var obsoleteFile = Path.Combine(pluginDirectory, nameOfObsoleteFile + fileEnding);
+			var targetFile = Path.Combine(pluginDirectory, LIB_LSL_NAME + fileEnding);
 
-            Debug.Log("[LSL BUILD Hook] Delete obsolete file: " + obsoleteFile);
+			Debug.Log(string.Format("[LSL BUILD Hook] Renaming: {0} to {1}", sourceFile, targetFile));
 
-            File.Delete(obsoleteFile);
-
-            var sourceFile = Path.Combine(pluginDirectory, sourceName + fileEnding);
-
-            var targetFile = Path.Combine(pluginDirectory, LIB_LSL_NAME + fileEnding);
-            
-            Debug.Log(string.Format("[LSL BUILD Hook] Renaming: {0} to {1}", sourceFile, targetFile));
-
-            File.Move(sourceFile, targetFile);
-        }
-    }
+			File.Move(sourceFile, targetFile);
+		}
+	}
 }

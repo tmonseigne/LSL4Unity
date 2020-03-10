@@ -5,170 +5,165 @@ using Assets.LSL4Unity.Scripts.Common;
 
 namespace Assets.LSL4Unity.Scripts
 {
-    /// <summary>
-    /// An reusable example of an outlet which provides the orientation and world position of an entity of an Unity Scene to LSL
-    /// </summary>
-    public class LSLTransformOutlet : MonoBehaviour
-    {
-        private const string unique_source_id_suffix = "63CE5B03731944F6AC30DBB04B451A94";
+	/// <summary>
+	/// An reusable example of an outlet which provides the orientation and world position of an entity of an Unity Scene to LSL
+	/// </summary>
+	public class LSLTransformOutlet : MonoBehaviour
+	{
+		private const string unique_source_id_suffix = "63CE5B03731944F6AC30DBB04B451A94";
 
-        private string unique_source_id;
+		private string unique_source_id;
 
-        private liblsl.StreamOutlet outlet;
-        private liblsl.StreamInfo streamInfo;
+		private liblsl.StreamOutlet outlet;
+		private liblsl.StreamInfo   streamInfo;
 
-        private int channelCount = 0;
+		private int channelCount = 0;
 
-        /// <summary>
-        /// Use a array to reduce allocation costs
-        /// and reuse it for each sampling call
-        /// </summary>
-        private float[] currentSample;
+		/// <summary>
+		/// Use a array to reduce allocation costs
+		/// and reuse it for each sampling call
+		/// </summary>
+		private float[] currentSample;
 
-        public Transform sampleSource;
+		public Transform sampleSource;
 
-        public string StreamName = "BeMoBI.Unity.Orientation.<Add_a_entity_id_here>";
-        public string StreamType = "Unity.Quaternion";
-       
-        public bool StreamRotationAsQuaternion = true;
-        public bool StreamRotationAsEuler = true;
-        public bool StreamPosition = true;
+		public string StreamName = "BeMoBI.Unity.Orientation.<Add_a_entity_id_here>";
+		public string StreamType = "Unity.Quaternion";
 
-        /// <summary>
-        /// Due to an instable framerate we assume a irregular data rate.
-        /// </summary>
-        private const double dataRate = liblsl.IRREGULAR_RATE;
+		public bool StreamRotationAsQuaternion = true;
+		public bool StreamRotationAsEuler      = true;
+		public bool StreamPosition             = true;
 
-        void Awake()
-        {
-            // assigning a unique source id as a combination of a the instance ID for the case that
-            // multiple LSLTransformOutlet are used and a guid identifing the script itself.
-            unique_source_id = string.Format("{0}_{1}", GetInstanceID(), unique_source_id_suffix);
-        }
+		/// <summary>
+		/// Due to an instable framerate we assume a irregular data rate.
+		/// </summary>
+		private const double dataRate = liblsl.IRREGULAR_RATE;
 
-        void Start()
-        {
-            var channelDefinitions = SetupChannels();
+		void Awake()
+		{
+			// assigning a unique source id as a combination of a the instance ID for the case that
+			// multiple LSLTransformOutlet are used and a guid identifing the script itself.
+			unique_source_id = string.Format("{0}_{1}", GetInstanceID(), unique_source_id_suffix);
+		}
 
-            channelCount = channelDefinitions.Count;
+		void Start()
+		{
+			var channelDefinitions = SetupChannels();
 
-            // initialize the array once
-            currentSample = new float[channelCount];
+			channelCount = channelDefinitions.Count;
 
-            streamInfo = new liblsl.StreamInfo(StreamName, StreamType, channelCount, dataRate, liblsl.channel_format_t.cf_float32, unique_source_id);
-            
-            // it's not possible to create a XMLElement before and append it.
-            liblsl.XMLElement chns = streamInfo.desc().append_child("channels");
-            // so this workaround has been introduced.
-            foreach (var def in channelDefinitions)
-            {
-                chns.append_child("channel")
-                    .append_child_value("label", def.label)
-                    .append_child_value("unit", def.unit)
-                    .append_child_value("type", def.type);
-            }
-            
-            outlet = new liblsl.StreamOutlet(streamInfo);
-        }
+			// initialize the array once
+			currentSample = new float[channelCount];
 
-        /// <summary>
-        /// Sampling on Late Update to make sure the transform recieved all updates
-        /// </summary>
-        void LateUpdate()
-        {
-            if (outlet == null)
-                return;
+			streamInfo = new liblsl.StreamInfo(StreamName, StreamType, channelCount, dataRate, liblsl.channel_format_t.cf_float32, unique_source_id);
 
-            sample();
-        }
+			// it's not possible to create a XMLElement before and append it.
+			liblsl.XMLElement chns = streamInfo.desc().append_child("channels");
+			// so this workaround has been introduced.
+			foreach (var def in channelDefinitions)
+			{
+				chns.append_child("channel").append_child_value("label", def.label).append_child_value("unit", def.unit).append_child_value("type", def.type);
+			}
 
-        private void sample()
-        {
-            int offset = -1;
+			outlet = new liblsl.StreamOutlet(streamInfo);
+		}
 
-            if (StreamRotationAsQuaternion)
-            {
-                var rotation = sampleSource.rotation;
+		/// <summary>
+		/// Sampling on Late Update to make sure the transform recieved all updates
+		/// </summary>
+		void LateUpdate()
+		{
+			if (outlet == null) return;
 
-                currentSample[++offset] = rotation.x; 
-                currentSample[++offset] = rotation.y; 
-                currentSample[++offset] = rotation.z; 
-                currentSample[++offset] = rotation.w;
-            }
-            if (StreamRotationAsEuler)
-            {
-                var rotation = sampleSource.rotation.eulerAngles;
-                
-                currentSample[++offset] = rotation.x; 
-                currentSample[++offset] = rotation.y; 
-                currentSample[++offset] = rotation.z;
-            } 
-            if (StreamPosition)
-            {
-                var position = sampleSource.position;
-                
-                currentSample[++offset] = position.x; 
-                currentSample[++offset] = position.y;
-                currentSample[++offset] = position.z;
-            }
+			sample();
+		}
 
-            outlet.push_sample(currentSample, liblsl.local_clock());
-        }
+		private void sample()
+		{
+			int offset = -1;
+
+			if (StreamRotationAsQuaternion)
+			{
+				var rotation = sampleSource.rotation;
+
+				currentSample[++offset] = rotation.x;
+				currentSample[++offset] = rotation.y;
+				currentSample[++offset] = rotation.z;
+				currentSample[++offset] = rotation.w;
+			}
+			if (StreamRotationAsEuler)
+			{
+				var rotation = sampleSource.rotation.eulerAngles;
+
+				currentSample[++offset] = rotation.x;
+				currentSample[++offset] = rotation.y;
+				currentSample[++offset] = rotation.z;
+			}
+			if (StreamPosition)
+			{
+				var position = sampleSource.position;
+
+				currentSample[++offset] = position.x;
+				currentSample[++offset] = position.y;
+				currentSample[++offset] = position.z;
+			}
+
+			outlet.push_sample(currentSample, liblsl.local_clock());
+		}
 
 
-        #region workaround for channel creation
+		#region workaround for channel creation
 
-        private ICollection<ChannelDefinition> SetupChannels()
-        {
-            var list = new List<ChannelDefinition>();
+		private ICollection<ChannelDefinition> SetupChannels()
+		{
+			var list = new List<ChannelDefinition>();
 
-            if (StreamRotationAsQuaternion)
-            {
-                string[] quatlabels = { "x", "y", "z", "w" };
+			if (StreamRotationAsQuaternion)
+			{
+				string[] quatlabels = { "x", "y", "z", "w" };
 
-                foreach (var item in quatlabels)
-                {
-                    var definition = new ChannelDefinition();
-                    definition.label = item;
-                    definition.unit = "unit quaternion";
-                    definition.type = "quaternion component";
-                    list.Add(definition);
-                }
-            }
+				foreach (var item in quatlabels)
+				{
+					var definition = new ChannelDefinition();
+					definition.label = item;
+					definition.unit  = "unit quaternion";
+					definition.type  = "quaternion component";
+					list.Add(definition);
+				}
+			}
 
-            if (StreamRotationAsEuler)
-            {
-                string[] eulerLabels = { "x", "y", "z" };
+			if (StreamRotationAsEuler)
+			{
+				string[] eulerLabels = { "x", "y", "z" };
 
-                foreach (var item in eulerLabels)
-                {
-                    var definition = new ChannelDefinition();
-                    definition.label = item;
-                    definition.unit = "degree";
-                    definition.type = "axis angle";
-                    list.Add(definition);
-                }
-            }
+				foreach (var item in eulerLabels)
+				{
+					var definition = new ChannelDefinition();
+					definition.label = item;
+					definition.unit  = "degree";
+					definition.type  = "axis angle";
+					list.Add(definition);
+				}
+			}
 
 
-            if (StreamPosition)
-            {
-                string[] eulerLabels = { "x", "y", "z" };
+			if (StreamPosition)
+			{
+				string[] eulerLabels = { "x", "y", "z" };
 
-                foreach (var item in eulerLabels)
-                {
-                    var definition = new ChannelDefinition();
-                    definition.label = item;
-                    definition.unit = "meter";
-                    definition.type = "position in world space";
-                    list.Add(definition);
-                }
-            }
+				foreach (var item in eulerLabels)
+				{
+					var definition = new ChannelDefinition();
+					definition.label = item;
+					definition.unit  = "meter";
+					definition.type  = "position in world space";
+					list.Add(definition);
+				}
+			}
 
-            return list;
-        }
+			return list;
+		}
 
-        #endregion
-
-    }
+		#endregion
+	}
 }

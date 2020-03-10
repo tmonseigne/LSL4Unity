@@ -6,18 +6,17 @@ using System;
 // Don't forget the Namespace import
 using Assets.LSL4Unity.Scripts;
 
-public class RandomMarker : MonoBehaviour {
-
+public class RandomMarker : MonoBehaviour
+{
 	public LSLMarkerStream markerStream;
-	
-	void Start () {
 
+	void Start()
+	{
 		Assert.IsNotNull(markerStream, "You forgot to assign the reference to a marker stream implementation!");
 
-		if (markerStream != null)
-			StartCoroutine(WriteContinouslyMarkerEachSecond());
+		if (markerStream != null) StartCoroutine(WriteContinouslyMarkerEachSecond());
 	}
-	
+
 	IEnumerator WriteContinouslyMarkerEachSecond()
 	{
 		while (true)
@@ -29,8 +28,5 @@ public class RandomMarker : MonoBehaviour {
 		}
 	}
 
-	private string GetARandomMarker()
-	{
-		return UnityEngine.Random.value > 0.5 ? "A" : "B";
-	}
+	private string GetARandomMarker() { return UnityEngine.Random.value > 0.5 ? "A" : "B"; }
 }
