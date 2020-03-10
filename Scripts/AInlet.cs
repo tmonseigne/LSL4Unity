@@ -1,19 +1,9 @@
-﻿using UnityEngine;
+﻿using System;
 using System.Collections;
-using LSL;
-using System;
 using System.Linq;
+using UnityEngine;
 
-/// <summary>
-/// DO NOT CHANGE CLASSES WITHIN THESE NAMESPACE
-/// 
-/// These namespace provides basic implementations to quick start with simple stream inlets.
-/// 
-/// These implementation supporting just the simplest use case.
-/// Getting all samples available in at the moment of the update call (Update/FixedUpdate).
-/// Samples won't get cached or queue.
-/// </summary>
-namespace Assets.LSL4Unity.Scripts.AbstractInlets
+namespace LSL4Unity.Scripts
 {
 	public abstract class AFloatInlet : MonoBehaviour
 	{

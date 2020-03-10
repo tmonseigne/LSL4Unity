@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Assets.LSL4Unity.Scripts
+namespace LSL4Unity.Scripts
 {
 	/// <summary>
 	/// This singleton should provide an dedicated timestamp for each update call or fixed update LSL sample!
@@ -24,10 +24,10 @@ namespace Assets.LSL4Unity.Scripts
 
 		void Awake() { LSLTimeSync.instance = this; }
 
-		void FixedUpdate() { fixedUpdateTimeStamp = LSL.liblsl.local_clock(); }
+		void FixedUpdate() { fixedUpdateTimeStamp = liblsl.local_clock(); }
 
-		void Update() { updateTimeStamp = LSL.liblsl.local_clock(); }
+		void Update() { updateTimeStamp = liblsl.local_clock(); }
 
-		void LateUpdate() { lateUpdateTimeStamp = LSL.liblsl.local_clock(); }
+		void LateUpdate() { lateUpdateTimeStamp = liblsl.local_clock(); }
 	}
 }

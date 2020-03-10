@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Runtime.InteropServices;
-using System.Collections;
 
 /**
 * C# API for the lab streaming layer.
@@ -16,7 +15,7 @@ using System.Collections;
 *   (for recording, viewing or experiment control).
 *
 */
-namespace LSL
+namespace LSL4Unity
 {
 	public class liblsl
 	{
