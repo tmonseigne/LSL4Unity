@@ -529,9 +529,8 @@ namespace LSL4Unity
 		* @return An array of stream info objects (excluding their desc field), any of which can 
 		*         subsequently be used to open an inlet. The full info can be retrieve from the inlet.
 		*/
-		public static StreamInfo[] resolve_streams() { return resolve_streams(1.0); }
 
-		public static StreamInfo[] resolve_streams(double wait_time)
+		public static StreamInfo[] resolve_streams(double wait_time = 1.0)
 		{
 			IntPtr[]     buf = new IntPtr[1024];
 			int          num = dll.lsl_resolve_all(buf, (uint) buf.Length, wait_time);
@@ -551,10 +550,7 @@ namespace LSL4Unity
 		* @return An array of matching stream info objects (excluding their meta-data), any of 
 		*         which can subsequently be used to open an inlet.
 		*/
-		public static StreamInfo[] resolve_stream(string prop, string value)              { return resolve_stream(prop, value, 1,       FOREVER); }
-		public static StreamInfo[] resolve_stream(string prop, string value, int minimum) { return resolve_stream(prop, value, minimum, FOREVER); }
-
-		public static StreamInfo[] resolve_stream(string prop, string value, int minimum, double timeout)
+		public static StreamInfo[] resolve_stream(string prop, string value, int minimum = 1, double timeout = FOREVER)
 		{
 			IntPtr[]     buf = new IntPtr[1024];
 			int          num = dll.lsl_resolve_byprop(buf, (uint) buf.Length, prop, value, minimum, timeout);
@@ -574,10 +570,7 @@ namespace LSL4Unity
 		* @return An array of matching stream info objects (excluding their meta-data), any of 
 		*         which can subsequently be used to open an inlet.
 		*/
-		public static StreamInfo[] resolve_stream(string pred)              { return resolve_stream(pred, 1,       FOREVER); }
-		public static StreamInfo[] resolve_stream(string pred, int minimum) { return resolve_stream(pred, minimum, FOREVER); }
-
-		public static StreamInfo[] resolve_stream(string pred, int minimum, double timeout)
+		public static StreamInfo[] resolve_stream(string pred, int minimum = 1, double timeout = FOREVER)
 		{
 			IntPtr[]     buf = new IntPtr[1024];
 			int          num = dll.lsl_resolve_bypred(buf, (uint) buf.Length, pred, minimum, timeout);
@@ -638,9 +631,8 @@ namespace LSL4Unity
 			* @param timeout Timeout of the operation (default: no timeout).
 			* @throws TimeoutException (if the timeout expires), or LostException (if the stream source has been lost).
 			*/
-			public StreamInfo info() { return info(FOREVER); }
 
-			public StreamInfo info(double timeout)
+			public StreamInfo info(double timeout = FOREVER)
 			{
 				int    ec  = 0;
 				IntPtr res = dll.lsl_get_fullinfo(obj, timeout, ref ec);
@@ -656,9 +648,8 @@ namespace LSL4Unity
 			* @param timeout Optional timeout of the operation (default: no timeout).
 			* @throws TimeoutException (if the timeout expires), or LostException (if the stream source has been lost).
 			*/
-			public void open_stream() { open_stream(FOREVER); }
 
-			public void open_stream(double timeout)
+			public void open_stream(double timeout = FOREVER)
 			{
 				int ec = 0;
 				dll.lsl_open_stream(obj, timeout, ref ec);
@@ -673,8 +664,7 @@ namespace LSL4Unity
 			* @param flags An integer that is the result of bitwise OR'ing one or more options from processing_options_t 
 			*        together (e.g., post_clocksync|post_dejitter); the default is to enable all options.
 			*/
-			public void set_postprocessing()                                { set_postprocessing(processing_options_t.post_ALL); }
-			public void set_postprocessing(processing_options_t post_flags) { dll.lsl_set_postprocessing(obj, post_flags); }
+			public void set_postprocessing(processing_options_t post_flags = processing_options_t.post_ALL) { dll.lsl_set_postprocessing(obj, post_flags); }
 
 			/**
 			* Drop the current data stream.
@@ -696,9 +686,8 @@ namespace LSL4Unity
 			*         that was remotely generated via lsl_local_clock() to map it into the local clock domain of this machine.
 			* @throws TimeoutException (if the timeout expires), or LostException (if the stream source has been lost).
 			*/
-			public double time_correction() { return time_correction(FOREVER); }
 
-			public double time_correction(double timeout)
+			public double time_correction(double timeout = FOREVER)
 			{
 				int    ec  = 0;
 				double res = dll.lsl_time_correction(obj, timeout, ref ec);
@@ -719,9 +708,8 @@ namespace LSL4Unity
 			*          To remap this time stamp to the local clock, add the value returned by .time_correction() to it. 
 			* @throws LostException (if the stream source has been lost).
 			*/
-			public double pull_sample(float[] sample) { return pull_sample(sample, FOREVER); }
 
-			public double pull_sample(float[] sample, double timeout)
+			public double pull_sample(float[] sample, double timeout = FOREVER)
 			{
 				int    ec  = 0;
 				double res = dll.lsl_pull_sample_f(obj, sample, sample.Length, timeout, ref ec);
@@ -729,9 +717,7 @@ namespace LSL4Unity
 				return res;
 			}
 
-			public double pull_sample(double[] sample) { return pull_sample(sample, FOREVER); }
-
-			public double pull_sample(double[] sample, double timeout)
+			public double pull_sample(double[] sample, double timeout = FOREVER)
 			{
 				int    ec  = 0;
 				double res = dll.lsl_pull_sample_d(obj, sample, sample.Length, timeout, ref ec);
@@ -739,9 +725,7 @@ namespace LSL4Unity
 				return res;
 			}
 
-			public double pull_sample(int[] sample) { return pull_sample(sample, FOREVER); }
-
-			public double pull_sample(int[] sample, double timeout)
+			public double pull_sample(int[] sample, double timeout = FOREVER)
 			{
 				int    ec  = 0;
 				double res = dll.lsl_pull_sample_i(obj, sample, sample.Length, timeout, ref ec);
@@ -749,9 +733,7 @@ namespace LSL4Unity
 				return res;
 			}
 
-			public double pull_sample(short[] sample) { return pull_sample(sample, FOREVER); }
-
-			public double pull_sample(short[] sample, double timeout)
+			public double pull_sample(short[] sample, double timeout = FOREVER)
 			{
 				int    ec  = 0;
 				double res = dll.lsl_pull_sample_s(obj, sample, sample.Length, timeout, ref ec);
@@ -759,9 +741,7 @@ namespace LSL4Unity
 				return res;
 			}
 
-			public double pull_sample(char[] sample) { return pull_sample(sample, FOREVER); }
-
-			public double pull_sample(char[] sample, double timeout)
+			public double pull_sample(char[] sample, double timeout = FOREVER)
 			{
 				int    ec  = 0;
 				double res = dll.lsl_pull_sample_c(obj, sample, sample.Length, timeout, ref ec);
@@ -769,9 +749,7 @@ namespace LSL4Unity
 				return res;
 			}
 
-			public double pull_sample(string[] sample) { return pull_sample(sample, FOREVER); }
-
-			public double pull_sample(string[] sample, double timeout)
+			public double pull_sample(string[] sample, double timeout = FOREVER)
 			{
 				int      ec  = 0;
 				IntPtr[] tmp = new IntPtr[sample.Length];
@@ -783,7 +761,7 @@ namespace LSL4Unity
 				}
 				finally
 				{
-					for (int k = 0; k < tmp.Length; k++) { dll.lsl_destroy_string(tmp[k]); }
+					foreach (IntPtr t in tmp) { dll.lsl_destroy_string(t); }
 				}
 				return res;
 			}
@@ -803,9 +781,8 @@ namespace LSL4Unity
 			* @return samples_written Number of samples written to the data and timestamp buffers.
 			* @throws LostException (if the stream source has been lost).
 			*/
-			public int pull_chunk(float[,] data_buffer, double[] timestamp_buffer) { return pull_chunk(data_buffer, timestamp_buffer, 0.0); }
 
-			public int pull_chunk(float[,] data_buffer, double[] timestamp_buffer, double timeout)
+			public int pull_chunk(float[,] data_buffer, double[] timestamp_buffer, double timeout = 0.0)
 			{
 				int  ec  = 0;
 				uint res = dll.lsl_pull_chunk_f(obj, data_buffer, timestamp_buffer, (uint) data_buffer.Length, (uint) timestamp_buffer.Length, timeout, ref ec);
@@ -813,9 +790,7 @@ namespace LSL4Unity
 				return (int) res / data_buffer.GetLength(1);
 			}
 
-			public int pull_chunk(double[,] data_buffer, double[] timestamp_buffer) { return pull_chunk(data_buffer, timestamp_buffer, 0.0); }
-
-			public int pull_chunk(double[,] data_buffer, double[] timestamp_buffer, double timeout)
+			public int pull_chunk(double[,] data_buffer, double[] timestamp_buffer, double timeout = 0.0)
 			{
 				int  ec  = 0;
 				uint res = dll.lsl_pull_chunk_d(obj, data_buffer, timestamp_buffer, (uint) data_buffer.Length, (uint) timestamp_buffer.Length, timeout, ref ec);
@@ -823,9 +798,7 @@ namespace LSL4Unity
 				return (int) res / data_buffer.GetLength(1);
 			}
 
-			public int pull_chunk(int[,] data_buffer, double[] timestamp_buffer) { return pull_chunk(data_buffer, timestamp_buffer, 0.0); }
-
-			public int pull_chunk(int[,] data_buffer, double[] timestamp_buffer, double timeout)
+			public int pull_chunk(int[,] data_buffer, double[] timestamp_buffer, double timeout = 0.0)
 			{
 				int  ec  = 0;
 				uint res = dll.lsl_pull_chunk_i(obj, data_buffer, timestamp_buffer, (uint) data_buffer.Length, (uint) timestamp_buffer.Length, timeout, ref ec);
@@ -833,9 +806,7 @@ namespace LSL4Unity
 				return (int) res / data_buffer.GetLength(1);
 			}
 
-			public int pull_chunk(short[,] data_buffer, double[] timestamp_buffer) { return pull_chunk(data_buffer, timestamp_buffer, 0.0); }
-
-			public int pull_chunk(short[,] data_buffer, double[] timestamp_buffer, double timeout)
+			public int pull_chunk(short[,] data_buffer, double[] timestamp_buffer, double timeout = 0.0)
 			{
 				int  ec  = 0;
 				uint res = dll.lsl_pull_chunk_s(obj, data_buffer, timestamp_buffer, (uint) data_buffer.Length, (uint) timestamp_buffer.Length, timeout, ref ec);
@@ -843,9 +814,7 @@ namespace LSL4Unity
 				return (int) res / data_buffer.GetLength(1);
 			}
 
-			public int pull_chunk(char[,] data_buffer, double[] timestamp_buffer) { return pull_chunk(data_buffer, timestamp_buffer, 0.0); }
-
-			public int pull_chunk(char[,] data_buffer, double[] timestamp_buffer, double timeout)
+			public int pull_chunk(char[,] data_buffer, double[] timestamp_buffer, double timeout = 0.0)
 			{
 				int  ec  = 0;
 				uint res = dll.lsl_pull_chunk_c(obj, data_buffer, timestamp_buffer, (uint) data_buffer.Length, (uint) timestamp_buffer.Length, timeout, ref ec);
@@ -853,9 +822,7 @@ namespace LSL4Unity
 				return (int) res / data_buffer.GetLength(1);
 			}
 
-			public int pull_chunk(string[,] data_buffer, double[] timestamp_buffer) { return pull_chunk(data_buffer, timestamp_buffer, 0.0); }
-
-			public int pull_chunk(string[,] data_buffer, double[] timestamp_buffer, double timeout)
+			public int pull_chunk(string[,] data_buffer, double[] timestamp_buffer, double timeout = 0.0)
 			{
 				int       ec  = 0;
 				IntPtr[,] tmp = new IntPtr[data_buffer.GetLength(0), data_buffer.GetLength(1)];

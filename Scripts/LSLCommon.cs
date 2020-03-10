@@ -16,26 +16,23 @@ namespace LSL4Unity.Scripts
 		/// <returns></returns>
 		public static float GetSamplingRateFor(MomentForSampling moment, bool setRefreshRateToDisplay = true)
 		{
-			float samplingRateInHertz = 0;
-
-			if (moment == MomentForSampling.FixedUpdate) { samplingRateInHertz = 1000 / (1000 * Time.fixedDeltaTime); }
-
-			if (moment == MomentForSampling.Update || moment == MomentForSampling.LateUpdate)
-			{
-				if (Application.targetFrameRate == DEFAULT_PLATTFORM_SPECIFIC_FRAMERATE && !setRefreshRateToDisplay)
-				{
-					throw new InvalidOperationException("When using Update or LateUpdate as sampling moment - specify a target frameRate");
+			switch (moment) {
+				case MomentForSampling.FixedUpdate: return 1000 / (1000 * Time.fixedDeltaTime);
+				case MomentForSampling.Update:
+				case MomentForSampling.LateUpdate: {
+					if (Application.targetFrameRate == DEFAULT_PLATTFORM_SPECIFIC_FRAMERATE && !setRefreshRateToDisplay)
+					{
+						throw new InvalidOperationException("When using Update or LateUpdate as sampling moment - specify a target frameRate");
+					}
+					if (setRefreshRateToDisplay)
+					{
+						Debug.LogWarning("Application.targetFrameRate get set to Screen.currentResolution.refreshRate!");
+						Application.targetFrameRate = Screen.currentResolution.refreshRate;
+					}
+					return 1.0f / Application.targetFrameRate;
 				}
-				else if (setRefreshRateToDisplay)
-				{
-					Debug.LogWarning("Application.targetFrameRate get set to Screen.currentResolution.refreshRate!");
-					Application.targetFrameRate = Screen.currentResolution.refreshRate;
-				}
-
-				samplingRateInHertz = 1 / Application.targetFrameRate;
+				default: return 0.0f;
 			}
-
-			return samplingRateInHertz;
 		}
 	}
 

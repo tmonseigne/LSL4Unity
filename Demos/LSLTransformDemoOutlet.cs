@@ -22,13 +22,7 @@ namespace LSL4Unity.Demos
 		private double dataRate;
 
 		public double GetDataRate() { return dataRate; }
-
-		public bool HasConsumer()
-		{
-			if (outlet != null) { return outlet.have_consumers(); }
-
-			return false;
-		}
+		public bool   HasConsumer() { return outlet != null && outlet.have_consumers(); }
 
 		public string StreamName   = "BeMoBI.Unity.Orientation.<Add_a_entity_id_here>";
 		public string StreamType   = "Unity.Quaternion";
