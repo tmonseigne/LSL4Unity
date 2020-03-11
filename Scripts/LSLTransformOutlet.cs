@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace LSL4Unity.Scripts
@@ -120,22 +121,14 @@ namespace LSL4Unity.Scripts
 			{
 				string[] quatlabels = { "x", "y", "z", "w" };
 
-				foreach (var item in quatlabels)
-				{
-					var definition = new ChannelDefinition { Label = item, Unit = "unit quaternion", Type = "quaternion component" };
-					list.Add(definition);
-				}
+				list.AddRange(quatlabels.Select(item => new ChannelDefinition { Label = item, Unit = "unit quaternion", Type = "quaternion component" }));
 			}
 
 			if (StreamRotationAsEuler)
 			{
 				string[] eulerLabels = { "x", "y", "z" };
 
-				foreach (var item in eulerLabels)
-				{
-					var definition = new ChannelDefinition { Label = item, Unit = "degree", Type = "axis angle" };
-					list.Add(definition);
-				}
+				list.AddRange(eulerLabels.Select(item => new ChannelDefinition { Label = item, Unit = "degree", Type = "axis angle" }));
 			}
 
 
@@ -143,11 +136,7 @@ namespace LSL4Unity.Scripts
 			{
 				string[] eulerLabels = { "x", "y", "z" };
 
-				foreach (var item in eulerLabels)
-				{
-					var definition = new ChannelDefinition { Label = item, Unit = "meter", Type = "position in world space" };
-					list.Add(definition);
-				}
+				list.AddRange(eulerLabels.Select(item => new ChannelDefinition { Label = item, Unit = "meter", Type = "position in world space" }));
 			}
 
 			return list;
