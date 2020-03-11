@@ -23,7 +23,7 @@ namespace LSL4Unity.Scripts
 		private bool _resolve = true;
 
 		public StreamEvent OnStreamFound = new StreamEvent();
-		public StreamEvent OnStreamLost = new StreamEvent();
+		public StreamEvent OnStreamLost  = new StreamEvent();
 
 		// Use this for initialization
 		private void Start()
@@ -91,48 +91,31 @@ namespace LSL4Unity.Scripts
 	public class LSLStreamInfoWrapper
 	{
 		public string Name;
-
 		public string Type;
 
-		private          liblsl.StreamInfo _item;
-		private readonly string            _streamUid;
+		public liblsl.StreamInfo Item { get; }
 
-		private readonly int    _channelCount;
-		private readonly string _sessionId;
-		private readonly string _sourceId;
-		private readonly double _dataRate;
-		private readonly string _hostName;
-		private readonly int    _streamVersion;
+		public string StreamUid     { get; }
+		public int    ChannelCount  { get; }
+		public string SessionId     { get; }
+		public string SourceId      { get; }
+		public string HostName      { get; }
+		public double DataRate      { get; }
+		public int    StreamVersion { get; }
 
 		public LSLStreamInfoWrapper(liblsl.StreamInfo item)
 		{
-			_item     = item;
+			Item          = item;
 			Name          = item.Name();
 			Type          = item.Type();
-			_channelCount  = item.channel_count();
-			_streamUid     = item.Uid();
-			_sessionId     = item.session_id();
-			_sourceId      = item.source_id();
-			_dataRate      = item.nominal_srate();
-			_hostName      = item.Hostname();
-			_streamVersion = item.Version();
+			ChannelCount  = item.channel_count();
+			StreamUid     = item.Uid();
+			SessionId     = item.session_id();
+			SourceId      = item.source_id();
+			DataRate      = item.nominal_srate();
+			HostName      = item.Hostname();
+			StreamVersion = item.Version();
 		}
-
-		public liblsl.StreamInfo Item { get { return _item; } }
-
-		public string StreamUid { get { return _streamUid; } }
-
-		public int ChannelCount { get { return _channelCount; } }
-
-		public string SessionId { get { return _sessionId; } }
-
-		public string SourceId { get { return _sourceId; } }
-
-		public string HostName { get { return _hostName; } }
-
-		public double DataRate { get { return _dataRate; } }
-
-		public int StreamVersion { get { return _streamVersion; } }
 	}
 
 	[Serializable]
