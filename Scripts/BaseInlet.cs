@@ -212,13 +212,13 @@ namespace LSL4Unity.Scripts
 
 	public abstract class InletStringSamples : ABaseInlet
 	{
-		protected abstract void Process(String[] newSample, double timeStamp);
+		protected abstract void Process(string[] newSample, double timeStamp);
 
-		protected String[] Sample;
+		protected string[] Sample;
 
 		protected override void PullSamples()
 		{
-			Sample = new String[ExpectedChannels];
+			Sample = new string[ExpectedChannels];
 
 			try
 			{
