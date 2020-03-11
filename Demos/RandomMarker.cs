@@ -9,13 +9,13 @@ namespace LSL4Unity.Demos
 {
 	public class RandomMarker : MonoBehaviour
 	{
-		public LSLMarkerStream markerStream;
+		public LSLMarkerStream MarkerStream;
 
 		void Start()
 		{
-			Assert.IsNotNull(markerStream, "You forgot to assign the reference to a marker stream implementation!");
+			Assert.IsNotNull(MarkerStream, "You forgot to assign the reference to a marker stream implementation!");
 
-			if (markerStream != null) { StartCoroutine(WriteContinouslyMarkerEachSecond()); }
+			if (MarkerStream != null) { StartCoroutine(WriteContinouslyMarkerEachSecond()); }
 		}
 
 		IEnumerator WriteContinouslyMarkerEachSecond()
@@ -24,7 +24,7 @@ namespace LSL4Unity.Demos
 			{
 				// an example for demonstrating the usage of marker stream
 				var currentMarker = GetARandomMarker();
-				markerStream.Write(currentMarker);
+				MarkerStream.Write(currentMarker);
 				yield return new WaitForSecondsRealtime(1f);
 			}
 		}

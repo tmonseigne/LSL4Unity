@@ -11,26 +11,25 @@ namespace LSL4Unity.Scripts
 
 		public string StreamType;
 
-		protected liblsl.StreamInlet inlet;
+		protected liblsl.StreamInlet Inlet;
 
-		protected int expectedChannels;
+		protected int ExpectedChannels;
 
-		protected Resolver resolver;
+		protected Resolver Resolver;
 
 		/// <summary>
 		/// Call this method when your inlet implementation got created at runtime
 		/// </summary>
-		protected virtual void registerAndLookUpStream()
+		protected virtual void RegisterAndLookUpStream()
 		{
-			resolver = FindObjectOfType<Resolver>();
+			Resolver = FindObjectOfType<Resolver>();
 
-			resolver.onStreamFound.AddListener(new UnityAction<LSLStreamInfoWrapper>(AStreamIsFound));
+			Resolver.OnStreamFound.AddListener(new UnityAction<LSLStreamInfoWrapper>(AStreamIsFound));
+			Resolver.OnStreamLost.AddListener(new UnityAction<LSLStreamInfoWrapper>(AStreamGotLost));
 
-			resolver.onStreamLost.AddListener(new UnityAction<LSLStreamInfoWrapper>(AStreamGotLost));
-
-			if (resolver.knownStreams.Any(isTheExpected))
+			if (Resolver.KnownStreams.Any(IsTheExpected))
 			{
-				var stream = resolver.knownStreams.First(isTheExpected);
+				var stream = Resolver.KnownStreams.First(IsTheExpected);
 				AStreamIsFound(stream);
 			}
 		}
@@ -41,12 +40,12 @@ namespace LSL4Unity.Scripts
 		/// <param name="stream"></param>
 		public virtual void AStreamIsFound(LSLStreamInfoWrapper stream)
 		{
-			if (!isTheExpected(stream)) { return; }
+			if (!IsTheExpected(stream)) { return; }
 
 			Debug.Log($"LSL Stream {stream.Name} found for {name}");
 
-			inlet            = new liblsl.StreamInlet(stream.Item);
-			expectedChannels = stream.ChannelCount;
+			Inlet            = new liblsl.StreamInlet(stream.Item);
+			ExpectedChannels = stream.ChannelCount;
 
 			OnStreamAvailable();
 		}
@@ -57,14 +56,14 @@ namespace LSL4Unity.Scripts
 		/// <param name="stream"></param>
 		public virtual void AStreamGotLost(LSLStreamInfoWrapper stream)
 		{
-			if (!isTheExpected(stream)) { return; }
+			if (!IsTheExpected(stream)) { return; }
 
 			Debug.Log($"LSL Stream {stream.Name} Lost for {name}");
 
 			OnStreamLost();
 		}
 
-		protected virtual bool isTheExpected(LSLStreamInfoWrapper stream)
+		protected virtual bool IsTheExpected(LSLStreamInfoWrapper stream)
 		{
 			bool predicate = StreamName.Equals(stream.Name);
 			predicate &= StreamType.Equals(stream.Type);
@@ -72,7 +71,7 @@ namespace LSL4Unity.Scripts
 			return predicate;
 		}
 
-		protected abstract void pullSamples();
+		protected abstract void PullSamples();
 
 		protected virtual void OnStreamAvailable()
 		{
@@ -91,22 +90,22 @@ namespace LSL4Unity.Scripts
 	{
 		protected abstract void Process(float[] newSample, double timeStamp);
 
-		protected float[] sample;
+		protected float[] Sample;
 
-		protected override void pullSamples()
+		protected override void PullSamples()
 		{
-			sample = new float[expectedChannels];
+			Sample = new float[ExpectedChannels];
 
 			try
 			{
-				double lastTimeStamp = inlet.pull_sample(sample, 0.0f);
+				double lastTimeStamp = Inlet.pull_sample(Sample, 0.0f);
 
 				if (lastTimeStamp != 0.0)
 				{
 					// do not miss the first one found
-					Process(sample, lastTimeStamp);
+					Process(Sample, lastTimeStamp);
 					// pull as long samples are available
-					while ((lastTimeStamp = inlet.pull_sample(sample, 0.0f)) != 0) { Process(sample, lastTimeStamp); }
+					while ((lastTimeStamp = Inlet.pull_sample(Sample, 0.0f)) != 0) { Process(Sample, lastTimeStamp); }
 				}
 			}
 			catch (ArgumentException aex)
@@ -122,22 +121,22 @@ namespace LSL4Unity.Scripts
 	{
 		protected abstract void Process(double[] newSample, double timeStamp);
 
-		protected double[] sample;
+		protected double[] Sample;
 
-		protected override void pullSamples()
+		protected override void PullSamples()
 		{
-			sample = new double[expectedChannels];
+			Sample = new double[ExpectedChannels];
 
 			try
 			{
-				double lastTimeStamp = inlet.pull_sample(sample, 0.0f);
+				double lastTimeStamp = Inlet.pull_sample(Sample, 0.0f);
 
 				if (lastTimeStamp != 0.0)
 				{
 					// do not miss the first one found
-					Process(sample, lastTimeStamp);
+					Process(Sample, lastTimeStamp);
 					// pull as long samples are available
-					while ((lastTimeStamp = inlet.pull_sample(sample, 0.0f)) != 0) { Process(sample, lastTimeStamp); }
+					while ((lastTimeStamp = Inlet.pull_sample(Sample, 0.0f)) != 0) { Process(Sample, lastTimeStamp); }
 				}
 			}
 			catch (ArgumentException aex)
@@ -153,22 +152,22 @@ namespace LSL4Unity.Scripts
 	{
 		protected abstract void Process(int[] newSample, double timeStamp);
 
-		protected int[] sample;
+		protected int[] Sample;
 
-		protected override void pullSamples()
+		protected override void PullSamples()
 		{
-			sample = new int[expectedChannels];
+			Sample = new int[ExpectedChannels];
 
 			try
 			{
-				double lastTimeStamp = inlet.pull_sample(sample, 0.0f);
+				double lastTimeStamp = Inlet.pull_sample(Sample, 0.0f);
 
 				if (lastTimeStamp != 0.0)
 				{
 					// do not miss the first one found
-					Process(sample, lastTimeStamp);
+					Process(Sample, lastTimeStamp);
 					// pull as long samples are available
-					while ((lastTimeStamp = inlet.pull_sample(sample, 0.0f)) != 0) { Process(sample, lastTimeStamp); }
+					while ((lastTimeStamp = Inlet.pull_sample(Sample, 0.0f)) != 0) { Process(Sample, lastTimeStamp); }
 				}
 			}
 			catch (ArgumentException aex)
@@ -184,22 +183,22 @@ namespace LSL4Unity.Scripts
 	{
 		protected abstract void Process(char[] newSample, double timeStamp);
 
-		protected char[] sample;
+		protected char[] Sample;
 
-		protected override void pullSamples()
+		protected override void PullSamples()
 		{
-			sample = new char[expectedChannels];
+			Sample = new char[ExpectedChannels];
 
 			try
 			{
-				double lastTimeStamp = inlet.pull_sample(sample, 0.0f);
+				double lastTimeStamp = Inlet.pull_sample(Sample, 0.0f);
 
 				if (lastTimeStamp != 0.0)
 				{
 					// do not miss the first one found
-					Process(sample, lastTimeStamp);
+					Process(Sample, lastTimeStamp);
 					// pull as long samples are available
-					while ((lastTimeStamp = inlet.pull_sample(sample, 0.0f)) != 0) { Process(sample, lastTimeStamp); }
+					while ((lastTimeStamp = Inlet.pull_sample(Sample, 0.0f)) != 0) { Process(Sample, lastTimeStamp); }
 				}
 			}
 			catch (ArgumentException aex)
@@ -215,22 +214,22 @@ namespace LSL4Unity.Scripts
 	{
 		protected abstract void Process(String[] newSample, double timeStamp);
 
-		protected String[] sample;
+		protected String[] Sample;
 
-		protected override void pullSamples()
+		protected override void PullSamples()
 		{
-			sample = new String[expectedChannels];
+			Sample = new String[ExpectedChannels];
 
 			try
 			{
-				double lastTimeStamp = inlet.pull_sample(sample, 0.0f);
+				double lastTimeStamp = Inlet.pull_sample(Sample, 0.0f);
 
 				if (lastTimeStamp != 0.0)
 				{
 					// do not miss the first one found
-					Process(sample, lastTimeStamp);
+					Process(Sample, lastTimeStamp);
 					// pull as long samples are available
-					while ((lastTimeStamp = inlet.pull_sample(sample, 0.0f)) != 0) { Process(sample, lastTimeStamp); }
+					while ((lastTimeStamp = Inlet.pull_sample(Sample, 0.0f)) != 0) { Process(Sample, lastTimeStamp); }
 				}
 			}
 			catch (ArgumentException aex)
@@ -246,22 +245,22 @@ namespace LSL4Unity.Scripts
 	{
 		protected abstract void Process(short[] newSample, double timeStamp);
 
-		protected short[] sample;
+		protected short[] Sample;
 
-		protected override void pullSamples()
+		protected override void PullSamples()
 		{
-			sample = new short[expectedChannels];
+			Sample = new short[ExpectedChannels];
 
 			try
 			{
-				double lastTimeStamp = inlet.pull_sample(sample, 0.0f);
+				double lastTimeStamp = Inlet.pull_sample(Sample, 0.0f);
 
 				if (lastTimeStamp != 0.0)
 				{
 					// do not miss the first one found
-					Process(sample, lastTimeStamp);
+					Process(Sample, lastTimeStamp);
 					// pull as long samples are available
-					while ((lastTimeStamp = inlet.pull_sample(sample, 0.0f)) != 0) { Process(sample, lastTimeStamp); }
+					while ((lastTimeStamp = Inlet.pull_sample(Sample, 0.0f)) != 0) { Process(Sample, lastTimeStamp); }
 				}
 			}
 			catch (ArgumentException aex)

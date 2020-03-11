@@ -26,16 +26,16 @@ namespace LSL4Unity.Editor
 			switch (target)
 			{
 				case BuildTarget.StandaloneWindows:
-					RenameLibFile(pluginDirectory, LSLEditorIntegration.lib32Name, LSLEditorIntegration.lib64Name, LSLEditorIntegration.DLL_ENDING);
+					RenameLibFile(pluginDirectory, LSLEditorIntegration.LIB32_NAME, LSLEditorIntegration.LIB64_NAME, LSLEditorIntegration.DLL_ENDING);
 					break;
 				case BuildTarget.StandaloneWindows64:
-					RenameLibFile(pluginDirectory, LSLEditorIntegration.lib64Name, LSLEditorIntegration.lib32Name, LSLEditorIntegration.DLL_ENDING);
+					RenameLibFile(pluginDirectory, LSLEditorIntegration.LIB64_NAME, LSLEditorIntegration.LIB32_NAME, LSLEditorIntegration.DLL_ENDING);
 					break;
 				case BuildTarget.StandaloneLinux64:
-					RenameLibFile(pluginDirectory, LSLEditorIntegration.lib64Name, LSLEditorIntegration.lib32Name, LSLEditorIntegration.SO_ENDING);
+					RenameLibFile(pluginDirectory, LSLEditorIntegration.LIB64_NAME, LSLEditorIntegration.LIB32_NAME, LSLEditorIntegration.SO_ENDING);
 					break;
 				case BuildTarget.StandaloneOSX:
-					RenameLibFile(pluginDirectory, LSLEditorIntegration.lib64Name, LSLEditorIntegration.lib32Name, LSLEditorIntegration.BUNDLE_ENDING);
+					RenameLibFile(pluginDirectory, LSLEditorIntegration.LIB64_NAME, LSLEditorIntegration.LIB32_NAME, LSLEditorIntegration.BUNDLE_ENDING);
 					break;
 			}
 		}

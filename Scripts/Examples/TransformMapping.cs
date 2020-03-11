@@ -4,7 +4,7 @@ namespace LSL4Unity.Scripts.Examples
 {
 	public class TransformMapping : AFloatInlet
 	{
-		public Transform targetTransform;
+		public Transform TargetTransform;
 
 		protected override void Process(float[] newSample, double timeStamp)
 		{
@@ -17,7 +17,7 @@ namespace LSL4Unity.Scripts.Examples
 			var targetRotation = Quaternion.Euler(x, y, z);
 
 			// apply the rotation to the target transform
-			targetTransform.rotation = targetRotation;
+			TargetTransform.rotation = targetRotation;
 		}
 	}
 }

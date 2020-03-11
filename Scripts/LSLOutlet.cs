@@ -8,42 +8,39 @@ namespace LSL4Unity.Scripts
 
 	public class LSLOutlet : MonoBehaviour
 	{
-		private liblsl.StreamOutlet outlet;
-		private liblsl.StreamInfo   streamInfo;
-		private float[]             currentSample;
+		private liblsl.StreamOutlet _outlet;
+		private liblsl.StreamInfo   _streamInfo;
+		private float[]             _currentSample;
 
 		public string StreamName   = "Unity.ExampleStream";
 		public string StreamType   = "Unity.FixedUpdateTime";
 		public int    ChannelCount = 1;
 
-		Stopwatch watch;
+		private Stopwatch _watch;
 
 		// Use this for initialization
 		void Start()
 		{
-			watch = new Stopwatch();
+			_watch = new Stopwatch();
+			_watch.Start();
 
-			watch.Start();
-
-			currentSample = new float[ChannelCount];
-
-			streamInfo = new liblsl.StreamInfo(StreamName, StreamType, ChannelCount, Time.fixedDeltaTime * 1000);
-
-			outlet = new liblsl.StreamOutlet(streamInfo);
+			_currentSample = new float[ChannelCount];
+			_streamInfo    = new liblsl.StreamInfo(StreamName, StreamType, ChannelCount, Time.fixedDeltaTime * 1000);
+			_outlet        = new liblsl.StreamOutlet(_streamInfo);
 		}
 
 		public void FixedUpdate()
 		{
-			if (watch == null) { return; }
+			if (_watch == null) { return; }
 
-			watch.Stop();
+			_watch.Stop();
 
-			currentSample[0] = watch.ElapsedMilliseconds;
+			_currentSample[0] = _watch.ElapsedMilliseconds;
 
-			watch.Reset();
-			watch.Start();
+			_watch.Reset();
+			_watch.Start();
 
-			outlet.push_sample(currentSample);
+			_outlet.push_sample(_currentSample);
 		}
 	}
 }

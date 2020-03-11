@@ -9,8 +9,8 @@ namespace LSL4Unity.Scripts
 	/// </summary>
 	public class ScriptOrder : Attribute
 	{
-		public int order;
+		public int Order;
 
-		public ScriptOrder(int order) { this.order = order; }
+		public ScriptOrder(int order) { this.Order = order; }
 	}
 }

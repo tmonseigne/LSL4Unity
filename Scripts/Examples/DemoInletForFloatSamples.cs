@@ -13,13 +13,13 @@ namespace LSL4Unity.Scripts.Examples
 	/// </summary>
 	public class DemoInletForFloatSamples : InletFloatSamples
 	{
-		public Transform targetTransform;
+		public Transform TargetTransform;
 
-		public bool useX;
-		public bool useY;
-		public bool useZ;
+		public bool UseX;
+		public bool UseY;
+		public bool UseZ;
 
-		private bool pullSamplesContinuously = false;
+		private bool _pullSamplesContinuously = false;
 
 		//void Start()
 		//{
@@ -28,10 +28,10 @@ namespace LSL4Unity.Scripts.Examples
 		//	registerAndLookUpStream();
 		//}
 
-		protected override bool isTheExpected(LSLStreamInfoWrapper stream)
+		protected override bool IsTheExpected(LSLStreamInfoWrapper stream)
 		{
 			// the base implementation just checks for stream name and type
-			var predicate = base.isTheExpected(stream);
+			var predicate = base.IsTheExpected(stream);
 			// add a more specific description for your stream here specifying hostname etc.
 			//predicate &= stream.HostName.Equals("Expected Hostname");
 			return predicate;
@@ -48,24 +48,24 @@ namespace LSL4Unity.Scripts.Examples
 		protected override void Process(float[] newSample, double timeStamp)
 		{
 			//Assuming that a sample contains at least 3 values for x,y,z
-			float x = useX ? newSample[0] : 1;
-			float y = useY ? newSample[1] : 1;
-			float z = useZ ? newSample[2] : 1;
+			float x = UseX ? newSample[0] : 1;
+			float y = UseY ? newSample[1] : 1;
+			float z = UseZ ? newSample[2] : 1;
 
 			// we map the data to the scale factors
 			var targetScale = new Vector3(x, y, z);
 
 			// apply the rotation to the target transform
-			targetTransform.localScale = targetScale;
+			TargetTransform.localScale = targetScale;
 		}
 
-		protected override void OnStreamAvailable() { pullSamplesContinuously = true; }
+		protected override void OnStreamAvailable() { _pullSamplesContinuously = true; }
 
-		protected override void OnStreamLost() { pullSamplesContinuously = false; }
+		protected override void OnStreamLost() { _pullSamplesContinuously = false; }
 
 		private void Update()
 		{
-			if (pullSamplesContinuously) { pullSamples(); }
+			if (_pullSamplesContinuously) { PullSamples(); }
 		}
 	}
 }

@@ -10,24 +10,24 @@ namespace LSL4Unity.Scripts
 	[ScriptOrder(-1000)]
 	public class LSLTimeSync : MonoBehaviour
 	{
-		private static LSLTimeSync instance;
-		public static  LSLTimeSync Instance { get { return instance; } }
+		private static LSLTimeSync _instance;
+		public static  LSLTimeSync Instance { get { return _instance; } }
 
-		private double fixedUpdateTimeStamp;
-		public  double FixedUpdateTimeStamp { get { return fixedUpdateTimeStamp; } }
+		private double _fixedUpdateTimeStamp;
+		public  double FixedUpdateTimeStamp { get { return _fixedUpdateTimeStamp; } }
 
-		private double updateTimeStamp;
-		public  double UpdateTimeStamp { get { return updateTimeStamp; } }
+		private double _updateTimeStamp;
+		public  double UpdateTimeStamp { get { return _updateTimeStamp; } }
 
-		private double lateUpdateTimeStamp;
-		public  double LateUpdateTimeStamp { get { return lateUpdateTimeStamp; } }
+		private double _lateUpdateTimeStamp;
+		public  double LateUpdateTimeStamp { get { return _lateUpdateTimeStamp; } }
 
-		void Awake() { LSLTimeSync.instance = this; }
+		void Awake() { LSLTimeSync._instance = this; }
 
-		void FixedUpdate() { fixedUpdateTimeStamp = liblsl.local_clock(); }
+		void FixedUpdate() { _fixedUpdateTimeStamp = liblsl.local_clock(); }
 
-		void Update() { updateTimeStamp = liblsl.local_clock(); }
+		void Update() { _updateTimeStamp = liblsl.local_clock(); }
 
-		void LateUpdate() { lateUpdateTimeStamp = liblsl.local_clock(); }
+		void LateUpdate() { _lateUpdateTimeStamp = liblsl.local_clock(); }
 	}
 }

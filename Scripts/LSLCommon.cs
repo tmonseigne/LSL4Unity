@@ -43,8 +43,8 @@ namespace LSL4Unity.Scripts
 	/// </summary>
 	public struct ChannelDefinition
 	{
-		public string label;
-		public string unit;
-		public string type;
+		public string Label;
+		public string Unit;
+		public string Type;
 	}
 }

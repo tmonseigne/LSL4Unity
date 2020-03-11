@@ -6,61 +6,56 @@ namespace LSL4Unity.Editor
 {
 	public class LSLShowStreamsWindow : EditorWindow
 	{
-		public double WaitOnResolveStreams = 2;
+		//public double WaitOnResolveStreams = 2;
 
-		private const string noStreamsFound   = "No streams found!";
-		private const string clickLookUpFirst = "Click lookup first";
-		private const string nStreamsFound    = " Streams found";
+		private const string NO_STREAMS_FOUND = "No streams found!";
+		private const string N_STREAMS_FOUND  = " Streams found";
 
-		private List<string> listNamesOfStreams = new List<string>();
+		//private const string CLICK_LOOK_UP_FIRST = "Click lookup first";
 
-		private Vector2 scrollVector;
-		private string  streamLookUpResult;
+		private readonly List<string> _listNamesOfStreams = new List<string>();
 
-		private liblsl.ContinuousResolver resolver;
-		private string                    lslVersionInfos;
+		private Vector2 _scrollVector;
+		private string  _streamLookUpResult;
+
+		private liblsl.ContinuousResolver _resolver;
+		private string                    _lslVersionInfos;
 
 		public void Init()
 		{
-			resolver = new liblsl.ContinuousResolver();
+			_resolver = new liblsl.ContinuousResolver();
 
 			var libVersion      = liblsl.library_version();
 			var protocolVersion = liblsl.protocol_version();
 
-			var lib_major  = libVersion / 100;
-			var lib_minor  = libVersion % 100;
-			var prot_major = protocolVersion / 100;
-			var prot_minor = protocolVersion % 100;
+			var libMajor  = libVersion / 100;
+			var libMinor  = libVersion % 100;
+			var protMajor = protocolVersion / 100;
+			var protMinor = protocolVersion % 100;
 
-			lslVersionInfos = $"You are using LSL library: {lib_major}.{lib_minor} implementing protocol version: {prot_major}.{prot_minor}";
+			_lslVersionInfos = $"You are using LSL library: {libMajor}.{libMinor} implementing protocol version: {protMajor}.{protMinor}";
 
-			this.titleContent = new GUIContent("LSL Utility");
+			titleContent = new GUIContent("LSL Utility");
 		}
 
-		liblsl.StreamInfo[] streamInfos = null;
+		liblsl.StreamInfo[] _streamInfos = null;
 
 		void OnGUI()
 		{
-			if (resolver == null) { Init(); }
+			if (_resolver == null) { Init(); }
 
 			UpdateStreams();
 
 			EditorGUILayout.BeginVertical();
-
 			EditorGUILayout.Space();
-
-			EditorGUILayout.LabelField(lslVersionInfos, EditorStyles.miniLabel);
-
+			EditorGUILayout.LabelField(_lslVersionInfos, EditorStyles.miniLabel);
 			EditorGUILayout.BeginHorizontal();
-
-			EditorGUILayout.LabelField(streamLookUpResult, EditorStyles.boldLabel);
-
+			EditorGUILayout.LabelField(_streamLookUpResult, EditorStyles.boldLabel);
 			EditorGUILayout.EndHorizontal();
-
 			EditorGUILayout.Space();
 			EditorGUILayout.Separator();
 
-			scrollVector = EditorGUILayout.BeginScrollView(scrollVector, GUILayout.Width(EditorGUIUtility.currentViewWidth));
+			_scrollVector = EditorGUILayout.BeginScrollView(_scrollVector, GUILayout.Width(EditorGUIUtility.currentViewWidth));
 			GUILayoutOption fieldWidth = GUILayout.Width(EditorGUIUtility.currentViewWidth / 4.3f);
 
 			EditorGUILayout.BeginHorizontal();
@@ -71,18 +66,15 @@ namespace LSL4Unity.Editor
 			EditorGUILayout.LabelField("Data Rate", EditorStyles.boldLabel, fieldWidth);
 			EditorGUILayout.EndHorizontal();
 
-			foreach (var item in listNamesOfStreams)
+			foreach (var item in _listNamesOfStreams)
 			{
 				string[] s = item.Split(' ');
 
 				EditorGUILayout.BeginHorizontal();
-
 				EditorGUILayout.LabelField(new GUIContent(s[0], s[0]), fieldWidth);
 				EditorGUILayout.LabelField(new GUIContent(s[1], s[1]), fieldWidth);
 				EditorGUILayout.LabelField(new GUIContent(s[2], s[2]), fieldWidth);
 				EditorGUILayout.LabelField(new GUIContent(s[3], s[3]), fieldWidth);
-
-
 				EditorGUILayout.EndHorizontal();
 			}
 			EditorGUILayout.EndScrollView();
@@ -91,19 +83,14 @@ namespace LSL4Unity.Editor
 
 		private void UpdateStreams()
 		{
-			listNamesOfStreams.Clear();
+			_listNamesOfStreams.Clear();
+			_streamInfos = _resolver.Results();
 
-			streamInfos = resolver.results();
-
-			if (streamInfos.Length == 0) { streamLookUpResult = noStreamsFound; }
+			if (_streamInfos.Length == 0) { _streamLookUpResult = NO_STREAMS_FOUND; }
 			else
 			{
-				foreach (var item in streamInfos)
-				{
-					listNamesOfStreams.Add($"{item.name()} {item.type()} {item.hostname()} {item.nominal_srate()}");
-				}
-
-				streamLookUpResult = listNamesOfStreams.Count + nStreamsFound;
+				foreach (var item in _streamInfos) { _listNamesOfStreams.Add($"{item.Name()} {item.Type()} {item.Hostname()} {item.nominal_srate()}"); }
+				_streamLookUpResult = _listNamesOfStreams.Count + N_STREAMS_FOUND;
 			}
 		}
 	}

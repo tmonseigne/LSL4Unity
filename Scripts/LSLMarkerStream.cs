@@ -6,47 +6,45 @@ namespace LSL4Unity.Scripts
 	[HelpURL("https://github.com/xfleckx/LSL4Unity/wiki#using-a-marker-stream")]
 	public class LSLMarkerStream : MonoBehaviour
 	{
-		private const string unique_source_id = "D3F83BB699EB49AB94A9FA44B88882AB";
+		private const string UNIQUE_SOURCE_ID = "D3F83BB699EB49AB94A9FA44B88882AB";
 
-		public string lslStreamName = "Unity_<Paradigma_Name_here>";
-		public string lslStreamType = "LSL_Marker_Strings";
+		public string LSLStreamName = "Unity_<Paradigma_Name_here>";
+		public string LSLStreamType = "LSL_Marker_Strings";
 
-		private liblsl.StreamInfo   lslStreamInfo;
-		private liblsl.StreamOutlet lslOutlet;
-		private int                 lslChannelCount = 1;
+		private liblsl.StreamInfo   _lslStreamInfo;
+		private liblsl.StreamOutlet _lslOutlet;
+		private int                 _lslChannelCount = 1;
 
 		//Assuming that markers are never send in regular intervalls
-		private double nominal_srate = liblsl.IRREGULAR_RATE;
+		private double _nominalSrate = liblsl.IRREGULAR_RATE;
 
-		private const liblsl.channel_format_t lslChannelFormat = liblsl.channel_format_t.cf_string;
+		private const liblsl.channel_format_t LSL_CHANNEL_FORMAT = liblsl.channel_format_t.cf_string;
 
-		private string[] sample;
+		private string[] _sample;
 
 		void Awake()
 		{
-			sample = new string[lslChannelCount];
-
-			lslStreamInfo = new liblsl.StreamInfo(lslStreamName, lslStreamType, lslChannelCount, nominal_srate, lslChannelFormat, unique_source_id);
-
-			lslOutlet = new liblsl.StreamOutlet(lslStreamInfo);
+			_sample        = new string[_lslChannelCount];
+			_lslStreamInfo = new liblsl.StreamInfo(LSLStreamName, LSLStreamType, _lslChannelCount, _nominalSrate, LSL_CHANNEL_FORMAT, UNIQUE_SOURCE_ID);
+			_lslOutlet     = new liblsl.StreamOutlet(_lslStreamInfo);
 		}
 
 		public void Write(string marker)
 		{
-			sample[0] = marker;
-			lslOutlet.push_sample(sample);
+			_sample[0] = marker;
+			_lslOutlet.push_sample(_sample);
 		}
 
 		public void Write(string marker, double customTimeStamp)
 		{
-			sample[0] = marker;
-			lslOutlet.push_sample(sample, customTimeStamp);
+			_sample[0] = marker;
+			_lslOutlet.push_sample(_sample, customTimeStamp);
 		}
 
 		public void Write(string marker, float customTimeStamp)
 		{
-			sample[0] = marker;
-			lslOutlet.push_sample(sample, customTimeStamp);
+			_sample[0] = marker;
+			_lslOutlet.push_sample(_sample, customTimeStamp);
 		}
 
 		public void WriteBeforeFrameIsDisplayed(string marker) { StartCoroutine(WriteMarkerAfterImageIsRendered(marker)); }
@@ -54,9 +52,7 @@ namespace LSL4Unity.Scripts
 		IEnumerator WriteMarkerAfterImageIsRendered(string pendingMarker)
 		{
 			yield return new WaitForEndOfFrame();
-
 			Write(pendingMarker);
-
 			yield return null;
 		}
 	}
