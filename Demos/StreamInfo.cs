@@ -13,7 +13,7 @@ namespace LSL4Unity.Demos
 		public Text HasConsumerLabel;
 
 		// Use this for initialization
-		void Start()
+		private void Start()
 		{
 			StreamNameLabel.text  = Outlet.StreamName;
 			StreamTypeLabel.text  = Outlet.StreamType;
@@ -22,7 +22,7 @@ namespace LSL4Unity.Demos
 		}
 
 		// Update is called once per frame
-		void Update()
+		private void Update()
 		{
 			if (Outlet.HasConsumer())
 			{

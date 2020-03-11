@@ -22,7 +22,7 @@ namespace LSL4Unity.Scripts
 
 		private string[] _sample;
 
-		void Awake()
+		private void Awake()
 		{
 			_sample        = new string[_lslChannelCount];
 			_lslStreamInfo = new liblsl.StreamInfo(LSLStreamName, LSLStreamType, _lslChannelCount, _nominalSrate, LSL_CHANNEL_FORMAT, UNIQUE_SOURCE_ID);
@@ -49,7 +49,7 @@ namespace LSL4Unity.Scripts
 
 		public void WriteBeforeFrameIsDisplayed(string marker) { StartCoroutine(WriteMarkerAfterImageIsRendered(marker)); }
 
-		IEnumerator WriteMarkerAfterImageIsRendered(string pendingMarker)
+		private IEnumerator WriteMarkerAfterImageIsRendered(string pendingMarker)
 		{
 			yield return new WaitForEndOfFrame();
 			Write(pendingMarker);

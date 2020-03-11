@@ -5,7 +5,7 @@ using UnityEditor;
 namespace LSL4Unity.Editor
 {
 	[InitializeOnLoad]
-	class ScriptOrderManagement
+	internal class ScriptOrderManagement
 	{
 		static ScriptOrderManagement()
 		{

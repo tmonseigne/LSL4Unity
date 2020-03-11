@@ -7,8 +7,8 @@ namespace LSL4Unity.Editor
 {
 	public class BuildHooks
 	{
-		const string LIB_LSL_NAME = "liblsl";
-		const string PLUGIN_DIR   = "Plugins";
+		private const string LIB_LSL_NAME = "liblsl";
+		private const string PLUGIN_DIR   = "Plugins";
 
 		[PostProcessBuild(1)]
 		public static void OnPostprocessBuild(BuildTarget target, string pathToBuiltProject)

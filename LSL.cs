@@ -982,7 +982,7 @@ namespace LSL4Unity
 			/// Remove a specified child element.
 			public void remove_child(XMLElement e) { dll.lsl_remove_child(_obj, e._obj); }
 
-			IntPtr _obj;
+			private IntPtr _obj;
 		}
 
 
@@ -1101,10 +1101,10 @@ namespace LSL4Unity
 
 		// === Internal: C library function definitions. ===
 
-		class dll
+		private class dll
 		{
 #if (UNITY_EDITOR_WIN && UNITY_EDITOR_64)
-			const string LIBNAME = "liblsl64";
+			private const string LIBNAME = "liblsl64";
 #elif UNITY_EDITOR_WIN
 			const string LIBNAME = "liblsl32";
 #elif UNITY_STANDALONE_WIN

@@ -20,7 +20,7 @@ namespace LSL4Unity.Editor
 		private const string LIB_FOLDER       = "Plugins";
 
 		[MenuItem("LSL/Show Streams")]
-		static void OpenLSLWindow()
+		private static void OpenLSLWindow()
 		{
 			var window = EditorWindow.GetWindow<LSLShowStreamsWindow>(true);
 			window.Init();
@@ -28,7 +28,7 @@ namespace LSL4Unity.Editor
 		}
 
 		[MenuItem("LSL/Show Streams", true)]
-		static bool ValidateOpenLSLWindow()
+		private static bool ValidateOpenLSLWindow()
 		{
 			string assetDirectory = Application.dataPath;
 

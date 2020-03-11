@@ -11,14 +11,14 @@ namespace LSL4Unity.Demos
 	{
 		public LSLMarkerStream MarkerStream;
 
-		void Start()
+		private void Start()
 		{
 			Assert.IsNotNull(MarkerStream, "You forgot to assign the reference to a marker stream implementation!");
 
 			if (MarkerStream != null) { StartCoroutine(WriteContinouslyMarkerEachSecond()); }
 		}
 
-		IEnumerator WriteContinouslyMarkerEachSecond()
+		private IEnumerator WriteContinouslyMarkerEachSecond()
 		{
 			while (true)
 			{

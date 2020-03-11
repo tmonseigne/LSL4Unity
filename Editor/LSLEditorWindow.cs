@@ -38,9 +38,9 @@ namespace LSL4Unity.Editor
 			titleContent = new GUIContent("LSL Utility");
 		}
 
-		liblsl.StreamInfo[] _streamInfos = null;
+		private liblsl.StreamInfo[] _streamInfos = null;
 
-		void OnGUI()
+		private void OnGUI()
 		{
 			if (_resolver == null) { Init(); }
 

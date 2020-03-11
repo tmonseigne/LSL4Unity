@@ -26,7 +26,7 @@ namespace LSL4Unity.Scripts
 		public StreamEvent OnStreamLost = new StreamEvent();
 
 		// Use this for initialization
-		void Start()
+		private void Start()
 		{
 			_resolver = new liblsl.ContinuousResolver(ForgetStreamAfter);
 

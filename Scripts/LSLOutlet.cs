@@ -19,7 +19,7 @@ namespace LSL4Unity.Scripts
 		private Stopwatch _watch;
 
 		// Use this for initialization
-		void Start()
+		private void Start()
 		{
 			_watch = new Stopwatch();
 			_watch.Start();

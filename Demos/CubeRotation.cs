@@ -8,7 +8,7 @@ namespace LSL4Unity.Demos
 		private float _pitchSpeed = 1.0f;
 		private float _rollSpeed  = 1.0f;
 
-		void Update()
+		private void Update()
 		{
 			if (Input.GetKey("a")) { _yawSpeed                  += 1; }
 			if (Input.GetKey("d") && _yawSpeed > 0) { _yawSpeed -= 1; }

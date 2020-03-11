@@ -37,14 +37,14 @@ namespace LSL4Unity.Scripts
 		/// </summary>
 		private const double DATA_RATE = liblsl.IRREGULAR_RATE;
 
-		void Awake()
+		private void Awake()
 		{
 			// assigning a unique source id as a combination of a the instance ID for the case that
 			// multiple LSLTransformOutlet are used and a guid identifing the script itself.
 			_uniqueSourceId = $"{GetInstanceID()}_{UNIQUE_SOURCE_ID_SUFFIX}";
 		}
 
-		void Start()
+		private void Start()
 		{
 			var channelDefinitions = SetupChannels();
 
@@ -69,7 +69,7 @@ namespace LSL4Unity.Scripts
 		/// <summary>
 		/// Sampling on Late Update to make sure the transform recieved all updates
 		/// </summary>
-		void LateUpdate()
+		private void LateUpdate()
 		{
 			if (_outlet == null) { return; }
 
