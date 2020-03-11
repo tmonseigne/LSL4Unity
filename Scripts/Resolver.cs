@@ -39,11 +39,8 @@ namespace LSL4Unity.Scripts
 				info = result.First();
 				return true;
 			}
-			else
-			{
-				info = null;
-				return false;
-			}
+			info = null;
+			return false;
 		}
 
 		private IEnumerator ResolveContinuously()
@@ -79,7 +76,6 @@ namespace LSL4Unity.Scripts
 
 				yield return new WaitForSecondsRealtime(0.1f);
 			}
-			yield return null;
 		}
 	}
 

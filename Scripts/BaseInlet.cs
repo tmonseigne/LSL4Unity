@@ -2,7 +2,6 @@
 using System.Linq;
 using LSL4Unity.Scripts.OV;
 using UnityEngine;
-using UnityEngine.Events;
 
 namespace LSL4Unity.Scripts
 {
@@ -24,8 +23,10 @@ namespace LSL4Unity.Scripts
 		{
 			Resolver = FindObjectOfType<Resolver>();
 
-			Resolver.OnStreamFound.AddListener(new UnityAction<LSLStreamInfoWrapper>(AStreamIsFound));
-			Resolver.OnStreamLost.AddListener(new UnityAction<LSLStreamInfoWrapper>(AStreamGotLost));
+			//Resolver.OnStreamFound.AddListener(new UnityAction<LSLStreamInfoWrapper>(AStreamIsFound));	// Redundant to explicit delegate creation
+			//Resolver.OnStreamLost.AddListener(new UnityAction<LSLStreamInfoWrapper>(AStreamGotLost));		// Redundant to explicit delegate creation
+			Resolver.OnStreamFound.AddListener(AStreamIsFound);
+			Resolver.OnStreamLost.AddListener(AStreamGotLost);
 
 			if (Resolver.KnownStreams.Any(IsTheExpected))
 			{

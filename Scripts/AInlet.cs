@@ -38,10 +38,9 @@ namespace LSL4Unity.Scripts
 			if (expectedStreamHasAName)
 			{
 				Debug.Log("Creating LSL resolver for stream " + StreamName);
-
 				_resolver = new liblsl.ContinuousResolver("name", StreamName);
 			}
-			else if (expectedStreamHasAType)
+			else // if (expectedStreamHasAType) // Useless with the first if
 			{
 				Debug.Log("Creating LSL resolver for stream with type " + StreamType);
 				_resolver = new liblsl.ContinuousResolver("type ", StreamType);
@@ -99,9 +98,7 @@ namespace LSL4Unity.Scripts
 			}
 		}
 
-		/// <summary>
-		/// Override this method in the subclass to specify what should happen when samples are available.
-		/// </summary>
+		/// <summary> Override this method in the subclass to specify what should happen when samples are available. </summary>
 		/// <param name="newSample"></param>
 		protected abstract void Process(float[] newSample, double timeStamp);
 
@@ -148,10 +145,9 @@ namespace LSL4Unity.Scripts
 			if (expectedStreamHasAName)
 			{
 				Debug.Log("Creating LSL resolver for stream " + StreamName);
-
 				_resolver = new liblsl.ContinuousResolver("name", StreamName);
 			}
-			else if (expectedStreamHasAType)
+			else // if (expectedStreamHasAType) // Useless with the first if
 			{
 				Debug.Log("Creating LSL resolver for stream with type " + StreamType);
 				_resolver = new liblsl.ContinuousResolver("type", StreamType);
@@ -216,9 +212,7 @@ namespace LSL4Unity.Scripts
 			}
 		}
 
-		/// <summary>
-		/// Override this method in the subclass to specify what should happen when samples are available.
-		/// </summary>
+		/// <summary> Override this method in the subclass to specify what should happen when samples are available. </summary>
 		/// <param name="newSample"></param>
 		protected abstract void Process(double[] newSample, double timeStamp);
 
@@ -268,7 +262,7 @@ namespace LSL4Unity.Scripts
 
 				_resolver = new liblsl.ContinuousResolver("name", StreamName);
 			}
-			else if (expectedStreamHasAType)
+			else // if (expectedStreamHasAType) // Useless with the first if
 			{
 				Debug.Log("Creating LSL resolver for stream with type " + StreamType);
 				_resolver = new liblsl.ContinuousResolver("type", StreamType);
@@ -325,9 +319,7 @@ namespace LSL4Unity.Scripts
 			}
 		}
 
-		/// <summary>
-		/// Override this method in the subclass to specify what should happen when samples are available.
-		/// </summary>
+		/// <summary> Override this method in the subclass to specify what should happen when samples are available. </summary>
 		/// <param name="newSample"></param>
 		protected abstract void Process(char[] newSample, double timeStamp);
 
@@ -377,7 +369,7 @@ namespace LSL4Unity.Scripts
 
 				_resolver = new liblsl.ContinuousResolver("name", StreamName);
 			}
-			else if (expectedStreamHasAType)
+			else // if (expectedStreamHasAType) // Useless with the first if
 			{
 				Debug.Log("Creating LSL resolver for stream with type " + StreamType);
 				_resolver = new liblsl.ContinuousResolver("type", StreamType);
@@ -433,9 +425,7 @@ namespace LSL4Unity.Scripts
 			}
 		}
 
-		/// <summary>
-		/// Override this method in the subclass to specify what should happen when samples are available.
-		/// </summary>
+		/// <summary> Override this method in the subclass to specify what should happen when samples are available. </summary>
 		/// <param name="newSample"></param>
 		protected abstract void Process(short[] newSample, double timeStamp);
 
@@ -485,7 +475,7 @@ namespace LSL4Unity.Scripts
 
 				_resolver = new liblsl.ContinuousResolver("name", StreamName);
 			}
-			else if (expectedStreamHasAType)
+			else // if (expectedStreamHasAType) // Useless with the first if
 			{
 				Debug.Log("Creating LSL resolver for stream with type " + StreamType);
 				_resolver = new liblsl.ContinuousResolver("type", StreamType);
@@ -541,9 +531,7 @@ namespace LSL4Unity.Scripts
 			}
 		}
 
-		/// <summary>
-		/// Override this method in the subclass to specify what should happen when samples are available.
-		/// </summary>
+		/// <summary> Override this method in the subclass to specify what should happen when samples are available. </summary>
 		/// <param name="newSample"></param>
 		protected abstract void Process(int[] newSample, double timeStamp);
 
@@ -593,7 +581,7 @@ namespace LSL4Unity.Scripts
 
 				_resolver = new liblsl.ContinuousResolver("name", StreamName);
 			}
-			else if (expectedStreamHasAType)
+			else // if (expectedStreamHasAType) // Useless with the first if
 			{
 				Debug.Log("Creating LSL resolver for stream with type " + StreamType);
 				_resolver = new liblsl.ContinuousResolver("type", StreamType);
@@ -649,9 +637,7 @@ namespace LSL4Unity.Scripts
 			}
 		}
 
-		/// <summary>
-		/// Override this method in the subclass to specify what should happen when samples are available.
-		/// </summary>
+		/// <summary> Override this method in the subclass to specify what should happen when samples are available. </summary>
 		/// <param name="newSample"></param>
 		protected abstract void Process(string[] newSample, double timeStamp);
 

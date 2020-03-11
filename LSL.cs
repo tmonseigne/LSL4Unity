@@ -66,7 +66,7 @@ namespace LSL4Unity
 
 			// Also, some builds of liblsl will not be able to send or receive data of this type.
 			cf_undefined = 0 // Can not be transmitted.
-		};
+		}
 
 		/**
 		* Post-processing options for stream inlets. 
@@ -86,7 +86,7 @@ namespace LSL4Unity
 			post_monotonize = 4,            // Force the time-stamps to be monotonically ascending (only makes sense if timestamps are dejittered).
 			post_threadsafe = 8,            // Post-processing is thread-safe (same inlet can be read from by multiple threads); uses somewhat more CPU.
 			post_ALL        = 1 | 2 | 4 | 8 // The combination of all possible post-processing options.
-		};
+		}
 
 		/**
 		* Protocol version.

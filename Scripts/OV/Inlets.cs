@@ -179,9 +179,7 @@ namespace LSL4Unity.Scripts.OV
 			}
 		}
 
-		/// <summary>
-		/// Override this method in the subclass to specify what should happen when samples are available.
-		/// </summary>
+		/// <summary> Override this method in the subclass to specify what should happen when samples are available. </summary>
 		/// <param name="newSample"></param>
 		/// <param name="timeStamp"></param>
 		protected abstract void Process(double[] newSample, double timeStamp);
@@ -270,9 +268,7 @@ namespace LSL4Unity.Scripts.OV
 			}
 		}
 
-		/// <summary>
-		/// Override this method in the subclass to specify what should happen when samples are available.
-		/// </summary>
+		/// <summary> Override this method in the subclass to specify what should happen when samples are available. </summary>
 		/// <param name="newSample"></param>
 		/// <param name="timeStamp"></param>
 		protected abstract void Process(char[] newSample, double timeStamp);
@@ -361,9 +357,7 @@ namespace LSL4Unity.Scripts.OV
 			}
 		}
 
-		/// <summary>
-		/// Override this method in the subclass to specify what should happen when samples are available.
-		/// </summary>
+		/// <summary> Override this method in the subclass to specify what should happen when samples are available. </summary>
 		/// <param name="newSample"></param>
 		/// <param name="timeStamp"></param>
 		protected abstract void Process(short[] newSample, double timeStamp);
@@ -452,9 +446,7 @@ namespace LSL4Unity.Scripts.OV
 			}
 		}
 
-		/// <summary>
-		/// Override this method in the subclass to specify what should happen when samples are available.
-		/// </summary>
+		/// <summary> Override this method in the subclass to specify what should happen when samples are available. </summary>
 		/// <param name="newSample"></param>
 		/// <param name="timeStamp"></param>
 		protected abstract void Process(int[] newSample, double timeStamp);
@@ -543,9 +535,7 @@ namespace LSL4Unity.Scripts.OV
 			}
 		}
 
-		/// <summary>
-		/// Override this method in the subclass to specify what should happen when samples are available.
-		/// </summary>
+		/// <summary> Override this method in the subclass to specify what should happen when samples are available. </summary>
 		/// <param name="newSample"></param>
 		/// <param name="timeStamp"></param>
 		protected abstract void Process(string[] newSample, double timeStamp);
