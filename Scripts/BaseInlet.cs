@@ -105,7 +105,7 @@ namespace LSL4Unity.Scripts
 					// do not miss the first one found
 					Process(Sample, lastTimeStamp);
 					// pull as long samples are available
-					while (Math.Abs((lastTimeStamp = Inlet.pull_sample(Sample, 0.0f))) > Constants.TOLERANCE) { Process(Sample, lastTimeStamp); }
+					while (Math.Abs(lastTimeStamp = Inlet.pull_sample(Sample, 0.0f)) > Constants.TOLERANCE) { Process(Sample, lastTimeStamp); }
 				}
 			}
 			catch (ArgumentException aex)
@@ -136,7 +136,7 @@ namespace LSL4Unity.Scripts
 					// do not miss the first one found
 					Process(Sample, lastTimeStamp);
 					// pull as long samples are available
-					while (Math.Abs((lastTimeStamp = Inlet.pull_sample(Sample, 0.0f))) > Constants.TOLERANCE) { Process(Sample, lastTimeStamp); }
+					while (Math.Abs(lastTimeStamp = Inlet.pull_sample(Sample, 0.0f)) > Constants.TOLERANCE) { Process(Sample, lastTimeStamp); }
 				}
 			}
 			catch (ArgumentException aex)
@@ -167,7 +167,7 @@ namespace LSL4Unity.Scripts
 					// do not miss the first one found
 					Process(Sample, lastTimeStamp);
 					// pull as long samples are available
-					while (Math.Abs((lastTimeStamp = Inlet.pull_sample(Sample, 0.0f))) > Constants.TOLERANCE) { Process(Sample, lastTimeStamp); }
+					while (Math.Abs(lastTimeStamp = Inlet.pull_sample(Sample, 0.0f)) > Constants.TOLERANCE) { Process(Sample, lastTimeStamp); }
 				}
 			}
 			catch (ArgumentException aex)
@@ -198,7 +198,7 @@ namespace LSL4Unity.Scripts
 					// do not miss the first one found
 					Process(Sample, lastTimeStamp);
 					// pull as long samples are available
-					while (Math.Abs((lastTimeStamp = Inlet.pull_sample(Sample, 0.0f))) > Constants.TOLERANCE) { Process(Sample, lastTimeStamp); }
+					while (Math.Abs(lastTimeStamp = Inlet.pull_sample(Sample, 0.0f)) > Constants.TOLERANCE) { Process(Sample, lastTimeStamp); }
 				}
 			}
 			catch (ArgumentException aex)
@@ -229,7 +229,7 @@ namespace LSL4Unity.Scripts
 					// do not miss the first one found
 					Process(Sample, lastTimeStamp);
 					// pull as long samples are available
-					while (Math.Abs((lastTimeStamp = Inlet.pull_sample(Sample, 0.0f))) > Constants.TOLERANCE) { Process(Sample, lastTimeStamp); }
+					while (Math.Abs(lastTimeStamp = Inlet.pull_sample(Sample, 0.0f)) > Constants.TOLERANCE) { Process(Sample, lastTimeStamp); }
 				}
 			}
 			catch (ArgumentException aex)
@@ -260,7 +260,7 @@ namespace LSL4Unity.Scripts
 					// do not miss the first one found
 					Process(Sample, lastTimeStamp);
 					// pull as long samples are available
-					while (Math.Abs((lastTimeStamp = Inlet.pull_sample(Sample, 0.0f))) > Constants.TOLERANCE) { Process(Sample, lastTimeStamp); }
+					while (Math.Abs(lastTimeStamp = Inlet.pull_sample(Sample, 0.0f)) > Constants.TOLERANCE) { Process(Sample, lastTimeStamp); }
 				}
 			}
 			catch (ArgumentException aex)
