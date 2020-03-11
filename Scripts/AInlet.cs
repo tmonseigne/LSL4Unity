@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 using LSL4Unity.Scripts.OV;
 using UnityEngine;
@@ -97,9 +98,9 @@ namespace LSL4Unity.Scripts
 		}
 
 		/// <summary> Override this method in the subclass to specify what should happen when samples are available. </summary>
-		/// <param name="newSample"></param>
-		/// <param name="timeStamp"></param>
-		protected abstract void Process(float[] newSample, double timeStamp);
+		/// <param name="sample"></param>
+		/// <param name="time"></param>
+		protected abstract void Process(float[]sample, double time);
 
 		private void FixedUpdate()
 		{
@@ -176,9 +177,9 @@ namespace LSL4Unity.Scripts
 			yield return null;
 		}
 
-		private liblsl.StreamInfo GetStreamInfoFrom(liblsl.StreamInfo[] results)
+		private liblsl.StreamInfo GetStreamInfoFrom(IEnumerable<liblsl.StreamInfo> results)
 		{
-			var targetInfo = results.Where(r => r.Name().Equals(StreamName)).First();
+			var targetInfo = results.First(r => r.Name().Equals(StreamName));
 			return targetInfo;
 		}
 
@@ -207,9 +208,9 @@ namespace LSL4Unity.Scripts
 		}
 
 		/// <summary> Override this method in the subclass to specify what should happen when samples are available. </summary>
-		/// <param name="newSample"></param>
-		/// <param name="timeStamp"></param>
-		protected abstract void Process(double[] newSample, double timeStamp);
+		/// <param name="sample"></param>
+		/// <param name="time"></param>
+		protected abstract void Process(double[]sample, double time);
 
 		private void FixedUpdate()
 		{
@@ -309,9 +310,9 @@ namespace LSL4Unity.Scripts
 		}
 
 		/// <summary> Override this method in the subclass to specify what should happen when samples are available. </summary>
-		/// <param name="newSample"></param>
-		/// <param name="timeStamp"></param>
-		protected abstract void Process(char[] newSample, double timeStamp);
+		/// <param name="sample"></param>
+		/// <param name="time"></param>
+		protected abstract void Process(char[]sample, double time);
 
 		private void FixedUpdate()
 		{
@@ -410,9 +411,9 @@ namespace LSL4Unity.Scripts
 		}
 
 		/// <summary> Override this method in the subclass to specify what should happen when samples are available. </summary>
-		/// <param name="newSample"></param>
-		/// <param name="timeStamp"></param>
-		protected abstract void Process(short[] newSample, double timeStamp);
+		/// <param name="sample"></param>
+		/// <param name="time"></param>
+		protected abstract void Process(short[]sample, double time);
 
 		private void FixedUpdate()
 		{
@@ -511,9 +512,9 @@ namespace LSL4Unity.Scripts
 		}
 
 		/// <summary> Override this method in the subclass to specify what should happen when samples are available. </summary>
-		/// <param name="newSample"></param>
-		/// <param name="timeStamp"></param>
-		protected abstract void Process(int[] newSample, double timeStamp);
+		/// <param name="sample"></param>
+		/// <param name="time"></param>
+		protected abstract void Process(int[]sample, double time);
 
 		private void FixedUpdate()
 		{
@@ -612,9 +613,9 @@ namespace LSL4Unity.Scripts
 		}
 
 		/// <summary> Override this method in the subclass to specify what should happen when samples are available. </summary>
-		/// <param name="newSample"></param>
-		/// <param name="timeStamp"></param>
-		protected abstract void Process(string[] newSample, double timeStamp);
+		/// <param name="sample"></param>
+		/// <param name="time"></param>
+		protected abstract void Process(string[]sample, double time);
 
 		private void FixedUpdate()
 		{

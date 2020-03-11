@@ -85,7 +85,7 @@ namespace LSL4Unity.Scripts
 
 	public abstract class InletFloatSamples : ABaseInlet
 	{
-		protected abstract void Process(float[] newSample, double timeStamp);
+		protected abstract void Process(float[]sample, double time);
 
 		protected float[] Sample;
 
@@ -95,14 +95,14 @@ namespace LSL4Unity.Scripts
 
 			try
 			{
-				double lastTimeStamp = Inlet.pull_sample(Sample, 0.0f);
+				double time = Inlet.pull_sample(Sample, 0.0f);
 
-				if (Math.Abs(lastTimeStamp) > Constants.TOLERANCE)
+				if (Math.Abs(time) > Constants.TOLERANCE)
 				{
 					// do not miss the first one found
-					Process(Sample, lastTimeStamp);
+					Process(Sample, time);
 					// pull as long samples are available
-					while (Math.Abs(lastTimeStamp = Inlet.pull_sample(Sample, 0.0f)) > Constants.TOLERANCE) { Process(Sample, lastTimeStamp); }
+					while (Math.Abs(time = Inlet.pull_sample(Sample, 0.0f)) > Constants.TOLERANCE) { Process(Sample, time); }
 				}
 			}
 			catch (ArgumentException aex)
@@ -116,7 +116,7 @@ namespace LSL4Unity.Scripts
 
 	public abstract class InletDoubleSamples : ABaseInlet
 	{
-		protected abstract void Process(double[] newSample, double timeStamp);
+		protected abstract void Process(double[]sample, double time);
 
 		protected double[] Sample;
 
@@ -147,7 +147,7 @@ namespace LSL4Unity.Scripts
 
 	public abstract class InletIntSamples : ABaseInlet
 	{
-		protected abstract void Process(int[] newSample, double timeStamp);
+		protected abstract void Process(int[]sample, double time);
 
 		protected int[] Sample;
 
@@ -178,7 +178,7 @@ namespace LSL4Unity.Scripts
 
 	public abstract class InletCharSamples : ABaseInlet
 	{
-		protected abstract void Process(char[] newSample, double timeStamp);
+		protected abstract void Process(char[]sample, double time);
 
 		protected char[] Sample;
 
@@ -209,7 +209,7 @@ namespace LSL4Unity.Scripts
 
 	public abstract class InletStringSamples : ABaseInlet
 	{
-		protected abstract void Process(string[] newSample, double timeStamp);
+		protected abstract void Process(string[]sample, double time);
 
 		protected string[] Sample;
 
@@ -240,7 +240,7 @@ namespace LSL4Unity.Scripts
 
 	public abstract class InletShortSamples : ABaseInlet
 	{
-		protected abstract void Process(short[] newSample, double timeStamp);
+		protected abstract void Process(short[]sample, double time);
 
 		protected short[] Sample;
 

@@ -150,26 +150,11 @@ namespace LSL4Unity
 			*                  serving app, device or computer crashes (just by finding a stream with the same source id on the network again).
 			*                  Therefore, it is highly recommended to always try to provide whatever information can uniquely identify the data source itself.
 			*/
-			public StreamInfo(string name, string type) { _obj = dll.lsl_create_streaminfo(name, type, 1, IRREGULAR_RATE, channel_format_t.cf_float32, ""); }
-
-			public StreamInfo(string name, string type, int channelCount)
+			public StreamInfo(string           name, string type, int channelCount = 1,
+							  double           sampling  = IRREGULAR_RATE,
+							  channel_format_t channelFormat = channel_format_t.cf_float32, string sourceId = "")
 			{
-				_obj = dll.lsl_create_streaminfo(name, type, channelCount, IRREGULAR_RATE, channel_format_t.cf_float32, "");
-			}
-
-			public StreamInfo(string name, string type, int channelCount, double nominalSrate)
-			{
-				_obj = dll.lsl_create_streaminfo(name, type, channelCount, nominalSrate, channel_format_t.cf_float32, "");
-			}
-
-			public StreamInfo(string name, string type, int channelCount, double nominalSrate, channel_format_t channelFormat)
-			{
-				_obj = dll.lsl_create_streaminfo(name, type, channelCount, nominalSrate, channelFormat, "");
-			}
-
-			public StreamInfo(string name, string type, int channelCount, double nominalSrate, channel_format_t channelFormat, string sourceId)
-			{
-				_obj = dll.lsl_create_streaminfo(name, type, channelCount, nominalSrate, channelFormat, sourceId);
+				_obj = dll.lsl_create_streaminfo(name, type, channelCount, sampling, channelFormat, sourceId);
 			}
 
 			public StreamInfo(IntPtr handle) { _obj = handle; }
@@ -332,9 +317,10 @@ namespace LSL4Unity
 			* @param max_buffered Optionally the maximum amount of data to buffer (in seconds if there is a nominal 
 			*                     sampling rate, otherwise x100 in samples). The default is 6 minutes of data. 
 			*/
-			public StreamOutlet(StreamInfo info) { _obj                                 = dll.lsl_create_outlet(info.Handle(), 0,         360); }
-			public StreamOutlet(StreamInfo info, int chunkSize) { _obj                  = dll.lsl_create_outlet(info.Handle(), chunkSize, 360); }
-			public StreamOutlet(StreamInfo info, int chunkSize, int maxBuffered) { _obj = dll.lsl_create_outlet(info.Handle(), chunkSize, maxBuffered); }
+			public StreamOutlet(StreamInfo info, int chunkSize = 0, int maxBuffered = 360)
+			{
+				_obj = dll.lsl_create_outlet(info.Handle(), chunkSize, maxBuffered);
+			}
 
 			/**
 			* Destructor.
@@ -351,31 +337,32 @@ namespace LSL4Unity
 			* Push an array of values as a sample into the outlet. 
 			* Each entry in the vector corresponds to one channel.
 			* @param data An array of values to push (one for each channel).
-			* @param timestamp Optionally the capture time of the sample, in agreement with local_clock(); if omitted, the current time is used.
+			* @param time Optionally the capture time of the sample, in agreement with local_clock(); if omitted, the current time is used.
 			* @param pushthrough Optionally whether to push the sample through to the receivers instead of buffering it with subsequent samples.
 			*                    Note that the chunk_size, if specified at outlet construction, takes precedence over the pushthrough flag.
 			*/
-			public void push_sample(float[]  data)                                     { dll.lsl_push_sample_ftp(_obj, data, 0.0,       1); }
-			public void push_sample(float[]  data, double timestamp)                   { dll.lsl_push_sample_ftp(_obj, data, timestamp, 1); }
-			public void push_sample(float[]  data, double timestamp, bool pushthrough) { dll.lsl_push_sample_ftp(_obj, data, timestamp, pushthrough ? 1 : 0); }
-			public void push_sample(double[] data)                                     { dll.lsl_push_sample_dtp(_obj, data, 0.0,       1); }
-			public void push_sample(double[] data, double timestamp)                   { dll.lsl_push_sample_dtp(_obj, data, timestamp, 1); }
-			public void push_sample(double[] data, double timestamp, bool pushthrough) { dll.lsl_push_sample_dtp(_obj, data, timestamp, pushthrough ? 1 : 0); }
-			public void push_sample(int[]    data)                                     { dll.lsl_push_sample_itp(_obj, data, 0.0,       1); }
-			public void push_sample(int[]    data, double timestamp)                   { dll.lsl_push_sample_itp(_obj, data, timestamp, 1); }
-			public void push_sample(int[]    data, double timestamp, bool pushthrough) { dll.lsl_push_sample_itp(_obj, data, timestamp, pushthrough ? 1 : 0); }
-			public void push_sample(short[]  data)                                     { dll.lsl_push_sample_stp(_obj, data, 0.0,       1); }
-			public void push_sample(short[]  data, double timestamp)                   { dll.lsl_push_sample_stp(_obj, data, timestamp, 1); }
-			public void push_sample(short[]  data, double timestamp, bool pushthrough) { dll.lsl_push_sample_stp(_obj, data, timestamp, pushthrough ? 1 : 0); }
-			public void push_sample(char[]   data)                                     { dll.lsl_push_sample_ctp(_obj, data, 0.0,       1); }
-			public void push_sample(char[]   data, double timestamp)                   { dll.lsl_push_sample_ctp(_obj, data, timestamp, 1); }
-			public void push_sample(char[]   data, double timestamp, bool pushthrough) { dll.lsl_push_sample_ctp(_obj, data, timestamp, pushthrough ? 1 : 0); }
-			public void push_sample(string[] data)                   { dll.lsl_push_sample_strtp(_obj, data, 0.0,       1); }
-			public void push_sample(string[] data, double timestamp) { dll.lsl_push_sample_strtp(_obj, data, timestamp, 1); }
-
-			public void push_sample(string[] data, double timestamp, bool pushthrough)
+			public void push_sample(float[] data, double time = 0.0, bool pushthrough = true)
 			{
-				dll.lsl_push_sample_strtp(_obj, data, timestamp, pushthrough ? 1 : 0);
+				dll.lsl_push_sample_ftp(_obj, data, time, pushthrough ? 1 : 0);
+			}
+
+			public void push_sample(double[] data, double time = 0.0, bool pushthrough = true)
+			{
+				dll.lsl_push_sample_dtp(_obj, data, time, pushthrough ? 1 : 0);
+			}
+
+			public void push_sample(int[] data, double time = 0.0, bool pushthrough = true) { dll.lsl_push_sample_itp(_obj, data, time, pushthrough ? 1 : 0); }
+
+			public void push_sample(short[] data, double time = 0.0, bool pushthrough = true)
+			{
+				dll.lsl_push_sample_stp(_obj, data, time, pushthrough ? 1 : 0);
+			}
+
+			public void push_sample(char[] data, double time = 0.0, bool pushthrough = true) { dll.lsl_push_sample_ctp(_obj, data, time, pushthrough ? 1 : 0); }
+
+			public void push_sample(string[] data, double time = 0.0, bool pushthrough = true)
+			{
+				dll.lsl_push_sample_strtp(_obj, data, time, pushthrough ? 1 : 0);
 			}
 
 
@@ -384,108 +371,78 @@ namespace LSL4Unity
 			// ===================================================
 
 			/**
-			* Push a chunk of samples into the outlet. Single timestamp provided.
+			* Push a chunk of samples into the outlet. Single time provided.
 			* @param data A rectangular array of values for multiple samples.
-			* @param timestamp Optionally the capture time of the most recent sample, in agreement with local_clock(); if omitted, the current time is used.
+			* @param time Optionally the capture time of the most recent sample, in agreement with local_clock(); if omitted, the current time is used.
 			*                   The time stamps of other samples are automatically derived based on the sampling rate of the stream.
 			* @param pushthrough Optionally whether to push the chunk through to the receivers instead of buffering it with subsequent samples.
 			*                    Note that the chunk_size, if specified at outlet construction, takes precedence over the pushthrough flag.
 			*/
-			public void push_chunk(float[,] data)                   { dll.lsl_push_chunk_ftp(_obj, data, (uint) data.Length, 0.0,       1); }
-			public void push_chunk(float[,] data, double timestamp) { dll.lsl_push_chunk_ftp(_obj, data, (uint) data.Length, timestamp, 1); }
-
-			public void push_chunk(float[,] data, double timestamp, bool pushthrough)
+			public void push_chunk(float[,] data, double time = 0.0, bool pushthrough = true)
 			{
-				dll.lsl_push_chunk_ftp(_obj, data, (uint) data.Length, timestamp, pushthrough ? 1 : 0);
+				dll.lsl_push_chunk_ftp(_obj, data, (uint) data.Length, time, pushthrough ? 1 : 0);
 			}
 
-			public void push_chunk(double[,] data)                   { dll.lsl_push_chunk_dtp(_obj, data, (uint) data.Length, 0.0,       1); }
-			public void push_chunk(double[,] data, double timestamp) { dll.lsl_push_chunk_dtp(_obj, data, (uint) data.Length, timestamp, 1); }
-
-			public void push_chunk(double[,] data, double timestamp, bool pushthrough)
+			public void push_chunk(double[,] data, double time = 0.0, bool pushthrough = true)
 			{
-				dll.lsl_push_chunk_dtp(_obj, data, (uint) data.Length, timestamp, pushthrough ? 1 : 0);
+				dll.lsl_push_chunk_dtp(_obj, data, (uint) data.Length, time, pushthrough ? 1 : 0);
 			}
 
-			public void push_chunk(int[,] data)                   { dll.lsl_push_chunk_itp(_obj, data, (uint) data.Length, 0.0,       1); }
-			public void push_chunk(int[,] data, double timestamp) { dll.lsl_push_chunk_itp(_obj, data, (uint) data.Length, timestamp, 1); }
-
-			public void push_chunk(int[,] data, double timestamp, bool pushthrough)
+			public void push_chunk(int[,] data, double time = 0.0, bool pushthrough = true)
 			{
-				dll.lsl_push_chunk_itp(_obj, data, (uint) data.Length, timestamp, pushthrough ? 1 : 0);
+				dll.lsl_push_chunk_itp(_obj, data, (uint) data.Length, time, pushthrough ? 1 : 0);
 			}
 
-			public void push_chunk(short[,] data)                   { dll.lsl_push_chunk_stp(_obj, data, (uint) data.Length, 0.0,       1); }
-			public void push_chunk(short[,] data, double timestamp) { dll.lsl_push_chunk_stp(_obj, data, (uint) data.Length, timestamp, 1); }
-
-			public void push_chunk(short[,] data, double timestamp, bool pushthrough)
+			public void push_chunk(short[,] data, double time = 0.0, bool pushthrough = true)
 			{
-				dll.lsl_push_chunk_stp(_obj, data, (uint) data.Length, timestamp, pushthrough ? 1 : 0);
+				dll.lsl_push_chunk_stp(_obj, data, (uint) data.Length, time, pushthrough ? 1 : 0);
 			}
 
-			public void push_chunk(char[,] data)                   { dll.lsl_push_chunk_ctp(_obj, data, (uint) data.Length, 0.0,       1); }
-			public void push_chunk(char[,] data, double timestamp) { dll.lsl_push_chunk_ctp(_obj, data, (uint) data.Length, timestamp, 1); }
-
-			public void push_chunk(char[,] data, double timestamp, bool pushthrough)
+			public void push_chunk(char[,] data, double time = 0.0, bool pushthrough = true)
 			{
-				dll.lsl_push_chunk_ctp(_obj, data, (uint) data.Length, timestamp, pushthrough ? 1 : 0);
+				dll.lsl_push_chunk_ctp(_obj, data, (uint) data.Length, time, pushthrough ? 1 : 0);
 			}
 
-			public void push_chunk(string[,] data)                   { dll.lsl_push_chunk_strtp(_obj, data, (uint) data.Length, 0.0,       1); }
-			public void push_chunk(string[,] data, double timestamp) { dll.lsl_push_chunk_strtp(_obj, data, (uint) data.Length, timestamp, 1); }
-
-			public void push_chunk(string[,] data, double timestamp, bool pushthrough)
+			public void push_chunk(string[,] data, double time = 0.0, bool pushthrough = true)
 			{
-				dll.lsl_push_chunk_strtp(_obj, data, (uint) data.Length, timestamp, pushthrough ? 1 : 0);
+				dll.lsl_push_chunk_strtp(_obj, data, (uint) data.Length, time, pushthrough ? 1 : 0);
 			}
 
 			/**
-			* Push a chunk of multiplexed samples into the outlet. One timestamp per sample is provided.
+			* Push a chunk of multiplexed samples into the outlet. One time per sample is provided.
 			* @param data A rectangular array of values for multiple samples.
-			* @param timestamps An array of timestamp values holding time stamps for each sample in the data buffer.
+			* @param times An array of time values holding time stamps for each sample in the data buffer.
 			* @param pushthrough Optionally whether to push the chunk through to the receivers instead of buffering it with subsequent samples.
 			*                    Note that the chunk_size, if specified at outlet construction, takes precedence over the pushthrough flag.
 			*/
-			public void push_chunk(float[,] data, double[] timestamps) { dll.lsl_push_chunk_ftnp(_obj, data, (uint) data.Length, timestamps, 1); }
-
-			public void push_chunk(float[,] data, double[] timestamps, bool pushthrough)
+			public void push_chunk(float[,] data, double[] times, bool pushthrough = true)
 			{
-				dll.lsl_push_chunk_ftnp(_obj, data, (uint) data.Length, timestamps, pushthrough ? 1 : 0);
+				dll.lsl_push_chunk_ftnp(_obj, data, (uint) data.Length, times, pushthrough ? 1 : 0);
 			}
 
-			public void push_chunk(double[,] data, double[] timestamps) { dll.lsl_push_chunk_dtnp(_obj, data, (uint) data.Length, timestamps, 1); }
-
-			public void push_chunk(double[,] data, double[] timestamps, bool pushthrough)
+			public void push_chunk(double[,] data, double[] times, bool pushthrough = true)
 			{
-				dll.lsl_push_chunk_dtnp(_obj, data, (uint) data.Length, timestamps, pushthrough ? 1 : 0);
+				dll.lsl_push_chunk_dtnp(_obj, data, (uint) data.Length, times, pushthrough ? 1 : 0);
 			}
 
-			public void push_chunk(int[,] data, double[] timestamps) { dll.lsl_push_chunk_itnp(_obj, data, (uint) data.Length, timestamps, 1); }
-
-			public void push_chunk(int[,] data, double[] timestamps, bool pushthrough)
+			public void push_chunk(int[,] data, double[] times, bool pushthrough = true)
 			{
-				dll.lsl_push_chunk_itnp(_obj, data, (uint) data.Length, timestamps, pushthrough ? 1 : 0);
+				dll.lsl_push_chunk_itnp(_obj, data, (uint) data.Length, times, pushthrough ? 1 : 0);
 			}
 
-			public void push_chunk(short[,] data, double[] timestamps) { dll.lsl_push_chunk_stnp(_obj, data, (uint) data.Length, timestamps, 1); }
-
-			public void push_chunk(short[,] data, double[] timestamps, bool pushthrough)
+			public void push_chunk(short[,] data, double[] times, bool pushthrough = true)
 			{
-				dll.lsl_push_chunk_stnp(_obj, data, (uint) data.Length, timestamps, pushthrough ? 1 : 0);
+				dll.lsl_push_chunk_stnp(_obj, data, (uint) data.Length, times, pushthrough ? 1 : 0);
 			}
 
-			public void push_chunk(char[,] data, double[] timestamps) { dll.lsl_push_chunk_ctnp(_obj, data, (uint) data.Length, timestamps, 1); }
-
-			public void push_chunk(char[,] data, double[] timestamps, bool pushthrough)
+			public void push_chunk(char[,] data, double[] times, bool pushthrough = true)
 			{
-				dll.lsl_push_chunk_ctnp(_obj, data, (uint) data.Length, timestamps, pushthrough ? 1 : 0);
+				dll.lsl_push_chunk_ctnp(_obj, data, (uint) data.Length, times, pushthrough ? 1 : 0);
 			}
 
-			public void push_chunk(string[,] data, double[] timestamps) { dll.lsl_push_chunk_strtnp(_obj, data, (uint) data.Length, timestamps, 1); }
-
-			public void push_chunk(string[,] data, double[] timestamps, bool pushthrough)
+			public void push_chunk(string[,] data, double[] times, bool pushthrough = true)
 			{
-				dll.lsl_push_chunk_strtnp(_obj, data, (uint) data.Length, timestamps, pushthrough ? 1 : 0);
+				dll.lsl_push_chunk_strtnp(_obj, data, (uint) data.Length, times, pushthrough ? 1 : 0);
 			}
 
 
@@ -614,11 +571,7 @@ namespace LSL4Unity
 					*                In all other cases (recover is false or the stream is not recoverable) functions may throw a 
 					*                LostException if the stream's source is lost (e.g., due to an app or computer crash).
 					*/
-			public StreamInlet(StreamInfo info) { _obj                                 = dll.lsl_create_inlet(info.Handle(), 360,       0,           1); }
-			public StreamInlet(StreamInfo info, int maxBuflen) { _obj                  = dll.lsl_create_inlet(info.Handle(), maxBuflen, 0,           1); }
-			public StreamInlet(StreamInfo info, int maxBuflen, int maxChunklen) { _obj = dll.lsl_create_inlet(info.Handle(), maxBuflen, maxChunklen, 1); }
-
-			public StreamInlet(StreamInfo info, int maxBuflen, int maxChunklen, bool recover)
+			public StreamInlet(StreamInfo info, int maxBuflen = 360, int maxChunklen = 0, bool recover = true)
 			{
 				_obj = dll.lsl_create_inlet(info.Handle(), maxBuflen, maxChunklen, recover ? 1 : 0);
 			}
@@ -786,57 +739,57 @@ namespace LSL4Unity
 			* @throws LostException (if the stream source has been lost).
 			*/
 
-			public int pull_chunk(float[,] dataBuffer, double[] timestampBuffer, double timeout = 0.0)
+			public int pull_chunk(float[,] buffer, double[] times, double timeout = 0.0)
 			{
 				int  ec  = 0;
-				uint res = dll.lsl_pull_chunk_f(_obj, dataBuffer, timestampBuffer, (uint) dataBuffer.Length, (uint) timestampBuffer.Length, timeout, ref ec);
+				uint res = dll.lsl_pull_chunk_f(_obj, buffer, times, (uint) buffer.Length, (uint) times.Length, timeout, ref ec);
 				check_error(ec);
-				return (int) res / dataBuffer.GetLength(1);
+				return (int) res / buffer.GetLength(1);
 			}
 
-			public int pull_chunk(double[,] dataBuffer, double[] timestampBuffer, double timeout = 0.0)
+			public int pull_chunk(double[,] buffer, double[] times, double timeout = 0.0)
 			{
 				int  ec  = 0;
-				uint res = dll.lsl_pull_chunk_d(_obj, dataBuffer, timestampBuffer, (uint) dataBuffer.Length, (uint) timestampBuffer.Length, timeout, ref ec);
+				uint res = dll.lsl_pull_chunk_d(_obj, buffer, times, (uint) buffer.Length, (uint) times.Length, timeout, ref ec);
 				check_error(ec);
-				return (int) res / dataBuffer.GetLength(1);
+				return (int) res / buffer.GetLength(1);
 			}
 
-			public int pull_chunk(int[,] dataBuffer, double[] timestampBuffer, double timeout = 0.0)
+			public int pull_chunk(int[,] buffer, double[] times, double timeout = 0.0)
 			{
 				int  ec  = 0;
-				uint res = dll.lsl_pull_chunk_i(_obj, dataBuffer, timestampBuffer, (uint) dataBuffer.Length, (uint) timestampBuffer.Length, timeout, ref ec);
+				uint res = dll.lsl_pull_chunk_i(_obj, buffer, times, (uint) buffer.Length, (uint) times.Length, timeout, ref ec);
 				check_error(ec);
-				return (int) res / dataBuffer.GetLength(1);
+				return (int) res / buffer.GetLength(1);
 			}
 
-			public int pull_chunk(short[,] dataBuffer, double[] timestampBuffer, double timeout = 0.0)
+			public int pull_chunk(short[,] buffer, double[] times, double timeout = 0.0)
 			{
 				int  ec  = 0;
-				uint res = dll.lsl_pull_chunk_s(_obj, dataBuffer, timestampBuffer, (uint) dataBuffer.Length, (uint) timestampBuffer.Length, timeout, ref ec);
+				uint res = dll.lsl_pull_chunk_s(_obj, buffer, times, (uint) buffer.Length, (uint) times.Length, timeout, ref ec);
 				check_error(ec);
-				return (int) res / dataBuffer.GetLength(1);
+				return (int) res / buffer.GetLength(1);
 			}
 
-			public int pull_chunk(char[,] dataBuffer, double[] timestampBuffer, double timeout = 0.0)
+			public int pull_chunk(char[,] buffer, double[] times, double timeout = 0.0)
 			{
 				int  ec  = 0;
-				uint res = dll.lsl_pull_chunk_c(_obj, dataBuffer, timestampBuffer, (uint) dataBuffer.Length, (uint) timestampBuffer.Length, timeout, ref ec);
+				uint res = dll.lsl_pull_chunk_c(_obj, buffer, times, (uint) buffer.Length, (uint) times.Length, timeout, ref ec);
 				check_error(ec);
-				return (int) res / dataBuffer.GetLength(1);
+				return (int) res / buffer.GetLength(1);
 			}
 
-			public int pull_chunk(string[,] dataBuffer, double[] timestampBuffer, double timeout = 0.0)
+			public int pull_chunk(string[,] buffer, double[] times, double timeout = 0.0)
 			{
 				int       ec  = 0;
-				IntPtr[,] tmp = new IntPtr[dataBuffer.GetLength(0), dataBuffer.GetLength(1)];
-				uint      res = dll.lsl_pull_chunk_str(_obj, tmp, timestampBuffer, (uint) tmp.Length, (uint) timestampBuffer.Length, timeout, ref ec);
+				IntPtr[,] tmp = new IntPtr[buffer.GetLength(0), buffer.GetLength(1)];
+				uint      res = dll.lsl_pull_chunk_str(_obj, tmp, times, (uint) tmp.Length, (uint) times.Length, timeout, ref ec);
 				check_error(ec);
 				try
 				{
 					for (int s = 0; s < tmp.GetLength(0); s++)
 					{
-						for (int c = 0; c < tmp.GetLength(1); c++) { dataBuffer[s, c] = Marshal.PtrToStringAnsi(tmp[s, c]); }
+						for (int c = 0; c < tmp.GetLength(1); c++) { buffer[s, c] = Marshal.PtrToStringAnsi(tmp[s, c]); }
 					}
 				}
 				finally
@@ -846,7 +799,7 @@ namespace LSL4Unity
 						for (int c = 0; c < tmp.GetLength(1); c++) { dll.lsl_destroy_string(tmp[s, c]); }
 					}
 				}
-				return (int) res / dataBuffer.GetLength(1);
+				return (int) res / buffer.GetLength(1);
 			}
 
 			/**
@@ -1004,8 +957,7 @@ namespace LSL4Unity
 			* @param forget_after When a stream is no longer visible on the network (e.g., because it was shut down),
 			*                     this is the time in seconds after which it is no longer reported by the resolver.
 			*/
-			public ContinuousResolver() { _obj                   = dll.lsl_create_continuous_resolver(5.0); }
-			public ContinuousResolver(double forgetAfter) { _obj = dll.lsl_create_continuous_resolver(forgetAfter); }
+			public ContinuousResolver(double forgetAfter = 5.0) { _obj = dll.lsl_create_continuous_resolver(forgetAfter); }
 
 			/**
 			* Construct a new continuous_resolver that resolves all streams with a specific value for a given property.
@@ -1015,9 +967,7 @@ namespace LSL4Unity
 			* @param forget_after When a stream is no longer visible on the network (e.g., because it was shut down),
 			*                     this is the time in seconds after which it is no longer reported by the resolver.
 			*/
-			public ContinuousResolver(string prop, string value) { _obj = dll.lsl_create_continuous_resolver_byprop(prop, value, 5.0); }
-
-			public ContinuousResolver(string prop, string value, double forgetAfter)
+			public ContinuousResolver(string prop, string value, double forgetAfter = 5.0)
 			{
 				_obj = dll.lsl_create_continuous_resolver_byprop(prop, value, forgetAfter);
 			}
@@ -1029,8 +979,7 @@ namespace LSL4Unity
 			* @param forget_after When a stream is no longer visible on the network (e.g., because it was shut down),
 			*                     this is the time in seconds after which it is no longer reported by the resolver.
 			*/
-			public ContinuousResolver(string pred) { _obj                     = dll.lsl_create_continuous_resolver_bypred(pred, 5.0); }
-			public ContinuousResolver(string pred, double forgetAfter) { _obj = dll.lsl_create_continuous_resolver_bypred(pred, forgetAfter); }
+			public ContinuousResolver(string pred, double forgetAfter = 5.0) { _obj = dll.lsl_create_continuous_resolver_bypred(pred, forgetAfter); }
 
 			/** 
 			* Destructor.
@@ -1065,7 +1014,7 @@ namespace LSL4Unity
 		{
 			public LostException() { }
 			public LostException(string                                            message) { }
-			public LostException(string                                            message, Exception                              inner) { }
+			public LostException(string                                            message, Exception                                     inner) { }
 			protected LostException(System.Runtime.Serialization.SerializationInfo info,    System.Runtime.Serialization.StreamingContext context) { }
 		}
 
@@ -1076,7 +1025,7 @@ namespace LSL4Unity
 		{
 			public InternalException() { }
 			public InternalException(string                                            message) { }
-			public InternalException(string                                            message, Exception                              inner) { }
+			public InternalException(string                                            message, Exception                                     inner) { }
 			protected InternalException(System.Runtime.Serialization.SerializationInfo info,    System.Runtime.Serialization.StreamingContext context) { }
 		}
 
@@ -1135,7 +1084,7 @@ namespace LSL4Unity
 			public static extern double lsl_local_clock();
 
 			[DllImport(LIBNAME, CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Ansi, ExactSpelling = true)]
-			public static extern IntPtr lsl_create_streaminfo(string name, string type, int channelCount, double nominalSrate, channel_format_t channelFormat,
+			public static extern IntPtr lsl_create_streaminfo(string name, string type, int channelCount, double sampling, channel_format_t channelFormat,
 															  string sourceId);
 
 			[DllImport(LIBNAME, CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Ansi, ExactSpelling = true)]

@@ -7,10 +7,10 @@ namespace LSL4Unity.Scripts.Examples
 	{
 		public float[] LastSample;
 
-		protected override void Process(float[] newSample, double timeStamp)
+		protected override void Process(float[] sample, double time)
 		{
-			LastSample = newSample;
-			Debug.Log($"Got {newSample.Length} samples at {timeStamp}");
+			LastSample = sample;
+			Debug.Log($"Got {sample.Length} samples at {time}");
 		}
 	}
 }

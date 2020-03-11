@@ -16,10 +16,12 @@ namespace LSL4Unity.Scripts
 		/// <returns></returns>
 		public static float GetSamplingRateFor(MomentForSampling moment, bool setRefreshRateToDisplay = true)
 		{
-			switch (moment) {
+			switch (moment)
+			{
 				case MomentForSampling.FixedUpdate: return 1000 / (1000 * Time.fixedDeltaTime);
 				case MomentForSampling.Update:
-				case MomentForSampling.LateUpdate: {
+				case MomentForSampling.LateUpdate:
+				{
 					if (Application.targetFrameRate == DEFAULT_PLATTFORM_SPECIFIC_FRAMERATE && !setRefreshRateToDisplay)
 					{
 						throw new InvalidOperationException("When using Update or LateUpdate as sampling moment - specify a target frameRate");

@@ -32,7 +32,7 @@ namespace LSL4Unity.Scripts
 		public bool IsStreamAvailable(out LSLStreamInfoWrapper info, string streamName = "", string streamType = "", string hostName = "")
 		{
 			var result = KnownStreams.Where(i => (streamName == "" || i.Name.Equals(streamName)) && (streamType == "" || i.Type.Equals(streamType))
-																								 && (hostName == "" || i.Type.Equals(hostName)));
+																								 && (hostName == "" || i.Type.Equals(hostName))).ToList();
 
 			if (result.Any())
 			{
@@ -73,7 +73,6 @@ namespace LSL4Unity.Scripts
 						if (OnStreamFound.GetPersistentEventCount() > 0) { OnStreamFound.Invoke(newStreamInfo); }
 					}
 				}
-
 				yield return new WaitForSecondsRealtime(0.1f);
 			}
 		}
