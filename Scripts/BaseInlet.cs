@@ -16,9 +16,7 @@ namespace LSL4Unity.Scripts
 
 		protected Resolver Resolver;
 
-		/// <summary>
-		/// Call this method when your inlet implementation got created at runtime
-		/// </summary>
+		/// <summary> Call this method when your inlet implementation got created at runtime. </summary>
 		protected virtual void RegisterAndLookUpStream()
 		{
 			Resolver = FindObjectOfType<Resolver>();
@@ -35,9 +33,7 @@ namespace LSL4Unity.Scripts
 			}
 		}
 
-		/// <summary>
-		/// Callback method for the Resolver gets called each time the resolver found a stream
-		/// </summary>
+		/// <summary> Callback method for the Resolver gets called each time the resolver found a stream. </summary>
 		/// <param name="stream"></param>
 		public virtual void AStreamIsFound(LSLStreamInfoWrapper stream)
 		{

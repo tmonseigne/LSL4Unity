@@ -51,9 +51,7 @@ namespace LSL4Unity.Scripts
 			AdditionalStart();
 		}
 
-		/// <summary>
-		/// Override this method in the subclass to specify what should happen during Start().
-		/// </summary>
+		/// <summary> Override this method in the subclass to specify what should happen during Start(). </summary>
 		protected virtual void AdditionalStart()
 		{
 			//By default, do nothing.
@@ -100,6 +98,7 @@ namespace LSL4Unity.Scripts
 
 		/// <summary> Override this method in the subclass to specify what should happen when samples are available. </summary>
 		/// <param name="newSample"></param>
+		/// <param name="timeStamp"></param>
 		protected abstract void Process(float[] newSample, double timeStamp);
 
 		private void FixedUpdate()
@@ -158,13 +157,8 @@ namespace LSL4Unity.Scripts
 			AdditionalStart();
 		}
 
-		/// <summary>
-		/// Override this method in the subclass to specify what should happen during Start().
-		/// </summary>
-		protected virtual void AdditionalStart()
-		{
-			//By default, do nothing.
-		}
+		/// <summary> Override this method in the subclass to specify what should happen during Start(). </summary>
+		protected virtual void AdditionalStart() { } //By default, do nothing.
 
 		private IEnumerator ResolveExpectedStream()
 		{
@@ -214,6 +208,7 @@ namespace LSL4Unity.Scripts
 
 		/// <summary> Override this method in the subclass to specify what should happen when samples are available. </summary>
 		/// <param name="newSample"></param>
+		/// <param name="timeStamp"></param>
 		protected abstract void Process(double[] newSample, double timeStamp);
 
 		private void FixedUpdate()
@@ -259,7 +254,6 @@ namespace LSL4Unity.Scripts
 			if (expectedStreamHasAName)
 			{
 				Debug.Log("Creating LSL resolver for stream " + StreamName);
-
 				_resolver = new liblsl.ContinuousResolver("name", StreamName);
 			}
 			else // if (expectedStreamHasAType) // Useless with the first if
@@ -273,13 +267,8 @@ namespace LSL4Unity.Scripts
 			AdditionalStart();
 		}
 
-		/// <summary>
-		/// Override this method in the subclass to specify what should happen during Start().
-		/// </summary>
-		protected virtual void AdditionalStart()
-		{
-			//By default, do nothing.
-		}
+		/// <summary> Override this method in the subclass to specify what should happen during Start(). </summary>
+		protected virtual void AdditionalStart() { } //By default, do nothing.
 
 
 		private IEnumerator ResolveExpectedStream()
@@ -321,6 +310,7 @@ namespace LSL4Unity.Scripts
 
 		/// <summary> Override this method in the subclass to specify what should happen when samples are available. </summary>
 		/// <param name="newSample"></param>
+		/// <param name="timeStamp"></param>
 		protected abstract void Process(char[] newSample, double timeStamp);
 
 		private void FixedUpdate()
@@ -366,7 +356,6 @@ namespace LSL4Unity.Scripts
 			if (expectedStreamHasAName)
 			{
 				Debug.Log("Creating LSL resolver for stream " + StreamName);
-
 				_resolver = new liblsl.ContinuousResolver("name", StreamName);
 			}
 			else // if (expectedStreamHasAType) // Useless with the first if
@@ -380,13 +369,8 @@ namespace LSL4Unity.Scripts
 			AdditionalStart();
 		}
 
-		/// <summary>
-		/// Override this method in the subclass to specify what should happen during Start().
-		/// </summary>
-		protected virtual void AdditionalStart()
-		{
-			//By default, do nothing.
-		}
+		/// <summary> Override this method in the subclass to specify what should happen during Start(). </summary>
+		protected virtual void AdditionalStart() { } //By default, do nothing.
 
 		private IEnumerator ResolveExpectedStream()
 		{
@@ -427,6 +411,7 @@ namespace LSL4Unity.Scripts
 
 		/// <summary> Override this method in the subclass to specify what should happen when samples are available. </summary>
 		/// <param name="newSample"></param>
+		/// <param name="timeStamp"></param>
 		protected abstract void Process(short[] newSample, double timeStamp);
 
 		private void FixedUpdate()
@@ -472,7 +457,6 @@ namespace LSL4Unity.Scripts
 			if (expectedStreamHasAName)
 			{
 				Debug.Log("Creating LSL resolver for stream " + StreamName);
-
 				_resolver = new liblsl.ContinuousResolver("name", StreamName);
 			}
 			else // if (expectedStreamHasAType) // Useless with the first if
@@ -486,13 +470,8 @@ namespace LSL4Unity.Scripts
 			AdditionalStart();
 		}
 
-		/// <summary>
-		/// Override this method in the subclass to specify what should happen during Start().
-		/// </summary>
-		protected virtual void AdditionalStart()
-		{
-			//By default, do nothing.
-		}
+		/// <summary> Override this method in the subclass to specify what should happen during Start(). </summary>
+		protected virtual void AdditionalStart() { } //By default, do nothing.
 
 		private IEnumerator ResolveExpectedStream()
 		{
@@ -533,6 +512,7 @@ namespace LSL4Unity.Scripts
 
 		/// <summary> Override this method in the subclass to specify what should happen when samples are available. </summary>
 		/// <param name="newSample"></param>
+		/// <param name="timeStamp"></param>
 		protected abstract void Process(int[] newSample, double timeStamp);
 
 		private void FixedUpdate()
@@ -578,7 +558,6 @@ namespace LSL4Unity.Scripts
 			if (expectedStreamHasAName)
 			{
 				Debug.Log("Creating LSL resolver for stream " + StreamName);
-
 				_resolver = new liblsl.ContinuousResolver("name", StreamName);
 			}
 			else // if (expectedStreamHasAType) // Useless with the first if
@@ -592,13 +571,8 @@ namespace LSL4Unity.Scripts
 			AdditionalStart();
 		}
 
-		/// <summary>
-		/// Override this method in the subclass to specify what should happen during Start().
-		/// </summary>
-		protected virtual void AdditionalStart()
-		{
-			//By default, do nothing.
-		}
+		/// <summary> Override this method in the subclass to specify what should happen during Start(). </summary>
+		protected virtual void AdditionalStart() { } //By default, do nothing.
 
 		private IEnumerator ResolveExpectedStream()
 		{
@@ -639,6 +613,7 @@ namespace LSL4Unity.Scripts
 
 		/// <summary> Override this method in the subclass to specify what should happen when samples are available. </summary>
 		/// <param name="newSample"></param>
+		/// <param name="timeStamp"></param>
 		protected abstract void Process(string[] newSample, double timeStamp);
 
 		private void FixedUpdate()

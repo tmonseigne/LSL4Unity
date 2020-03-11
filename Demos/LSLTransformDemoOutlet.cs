@@ -14,9 +14,7 @@ namespace LSL4Unity.Demos
 		private liblsl.StreamInfo   _streamInfo;
 		public  liblsl.StreamInfo   GetStreamInfo() { return _streamInfo; }
 
-		/// <summary>
-		/// Use a array to reduce allocation costs
-		/// </summary>
+		/// <summary> Use a array to reduce allocation costs. </summary>
 		private float[] _currentSample;
 
 		private double _dataRate;

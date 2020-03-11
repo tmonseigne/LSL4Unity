@@ -122,10 +122,7 @@ namespace LSL4Unity.Scripts
 
 				foreach (var item in quatlabels)
 				{
-					var definition = new ChannelDefinition();
-					definition.Label = item;
-					definition.Unit  = "unit quaternion";
-					definition.Type  = "quaternion component";
+					var definition = new ChannelDefinition { Label = item, Unit = "unit quaternion", Type = "quaternion component" };
 					list.Add(definition);
 				}
 			}
@@ -136,10 +133,7 @@ namespace LSL4Unity.Scripts
 
 				foreach (var item in eulerLabels)
 				{
-					var definition = new ChannelDefinition();
-					definition.Label = item;
-					definition.Unit  = "degree";
-					definition.Type  = "axis angle";
+					var definition = new ChannelDefinition { Label = item, Unit = "degree", Type = "axis angle" };
 					list.Add(definition);
 				}
 			}
@@ -151,10 +145,7 @@ namespace LSL4Unity.Scripts
 
 				foreach (var item in eulerLabels)
 				{
-					var definition = new ChannelDefinition();
-					definition.Label = item;
-					definition.Unit  = "meter";
-					definition.Type  = "position in world space";
+					var definition = new ChannelDefinition { Label = item, Unit = "meter", Type = "position in world space" };
 					list.Add(definition);
 				}
 			}
