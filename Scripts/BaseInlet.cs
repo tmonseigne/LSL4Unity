@@ -85,7 +85,7 @@ namespace LSL4Unity.Scripts
 
 	public abstract class InletFloatSamples : ABaseInlet
 	{
-		protected abstract void Process(float[]sample, double time);
+		protected abstract void Process(float[] sample, double time);
 
 		protected float[] Sample;
 
@@ -116,7 +116,7 @@ namespace LSL4Unity.Scripts
 
 	public abstract class InletDoubleSamples : ABaseInlet
 	{
-		protected abstract void Process(double[]sample, double time);
+		protected abstract void Process(double[] sample, double time);
 
 		protected double[] Sample;
 
@@ -147,7 +147,7 @@ namespace LSL4Unity.Scripts
 
 	public abstract class InletIntSamples : ABaseInlet
 	{
-		protected abstract void Process(int[]sample, double time);
+		protected abstract void Process(int[] sample, double time);
 
 		protected int[] Sample;
 
@@ -178,7 +178,7 @@ namespace LSL4Unity.Scripts
 
 	public abstract class InletCharSamples : ABaseInlet
 	{
-		protected abstract void Process(char[]sample, double time);
+		protected abstract void Process(char[] sample, double time);
 
 		protected char[] Sample;
 
@@ -209,7 +209,7 @@ namespace LSL4Unity.Scripts
 
 	public abstract class InletStringSamples : ABaseInlet
 	{
-		protected abstract void Process(string[]sample, double time);
+		protected abstract void Process(string[] sample, double time);
 
 		protected string[] Sample;
 
@@ -240,7 +240,7 @@ namespace LSL4Unity.Scripts
 
 	public abstract class InletShortSamples : ABaseInlet
 	{
-		protected abstract void Process(short[]sample, double time);
+		protected abstract void Process(short[] sample, double time);
 
 		protected short[] Sample;
 

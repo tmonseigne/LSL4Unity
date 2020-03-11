@@ -7,7 +7,7 @@ namespace LSL4Unity.Scripts.OV.Template
 	{
 		public int[] LastSample;
 
-		protected override void Process(int[]sample, double time)
+		protected override void Process(int[] sample, double time)
 		{
 			LastSample = sample;
 			Debug.Log($"Got {sample.Length} ints at {time}");

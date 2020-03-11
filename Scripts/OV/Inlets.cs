@@ -84,7 +84,7 @@ namespace LSL4Unity.Scripts.OV
 		/// <summary> Override this method in the subclass to specify what should happen when samples are available. </summary>
 		/// <param name="sample"></param>
 		/// <param name="time"></param>
-		protected abstract void Process(float[]sample, double time);
+		protected abstract void Process(float[] sample, double time);
 
 		private void FixedUpdate()
 		{
@@ -183,7 +183,7 @@ namespace LSL4Unity.Scripts.OV
 		/// <summary> Override this method in the subclass to specify what should happen when samples are available. </summary>
 		/// <param name="sample"></param>
 		/// <param name="time"></param>
-		protected abstract void Process(double[]sample, double time);
+		protected abstract void Process(double[] sample, double time);
 
 		private void FixedUpdate()
 		{
@@ -272,7 +272,7 @@ namespace LSL4Unity.Scripts.OV
 		/// <summary> Override this method in the subclass to specify what should happen when samples are available. </summary>
 		/// <param name="sample"></param>
 		/// <param name="time"></param>
-		protected abstract void Process(char[]sample, double time);
+		protected abstract void Process(char[] sample, double time);
 
 		private void FixedUpdate()
 		{
@@ -361,7 +361,7 @@ namespace LSL4Unity.Scripts.OV
 		/// <summary> Override this method in the subclass to specify what should happen when samples are available. </summary>
 		/// <param name="sample"></param>
 		/// <param name="time"></param>
-		protected abstract void Process(short[]sample, double time);
+		protected abstract void Process(short[] sample, double time);
 
 		private void FixedUpdate()
 		{
@@ -450,7 +450,7 @@ namespace LSL4Unity.Scripts.OV
 		/// <summary> Override this method in the subclass to specify what should happen when samples are available. </summary>
 		/// <param name="sample"></param>
 		/// <param name="time"></param>
-		protected abstract void Process(int[]sample, double time);
+		protected abstract void Process(int[] sample, double time);
 
 		private void FixedUpdate()
 		{
@@ -539,7 +539,7 @@ namespace LSL4Unity.Scripts.OV
 		/// <summary> Override this method in the subclass to specify what should happen when samples are available. </summary>
 		/// <param name="sample"></param>
 		/// <param name="time"></param>
-		protected abstract void Process(string[]sample, double time);
+		protected abstract void Process(string[] sample, double time);
 
 		private void FixedUpdate()
 		{

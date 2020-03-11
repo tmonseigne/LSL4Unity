@@ -150,8 +150,7 @@ namespace LSL4Unity
 			*                  serving app, device or computer crashes (just by finding a stream with the same source id on the network again).
 			*                  Therefore, it is highly recommended to always try to provide whatever information can uniquely identify the data source itself.
 			*/
-			public StreamInfo(string           name, string type, int channelCount = 1,
-							  double           sampling  = IRREGULAR_RATE,
+			public StreamInfo(string           name,                                        string type, int channelCount = 1, double sampling = IRREGULAR_RATE,
 							  channel_format_t channelFormat = channel_format_t.cf_float32, string sourceId = "")
 			{
 				_obj = dll.lsl_create_streaminfo(name, type, channelCount, sampling, channelFormat, sourceId);
