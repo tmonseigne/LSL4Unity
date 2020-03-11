@@ -1,68 +1,58 @@
-﻿using UnityEngine;
-using UnityEditor;
-using System.IO;
+﻿using System.IO;
 using System.Linq;
+using UnityEditor;
+using UnityEngine;
 using UnityEngine.Assertions;
 
-namespace Assets.LSL4Unity.EditorExtensions
+namespace LSL4Unity.Editor
 {
-    public class LSLEditorIntegration
-    {
-        public static readonly string wikiURL = "https://github.com/xfleckx/LSL4Unity/wiki";
-        public static readonly string lib64Name = "liblsl64";
-        public static readonly string lib32Name = "liblsl32";
-        
-        public const string DLL_ENDING = ".dll";
-        public const string SO_ENDING = ".so";
-        public const string BUNDLE_ENDING = ".bundle";
+	public class LSLEditorIntegration
+	{
+		public const string LIB64_NAME    = "liblsl64";
+		public const string LIB32_NAME    = "liblsl32";
+		public const string DLL_ENDING    = ".dll";
+		public const string SO_ENDING     = ".so";
+		public const string BUNDLE_ENDING = ".bundle";
 
-        static readonly string wrapperFileName = "LSL.cs";
-        static readonly string assetSubFolder = "LSL4Unity";
-        static readonly string libFolder = "Plugins";
+		private const string WIKI_URL         = "https://github.com/xfleckx/LSL4Unity/wiki";
+		private const string WRAPPER_FILENAME = "LSL.cs";
+		private const string ASSET_SUB_FOLDER = "LSL4Unity";
+		private const string LIB_FOLDER       = "Plugins";
 
-        [MenuItem("LSL/Show Streams")]
-        static void OpenLSLWindow()
-        {
-            var window = EditorWindow.GetWindow<LSLShowStreamsWindow>(true);
+		[MenuItem("LSL/Show Streams")]
+		private static void OpenLSLWindow()
+		{
+			var window = EditorWindow.GetWindow<LSLShowStreamsWindow>(true);
+			window.Init();
+			window.ShowUtility();
+		}
 
-            window.Init();
+		[MenuItem("LSL/Show Streams", true)]
+		private static bool ValidateOpenLSLWindow()
+		{
+			string assetDirectory = Application.dataPath;
 
-            window.ShowUtility();
-        }
+			var results = Directory.GetDirectories(assetDirectory, ASSET_SUB_FOLDER, SearchOption.AllDirectories);
 
-        [MenuItem("LSL/Show Streams", true)]
-        static bool ValidateOpenLSLWindow()
-        {
-            string assetDirectory = Application.dataPath;
+			Assert.IsTrue(results.Any(),
+						  "Expecting a directory named: '" + ASSET_SUB_FOLDER + "' containing the content inlcuding this script! Did you renamed it?");
 
-            bool lib64Available = false;
-            bool lib32Available = false;
-            bool apiAvailable = false;
+			var root = results.Single();
 
+			bool lib32Available = File.Exists(Path.Combine(root, Path.Combine(LIB_FOLDER, LIB32_NAME + DLL_ENDING)));
+			bool lib64Available = File.Exists(Path.Combine(root, Path.Combine(LIB_FOLDER, LIB64_NAME + DLL_ENDING)));
 
-            var results = Directory.GetDirectories(assetDirectory, assetSubFolder, SearchOption.AllDirectories);
+			lib32Available &= File.Exists(Path.Combine(root, Path.Combine(LIB_FOLDER, LIB32_NAME + SO_ENDING)));
+			lib64Available &= File.Exists(Path.Combine(root, Path.Combine(LIB_FOLDER, LIB64_NAME + SO_ENDING)));
+			lib32Available &= File.Exists(Path.Combine(root, Path.Combine(LIB_FOLDER, LIB32_NAME + BUNDLE_ENDING)));
+			lib64Available &= File.Exists(Path.Combine(root, Path.Combine(LIB_FOLDER, LIB64_NAME + BUNDLE_ENDING)));
 
-            Assert.IsTrue(results.Any(), "Expecting a directory named: '" + assetSubFolder + "' containing the content inlcuding this script! Did you renamed it?");
+			bool apiAvailable = File.Exists(Path.Combine(root, WRAPPER_FILENAME));
 
-            var root = results.Single();
+			if ((lib64Available || lib32Available) && apiAvailable) { return true; }
 
-            lib32Available = File.Exists(Path.Combine(root, Path.Combine(libFolder, lib32Name + DLL_ENDING)));
-            lib64Available = File.Exists(Path.Combine(root, Path.Combine(libFolder, lib64Name + DLL_ENDING)));
-
-            lib32Available &= File.Exists(Path.Combine(root, Path.Combine(libFolder, lib32Name + SO_ENDING)));
-            lib64Available &= File.Exists(Path.Combine(root, Path.Combine(libFolder, lib64Name + SO_ENDING)));
-
-            lib32Available &= File.Exists(Path.Combine(root, Path.Combine(libFolder, lib32Name + BUNDLE_ENDING)));
-            lib64Available &= File.Exists(Path.Combine(root, Path.Combine(libFolder, lib64Name + BUNDLE_ENDING)));
-
-            apiAvailable = File.Exists(Path.Combine(root, wrapperFileName));
-
-            if ((lib64Available || lib32Available) && apiAvailable)
-                return true;
-
-            Debug.LogError("LabStreamingLayer libraries not available! See " + wikiURL + " for installation instructions");
-            return false;
-        }
-
-    }
+			Debug.LogError("LabStreamingLayer libraries not available! See " + WIKI_URL + " for installation instructions");
+			return false;
+		}
+	}
 }

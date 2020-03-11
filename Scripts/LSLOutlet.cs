@@ -1,52 +1,46 @@
-﻿using UnityEngine;
-using System.Collections;
-using LSL;
-using System.Diagnostics;
+﻿using System.Diagnostics;
+using UnityEngine;
 
-namespace Assets.LSL4Unity.Scripts
+namespace LSL4Unity.Scripts
 {
-    public enum MomentForSampling { Update, FixedUpdate, LateUpdate }
+	public enum MomentForSampling { Update, FixedUpdate, LateUpdate }
 
 
-    public class LSLOutlet : MonoBehaviour
-    {
-        private liblsl.StreamOutlet outlet;
-        private liblsl.StreamInfo streamInfo;
-        private float[] currentSample;
+	public class LSLOutlet : MonoBehaviour
+	{
+		private liblsl.StreamOutlet _outlet;
+		private liblsl.StreamInfo   _streamInfo;
+		private float[]             _currentSample;
 
-        public string StreamName = "Unity.ExampleStream";
-        public string StreamType = "Unity.FixedUpdateTime";
-        public int ChannelCount = 1;
+		public string StreamName   = "Unity.ExampleStream";
+		public string StreamType   = "Unity.FixedUpdateTime";
+		public int    ChannelCount = 1;
 
-        Stopwatch watch;
+		private Stopwatch _watch;
 
-        // Use this for initialization
-        void Start()
-        {
-            watch = new Stopwatch();
+		// Use this for initialization
+		private void Start()
+		{
+			_watch = new Stopwatch();
+			_watch.Start();
 
-            watch.Start();
+			_currentSample = new float[ChannelCount];
+			_streamInfo    = new liblsl.StreamInfo(StreamName, StreamType, ChannelCount, Time.fixedDeltaTime * 1000);
+			_outlet        = new liblsl.StreamOutlet(_streamInfo);
+		}
 
-            currentSample = new float[ChannelCount];
+		public void FixedUpdate()
+		{
+			if (_watch == null) { return; }
 
-            streamInfo = new liblsl.StreamInfo(StreamName, StreamType, ChannelCount, Time.fixedDeltaTime * 1000);
+			_watch.Stop();
 
-            outlet = new liblsl.StreamOutlet(streamInfo);
-        }
+			_currentSample[0] = _watch.ElapsedMilliseconds;
 
-        public void FixedUpdate()
-        {
-            if (watch == null)
-                return;
+			_watch.Reset();
+			_watch.Start();
 
-            watch.Stop();
-
-            currentSample[0] = watch.ElapsedMilliseconds;
-
-            watch.Reset();
-            watch.Start();
-
-            outlet.push_sample(currentSample);
-        }
-    }
+			_outlet.push_sample(_currentSample);
+		}
+	}
 }

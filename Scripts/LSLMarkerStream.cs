@@ -1,74 +1,58 @@
-﻿using UnityEngine;
-using System.Collections;
-using LSL;
+﻿using System.Collections;
+using UnityEngine;
 
-namespace Assets.LSL4Unity.Scripts
+namespace LSL4Unity.Scripts
 {
-    [HelpURL("https://github.com/xfleckx/LSL4Unity/wiki#using-a-marker-stream")]
-    public class LSLMarkerStream : MonoBehaviour
-    {
-        private const string unique_source_id = "D3F83BB699EB49AB94A9FA44B88882AB";
+	[HelpURL("https://github.com/xfleckx/LSL4Unity/wiki#using-a-marker-stream")]
+	public class LSLMarkerStream : MonoBehaviour
+	{
+		public string LSLStreamName = "Unity_<Paradigma_Name_here>";
+		public string LSLStreamType = "LSL_Marker_Strings";
 
-        public string lslStreamName = "Unity_<Paradigma_Name_here>";
-        public string lslStreamType = "LSL_Marker_Strings";
+		private const string UNIQUE_SOURCE_ID  = "D3F83BB699EB49AB94A9FA44B88882AB";
+		private const int    LSL_CHANNEL_COUNT = 1;
+		private const double NOMINAL_SRATE     = liblsl.IRREGULAR_RATE;
 
-        private liblsl.StreamInfo lslStreamInfo;
-        private liblsl.StreamOutlet lslOutlet;
-        private int lslChannelCount = 1;
+		private const liblsl.channel_format_t LSL_CHANNEL_FORMAT = liblsl.channel_format_t.cf_string;
 
-        //Assuming that markers are never send in regular intervalls
-        private double nominal_srate = liblsl.IRREGULAR_RATE;
+		private liblsl.StreamInfo   _lslStreamInfo;
+		private liblsl.StreamOutlet _lslOutlet;
 
-        private const liblsl.channel_format_t lslChannelFormat = liblsl.channel_format_t.cf_string;
+		//Assuming that markers are never send in regular intervalls
+		private string[] _sample;
 
-        private string[] sample;
- 
-        void Awake()
-        {
-            sample = new string[lslChannelCount];
+		private void Awake()
+		{
+			_sample        = new string[LSL_CHANNEL_COUNT];
+			_lslStreamInfo = new liblsl.StreamInfo(LSLStreamName, LSLStreamType, LSL_CHANNEL_COUNT, NOMINAL_SRATE, LSL_CHANNEL_FORMAT, UNIQUE_SOURCE_ID);
+			_lslOutlet     = new liblsl.StreamOutlet(_lslStreamInfo);
+		}
 
-            lslStreamInfo = new liblsl.StreamInfo(
-                                        lslStreamName,
-                                        lslStreamType,
-                                        lslChannelCount,
-                                        nominal_srate,
-                                        lslChannelFormat,
-                                        unique_source_id);
-            
-            lslOutlet = new liblsl.StreamOutlet(lslStreamInfo);
-        }
+		public void Write(string marker)
+		{
+			_sample[0] = marker;
+			_lslOutlet.push_sample(_sample);
+		}
 
-        public void Write(string marker)
-        {
-            sample[0] = marker;
-            lslOutlet.push_sample(sample);
-        }
+		public void Write(string marker, double customTimeStamp)
+		{
+			_sample[0] = marker;
+			_lslOutlet.push_sample(_sample, customTimeStamp);
+		}
 
-        public void Write(string marker, double customTimeStamp)
-        {
-            sample[0] = marker;
-            lslOutlet.push_sample(sample, customTimeStamp);
-        }
+		public void Write(string marker, float customTimeStamp)
+		{
+			_sample[0] = marker;
+			_lslOutlet.push_sample(_sample, customTimeStamp);
+		}
 
-        public void Write(string marker, float customTimeStamp)
-        {
-            sample[0] = marker;
-            lslOutlet.push_sample(sample, customTimeStamp);
-        }
+		public void WriteBeforeFrameIsDisplayed(string marker) { StartCoroutine(WriteMarkerAfterImageIsRendered(marker)); }
 
-        public void WriteBeforeFrameIsDisplayed(string marker)
-        {
-            StartCoroutine(WriteMarkerAfterImageIsRendered(marker));
-        }
-
-        IEnumerator WriteMarkerAfterImageIsRendered(string pendingMarker)
-        {
-            yield return new WaitForEndOfFrame();
-
-            Write(pendingMarker);
-
-            yield return null;
-        }
-
-    }
+		private IEnumerator WriteMarkerAfterImageIsRendered(string pendingMarker)
+		{
+			yield return new WaitForEndOfFrame();
+			Write(pendingMarker);
+			yield return null;
+		}
+	}
 }

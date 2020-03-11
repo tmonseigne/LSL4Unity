@@ -1,94 +1,74 @@
-﻿using UnityEngine;
-using LSL;
-using Assets.LSL4Unity.Scripts;
-using Assets.LSL4Unity.Scripts.Common;
+﻿using LSL4Unity.Scripts;
+using UnityEngine;
 
-namespace Assets.LSL4Unity.Demo
+namespace LSL4Unity.Demos
 {
-    /// <summary>
-    /// An reusable example of an outlet which provides the orientation of an entity to LSL
-    /// </summary>
-    public class LSLTransformDemoOutlet : MonoBehaviour
-    {
-        private const string unique_source_id = "D256CFBDBA3145978CFA641403219531";
+	/// <summary>
+	/// An reusable example of an outlet which provides the orientation of an entity to LSL
+	/// </summary>
+	public class LSLTransformDemoOutlet : MonoBehaviour
+	{
+		private const string UNIQUE_SOURCE_ID = "D256CFBDBA3145978CFA641403219531";
 
-        private liblsl.StreamOutlet outlet;
-        private liblsl.StreamInfo streamInfo;
-        public liblsl.StreamInfo GetStreamInfo()
-        {
-            return streamInfo;
-        }
-        /// <summary>
-        /// Use a array to reduce allocation costs
-        /// </summary>
-        private float[] currentSample;
+		private liblsl.StreamOutlet _outlet;
+		private liblsl.StreamInfo   _streamInfo;
+		public  liblsl.StreamInfo   GetStreamInfo() { return _streamInfo; }
 
-        private double dataRate;
+		/// <summary> Use a array to reduce allocation costs. </summary>
+		private float[] _currentSample;
 
-        public double GetDataRate()
-        {
-            return dataRate;
-        }
+		private double _dataRate;
 
-        public bool HasConsumer()
-        {
-            if(outlet != null)
-                return outlet.have_consumers();
+		public double GetDataRate() { return _dataRate; }
+		public bool   HasConsumer() { return _outlet != null && _outlet.have_consumers(); }
 
-            return false;
-        }
+		public string StreamName   = "BeMoBI.Unity.Orientation.<Add_a_entity_id_here>";
+		public string StreamType   = "Unity.Quaternion";
+		public int    ChannelCount = 4;
 
-        public string StreamName = "BeMoBI.Unity.Orientation.<Add_a_entity_id_here>";
-        public string StreamType = "Unity.Quaternion";
-        public int ChannelCount = 4;
+		public MomentForSampling Sampling;
 
-        public MomentForSampling sampling;
+		public Transform SampleSource;
 
-        public Transform sampleSource;
+		private void Start()
+		{
+			// initialize the array once
+			_currentSample = new float[ChannelCount];
 
-        void Start()
-        {
-            // initialize the array once
-            currentSample = new float[ChannelCount];
+			_dataRate = LSLUtils.GetSamplingRateFor(Sampling);
 
-            dataRate = LSLUtils.GetSamplingRateFor(sampling);
+			_streamInfo = new liblsl.StreamInfo(StreamName, StreamType, ChannelCount, _dataRate, liblsl.channel_format_t.cf_float32, UNIQUE_SOURCE_ID);
 
-            streamInfo = new liblsl.StreamInfo(StreamName, StreamType, ChannelCount, dataRate, liblsl.channel_format_t.cf_float32, unique_source_id);
+			_outlet = new liblsl.StreamOutlet(_streamInfo);
+		}
 
-            outlet = new liblsl.StreamOutlet(streamInfo);
-        }
+		private void PushSample()
+		{
+			if (_outlet == null) { return; }
+			var rotation = SampleSource.rotation;
 
-        private void pushSample()
-        {
-            if (outlet == null)
-                return;
-            var rotation = sampleSource.rotation;
+			// reuse the array for each sample to reduce allocation costs
+			_currentSample[0] = rotation.x;
+			_currentSample[1] = rotation.y;
+			_currentSample[2] = rotation.z;
+			_currentSample[3] = rotation.w;
 
-            // reuse the array for each sample to reduce allocation costs
-            currentSample[0] = rotation.x;
-            currentSample[1] = rotation.y;
-            currentSample[2] = rotation.z;
-            currentSample[3] = rotation.w;
+			_outlet.push_sample(_currentSample, liblsl.local_clock());
+		}
 
-            outlet.push_sample(currentSample, liblsl.local_clock());
-        }
+		private void FixedUpdate()
+		{
+			if (Sampling == MomentForSampling.FixedUpdate) { PushSample(); }
+		}
 
-        void FixedUpdate()
-        {
-            if (sampling == MomentForSampling.FixedUpdate)
-                pushSample();
-        }
+		private void Update()
+		{
+			if (Sampling == MomentForSampling.Update) { PushSample(); }
+		}
 
-        void Update()
-        {
-            if (sampling == MomentForSampling.Update)
-                pushSample();
-        }
-
-        void LateUpdate()
-        {
-            if (sampling == MomentForSampling.LateUpdate)
-                pushSample();
-        }
-    }
+		private void LateUpdate()
+		{
+			if (Sampling == MomentForSampling.LateUpdate) { PushSample(); }
+		}
+	}
 }

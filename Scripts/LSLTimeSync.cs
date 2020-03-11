@@ -1,66 +1,27 @@
 ﻿using UnityEngine;
 
-namespace Assets.LSL4Unity.Scripts
+namespace LSL4Unity.Scripts
 {
-    /// <summary>
-    /// This singleton should provide an dedicated timestamp for each update call or fixed update LSL sample!
-    /// So that each sample provided by an Unity3D app has the same timestamp 
-    /// Important! Make sure that the script is called before the default execution order!
-    /// </summary>
-    [ScriptOrder( -1000 )]
-    public class LSLTimeSync : MonoBehaviour
-    {
-        private static LSLTimeSync instance;
-        public static LSLTimeSync Instance
-        {
-            get
-            {
-                return instance;
-            }
-        }
+	/// <summary>
+	/// This singleton should provide an dedicated timestamp for each update call or fixed update LSL sample!
+	/// So that each sample provided by an Unity3D app has the same timestamp 
+	/// Important! Make sure that the script is called before the default execution order!
+	/// </summary>
+	[ScriptOrder(-1000)]
+	public class LSLTimeSync : MonoBehaviour
+	{
+		public static LSLTimeSync Instance { get; private set; }
 
-        private double fixedUpdateTimeStamp;
-        public double FixedUpdateTimeStamp
-        {
-            get
-            {
-                return fixedUpdateTimeStamp;
-            }
-        }
+		public double FixedUpdateTimeStamp { get; private set; }
+		public double UpdateTimeStamp      { get; private set; }
+		public double LateUpdateTimeStamp  { get; private set; }
 
-        private double updateTimeStamp;
-        public double UpdateTimeStamp
-        {
-            get
-            {
-                return updateTimeStamp;
-            }
-        }
+		private void Awake() { Instance = this; }
 
-        private double lateUpdateTimeStamp;
-        public double LateUpdateTimeStamp
-        {
-            get { return lateUpdateTimeStamp; }
-        }
+		private void FixedUpdate() { FixedUpdateTimeStamp = liblsl.local_clock(); }
 
-        void Awake()
-        {
-            LSLTimeSync.instance = this;
-        }
+		private void Update() { UpdateTimeStamp = liblsl.local_clock(); }
 
-        void FixedUpdate()
-        {
-            fixedUpdateTimeStamp = LSL.liblsl.local_clock();
-        }
-
-        void Update()
-        {
-            updateTimeStamp = LSL.liblsl.local_clock();
-        }
-
-        void LateUpdate()
-        {
-            lateUpdateTimeStamp = LSL.liblsl.local_clock();
-        }
-    }
+		private void LateUpdate() { LateUpdateTimeStamp = liblsl.local_clock(); }
+	}
 }

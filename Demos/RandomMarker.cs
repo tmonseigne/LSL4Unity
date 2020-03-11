@@ -1,36 +1,34 @@
-﻿using UnityEngine;
-using System.Collections;
+﻿using System.Collections;
+using LSL4Unity.Scripts;
+using UnityEngine;
 using UnityEngine.Assertions;
-using System;
 
 // Don't forget the Namespace import
-using Assets.LSL4Unity.Scripts;
 
-public class RandomMarker : MonoBehaviour {
-
-	public LSLMarkerStream markerStream;
-	
-	void Start () {
-
-		Assert.IsNotNull(markerStream, "You forgot to assign the reference to a marker stream implementation!");
-
-		if (markerStream != null)
-			StartCoroutine(WriteContinouslyMarkerEachSecond());
-	}
-	
-	IEnumerator WriteContinouslyMarkerEachSecond()
+namespace LSL4Unity.Demos
+{
+	public class RandomMarker : MonoBehaviour
 	{
-		while (true)
+		public LSLMarkerStream MarkerStream;
+
+		private void Start()
 		{
-			// an example for demonstrating the usage of marker stream
-			var currentMarker = GetARandomMarker();
-			markerStream.Write(currentMarker);
-			yield return new WaitForSecondsRealtime(1f);
-		}
-	}
+			Assert.IsNotNull(MarkerStream, "You forgot to assign the reference to a marker stream implementation!");
 
-	private string GetARandomMarker()
-	{
-		return UnityEngine.Random.value > 0.5 ? "A" : "B";
+			if (MarkerStream != null) { StartCoroutine(WriteContinouslyMarkerEachSecond()); }
+		}
+
+		private IEnumerator WriteContinouslyMarkerEachSecond()
+		{
+			while (true)
+			{
+				// an example for demonstrating the usage of marker stream
+				var currentMarker = GetARandomMarker();
+				MarkerStream.Write(currentMarker);
+				yield return new WaitForSecondsRealtime(1f);
+			}
+		}
+
+		private static string GetARandomMarker() { return Random.value > 0.5 ? "A" : "B"; }
 	}
 }
