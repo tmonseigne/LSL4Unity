@@ -1,64 +1,45 @@
 ﻿using System;
 using System.Collections;
 using System.Linq;
-using LSL4Unity.Scripts.OV;
 using UnityEngine;
 
-namespace LSL4Unity.Scripts
+namespace LSL4Unity.Scripts.OV
 {
-	public abstract class AFloatInlet : MonoBehaviour
+	public abstract class OVFloatInlet : MonoBehaviour
 	{
 		public enum UpdateMoment { FixedUpdate, Update }
 
 		public UpdateMoment Moment;
 
-		public string StreamName;
-		public string StreamType;
+		public string StreamName = "ovSignal";
 
 		private liblsl.StreamInfo[]       _results;
 		private liblsl.StreamInlet        _inlet;
 		private liblsl.ContinuousResolver _resolver;
 
-		private int _expectedChannels = 0;
-
+		private int     _expectedChannels = 0;
 		private float[] _sample;
 
 		private void Start()
 		{
 			var expectedStreamHasAName = !StreamName.Equals("");
-			var expectedStreamHasAType = !StreamType.Equals("");
 
-			if (!expectedStreamHasAName && !expectedStreamHasAType)
+			if (!expectedStreamHasAName)
 			{
 				Debug.LogError("Inlet has to specify a name or a type before it is able to lookup a stream.");
 				enabled = false;
 				return;
 			}
 
-			if (expectedStreamHasAName)
-			{
-				Debug.Log("Creating LSL resolver for stream " + StreamName);
-
-				_resolver = new liblsl.ContinuousResolver("name", StreamName);
-			}
-			else if (expectedStreamHasAType)
-			{
-				Debug.Log("Creating LSL resolver for stream with type " + StreamType);
-				_resolver = new liblsl.ContinuousResolver("type ", StreamType);
-			}
+			Debug.Log("Creating LSL resolver for stream " + StreamName);
+			_resolver = new liblsl.ContinuousResolver("name", StreamName);
 
 			StartCoroutine(ResolveExpectedStream());
-
 			AdditionalStart();
 		}
 
-		/// <summary>
-		/// Override this method in the subclass to specify what should happen during Start().
-		/// </summary>
-		protected virtual void AdditionalStart()
-		{
-			//By default, do nothing.
-		}
+		/// <summary> Override this method in the subclass to specify what should happen during Start(). </summary>
+		protected virtual void AdditionalStart() { } //By default, do nothing.
 
 		private IEnumerator ResolveExpectedStream()
 		{
@@ -75,7 +56,7 @@ namespace LSL4Unity.Scripts
 			yield return null;
 		}
 
-		protected void PullSamples()
+		private void PullSamples()
 		{
 			_sample = new float[_expectedChannels];
 
@@ -99,10 +80,9 @@ namespace LSL4Unity.Scripts
 			}
 		}
 
-		/// <summary>
-		/// Override this method in the subclass to specify what should happen when samples are available.
-		/// </summary>
+		/// <summary> Override this method in the subclass to specify what should happen when samples are available. </summary>
 		/// <param name="newSample"></param>
+		/// <param name="timeStamp"></param>
 		protected abstract void Process(float[] newSample, double timeStamp);
 
 		private void FixedUpdate()
@@ -116,14 +96,13 @@ namespace LSL4Unity.Scripts
 		}
 	}
 
-	public abstract class ADoubleInlet : MonoBehaviour
+	public abstract class OVDoubleInlet : MonoBehaviour
 	{
 		public enum UpdateMoment { FixedUpdate, Update }
 
 		public UpdateMoment Moment;
 
 		public string StreamName;
-		public string StreamType;
 
 		private liblsl.StreamInfo[]       _results;
 		private liblsl.StreamInlet        _inlet;
@@ -136,39 +115,23 @@ namespace LSL4Unity.Scripts
 		private void Start()
 		{
 			var expectedStreamHasAName = !StreamName.Equals("");
-			var expectedStreamHasAType = !StreamType.Equals("");
 
-			if (!expectedStreamHasAName && !expectedStreamHasAType)
+			if (!expectedStreamHasAName)
 			{
 				Debug.LogError("Inlet has to specify a name or a type before it is able to lookup a stream.");
 				enabled = false;
 				return;
 			}
 
-			if (expectedStreamHasAName)
-			{
-				Debug.Log("Creating LSL resolver for stream " + StreamName);
-
-				_resolver = new liblsl.ContinuousResolver("name", StreamName);
-			}
-			else if (expectedStreamHasAType)
-			{
-				Debug.Log("Creating LSL resolver for stream with type " + StreamType);
-				_resolver = new liblsl.ContinuousResolver("type", StreamType);
-			}
+			Debug.Log("Creating LSL resolver for stream " + StreamName);
+			_resolver = new liblsl.ContinuousResolver("name", StreamName);
 
 			StartCoroutine(ResolveExpectedStream());
-
 			AdditionalStart();
 		}
 
-		/// <summary>
-		/// Override this method in the subclass to specify what should happen during Start().
-		/// </summary>
-		protected virtual void AdditionalStart()
-		{
-			//By default, do nothing.
-		}
+		/// <summary> Override this method in the subclass to specify what should happen during Start(). </summary>
+		protected virtual void AdditionalStart() { } //By default, do nothing.
 
 		private IEnumerator ResolveExpectedStream()
 		{
@@ -188,11 +151,11 @@ namespace LSL4Unity.Scripts
 
 		private liblsl.StreamInfo GetStreamInfoFrom(liblsl.StreamInfo[] results)
 		{
-			var targetInfo = results.Where(r => r.Name().Equals(StreamName)).First();
+			var targetInfo = results.First(r => r.Name().Equals(StreamName));
 			return targetInfo;
 		}
 
-		protected void PullSamples()
+		private void PullSamples()
 		{
 			_sample = new double[_expectedChannels];
 
@@ -220,6 +183,7 @@ namespace LSL4Unity.Scripts
 		/// Override this method in the subclass to specify what should happen when samples are available.
 		/// </summary>
 		/// <param name="newSample"></param>
+		/// <param name="timeStamp"></param>
 		protected abstract void Process(double[] newSample, double timeStamp);
 
 		private void FixedUpdate()
@@ -233,14 +197,13 @@ namespace LSL4Unity.Scripts
 		}
 	}
 
-	public abstract class ACharInlet : MonoBehaviour
+	public abstract class OVCharInlet : MonoBehaviour
 	{
 		public enum UpdateMoment { FixedUpdate, Update }
 
 		public UpdateMoment Moment;
 
 		public string StreamName;
-		public string StreamType;
 
 		private liblsl.StreamInfo[]       _results;
 		private liblsl.StreamInlet        _inlet;
@@ -253,40 +216,22 @@ namespace LSL4Unity.Scripts
 		private void Start()
 		{
 			var expectedStreamHasAName = !StreamName.Equals("");
-			var expectedStreamHasAType = !StreamType.Equals("");
 
-			if (!expectedStreamHasAName && !expectedStreamHasAType)
+			if (!expectedStreamHasAName)
 			{
 				Debug.LogError("Inlet has to specify a name or a type before it is able to lookup a stream.");
 				enabled = false;
 				return;
 			}
-
-			if (expectedStreamHasAName)
-			{
-				Debug.Log("Creating LSL resolver for stream " + StreamName);
-
-				_resolver = new liblsl.ContinuousResolver("name", StreamName);
-			}
-			else if (expectedStreamHasAType)
-			{
-				Debug.Log("Creating LSL resolver for stream with type " + StreamType);
-				_resolver = new liblsl.ContinuousResolver("type", StreamType);
-			}
+			Debug.Log("Creating LSL resolver for stream " + StreamName);
+			_resolver = new liblsl.ContinuousResolver("name", StreamName);
 
 			StartCoroutine(ResolveExpectedStream());
-
 			AdditionalStart();
 		}
 
-		/// <summary>
-		/// Override this method in the subclass to specify what should happen during Start().
-		/// </summary>
-		protected virtual void AdditionalStart()
-		{
-			//By default, do nothing.
-		}
-
+		/// <summary> Override this method in the subclass to specify what should happen during Start(). </summary>
+		protected virtual void AdditionalStart() { } //By default, do nothing.
 
 		private IEnumerator ResolveExpectedStream()
 		{
@@ -301,7 +246,7 @@ namespace LSL4Unity.Scripts
 			yield return null;
 		}
 
-		protected void PullSamples()
+		private void PullSamples()
 		{
 			_sample = new char[_expectedChannels];
 
@@ -329,6 +274,7 @@ namespace LSL4Unity.Scripts
 		/// Override this method in the subclass to specify what should happen when samples are available.
 		/// </summary>
 		/// <param name="newSample"></param>
+		/// <param name="timeStamp"></param>
 		protected abstract void Process(char[] newSample, double timeStamp);
 
 		private void FixedUpdate()
@@ -342,14 +288,13 @@ namespace LSL4Unity.Scripts
 		}
 	}
 
-	public abstract class AShortInlet : MonoBehaviour
+	public abstract class OVShortInlet : MonoBehaviour
 	{
 		public enum UpdateMoment { FixedUpdate, Update }
 
 		public UpdateMoment Moment;
 
 		public string StreamName;
-		public string StreamType;
 
 		private liblsl.StreamInfo[]       _results;
 		private liblsl.StreamInlet        _inlet;
@@ -361,40 +306,23 @@ namespace LSL4Unity.Scripts
 
 		private void Start()
 		{
-			var expectedStreamHasAName = !StreamName.Equals("");
-			var expectedStreamHasAType = !StreamType.Equals("");
-
-			if (!expectedStreamHasAName && !expectedStreamHasAType)
+			if (StreamName.Equals(""))
 			{
 				Debug.LogError("Inlet has to specify a name or a type before it is able to lookup a stream.");
 				enabled = false;
 				return;
 			}
 
-			if (expectedStreamHasAName)
-			{
-				Debug.Log("Creating LSL resolver for stream " + StreamName);
-
-				_resolver = new liblsl.ContinuousResolver("name", StreamName);
-			}
-			else if (expectedStreamHasAType)
-			{
-				Debug.Log("Creating LSL resolver for stream with type " + StreamType);
-				_resolver = new liblsl.ContinuousResolver("type", StreamType);
-			}
+			Debug.Log("Creating LSL resolver for stream " + StreamName);
+			_resolver = new liblsl.ContinuousResolver("name", StreamName);
 
 			StartCoroutine(ResolveExpectedStream());
 
 			AdditionalStart();
 		}
 
-		/// <summary>
-		/// Override this method in the subclass to specify what should happen during Start().
-		/// </summary>
-		protected virtual void AdditionalStart()
-		{
-			//By default, do nothing.
-		}
+		/// <summary> Override this method in the subclass to specify what should happen during Start(). </summary>
+		protected virtual void AdditionalStart() { } //By default, do nothing.
 
 		private IEnumerator ResolveExpectedStream()
 		{
@@ -409,7 +337,7 @@ namespace LSL4Unity.Scripts
 			yield return null;
 		}
 
-		protected void PullSamples()
+		private void PullSamples()
 		{
 			_sample = new short[_expectedChannels];
 
@@ -437,6 +365,7 @@ namespace LSL4Unity.Scripts
 		/// Override this method in the subclass to specify what should happen when samples are available.
 		/// </summary>
 		/// <param name="newSample"></param>
+		/// <param name="timeStamp"></param>
 		protected abstract void Process(short[] newSample, double timeStamp);
 
 		private void FixedUpdate()
@@ -450,14 +379,13 @@ namespace LSL4Unity.Scripts
 		}
 	}
 
-	public abstract class AIntInlet : MonoBehaviour
+	public abstract class OVIntInlet : MonoBehaviour
 	{
 		public enum UpdateMoment { FixedUpdate, Update }
 
 		public UpdateMoment Moment;
 
 		public string StreamName;
-		public string StreamType;
 
 		private liblsl.StreamInfo[]       _results;
 		private liblsl.StreamInlet        _inlet;
@@ -469,40 +397,23 @@ namespace LSL4Unity.Scripts
 
 		private void Start()
 		{
-			var expectedStreamHasAName = !StreamName.Equals("");
-			var expectedStreamHasAType = !StreamType.Equals("");
-
-			if (!expectedStreamHasAName && !expectedStreamHasAType)
+			if (StreamName.Equals(""))
 			{
 				Debug.LogError("Inlet has to specify a name or a type before it is able to lookup a stream.");
 				enabled = false;
 				return;
 			}
 
-			if (expectedStreamHasAName)
-			{
-				Debug.Log("Creating LSL resolver for stream " + StreamName);
-
-				_resolver = new liblsl.ContinuousResolver("name", StreamName);
-			}
-			else if (expectedStreamHasAType)
-			{
-				Debug.Log("Creating LSL resolver for stream with type " + StreamType);
-				_resolver = new liblsl.ContinuousResolver("type", StreamType);
-			}
+			Debug.Log("Creating LSL resolver for stream " + StreamName);
+			_resolver = new liblsl.ContinuousResolver("name", StreamName);
 
 			StartCoroutine(ResolveExpectedStream());
 
 			AdditionalStart();
 		}
 
-		/// <summary>
-		/// Override this method in the subclass to specify what should happen during Start().
-		/// </summary>
-		protected virtual void AdditionalStart()
-		{
-			//By default, do nothing.
-		}
+		/// <summary> Override this method in the subclass to specify what should happen during Start(). </summary>
+		protected virtual void AdditionalStart() { } //By default, do nothing.
 
 		private IEnumerator ResolveExpectedStream()
 		{
@@ -517,7 +428,7 @@ namespace LSL4Unity.Scripts
 			yield return null;
 		}
 
-		protected void PullSamples()
+		private void PullSamples()
 		{
 			_sample = new int[_expectedChannels];
 
@@ -545,6 +456,7 @@ namespace LSL4Unity.Scripts
 		/// Override this method in the subclass to specify what should happen when samples are available.
 		/// </summary>
 		/// <param name="newSample"></param>
+		/// <param name="timeStamp"></param>
 		protected abstract void Process(int[] newSample, double timeStamp);
 
 		private void FixedUpdate()
@@ -558,14 +470,13 @@ namespace LSL4Unity.Scripts
 		}
 	}
 
-	public abstract class AStringInlet : MonoBehaviour
+	public abstract class OVStringInlet : MonoBehaviour
 	{
 		public enum UpdateMoment { FixedUpdate, Update }
 
 		public UpdateMoment Moment;
 
 		public string StreamName;
-		public string StreamType;
 
 		private liblsl.StreamInfo[]       _results;
 		private liblsl.StreamInlet        _inlet;
@@ -577,40 +488,23 @@ namespace LSL4Unity.Scripts
 
 		private void Start()
 		{
-			var expectedStreamHasAName = !StreamName.Equals("");
-			var expectedStreamHasAType = !StreamType.Equals("");
-
-			if (!expectedStreamHasAName && !expectedStreamHasAType)
+			if (StreamName.Equals(""))
 			{
 				Debug.LogError("Inlet has to specify a name or a type before it is able to lookup a stream.");
 				enabled = false;
 				return;
 			}
 
-			if (expectedStreamHasAName)
-			{
-				Debug.Log("Creating LSL resolver for stream " + StreamName);
-
-				_resolver = new liblsl.ContinuousResolver("name", StreamName);
-			}
-			else if (expectedStreamHasAType)
-			{
-				Debug.Log("Creating LSL resolver for stream with type " + StreamType);
-				_resolver = new liblsl.ContinuousResolver("type", StreamType);
-			}
+			Debug.Log("Creating LSL resolver for stream " + StreamName);
+			_resolver = new liblsl.ContinuousResolver("name", StreamName);
 
 			StartCoroutine(ResolveExpectedStream());
 
 			AdditionalStart();
 		}
 
-		/// <summary>
-		/// Override this method in the subclass to specify what should happen during Start().
-		/// </summary>
-		protected virtual void AdditionalStart()
-		{
-			//By default, do nothing.
-		}
+		/// <summary> Override this method in the subclass to specify what should happen during Start(). </summary>
+		protected virtual void AdditionalStart() { } //By default, do nothing.
 
 		private IEnumerator ResolveExpectedStream()
 		{
@@ -625,7 +519,7 @@ namespace LSL4Unity.Scripts
 			yield return null;
 		}
 
-		protected void PullSamples()
+		private void PullSamples()
 		{
 			_sample = new string[_expectedChannels];
 
@@ -653,6 +547,7 @@ namespace LSL4Unity.Scripts
 		/// Override this method in the subclass to specify what should happen when samples are available.
 		/// </summary>
 		/// <param name="newSample"></param>
+		/// <param name="timeStamp"></param>
 		protected abstract void Process(string[] newSample, double timeStamp);
 
 		private void FixedUpdate()

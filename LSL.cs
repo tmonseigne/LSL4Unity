@@ -1061,22 +1061,22 @@ namespace LSL4Unity
 		/**
 		 * Exception class that indicates that a stream inlet's source has been irrecoverably lost.
 		 */
-		public class LostException : System.Exception
+		public class LostException : Exception
 		{
 			public LostException() { }
 			public LostException(string                                            message) { }
-			public LostException(string                                            message, System.Exception                              inner) { }
+			public LostException(string                                            message, Exception                              inner) { }
 			protected LostException(System.Runtime.Serialization.SerializationInfo info,    System.Runtime.Serialization.StreamingContext context) { }
 		}
 
 		/**
 		 * Exception class that indicates that an internal error has occurred inside liblsl.
 		 */
-		public class InternalException : System.Exception
+		public class InternalException : Exception
 		{
 			public InternalException() { }
 			public InternalException(string                                            message) { }
-			public InternalException(string                                            message, System.Exception                              inner) { }
+			public InternalException(string                                            message, Exception                              inner) { }
 			protected InternalException(System.Runtime.Serialization.SerializationInfo info,    System.Runtime.Serialization.StreamingContext context) { }
 		}
 

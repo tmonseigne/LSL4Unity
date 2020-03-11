@@ -22,7 +22,7 @@ namespace LSL4Unity.Scripts
 		private double _lateUpdateTimeStamp;
 		public  double LateUpdateTimeStamp { get { return _lateUpdateTimeStamp; } }
 
-		void Awake() { LSLTimeSync._instance = this; }
+		void Awake() { _instance = this; }
 
 		void FixedUpdate() { _fixedUpdateTimeStamp = liblsl.local_clock(); }
 

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using LSL4Unity.Scripts.OV;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -8,7 +9,6 @@ namespace LSL4Unity.Scripts
 	public abstract class ABaseInlet : MonoBehaviour
 	{
 		public string StreamName;
-
 		public string StreamType;
 
 		protected liblsl.StreamInlet Inlet;
@@ -100,18 +100,18 @@ namespace LSL4Unity.Scripts
 			{
 				double lastTimeStamp = Inlet.pull_sample(Sample, 0.0f);
 
-				if (lastTimeStamp != 0.0)
+				if (Math.Abs(lastTimeStamp) > Constants.TOLERANCE)
 				{
 					// do not miss the first one found
 					Process(Sample, lastTimeStamp);
 					// pull as long samples are available
-					while ((lastTimeStamp = Inlet.pull_sample(Sample, 0.0f)) != 0) { Process(Sample, lastTimeStamp); }
+					while (Math.Abs((lastTimeStamp = Inlet.pull_sample(Sample, 0.0f))) > Constants.TOLERANCE) { Process(Sample, lastTimeStamp); }
 				}
 			}
 			catch (ArgumentException aex)
 			{
 				Debug.LogError("An Error on pulling samples deactivating LSL inlet on...", this);
-				this.enabled = false;
+				enabled = false;
 				Debug.LogException(aex, this);
 			}
 		}
@@ -131,18 +131,18 @@ namespace LSL4Unity.Scripts
 			{
 				double lastTimeStamp = Inlet.pull_sample(Sample, 0.0f);
 
-				if (lastTimeStamp != 0.0)
+				if (Math.Abs(lastTimeStamp) > Constants.TOLERANCE)
 				{
 					// do not miss the first one found
 					Process(Sample, lastTimeStamp);
 					// pull as long samples are available
-					while ((lastTimeStamp = Inlet.pull_sample(Sample, 0.0f)) != 0) { Process(Sample, lastTimeStamp); }
+					while (Math.Abs((lastTimeStamp = Inlet.pull_sample(Sample, 0.0f))) > Constants.TOLERANCE) { Process(Sample, lastTimeStamp); }
 				}
 			}
 			catch (ArgumentException aex)
 			{
 				Debug.LogError("An Error on pulling samples deactivating LSL inlet on...", this);
-				this.enabled = false;
+				enabled = false;
 				Debug.LogException(aex, this);
 			}
 		}
@@ -162,18 +162,18 @@ namespace LSL4Unity.Scripts
 			{
 				double lastTimeStamp = Inlet.pull_sample(Sample, 0.0f);
 
-				if (lastTimeStamp != 0.0)
+				if (Math.Abs(lastTimeStamp) > Constants.TOLERANCE)
 				{
 					// do not miss the first one found
 					Process(Sample, lastTimeStamp);
 					// pull as long samples are available
-					while ((lastTimeStamp = Inlet.pull_sample(Sample, 0.0f)) != 0) { Process(Sample, lastTimeStamp); }
+					while (Math.Abs((lastTimeStamp = Inlet.pull_sample(Sample, 0.0f))) > Constants.TOLERANCE) { Process(Sample, lastTimeStamp); }
 				}
 			}
 			catch (ArgumentException aex)
 			{
 				Debug.LogError("An Error on pulling samples deactivating LSL inlet on...", this);
-				this.enabled = false;
+				enabled = false;
 				Debug.LogException(aex, this);
 			}
 		}
@@ -193,18 +193,18 @@ namespace LSL4Unity.Scripts
 			{
 				double lastTimeStamp = Inlet.pull_sample(Sample, 0.0f);
 
-				if (lastTimeStamp != 0.0)
+				if (Math.Abs(lastTimeStamp) > Constants.TOLERANCE)
 				{
 					// do not miss the first one found
 					Process(Sample, lastTimeStamp);
 					// pull as long samples are available
-					while ((lastTimeStamp = Inlet.pull_sample(Sample, 0.0f)) != 0) { Process(Sample, lastTimeStamp); }
+					while (Math.Abs((lastTimeStamp = Inlet.pull_sample(Sample, 0.0f))) > Constants.TOLERANCE) { Process(Sample, lastTimeStamp); }
 				}
 			}
 			catch (ArgumentException aex)
 			{
 				Debug.LogError("An Error on pulling samples deactivating LSL inlet on...", this);
-				this.enabled = false;
+				enabled = false;
 				Debug.LogException(aex, this);
 			}
 		}
@@ -224,18 +224,18 @@ namespace LSL4Unity.Scripts
 			{
 				double lastTimeStamp = Inlet.pull_sample(Sample, 0.0f);
 
-				if (lastTimeStamp != 0.0)
+				if (Math.Abs(lastTimeStamp) > Constants.TOLERANCE)
 				{
 					// do not miss the first one found
 					Process(Sample, lastTimeStamp);
 					// pull as long samples are available
-					while ((lastTimeStamp = Inlet.pull_sample(Sample, 0.0f)) != 0) { Process(Sample, lastTimeStamp); }
+					while (Math.Abs((lastTimeStamp = Inlet.pull_sample(Sample, 0.0f))) > Constants.TOLERANCE) { Process(Sample, lastTimeStamp); }
 				}
 			}
 			catch (ArgumentException aex)
 			{
 				Debug.LogError("An Error on pulling samples deactivating LSL inlet on...", this);
-				this.enabled = false;
+				enabled = false;
 				Debug.LogException(aex, this);
 			}
 		}
@@ -255,18 +255,18 @@ namespace LSL4Unity.Scripts
 			{
 				double lastTimeStamp = Inlet.pull_sample(Sample, 0.0f);
 
-				if (lastTimeStamp != 0.0)
+				if (Math.Abs(lastTimeStamp) > Constants.TOLERANCE)
 				{
 					// do not miss the first one found
 					Process(Sample, lastTimeStamp);
 					// pull as long samples are available
-					while ((lastTimeStamp = Inlet.pull_sample(Sample, 0.0f)) != 0) { Process(Sample, lastTimeStamp); }
+					while (Math.Abs((lastTimeStamp = Inlet.pull_sample(Sample, 0.0f))) > Constants.TOLERANCE) { Process(Sample, lastTimeStamp); }
 				}
 			}
 			catch (ArgumentException aex)
 			{
 				Debug.LogError("An Error on pulling samples deactivating LSL inlet on...", this);
-				this.enabled = false;
+				enabled = false;
 				Debug.LogException(aex, this);
 			}
 		}

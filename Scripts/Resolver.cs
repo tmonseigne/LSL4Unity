@@ -106,7 +106,7 @@ namespace LSL4Unity.Scripts
 
 		public LSLStreamInfoWrapper(liblsl.StreamInfo item)
 		{
-			this._item     = item;
+			_item     = item;
 			Name          = item.Name();
 			Type          = item.Type();
 			_channelCount  = item.channel_count();

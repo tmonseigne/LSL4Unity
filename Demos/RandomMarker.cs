@@ -29,6 +29,6 @@ namespace LSL4Unity.Demos
 			}
 		}
 
-		private string GetARandomMarker() { return UnityEngine.Random.value > 0.5 ? "A" : "B"; }
+		private string GetARandomMarker() { return Random.value > 0.5 ? "A" : "B"; }
 	}
 }

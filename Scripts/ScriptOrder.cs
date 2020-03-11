@@ -11,6 +11,6 @@ namespace LSL4Unity.Scripts
 	{
 		public int Order;
 
-		public ScriptOrder(int order) { this.Order = order; }
+		public ScriptOrder(int order) { Order = order; }
 	}
 }
