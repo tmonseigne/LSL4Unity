@@ -310,7 +310,7 @@ namespace LSL4Unity
 			 */
 			public IntPtr Handle() { return _obj; }
 
-			private IntPtr _obj;
+			private readonly IntPtr _obj;
 		}
 
 
@@ -511,7 +511,7 @@ namespace LSL4Unity
 			*/
 			public StreamInfo Info() { return new StreamInfo(dll.lsl_get_info(_obj)); }
 
-			private IntPtr _obj;
+			private readonly IntPtr _obj;
 		}
 
 
@@ -866,7 +866,7 @@ namespace LSL4Unity
 			*/
 			public bool was_clock_reset() { return (int) dll.lsl_was_clock_reset(_obj) != 0; }
 
-			private IntPtr _obj;
+			private readonly IntPtr _obj;
 		}
 
 
@@ -982,7 +982,7 @@ namespace LSL4Unity
 			/// Remove a specified child element.
 			public void remove_child(XMLElement e) { dll.lsl_remove_child(_obj, e._obj); }
 
-			private IntPtr _obj;
+			private readonly IntPtr _obj;
 		}
 
 
@@ -1051,7 +1051,7 @@ namespace LSL4Unity
 				return res;
 			}
 
-			private IntPtr _obj;
+			private readonly IntPtr _obj;
 		}
 
 		// =======================

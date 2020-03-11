@@ -14,16 +14,12 @@ namespace LSL4Unity.Scripts
 	/// </summary>
 	public class Resolver : MonoBehaviour, IEventSystemHandler
 	{
-		public List<LSLStreamInfoWrapper> KnownStreams;
+		public StreamEvent OnStreamFound     = new StreamEvent();
+		public StreamEvent OnStreamLost      = new StreamEvent();
+		public float       ForgetStreamAfter = 1.0f;
 
-		public float ForgetStreamAfter = 1.0f;
-
-		private liblsl.ContinuousResolver _resolver;
-
-		private bool _resolve = true;
-
-		public StreamEvent OnStreamFound = new StreamEvent();
-		public StreamEvent OnStreamLost  = new StreamEvent();
+		public  List<LSLStreamInfoWrapper> KnownStreams;
+		private liblsl.ContinuousResolver  _resolver;
 
 		// Use this for initialization
 		private void Start()
@@ -52,7 +48,7 @@ namespace LSL4Unity.Scripts
 
 		private IEnumerator ResolveContinuously()
 		{
-			while (_resolve)
+			while (true)
 			{
 				var results = _resolver.Results();
 

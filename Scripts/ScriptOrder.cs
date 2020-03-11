@@ -9,7 +9,7 @@ namespace LSL4Unity.Scripts
 	/// </summary>
 	public class ScriptOrder : Attribute
 	{
-		public int Order;
+		public readonly int Order;
 
 		public ScriptOrder(int order) { Order = order; }
 	}
