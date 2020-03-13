@@ -28,7 +28,7 @@ namespace LSL4Unity.Scripts
 		public bool IsStreamAvailable(out LSLStreamInfoWrapper info, string streamName = "", string streamType = "", string hostName = "")
 		{
 			var result = KnownStreams.Where(i => (streamName.Length == 0 || i.Name.Equals(streamName)) && (streamType.Length == 0 || i.Type.Equals(streamType))
-																								  && (hostName.Length == 0 || i.Type.Equals(hostName)))
+																									   && (hostName.Length == 0 || i.Type.Equals(hostName)))
 				.ToList();
 
 			if (result.Any())

@@ -208,7 +208,7 @@ namespace LSL4Unity
 			/// This is the time stamp when the stream was first created (as determined via LocalClock() on the providing machine).
 			/// <returns> The Time Stamp (in <c>double</c>). </returns>
 			public double CreatedAt() { return dll.lsl_get_created_at(_obj); }
-			
+
 			/// <summary> Unique ID of the stream outlet instance (once assigned). </summary>
 			/// This is a unique identifier of the stream outlet, and is guaranteed to be different across multiple instantiations of the same outlet (e.g., after a re-start).
 			/// <returns> The Unique Identifier (in <c>string</c>). </returns>
@@ -250,8 +250,8 @@ namespace LSL4Unity
 			/// <returns> A <c>string</c> with the entire <see cref="StreamInfo"/>. </returns>
 			public string AsXML()
 			{
-				IntPtr pXml   = dll.lsl_get_xml(_obj);
-				string res = Marshal.PtrToStringAnsi(pXml);
+				IntPtr pXml = dll.lsl_get_xml(_obj);
+				string res  = Marshal.PtrToStringAnsi(pXml);
 				dll.lsl_destroy_string(pXml);
 				return res;
 			}
@@ -297,10 +297,7 @@ namespace LSL4Unity
 			/// <param name="time"> Optionally the capture time of the sample, in agreement with <see cref="LocalClock"/>; if omitted, the current time is used. </param>
 			/// <param name="pushthrough"> Optionally whether to push the sample through to the receivers instead of buffering it with subsequent samples.
 			/// Note that the chunk_size, if specified at outlet construction, takes precedence over the pushthrough flag.</param>
-			public void PushSample(float[] data, double time = 0.0, bool pushthrough = true)
-			{
-				dll.lsl_push_sample_ftp(_obj, data, time, pushthrough ? 1 : 0);
-			}
+			public void PushSample(float[] data, double time = 0.0, bool pushthrough = true) { dll.lsl_push_sample_ftp(_obj, data, time, pushthrough ? 1 : 0); }
 
 			/// <inheritdoc cref="PushSample(float[],double,bool)"/>
 			public void PushSample(double[] data, double time = 0.0, bool pushthrough = true)
@@ -312,10 +309,7 @@ namespace LSL4Unity
 			public void PushSample(int[] data, double time = 0.0, bool pushthrough = true) { dll.lsl_push_sample_itp(_obj, data, time, pushthrough ? 1 : 0); }
 
 			/// <inheritdoc cref="PushSample(float[],double,bool)"/>
-			public void PushSample(short[] data, double time = 0.0, bool pushthrough = true)
-			{
-				dll.lsl_push_sample_stp(_obj, data, time, pushthrough ? 1 : 0);
-			}
+			public void PushSample(short[] data, double time = 0.0, bool pushthrough = true) { dll.lsl_push_sample_stp(_obj, data, time, pushthrough ? 1 : 0); }
 
 			/// <inheritdoc cref="PushSample(float[],double,bool)"/>
 			public void PushSample(char[] data, double time = 0.0, bool pushthrough = true) { dll.lsl_push_sample_ctp(_obj, data, time, pushthrough ? 1 : 0); }
@@ -371,7 +365,7 @@ namespace LSL4Unity
 				dll.lsl_push_chunk_strtp(_obj, data, (uint) data.Length, time, pushthrough ? 1 : 0);
 			}
 
-		
+
 			/// <summary> Push a chunk of multiplexed samples into the outlet. One time per sample is provided. </summary>
 			/// <param name="data"> A rectangular array of values for multiple samples. </param>
 			/// <param name="times"> An array of time values holding time stamps for each sample in the data buffer. </param>
@@ -610,7 +604,7 @@ namespace LSL4Unity
 			}
 
 			/// <inheritdoc cref="PullSample(float[],double)"/>
- 			public double PullSample(double[] sample, double timeout = FOREVER)
+			public double PullSample(double[] sample, double timeout = FOREVER)
 			{
 				int    ec  = 0;
 				double res = dll.lsl_pull_sample_d(_obj, sample, sample.Length, timeout, ref ec);

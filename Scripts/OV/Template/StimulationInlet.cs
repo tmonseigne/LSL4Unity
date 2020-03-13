@@ -2,11 +2,13 @@
 
 namespace LSL4Unity.Scripts.OV.Template
 {
-	/// <summary> Just an example implementation for a Inlet recieving float values. </summary>
-	public class OVStimulation : OVIntInlet
+	/// <summary> Implementation for a Inlet receiving Stimulations (int) from OpenViBE. </summary>
+	/// <seealso cref="OVFloatInlet" />
+	public class StimulationInlet : OVIntInlet
 	{
 		public int[] LastSample;
 
+		/// <inheritdoc cref="OVIntInlet.Process"/>
 		protected override void Process(int[] sample, double time)
 		{
 			LastSample = sample;
