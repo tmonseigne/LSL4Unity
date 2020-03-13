@@ -99,11 +99,11 @@ namespace LSL4Unity.Scripts
 			Item          = item;
 			Name          = item.Name();
 			Type          = item.Type();
-			ChannelCount  = item.channel_count();
+			ChannelCount  = item.ChannelCount();
 			StreamUid     = item.Uid();
-			SessionId     = item.session_id();
-			SourceId      = item.source_id();
-			DataRate      = item.nominal_srate();
+			SessionId     = item.SessionId();
+			SourceId      = item.SourceId();
+			DataRate      = item.Sampling();
 			HostName      = item.Hostname();
 			StreamVersion = item.Version();
 		}

@@ -25,8 +25,8 @@ namespace LSL4Unity.Editor
 		{
 			_resolver = new liblsl.ContinuousResolver();
 
-			var libVersion      = liblsl.library_version();
-			var protocolVersion = liblsl.protocol_version();
+			var libVersion      = liblsl.LibraryVersion();
+			var protocolVersion = liblsl.ProtocolVersion();
 
 			var libMajor  = libVersion / 100;
 			var libMinor  = libVersion % 100;
@@ -89,7 +89,7 @@ namespace LSL4Unity.Editor
 			if (_streamInfos.Length == 0) { _streamLookUpResult = NO_STREAMS_FOUND; }
 			else
 			{
-				foreach (var item in _streamInfos) { _listNamesOfStreams.Add($"{item.Name()} {item.Type()} {item.Hostname()} {item.nominal_srate()}"); }
+				foreach (var item in _streamInfos) { _listNamesOfStreams.Add($"{item.Name()} {item.Type()} {item.Hostname()} {item.Sampling()}"); }
 				_streamLookUpResult = _listNamesOfStreams.Count + N_STREAMS_FOUND;
 			}
 		}

@@ -31,19 +31,19 @@ namespace LSL4Unity.Scripts
 		public void Write(string marker)
 		{
 			_sample[0] = marker;
-			_lslOutlet.push_sample(_sample);
+			_lslOutlet.PushSample(_sample);
 		}
 
 		public void Write(string marker, double customTimeStamp)
 		{
 			_sample[0] = marker;
-			_lslOutlet.push_sample(_sample, customTimeStamp);
+			_lslOutlet.PushSample(_sample, customTimeStamp);
 		}
 
 		public void Write(string marker, float customTimeStamp)
 		{
 			_sample[0] = marker;
-			_lslOutlet.push_sample(_sample, customTimeStamp);
+			_lslOutlet.PushSample(_sample, customTimeStamp);
 		}
 
 		public void WriteBeforeFrameIsDisplayed(string marker) { StartCoroutine(WriteMarkerAfterImageIsRendered(marker)); }

@@ -68,7 +68,7 @@ namespace LSL4Unity.Scripts
 
 			_inlet = new liblsl.StreamInlet(results[0]);
 
-			_expectedChannels = _inlet.Info().channel_count();
+			_expectedChannels = _inlet.Info().ChannelCount();
 
 			yield return null;
 		}
@@ -79,14 +79,14 @@ namespace LSL4Unity.Scripts
 
 			try
 			{
-				double lastTimeStamp = _inlet.pull_sample(_sample, 0.0f);
+				double lastTimeStamp = _inlet.PullSample(_sample, 0.0f);
 
 				if (Math.Abs(lastTimeStamp) > Constants.TOLERANCE)
 				{
 					// do not miss the first one found
 					Process(_sample, lastTimeStamp);
 					// pull as long samples are available
-					while (Math.Abs(lastTimeStamp = _inlet.pull_sample(_sample, 0.0f)) > Constants.TOLERANCE) { Process(_sample, lastTimeStamp); }
+					while (Math.Abs(lastTimeStamp = _inlet.PullSample(_sample, 0.0f)) > Constants.TOLERANCE) { Process(_sample, lastTimeStamp); }
 				}
 			}
 			catch (ArgumentException aex)
@@ -171,7 +171,7 @@ namespace LSL4Unity.Scripts
 
 				_inlet = new liblsl.StreamInlet(GetStreamInfoFrom(results));
 
-				_expectedChannels = _inlet.Info().channel_count();
+				_expectedChannels = _inlet.Info().ChannelCount();
 			}
 
 			yield return null;
@@ -189,14 +189,14 @@ namespace LSL4Unity.Scripts
 
 			try
 			{
-				double lastTimeStamp = _inlet.pull_sample(_sample, 0.0f);
+				double lastTimeStamp = _inlet.PullSample(_sample, 0.0f);
 
 				if (Math.Abs(lastTimeStamp) > Constants.TOLERANCE)
 				{
 					// do not miss the first one found
 					Process(_sample, lastTimeStamp);
 					// pull as long samples are available
-					while (Math.Abs(lastTimeStamp = _inlet.pull_sample(_sample, 0.0f)) > Constants.TOLERANCE) { Process(_sample, lastTimeStamp); }
+					while (Math.Abs(lastTimeStamp = _inlet.PullSample(_sample, 0.0f)) > Constants.TOLERANCE) { Process(_sample, lastTimeStamp); }
 				}
 			}
 			catch (ArgumentException aex)
@@ -280,7 +280,7 @@ namespace LSL4Unity.Scripts
 
 			_inlet = new liblsl.StreamInlet(results[0]);
 
-			_expectedChannels = _inlet.Info().channel_count();
+			_expectedChannels = _inlet.Info().ChannelCount();
 
 			yield return null;
 		}
@@ -291,14 +291,14 @@ namespace LSL4Unity.Scripts
 
 			try
 			{
-				double lastTimeStamp = _inlet.pull_sample(_sample, 0.0f);
+				double lastTimeStamp = _inlet.PullSample(_sample, 0.0f);
 
 				if (Math.Abs(lastTimeStamp) > Constants.TOLERANCE)
 				{
 					// do not miss the first one found
 					Process(_sample, lastTimeStamp);
 					// pull as long samples are available
-					while (Math.Abs(lastTimeStamp = _inlet.pull_sample(_sample, 0.0f)) > Constants.TOLERANCE) { Process(_sample, lastTimeStamp); }
+					while (Math.Abs(lastTimeStamp = _inlet.PullSample(_sample, 0.0f)) > Constants.TOLERANCE) { Process(_sample, lastTimeStamp); }
 				}
 			}
 			catch (ArgumentException aex)
@@ -381,7 +381,7 @@ namespace LSL4Unity.Scripts
 
 			_inlet = new liblsl.StreamInlet(results[0]);
 
-			_expectedChannels = _inlet.Info().channel_count();
+			_expectedChannels = _inlet.Info().ChannelCount();
 
 			yield return null;
 		}
@@ -392,14 +392,14 @@ namespace LSL4Unity.Scripts
 
 			try
 			{
-				double lastTimeStamp = _inlet.pull_sample(_sample, 0.0f);
+				double lastTimeStamp = _inlet.PullSample(_sample, 0.0f);
 
 				if (Math.Abs(lastTimeStamp) > Constants.TOLERANCE)
 				{
 					// do not miss the first one found
 					Process(_sample, lastTimeStamp);
 					// pull as long samples are available
-					while (Math.Abs(lastTimeStamp = _inlet.pull_sample(_sample, 0.0f)) > Constants.TOLERANCE) { Process(_sample, lastTimeStamp); }
+					while (Math.Abs(lastTimeStamp = _inlet.PullSample(_sample, 0.0f)) > Constants.TOLERANCE) { Process(_sample, lastTimeStamp); }
 				}
 			}
 			catch (ArgumentException aex)
@@ -482,7 +482,7 @@ namespace LSL4Unity.Scripts
 
 			_inlet = new liblsl.StreamInlet(results[0]);
 
-			_expectedChannels = _inlet.Info().channel_count();
+			_expectedChannels = _inlet.Info().ChannelCount();
 
 			yield return null;
 		}
@@ -493,14 +493,14 @@ namespace LSL4Unity.Scripts
 
 			try
 			{
-				double lastTimeStamp = _inlet.pull_sample(_sample, 0.0f);
+				double lastTimeStamp = _inlet.PullSample(_sample, 0.0f);
 
 				if (Math.Abs(lastTimeStamp) > Constants.TOLERANCE)
 				{
 					// do not miss the first one found
 					Process(_sample, lastTimeStamp);
 					// pull as long samples are available
-					while (Math.Abs(lastTimeStamp = _inlet.pull_sample(_sample, 0.0f)) > Constants.TOLERANCE) { Process(_sample, lastTimeStamp); }
+					while (Math.Abs(lastTimeStamp = _inlet.PullSample(_sample, 0.0f)) > Constants.TOLERANCE) { Process(_sample, lastTimeStamp); }
 				}
 			}
 			catch (ArgumentException aex)
@@ -583,7 +583,7 @@ namespace LSL4Unity.Scripts
 
 			_inlet = new liblsl.StreamInlet(results[0]);
 
-			_expectedChannels = _inlet.Info().channel_count();
+			_expectedChannels = _inlet.Info().ChannelCount();
 
 			yield return null;
 		}
@@ -594,14 +594,14 @@ namespace LSL4Unity.Scripts
 
 			try
 			{
-				double lastTimeStamp = _inlet.pull_sample(_sample, 0.0f);
+				double lastTimeStamp = _inlet.PullSample(_sample, 0.0f);
 
 				if (Math.Abs(lastTimeStamp) > Constants.TOLERANCE)
 				{
 					// do not miss the first one found
 					Process(_sample, lastTimeStamp);
 					// pull as long samples are available
-					while (Math.Abs(lastTimeStamp = _inlet.pull_sample(_sample, 0.0f)) > Constants.TOLERANCE) { Process(_sample, lastTimeStamp); }
+					while (Math.Abs(lastTimeStamp = _inlet.PullSample(_sample, 0.0f)) > Constants.TOLERANCE) { Process(_sample, lastTimeStamp); }
 				}
 			}
 			catch (ArgumentException aex)

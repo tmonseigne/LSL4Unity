@@ -20,7 +20,7 @@ namespace LSL4Unity.Demos
 		private double _dataRate;
 
 		public double GetDataRate() { return _dataRate; }
-		public bool   HasConsumer() { return _outlet != null && _outlet.have_consumers(); }
+		public bool   HasConsumer() { return _outlet != null && _outlet.HaveConsumers(); }
 
 		public string StreamName   = "BeMoBI.Unity.Orientation.<Add_a_entity_id_here>";
 		public string StreamType   = "Unity.Quaternion";
@@ -34,12 +34,9 @@ namespace LSL4Unity.Demos
 		{
 			// initialize the array once
 			_currentSample = new float[ChannelCount];
-
-			_dataRate = LSLUtils.GetSamplingRateFor(Sampling);
-
-			_streamInfo = new liblsl.StreamInfo(StreamName, StreamType, ChannelCount, _dataRate, liblsl.channel_format_t.cf_float32, UNIQUE_SOURCE_ID);
-
-			_outlet = new liblsl.StreamOutlet(_streamInfo);
+			_dataRate      = LSLUtils.GetSamplingRateFor(Sampling);
+			_streamInfo    = new liblsl.StreamInfo(StreamName, StreamType, ChannelCount, _dataRate, liblsl.channel_format_t.cf_float32, UNIQUE_SOURCE_ID);
+			_outlet        = new liblsl.StreamOutlet(_streamInfo);
 		}
 
 		private void PushSample()
@@ -53,7 +50,7 @@ namespace LSL4Unity.Demos
 			_currentSample[2] = rotation.z;
 			_currentSample[3] = rotation.w;
 
-			_outlet.push_sample(_currentSample, liblsl.local_clock());
+			_outlet.PushSample(_currentSample, liblsl.LocalClock());
 		}
 
 		private void FixedUpdate()

@@ -18,10 +18,10 @@ namespace LSL4Unity.Scripts
 
 		private void Awake() { Instance = this; }
 
-		private void FixedUpdate() { FixedUpdateTimeStamp = liblsl.local_clock(); }
+		private void FixedUpdate() { FixedUpdateTimeStamp = liblsl.LocalClock(); }
 
-		private void Update() { UpdateTimeStamp = liblsl.local_clock(); }
+		private void Update() { UpdateTimeStamp = liblsl.LocalClock(); }
 
-		private void LateUpdate() { LateUpdateTimeStamp = liblsl.local_clock(); }
+		private void LateUpdate() { LateUpdateTimeStamp = liblsl.LocalClock(); }
 	}
 }

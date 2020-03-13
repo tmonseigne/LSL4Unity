@@ -40,7 +40,7 @@ namespace LSL4Unity.Scripts
 			_watch.Reset();
 			_watch.Start();
 
-			_outlet.push_sample(_currentSample);
+			_outlet.PushSample(_currentSample);
 		}
 	}
 }

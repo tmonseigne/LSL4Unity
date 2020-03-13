@@ -57,11 +57,11 @@ namespace LSL4Unity.Scripts
 			_streamInfo = new liblsl.StreamInfo(StreamName, StreamType, _channelCount, DATA_RATE, liblsl.channel_format_t.cf_float32, _uniqueSourceId);
 
 			// it's not possible to create a XMLElement before and append it.
-			liblsl.XMLElement chns = _streamInfo.Desc().append_child("channels");
+			liblsl.XMLElement chns = _streamInfo.Desc().AppendChild("channels");
 			// so this workaround has been introduced.
 			foreach (var def in channelDefinitions)
 			{
-				chns.append_child("channel").append_child_value("label", def.Label).append_child_value("unit", def.Unit).append_child_value("type", def.Type);
+				chns.AppendChild("channel").AppendChildValue("label", def.Label).AppendChildValue("unit", def.Unit).AppendChildValue("type", def.Type);
 			}
 
 			_outlet = new liblsl.StreamOutlet(_streamInfo);
@@ -107,7 +107,7 @@ namespace LSL4Unity.Scripts
 				_currentSample[++offset] = position.z;
 			}
 
-			_outlet.push_sample(_currentSample, liblsl.local_clock());
+			_outlet.PushSample(_currentSample, liblsl.LocalClock());
 		}
 
 

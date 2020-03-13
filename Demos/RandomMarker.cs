@@ -3,8 +3,6 @@ using LSL4Unity.Scripts;
 using UnityEngine;
 using UnityEngine.Assertions;
 
-// Don't forget the Namespace import
-
 namespace LSL4Unity.Demos
 {
 	public class RandomMarker : MonoBehaviour
