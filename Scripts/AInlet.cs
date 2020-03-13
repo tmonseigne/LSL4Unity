@@ -7,6 +7,8 @@ using UnityEngine;
 
 namespace LSL4Unity.Scripts
 {
+	/// <summary> Float Inlet. </summary>
+	/// <seealso cref="UnityEngine.MonoBehaviour" />
 	public abstract class AFloatInlet : MonoBehaviour
 	{
 		public enum UpdateMoment { FixedUpdate, Update }
@@ -26,17 +28,17 @@ namespace LSL4Unity.Scripts
 
 		private void Start()
 		{
-			var expectedStreamHasAName = !StreamName.Equals("");
-			var expectedStreamHasAType = !StreamType.Equals("");
+			var hasAName = StreamName.Length != 0;
+			var hasAType = StreamType.Length != 0;
 
-			if (!expectedStreamHasAName && !expectedStreamHasAType)
+			if (!hasAName && !hasAType)
 			{
 				Debug.LogError("Inlet has to specify a name or a type before it is able to lookup a stream.");
 				enabled = false;
 				return;
 			}
 
-			if (expectedStreamHasAName)
+			if (hasAName)
 			{
 				Debug.Log("Creating LSL resolver for stream " + StreamName);
 				_resolver = new liblsl.ContinuousResolver("name", StreamName);
@@ -53,10 +55,7 @@ namespace LSL4Unity.Scripts
 		}
 
 		/// <summary> Override this method in the subclass to specify what should happen during Start(). </summary>
-		protected virtual void AdditionalStart()
-		{
-			//By default, do nothing.
-		}
+		protected void AdditionalStart() { } //By default, do nothing.
 
 		private IEnumerator ResolveExpectedStream()
 		{
@@ -98,8 +97,8 @@ namespace LSL4Unity.Scripts
 		}
 
 		/// <summary> Override this method in the subclass to specify what should happen when samples are available. </summary>
-		/// <param name="sample"></param>
-		/// <param name="time"></param>
+		/// <param name="sample"> The Incomming Sample. </param>
+		/// <param name="time"> The current Time. </param>
 		protected abstract void Process(float[] sample, double time);
 
 		private void FixedUpdate()
@@ -113,6 +112,8 @@ namespace LSL4Unity.Scripts
 		}
 	}
 
+	/// <summary> Double Inlet. </summary>
+	/// <seealso cref="UnityEngine.MonoBehaviour" />
 	public abstract class ADoubleInlet : MonoBehaviour
 	{
 		public enum UpdateMoment { FixedUpdate, Update }
@@ -207,9 +208,7 @@ namespace LSL4Unity.Scripts
 			}
 		}
 
-		/// <summary> Override this method in the subclass to specify what should happen when samples are available. </summary>
-		/// <param name="sample"></param>
-		/// <param name="time"></param>
+		/// <inheritdoc cref="AFloatInlet.Process"/>
 		protected abstract void Process(double[] sample, double time);
 
 		private void FixedUpdate()
@@ -223,6 +222,8 @@ namespace LSL4Unity.Scripts
 		}
 	}
 
+	/// <summary> Char Inlet. </summary>
+	/// <seealso cref="UnityEngine.MonoBehaviour" />
 	public abstract class ACharInlet : MonoBehaviour
 	{
 		public enum UpdateMoment { FixedUpdate, Update }
@@ -309,9 +310,7 @@ namespace LSL4Unity.Scripts
 			}
 		}
 
-		/// <summary> Override this method in the subclass to specify what should happen when samples are available. </summary>
-		/// <param name="sample"></param>
-		/// <param name="time"></param>
+		/// <inheritdoc cref="AFloatInlet.Process"/>
 		protected abstract void Process(char[] sample, double time);
 
 		private void FixedUpdate()
@@ -325,6 +324,8 @@ namespace LSL4Unity.Scripts
 		}
 	}
 
+	/// <summary> Float Inlet. </summary>
+	/// <seealso cref="UnityEngine.MonoBehaviour" />
 	public abstract class AShortInlet : MonoBehaviour
 	{
 		public enum UpdateMoment { FixedUpdate, Update }
@@ -410,9 +411,7 @@ namespace LSL4Unity.Scripts
 			}
 		}
 
-		/// <summary> Override this method in the subclass to specify what should happen when samples are available. </summary>
-		/// <param name="sample"></param>
-		/// <param name="time"></param>
+		/// <inheritdoc cref="AFloatInlet.Process"/>
 		protected abstract void Process(short[] sample, double time);
 
 		private void FixedUpdate()
@@ -426,6 +425,8 @@ namespace LSL4Unity.Scripts
 		}
 	}
 
+	/// <summary> Int Inlet. </summary>
+	/// <seealso cref="UnityEngine.MonoBehaviour" />
 	public abstract class AIntInlet : MonoBehaviour
 	{
 		public enum UpdateMoment { FixedUpdate, Update }
@@ -511,9 +512,7 @@ namespace LSL4Unity.Scripts
 			}
 		}
 
-		/// <summary> Override this method in the subclass to specify what should happen when samples are available. </summary>
-		/// <param name="sample"></param>
-		/// <param name="time"></param>
+		/// <inheritdoc cref="AFloatInlet.Process"/>
 		protected abstract void Process(int[] sample, double time);
 
 		private void FixedUpdate()
@@ -527,6 +526,8 @@ namespace LSL4Unity.Scripts
 		}
 	}
 
+	/// <summary> String Inlet. </summary>
+	/// <seealso cref="UnityEngine.MonoBehaviour" />
 	public abstract class AStringInlet : MonoBehaviour
 	{
 		public enum UpdateMoment { FixedUpdate, Update }
@@ -612,9 +613,7 @@ namespace LSL4Unity.Scripts
 			}
 		}
 
-		/// <summary> Override this method in the subclass to specify what should happen when samples are available. </summary>
-		/// <param name="sample"></param>
-		/// <param name="time"></param>
+		/// <inheritdoc cref="AFloatInlet.Process"/>
 		protected abstract void Process(string[] sample, double time);
 
 		private void FixedUpdate()
