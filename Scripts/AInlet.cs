@@ -1,11 +1,11 @@
-﻿using System;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using LSL4Unity.Scripts.OV;
+using LSL4Unity.OV;
 using UnityEngine;
 
-namespace LSL4Unity.Scripts
+namespace LSL4Unity
 {
 	/// <summary> Float Inlet. </summary>
 	/// <seealso cref="UnityEngine.MonoBehaviour" />
@@ -13,23 +13,22 @@ namespace LSL4Unity.Scripts
 	{
 		public enum UpdateMoment { FixedUpdate, Update }
 
-		public UpdateMoment Moment;
+		public UpdateMoment moment;
 
-		public string StreamName;
-		public string StreamType;
+		public string streamName;
+		public string streamType;
 
-		private liblsl.StreamInfo[]       _results;
-		private liblsl.StreamInlet        _inlet;
-		private liblsl.ContinuousResolver _resolver;
+		private liblsl.StreamInlet        inlet;
+		private liblsl.ContinuousResolver resolver;
 
-		private int _expectedChannels = 0;
+		private int expectedChannels = 0;
 
-		private float[] _sample;
+		private float[] sample;
 
 		private void Start()
 		{
-			var hasAName = StreamName.Length != 0;
-			var hasAType = StreamType.Length != 0;
+			bool hasAName = streamName.Length != 0;
+			bool hasAType = streamType.Length != 0;
 
 			if (!hasAName && !hasAType)
 			{
@@ -40,13 +39,13 @@ namespace LSL4Unity.Scripts
 
 			if (hasAName)
 			{
-				Debug.Log("Creating LSL resolver for stream " + StreamName);
-				_resolver = new liblsl.ContinuousResolver("name", StreamName);
+				Debug.Log("Creating LSL resolver for stream " + streamName);
+				resolver = new liblsl.ContinuousResolver("name", streamName);
 			}
-			else // if (expectedStreamHasAType) // Useless with the first if
+			else // if (hasAType) // Useless with the first if
 			{
-				Debug.Log("Creating LSL resolver for stream with type " + StreamType);
-				_resolver = new liblsl.ContinuousResolver("type ", StreamType);
+				Debug.Log("Creating LSL resolver for stream with type " + streamType);
+				resolver = new liblsl.ContinuousResolver("type ", streamType);
 			}
 
 			StartCoroutine(ResolveExpectedStream());
@@ -59,40 +58,40 @@ namespace LSL4Unity.Scripts
 
 		private IEnumerator ResolveExpectedStream()
 		{
-			var results = _resolver.Results();
+			var results = resolver.Results();
 
 			yield return new WaitUntil(() => results.Length > 0);
 
-			Debug.Log($"Resolving Stream: {StreamName}");
+			Debug.Log($"Resolving Stream: {streamName}");
 
-			_inlet = new liblsl.StreamInlet(results[0]);
+			inlet = new liblsl.StreamInlet(results[0]);
 
-			_expectedChannels = _inlet.Info().ChannelCount();
+			expectedChannels = inlet.Info().ChannelCount();
 
 			yield return null;
 		}
 
 		protected void PullSamples()
 		{
-			_sample = new float[_expectedChannels];
+			sample = new float[expectedChannels];
 
 			try
 			{
-				double lastTimeStamp = _inlet.PullSample(_sample, 0.0f);
+				double lastTimeStamp = inlet.PullSample(sample, 0.0f);
 
 				if (Math.Abs(lastTimeStamp) > Constants.TOLERANCE)
 				{
 					// do not miss the first one found
-					Process(_sample, lastTimeStamp);
+					Process(sample, lastTimeStamp);
 					// pull as long samples are available
-					while (Math.Abs(lastTimeStamp = _inlet.PullSample(_sample, 0.0f)) > Constants.TOLERANCE) { Process(_sample, lastTimeStamp); }
+					while (Math.Abs(lastTimeStamp = inlet.PullSample(sample, 0.0f)) > Constants.TOLERANCE) { Process(sample, lastTimeStamp); }
 				}
 			}
-			catch (ArgumentException aex)
+			catch (ArgumentException e)
 			{
 				Debug.LogError("An Error on pulling samples deactivating LSL inlet on...", this);
 				enabled = false;
-				Debug.LogException(aex, this);
+				Debug.LogException(e, this);
 			}
 		}
 
@@ -103,12 +102,12 @@ namespace LSL4Unity.Scripts
 
 		private void FixedUpdate()
 		{
-			if (Moment == UpdateMoment.FixedUpdate && _inlet != null) { PullSamples(); }
+			if (moment == UpdateMoment.FixedUpdate && inlet != null) { PullSamples(); }
 		}
 
 		private void Update()
 		{
-			if (Moment == UpdateMoment.Update && _inlet != null) { PullSamples(); }
+			if (moment == UpdateMoment.Update && inlet != null) { PullSamples(); }
 		}
 	}
 
@@ -118,40 +117,39 @@ namespace LSL4Unity.Scripts
 	{
 		public enum UpdateMoment { FixedUpdate, Update }
 
-		public UpdateMoment Moment;
+		public UpdateMoment moment;
 
-		public string StreamName;
-		public string StreamType;
+		public string streamName;
+		public string streamType;
 
-		private liblsl.StreamInfo[]       _results;
-		private liblsl.StreamInlet        _inlet;
-		private liblsl.ContinuousResolver _resolver;
+		private liblsl.StreamInlet        inlet;
+		private liblsl.ContinuousResolver resolver;
 
-		private int _expectedChannels = 0;
+		private int expectedChannels = 0;
 
-		private double[] _sample;
+		private double[] sample;
 
 		private void Start()
 		{
-			var expectedStreamHasAName = !StreamName.Equals("");
-			var expectedStreamHasAType = !StreamType.Equals("");
+			bool hasAName = streamName.Length != 0;
+			bool hasAType = streamType.Length != 0;
 
-			if (!expectedStreamHasAName && !expectedStreamHasAType)
+			if (!hasAName && !hasAType)
 			{
 				Debug.LogError("Inlet has to specify a name or a type before it is able to lookup a stream.");
 				enabled = false;
 				return;
 			}
 
-			if (expectedStreamHasAName)
+			if (hasAName)
 			{
-				Debug.Log("Creating LSL resolver for stream " + StreamName);
-				_resolver = new liblsl.ContinuousResolver("name", StreamName);
+				Debug.Log("Creating LSL resolver for stream " + streamName);
+				resolver = new liblsl.ContinuousResolver("name", streamName);
 			}
-			else // if (expectedStreamHasAType) // Useless with the first if
+			else // if (hasAType) // Useless with the first if
 			{
-				Debug.Log("Creating LSL resolver for stream with type " + StreamType);
-				_resolver = new liblsl.ContinuousResolver("type", StreamType);
+				Debug.Log("Creating LSL resolver for stream with type " + streamType);
+				resolver = new liblsl.ContinuousResolver("type", streamType);
 			}
 
 			StartCoroutine(ResolveExpectedStream());
@@ -164,15 +162,15 @@ namespace LSL4Unity.Scripts
 
 		private IEnumerator ResolveExpectedStream()
 		{
-			var results = _resolver.Results();
+			var results = resolver.Results();
 
-			while (_inlet == null)
+			while (inlet == null)
 			{
 				yield return new WaitUntil(() => results.Length > 0);
 
-				_inlet = new liblsl.StreamInlet(GetStreamInfoFrom(results));
+				inlet = new liblsl.StreamInlet(GetStreamInfoFrom(results));
 
-				_expectedChannels = _inlet.Info().ChannelCount();
+				expectedChannels = inlet.Info().ChannelCount();
 			}
 
 			yield return null;
@@ -180,31 +178,31 @@ namespace LSL4Unity.Scripts
 
 		private liblsl.StreamInfo GetStreamInfoFrom(IEnumerable<liblsl.StreamInfo> results)
 		{
-			var targetInfo = results.First(r => r.Name().Equals(StreamName));
+			var targetInfo = results.First(r => r.Name().Equals(streamName));
 			return targetInfo;
 		}
 
 		protected void PullSamples()
 		{
-			_sample = new double[_expectedChannels];
+			sample = new double[expectedChannels];
 
 			try
 			{
-				double lastTimeStamp = _inlet.PullSample(_sample, 0.0f);
+				double lastTimeStamp = inlet.PullSample(sample, 0.0f);
 
 				if (Math.Abs(lastTimeStamp) > Constants.TOLERANCE)
 				{
 					// do not miss the first one found
-					Process(_sample, lastTimeStamp);
+					Process(sample, lastTimeStamp);
 					// pull as long samples are available
-					while (Math.Abs(lastTimeStamp = _inlet.PullSample(_sample, 0.0f)) > Constants.TOLERANCE) { Process(_sample, lastTimeStamp); }
+					while (Math.Abs(lastTimeStamp = inlet.PullSample(sample, 0.0f)) > Constants.TOLERANCE) { Process(sample, lastTimeStamp); }
 				}
 			}
-			catch (ArgumentException aex)
+			catch (ArgumentException e)
 			{
 				Debug.LogError("An Error on pulling samples deactivating LSL inlet on...", this);
 				enabled = false;
-				Debug.LogException(aex, this);
+				Debug.LogException(e, this);
 			}
 		}
 
@@ -213,12 +211,12 @@ namespace LSL4Unity.Scripts
 
 		private void FixedUpdate()
 		{
-			if (Moment == UpdateMoment.FixedUpdate && _inlet != null) { PullSamples(); }
+			if (moment == UpdateMoment.FixedUpdate && inlet != null) { PullSamples(); }
 		}
 
 		private void Update()
 		{
-			if (Moment == UpdateMoment.Update && _inlet != null) { PullSamples(); }
+			if (moment == UpdateMoment.Update && inlet != null) { PullSamples(); }
 		}
 	}
 
@@ -228,40 +226,39 @@ namespace LSL4Unity.Scripts
 	{
 		public enum UpdateMoment { FixedUpdate, Update }
 
-		public UpdateMoment Moment;
+		public UpdateMoment moment;
 
-		public string StreamName;
-		public string StreamType;
+		public string streamName;
+		public string streamType;
 
-		private liblsl.StreamInfo[]       _results;
-		private liblsl.StreamInlet        _inlet;
-		private liblsl.ContinuousResolver _resolver;
+		private liblsl.StreamInlet        inlet;
+		private liblsl.ContinuousResolver resolver;
 
-		private int _expectedChannels = 0;
+		private int expectedChannels = 0;
 
-		private char[] _sample;
+		private char[] sample;
 
 		private void Start()
 		{
-			var expectedStreamHasAName = !StreamName.Equals("");
-			var expectedStreamHasAType = !StreamType.Equals("");
+			bool hasAName = streamName.Length != 0;
+			bool hasAType = streamType.Length != 0;
 
-			if (!expectedStreamHasAName && !expectedStreamHasAType)
+			if (!hasAName && !hasAType)
 			{
 				Debug.LogError("Inlet has to specify a name or a type before it is able to lookup a stream.");
 				enabled = false;
 				return;
 			}
 
-			if (expectedStreamHasAName)
+			if (hasAName)
 			{
-				Debug.Log("Creating LSL resolver for stream " + StreamName);
-				_resolver = new liblsl.ContinuousResolver("name", StreamName);
+				Debug.Log("Creating LSL resolver for stream " + streamName);
+				resolver = new liblsl.ContinuousResolver("name", streamName);
 			}
-			else // if (expectedStreamHasAType) // Useless with the first if
+			else // if (hasAType) // Useless with the first if
 			{
-				Debug.Log("Creating LSL resolver for stream with type " + StreamType);
-				_resolver = new liblsl.ContinuousResolver("type", StreamType);
+				Debug.Log("Creating LSL resolver for stream with type " + streamType);
+				resolver = new liblsl.ContinuousResolver("type", streamType);
 			}
 
 			StartCoroutine(ResolveExpectedStream());
@@ -275,38 +272,38 @@ namespace LSL4Unity.Scripts
 
 		private IEnumerator ResolveExpectedStream()
 		{
-			var results = _resolver.Results();
+			var results = resolver.Results();
 
 			yield return new WaitUntil(() => results.Length > 0);
 
-			_inlet = new liblsl.StreamInlet(results[0]);
+			inlet = new liblsl.StreamInlet(results[0]);
 
-			_expectedChannels = _inlet.Info().ChannelCount();
+			expectedChannels = inlet.Info().ChannelCount();
 
 			yield return null;
 		}
 
 		protected void PullSamples()
 		{
-			_sample = new char[_expectedChannels];
+			sample = new char[expectedChannels];
 
 			try
 			{
-				double lastTimeStamp = _inlet.PullSample(_sample, 0.0f);
+				double lastTimeStamp = inlet.PullSample(sample, 0.0f);
 
 				if (Math.Abs(lastTimeStamp) > Constants.TOLERANCE)
 				{
 					// do not miss the first one found
-					Process(_sample, lastTimeStamp);
+					Process(sample, lastTimeStamp);
 					// pull as long samples are available
-					while (Math.Abs(lastTimeStamp = _inlet.PullSample(_sample, 0.0f)) > Constants.TOLERANCE) { Process(_sample, lastTimeStamp); }
+					while (Math.Abs(lastTimeStamp = inlet.PullSample(sample, 0.0f)) > Constants.TOLERANCE) { Process(sample, lastTimeStamp); }
 				}
 			}
-			catch (ArgumentException aex)
+			catch (ArgumentException e)
 			{
 				Debug.LogError("An Error on pulling samples deactivating LSL inlet on...", this);
 				enabled = false;
-				Debug.LogException(aex, this);
+				Debug.LogException(e, this);
 			}
 		}
 
@@ -315,12 +312,12 @@ namespace LSL4Unity.Scripts
 
 		private void FixedUpdate()
 		{
-			if (Moment == UpdateMoment.FixedUpdate && _inlet != null) { PullSamples(); }
+			if (moment == UpdateMoment.FixedUpdate && inlet != null) { PullSamples(); }
 		}
 
 		private void Update()
 		{
-			if (Moment == UpdateMoment.Update && _inlet != null) { PullSamples(); }
+			if (moment == UpdateMoment.Update && inlet != null) { PullSamples(); }
 		}
 	}
 
@@ -330,40 +327,39 @@ namespace LSL4Unity.Scripts
 	{
 		public enum UpdateMoment { FixedUpdate, Update }
 
-		public UpdateMoment Moment;
+		public UpdateMoment moment;
 
-		public string StreamName;
-		public string StreamType;
+		public string streamName;
+		public string streamType;
 
-		private liblsl.StreamInfo[]       _results;
-		private liblsl.StreamInlet        _inlet;
-		private liblsl.ContinuousResolver _resolver;
+		private liblsl.StreamInlet        inlet;
+		private liblsl.ContinuousResolver resolver;
 
-		private int _expectedChannels = 0;
+		private int expectedChannels = 0;
 
-		private short[] _sample;
+		private short[] sample;
 
 		private void Start()
 		{
-			var expectedStreamHasAName = !StreamName.Equals("");
-			var expectedStreamHasAType = !StreamType.Equals("");
+			bool hasAName = streamName.Length != 0;
+			bool hasAType = streamType.Length != 0;
 
-			if (!expectedStreamHasAName && !expectedStreamHasAType)
+			if (!hasAName && !hasAType)
 			{
 				Debug.LogError("Inlet has to specify a name or a type before it is able to lookup a stream.");
 				enabled = false;
 				return;
 			}
 
-			if (expectedStreamHasAName)
+			if (hasAName)
 			{
-				Debug.Log("Creating LSL resolver for stream " + StreamName);
-				_resolver = new liblsl.ContinuousResolver("name", StreamName);
+				Debug.Log("Creating LSL resolver for stream " + streamName);
+				resolver = new liblsl.ContinuousResolver("name", streamName);
 			}
-			else // if (expectedStreamHasAType) // Useless with the first if
+			else // if (hasAType) // Useless with the first if
 			{
-				Debug.Log("Creating LSL resolver for stream with type " + StreamType);
-				_resolver = new liblsl.ContinuousResolver("type", StreamType);
+				Debug.Log("Creating LSL resolver for stream with type " + streamType);
+				resolver = new liblsl.ContinuousResolver("type", streamType);
 			}
 
 			StartCoroutine(ResolveExpectedStream());
@@ -376,38 +372,38 @@ namespace LSL4Unity.Scripts
 
 		private IEnumerator ResolveExpectedStream()
 		{
-			var results = _resolver.Results();
+			var results = resolver.Results();
 
 			yield return new WaitUntil(() => results.Length > 0);
 
-			_inlet = new liblsl.StreamInlet(results[0]);
+			inlet = new liblsl.StreamInlet(results[0]);
 
-			_expectedChannels = _inlet.Info().ChannelCount();
+			expectedChannels = inlet.Info().ChannelCount();
 
 			yield return null;
 		}
 
 		protected void PullSamples()
 		{
-			_sample = new short[_expectedChannels];
+			sample = new short[expectedChannels];
 
 			try
 			{
-				double lastTimeStamp = _inlet.PullSample(_sample, 0.0f);
+				double lastTimeStamp = inlet.PullSample(sample, 0.0f);
 
 				if (Math.Abs(lastTimeStamp) > Constants.TOLERANCE)
 				{
 					// do not miss the first one found
-					Process(_sample, lastTimeStamp);
+					Process(sample, lastTimeStamp);
 					// pull as long samples are available
-					while (Math.Abs(lastTimeStamp = _inlet.PullSample(_sample, 0.0f)) > Constants.TOLERANCE) { Process(_sample, lastTimeStamp); }
+					while (Math.Abs(lastTimeStamp = inlet.PullSample(sample, 0.0f)) > Constants.TOLERANCE) { Process(sample, lastTimeStamp); }
 				}
 			}
-			catch (ArgumentException aex)
+			catch (ArgumentException e)
 			{
 				Debug.LogError("An Error on pulling samples deactivating LSL inlet on...", this);
 				enabled = false;
-				Debug.LogException(aex, this);
+				Debug.LogException(e, this);
 			}
 		}
 
@@ -416,12 +412,12 @@ namespace LSL4Unity.Scripts
 
 		private void FixedUpdate()
 		{
-			if (Moment == UpdateMoment.FixedUpdate && _inlet != null) { PullSamples(); }
+			if (moment == UpdateMoment.FixedUpdate && inlet != null) { PullSamples(); }
 		}
 
 		private void Update()
 		{
-			if (Moment == UpdateMoment.Update && _inlet != null) { PullSamples(); }
+			if (moment == UpdateMoment.Update && inlet != null) { PullSamples(); }
 		}
 	}
 
@@ -431,40 +427,39 @@ namespace LSL4Unity.Scripts
 	{
 		public enum UpdateMoment { FixedUpdate, Update }
 
-		public UpdateMoment Moment;
+		public UpdateMoment moment;
 
-		public string StreamName;
-		public string StreamType;
+		public string streamName;
+		public string streamType;
 
-		private liblsl.StreamInfo[]       _results;
-		private liblsl.StreamInlet        _inlet;
-		private liblsl.ContinuousResolver _resolver;
+		private liblsl.StreamInlet        inlet;
+		private liblsl.ContinuousResolver resolver;
 
-		private int _expectedChannels = 0;
+		private int expectedChannels = 0;
 
-		private int[] _sample;
+		private int[] sample;
 
 		private void Start()
 		{
-			var expectedStreamHasAName = !StreamName.Equals("");
-			var expectedStreamHasAType = !StreamType.Equals("");
+			bool hasAName = streamName.Length != 0;
+			bool hasAType = streamType.Length != 0;
 
-			if (!expectedStreamHasAName && !expectedStreamHasAType)
+			if (!hasAName && !hasAType)
 			{
 				Debug.LogError("Inlet has to specify a name or a type before it is able to lookup a stream.");
 				enabled = false;
 				return;
 			}
 
-			if (expectedStreamHasAName)
+			if (hasAName)
 			{
-				Debug.Log("Creating LSL resolver for stream " + StreamName);
-				_resolver = new liblsl.ContinuousResolver("name", StreamName);
+				Debug.Log("Creating LSL resolver for stream " + streamName);
+				resolver = new liblsl.ContinuousResolver("name", streamName);
 			}
-			else // if (expectedStreamHasAType) // Useless with the first if
+			else // if (hasAType) // Useless with the first if
 			{
-				Debug.Log("Creating LSL resolver for stream with type " + StreamType);
-				_resolver = new liblsl.ContinuousResolver("type", StreamType);
+				Debug.Log("Creating LSL resolver for stream with type " + streamType);
+				resolver = new liblsl.ContinuousResolver("type", streamType);
 			}
 
 			StartCoroutine(ResolveExpectedStream());
@@ -477,38 +472,37 @@ namespace LSL4Unity.Scripts
 
 		private IEnumerator ResolveExpectedStream()
 		{
-			var results = _resolver.Results();
+			var results = resolver.Results();
 
 			yield return new WaitUntil(() => results.Length > 0);
 
-			_inlet = new liblsl.StreamInlet(results[0]);
-
-			_expectedChannels = _inlet.Info().ChannelCount();
+			inlet = new liblsl.StreamInlet(results[0]);
+			expectedChannels = inlet.Info().ChannelCount();
 
 			yield return null;
 		}
 
 		protected void PullSamples()
 		{
-			_sample = new int[_expectedChannels];
+			sample = new int[expectedChannels];
 
 			try
 			{
-				double lastTimeStamp = _inlet.PullSample(_sample, 0.0f);
+				double lastTimeStamp = inlet.PullSample(sample, 0.0f);
 
 				if (Math.Abs(lastTimeStamp) > Constants.TOLERANCE)
 				{
 					// do not miss the first one found
-					Process(_sample, lastTimeStamp);
+					Process(sample, lastTimeStamp);
 					// pull as long samples are available
-					while (Math.Abs(lastTimeStamp = _inlet.PullSample(_sample, 0.0f)) > Constants.TOLERANCE) { Process(_sample, lastTimeStamp); }
+					while (Math.Abs(lastTimeStamp = inlet.PullSample(sample, 0.0f)) > Constants.TOLERANCE) { Process(sample, lastTimeStamp); }
 				}
 			}
-			catch (ArgumentException aex)
+			catch (ArgumentException e)
 			{
 				Debug.LogError("An Error on pulling samples deactivating LSL inlet on...", this);
 				enabled = false;
-				Debug.LogException(aex, this);
+				Debug.LogException(e, this);
 			}
 		}
 
@@ -517,12 +511,12 @@ namespace LSL4Unity.Scripts
 
 		private void FixedUpdate()
 		{
-			if (Moment == UpdateMoment.FixedUpdate && _inlet != null) { PullSamples(); }
+			if (moment == UpdateMoment.FixedUpdate && inlet != null) { PullSamples(); }
 		}
 
 		private void Update()
 		{
-			if (Moment == UpdateMoment.Update && _inlet != null) { PullSamples(); }
+			if (moment == UpdateMoment.Update && inlet != null) { PullSamples(); }
 		}
 	}
 
@@ -532,40 +526,39 @@ namespace LSL4Unity.Scripts
 	{
 		public enum UpdateMoment { FixedUpdate, Update }
 
-		public UpdateMoment Moment;
+		public UpdateMoment moment;
 
-		public string StreamName;
-		public string StreamType;
+		public string streamName;
+		public string streamType;
 
-		private liblsl.StreamInfo[]       _results;
-		private liblsl.StreamInlet        _inlet;
-		private liblsl.ContinuousResolver _resolver;
+		private liblsl.StreamInlet        inlet;
+		private liblsl.ContinuousResolver resolver;
 
-		private int _expectedChannels = 0;
+		private int expectedChannels = 0;
 
-		private string[] _sample;
+		private string[] sample;
 
 		private void Start()
 		{
-			var expectedStreamHasAName = !StreamName.Equals("");
-			var expectedStreamHasAType = !StreamType.Equals("");
+			bool hasAName = streamName.Length != 0;
+			bool hasAType = streamType.Length != 0;
 
-			if (!expectedStreamHasAName && !expectedStreamHasAType)
+			if (!hasAName && !hasAType)
 			{
 				Debug.LogError("Inlet has to specify a name or a type before it is able to lookup a stream.");
 				enabled = false;
 				return;
 			}
 
-			if (expectedStreamHasAName)
+			if (hasAName)
 			{
-				Debug.Log("Creating LSL resolver for stream " + StreamName);
-				_resolver = new liblsl.ContinuousResolver("name", StreamName);
+				Debug.Log("Creating LSL resolver for stream " + streamName);
+				resolver = new liblsl.ContinuousResolver("name", streamName);
 			}
-			else // if (expectedStreamHasAType) // Useless with the first if
+			else // if (hasAType) // Useless with the first if
 			{
-				Debug.Log("Creating LSL resolver for stream with type " + StreamType);
-				_resolver = new liblsl.ContinuousResolver("type", StreamType);
+				Debug.Log("Creating LSL resolver for stream with type " + streamType);
+				resolver = new liblsl.ContinuousResolver("type", streamType);
 			}
 
 			StartCoroutine(ResolveExpectedStream());
@@ -578,38 +571,38 @@ namespace LSL4Unity.Scripts
 
 		private IEnumerator ResolveExpectedStream()
 		{
-			var results = _resolver.Results();
+			var results = resolver.Results();
 
 			yield return new WaitUntil(() => results.Length > 0);
 
-			_inlet = new liblsl.StreamInlet(results[0]);
+			inlet = new liblsl.StreamInlet(results[0]);
 
-			_expectedChannels = _inlet.Info().ChannelCount();
+			expectedChannels = inlet.Info().ChannelCount();
 
 			yield return null;
 		}
 
 		protected void PullSamples()
 		{
-			_sample = new string[_expectedChannels];
+			sample = new string[expectedChannels];
 
 			try
 			{
-				double lastTimeStamp = _inlet.PullSample(_sample, 0.0f);
+				double lastTimeStamp = inlet.PullSample(sample, 0.0f);
 
 				if (Math.Abs(lastTimeStamp) > Constants.TOLERANCE)
 				{
 					// do not miss the first one found
-					Process(_sample, lastTimeStamp);
+					Process(sample, lastTimeStamp);
 					// pull as long samples are available
-					while (Math.Abs(lastTimeStamp = _inlet.PullSample(_sample, 0.0f)) > Constants.TOLERANCE) { Process(_sample, lastTimeStamp); }
+					while (Math.Abs(lastTimeStamp = inlet.PullSample(sample, 0.0f)) > Constants.TOLERANCE) { Process(sample, lastTimeStamp); }
 				}
 			}
-			catch (ArgumentException aex)
+			catch (ArgumentException e)
 			{
 				Debug.LogError("An Error on pulling samples deactivating LSL inlet on...", this);
 				enabled = false;
-				Debug.LogException(aex, this);
+				Debug.LogException(e, this);
 			}
 		}
 
@@ -618,12 +611,12 @@ namespace LSL4Unity.Scripts
 
 		private void FixedUpdate()
 		{
-			if (Moment == UpdateMoment.FixedUpdate && _inlet != null) { PullSamples(); }
+			if (moment == UpdateMoment.FixedUpdate && inlet != null) { PullSamples(); }
 		}
 
 		private void Update()
 		{
-			if (Moment == UpdateMoment.Update && _inlet != null) { PullSamples(); }
+			if (moment == UpdateMoment.Update && inlet != null) { PullSamples(); }
 		}
 	}
 }

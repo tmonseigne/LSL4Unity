@@ -1,32 +1,29 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-namespace LSL4Unity.Scripts
+namespace LSL4Unity
 {
 	/// <summary> An reusable example of an outlet which provides the orientation and world position of an entity of an Unity Scene to LSL. </summary>
 	public class LSLTransformOutlet : MonoBehaviour
 	{
 		private const string UNIQUE_SOURCE_ID_SUFFIX = "63CE5B03731944F6AC30DBB04B451A94";
+		private       string uniqueSourceId;
+		private       int    channelCount = 0;
 
-		private string _uniqueSourceId;
-
-		private liblsl.StreamOutlet _outlet;
-		private liblsl.StreamInfo   _streamInfo;
-
-		private int _channelCount = 0;
+		private liblsl.StreamOutlet outlet;
+		private liblsl.StreamInfo   streamInfo;
 
 		/// <summary> Use a array to reduce allocation costs and reuse it for each sampling call. </summary>
-		private float[] _currentSample;
+		private float[] sample;
 
-		public Transform SampleSource;
 
-		public string StreamName = "BeMoBI.Unity.Orientation.<Add_a_entity_id_here>";
-		public string StreamType = "Unity.Quaternion";
-
-		public bool StreamRotationAsQuaternion = true;
-		public bool StreamRotationAsEuler      = true;
-		public bool StreamPosition             = true;
+		public string    streamName           = "BeMoBI.Unity.Orientation.<Add_a_entity_id_here>";
+		public string    streamType           = "Unity.Quaternion";
+		public bool      rotationAsQuaternion = true;
+		public bool      rotationAsEuler      = true;
+		public bool      position             = true;
+		public Transform sampleSource;
 
 		/// <summary> Due to an instable framerate we assume a irregular data rate. </summary>
 		private const double DATA_RATE = liblsl.IRREGULAR_RATE;
@@ -35,26 +32,26 @@ namespace LSL4Unity.Scripts
 		{
 			// assigning a unique source id as a combination of a the instance ID for the case that
 			// multiple LSLTransformOutlet are used and a guid identifing the script itself.
-			_uniqueSourceId = $"{GetInstanceID()}_{UNIQUE_SOURCE_ID_SUFFIX}";
+			uniqueSourceId = $"{GetInstanceID()}_{UNIQUE_SOURCE_ID_SUFFIX}";
 		}
 
 		private void Start()
 		{
 			var channelDefinitions = SetupChannels();
 			// initialize the array once
-			_channelCount  = channelDefinitions.Count;
-			_currentSample = new float[_channelCount];
-			_streamInfo    = new liblsl.StreamInfo(StreamName, StreamType, _channelCount, DATA_RATE, liblsl.channel_format_t.cf_float32, _uniqueSourceId);
+			channelCount = channelDefinitions.Count;
+			sample       = new float[channelCount];
+			streamInfo   = new liblsl.StreamInfo(streamName, streamType, channelCount, DATA_RATE, liblsl.channel_format_t.cf_float32, uniqueSourceId);
 
 			// it's not possible to create a XMLElement before and append it.
-			liblsl.XMLElement chns = _streamInfo.Desc().AppendChild("channels");
+			var chns = streamInfo.Desc().AppendChild("channels");
 			// so this workaround has been introduced.
 			foreach (var def in channelDefinitions)
 			{
-				chns.AppendChild("channel").AppendChildValue("label", def.Label).AppendChildValue("unit", def.Unit).AppendChildValue("type", def.Type);
+				chns.AppendChild("channel").AppendChildValue("label", def.label).AppendChildValue("unit", def.unit).AppendChildValue("type", def.type);
 			}
 
-			_outlet = new liblsl.StreamOutlet(_streamInfo);
+			outlet = new liblsl.StreamOutlet(streamInfo);
 		}
 
 		/// <summary>
@@ -62,8 +59,7 @@ namespace LSL4Unity.Scripts
 		/// </summary>
 		private void LateUpdate()
 		{
-			if (_outlet == null) { return; }
-
+			if (outlet == null) { return; }
 			Sample();
 		}
 
@@ -71,33 +67,33 @@ namespace LSL4Unity.Scripts
 		{
 			int offset = -1;
 
-			if (StreamRotationAsQuaternion)
+			if (rotationAsQuaternion)
 			{
-				var rotation = SampleSource.rotation;
+				var rotation = sampleSource.rotation;
 
-				_currentSample[++offset] = rotation.x;
-				_currentSample[++offset] = rotation.y;
-				_currentSample[++offset] = rotation.z;
-				_currentSample[++offset] = rotation.w;
+				sample[++offset] = rotation.x;
+				sample[++offset] = rotation.y;
+				sample[++offset] = rotation.z;
+				sample[++offset] = rotation.w;
 			}
-			if (StreamRotationAsEuler)
+			if (rotationAsEuler)
 			{
-				var rotation = SampleSource.rotation.eulerAngles;
+				var rotation = sampleSource.rotation.eulerAngles;
 
-				_currentSample[++offset] = rotation.x;
-				_currentSample[++offset] = rotation.y;
-				_currentSample[++offset] = rotation.z;
+				sample[++offset] = rotation.x;
+				sample[++offset] = rotation.y;
+				sample[++offset] = rotation.z;
 			}
-			if (StreamPosition)
+			if (position)
 			{
-				var position = SampleSource.position;
+				var pos = sampleSource.position;
 
-				_currentSample[++offset] = position.x;
-				_currentSample[++offset] = position.y;
-				_currentSample[++offset] = position.z;
+				sample[++offset] = pos.x;
+				sample[++offset] = pos.y;
+				sample[++offset] = pos.z;
 			}
 
-			_outlet.PushSample(_currentSample, liblsl.LocalClock());
+			outlet.PushSample(sample, liblsl.LocalClock());
 		}
 
 
@@ -107,26 +103,26 @@ namespace LSL4Unity.Scripts
 		{
 			var list = new List<ChannelDefinition>();
 
-			if (StreamRotationAsQuaternion)
+			if (rotationAsQuaternion)
 			{
 				string[] quatlabels = { "x", "y", "z", "w" };
 
-				list.AddRange(quatlabels.Select(item => new ChannelDefinition { Label = item, Unit = "unit quaternion", Type = "quaternion component" }));
+				list.AddRange(quatlabels.Select(item => new ChannelDefinition { label = item, unit = "unit quaternion", type = "quaternion component" }));
 			}
 
-			if (StreamRotationAsEuler)
+			if (rotationAsEuler)
 			{
 				string[] eulerLabels = { "x", "y", "z" };
 
-				list.AddRange(eulerLabels.Select(item => new ChannelDefinition { Label = item, Unit = "degree", Type = "axis angle" }));
+				list.AddRange(eulerLabels.Select(item => new ChannelDefinition { label = item, unit = "degree", type = "axis angle" }));
 			}
 
 
-			if (StreamPosition)
+			if (position)
 			{
 				string[] eulerLabels = { "x", "y", "z" };
 
-				list.AddRange(eulerLabels.Select(item => new ChannelDefinition { Label = item, Unit = "meter", Type = "position in world space" }));
+				list.AddRange(eulerLabels.Select(item => new ChannelDefinition { label = item, unit = "meter", type = "position in world space" }));
 			}
 
 			return list;

@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace LSL4Unity.Scripts
+namespace LSL4Unity
 {
 	public static class LSLUtils
 	{
@@ -41,10 +41,10 @@ namespace LSL4Unity.Scripts
 	/// A support class to construct channel definitions automatically.
 	/// See Transform Outlet as an example.
 	/// </summary>
-	public struct ChannelDefinition
+	internal struct ChannelDefinition
 	{
-		public string Label;
-		public string Unit;
-		public string Type;
+		public string label;
+		public string unit;
+		public string type;
 	}
 }

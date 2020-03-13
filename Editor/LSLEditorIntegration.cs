@@ -1,4 +1,4 @@
-﻿using System.IO;
+using System.IO;
 using System.Linq;
 using UnityEditor;
 using UnityEngine;
@@ -8,12 +8,11 @@ namespace LSL4Unity.Editor
 {
 	public class LSLEditorIntegration
 	{
-		public const string LIB64_NAME    = "liblsl64";
-		public const string LIB32_NAME    = "liblsl32";
-		public const string DLL_ENDING    = ".dll";
-		public const string SO_ENDING     = ".so";
-		public const string BUNDLE_ENDING = ".bundle";
-
+		public const  string LIB64_NAME       = "liblsl64";
+		public const  string LIB32_NAME       = "liblsl32";
+		public const  string DLL_ENDING       = ".dll";
+		public const  string SO_ENDING        = ".so";
+		public const  string BUNDLE_ENDING    = ".bundle";
 		private const string WIKI_URL         = "https://github.com/xfleckx/LSL4Unity/wiki";
 		private const string WRAPPER_FILENAME = "LSL.cs";
 		private const string ASSET_SUB_FOLDER = "LSL4Unity";

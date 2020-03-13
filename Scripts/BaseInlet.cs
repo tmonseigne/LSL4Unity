@@ -1,34 +1,34 @@
-﻿using System;
+using System;
 using System.Linq;
-using LSL4Unity.Scripts.OV;
+using LSL4Unity.OV;
 using UnityEngine;
 
-namespace LSL4Unity.Scripts
+namespace LSL4Unity
 {
 	public abstract class ABaseInlet : MonoBehaviour
 	{
-		public string StreamName;
-		public string StreamType;
+		public string streamName;
+		public string streamType;
 
-		protected liblsl.StreamInlet Inlet;
+		protected liblsl.StreamInlet inlet;
 
-		protected int ExpectedChannels;
+		protected int expectedChannels;
 
-		protected Resolver Resolver;
+		protected Resolver resolver;
 
 		/// <summary> Call this method when your inlet implementation got created at runtime. </summary>
 		protected virtual void RegisterAndLookUpStream()
 		{
-			Resolver = FindObjectOfType<Resolver>();
+			resolver = FindObjectOfType<Resolver>();
 
 			//Resolver.OnStreamFound.AddListener(new UnityAction<LSLStreamInfoWrapper>(AStreamIsFound));	// Redundant to explicit delegate creation
 			//Resolver.OnStreamLost.AddListener(new UnityAction<LSLStreamInfoWrapper>(AStreamGotLost));		// Redundant to explicit delegate creation
-			Resolver.OnStreamFound.AddListener(AStreamIsFound);
-			Resolver.OnStreamLost.AddListener(AStreamGotLost);
+			resolver.onStreamFound.AddListener(AStreamIsFound);
+			resolver.onStreamLost.AddListener(AStreamGotLost);
 
-			if (Resolver.KnownStreams.Any(IsTheExpected))
+			if (resolver.streams.Any(IsTheExpected))
 			{
-				var stream = Resolver.KnownStreams.First(IsTheExpected);
+				var stream = resolver.streams.First(IsTheExpected);
 				AStreamIsFound(stream);
 			}
 		}
@@ -39,10 +39,10 @@ namespace LSL4Unity.Scripts
 		{
 			if (!IsTheExpected(stream)) { return; }
 
-			Debug.Log($"LSL Stream {stream.Name} found for {name}");
+			Debug.Log($"LSL Stream {stream.name} found for {name}");
 
-			Inlet            = new liblsl.StreamInlet(stream.Item);
-			ExpectedChannels = stream.ChannelCount;
+			inlet            = new liblsl.StreamInlet(stream.Item);
+			expectedChannels = stream.ChannelCount;
 
 			OnStreamAvailable();
 		}
@@ -53,7 +53,7 @@ namespace LSL4Unity.Scripts
 		{
 			if (!IsTheExpected(stream)) { return; }
 
-			Debug.Log($"LSL Stream {stream.Name} Lost for {name}");
+			Debug.Log($"LSL Stream {stream.name} Lost for {name}");
 
 			OnStreamLost();
 		}
@@ -63,8 +63,8 @@ namespace LSL4Unity.Scripts
 		/// <returns> <c>true</c> if if the specified stream is the expected stream; otherwise, <c>false</c>. </returns>
 		protected virtual bool IsTheExpected(LSLStreamInfoWrapper stream)
 		{
-			bool predicate = StreamName.Equals(stream.Name);
-			predicate &= StreamType.Equals(stream.Type);
+			bool predicate = streamName.Equals(stream.name);
+			predicate &= streamType.Equals(stream.type);
 
 			return predicate;
 		}
@@ -97,29 +97,29 @@ namespace LSL4Unity.Scripts
 		/// <param name="time"> The current Time. </param>
 		protected abstract void Process(float[] sample, double time);
 
-		protected float[] Sample;
+		protected float[] sample;
 
 		protected override void PullSamples()
 		{
-			Sample = new float[ExpectedChannels];
+			sample = new float[expectedChannels];
 
 			try
 			{
-				double time = Inlet.PullSample(Sample, 0.0f);
+				double time = inlet.PullSample(sample, 0.0f);
 
 				if (Math.Abs(time) > Constants.TOLERANCE)
 				{
 					// do not miss the first one found
-					Process(Sample, time);
+					Process(sample, time);
 					// pull as long samples are available
-					while (Math.Abs(time = Inlet.PullSample(Sample, 0.0f)) > Constants.TOLERANCE) { Process(Sample, time); }
+					while (Math.Abs(time = inlet.PullSample(sample, 0.0f)) > Constants.TOLERANCE) { Process(sample, time); }
 				}
 			}
-			catch (ArgumentException aex)
+			catch (ArgumentException e)
 			{
 				Debug.LogError("An Error on pulling samples deactivating LSL inlet on...", this);
 				enabled = false;
-				Debug.LogException(aex, this);
+				Debug.LogException(e, this);
 			}
 		}
 	}
@@ -130,29 +130,29 @@ namespace LSL4Unity.Scripts
 		/// <inheritdoc cref="InletFloatSamples.Process"/>
 		protected abstract void Process(double[] sample, double time);
 
-		protected double[] Sample;
+		protected double[] sample;
 
 		protected override void PullSamples()
 		{
-			Sample = new double[ExpectedChannels];
+			sample = new double[expectedChannels];
 
 			try
 			{
-				double lastTimeStamp = Inlet.PullSample(Sample, 0.0f);
+				double lastTimeStamp = inlet.PullSample(sample, 0.0f);
 
 				if (Math.Abs(lastTimeStamp) > Constants.TOLERANCE)
 				{
 					// do not miss the first one found
-					Process(Sample, lastTimeStamp);
+					Process(sample, lastTimeStamp);
 					// pull as long samples are available
-					while (Math.Abs(lastTimeStamp = Inlet.PullSample(Sample, 0.0f)) > Constants.TOLERANCE) { Process(Sample, lastTimeStamp); }
+					while (Math.Abs(lastTimeStamp = inlet.PullSample(sample, 0.0f)) > Constants.TOLERANCE) { Process(sample, lastTimeStamp); }
 				}
 			}
-			catch (ArgumentException aex)
+			catch (ArgumentException e)
 			{
 				Debug.LogError("An Error on pulling samples deactivating LSL inlet on...", this);
 				enabled = false;
-				Debug.LogException(aex, this);
+				Debug.LogException(e, this);
 			}
 		}
 	}
@@ -163,29 +163,29 @@ namespace LSL4Unity.Scripts
 		/// <inheritdoc cref="InletFloatSamples.Process"/>
 		protected abstract void Process(int[] sample, double time);
 
-		protected int[] Sample;
+		protected int[] sample;
 
 		protected override void PullSamples()
 		{
-			Sample = new int[ExpectedChannels];
+			sample = new int[expectedChannels];
 
 			try
 			{
-				double lastTimeStamp = Inlet.PullSample(Sample, 0.0f);
+				double lastTimeStamp = inlet.PullSample(sample, 0.0f);
 
 				if (Math.Abs(lastTimeStamp) > Constants.TOLERANCE)
 				{
 					// do not miss the first one found
-					Process(Sample, lastTimeStamp);
+					Process(sample, lastTimeStamp);
 					// pull as long samples are available
-					while (Math.Abs(lastTimeStamp = Inlet.PullSample(Sample, 0.0f)) > Constants.TOLERANCE) { Process(Sample, lastTimeStamp); }
+					while (Math.Abs(lastTimeStamp = inlet.PullSample(sample, 0.0f)) > Constants.TOLERANCE) { Process(sample, lastTimeStamp); }
 				}
 			}
-			catch (ArgumentException aex)
+			catch (ArgumentException e)
 			{
 				Debug.LogError("An Error on pulling samples deactivating LSL inlet on...", this);
 				enabled = false;
-				Debug.LogException(aex, this);
+				Debug.LogException(e, this);
 			}
 		}
 	}
@@ -196,29 +196,29 @@ namespace LSL4Unity.Scripts
 		/// <inheritdoc cref="InletFloatSamples.Process"/>
 		protected abstract void Process(char[] sample, double time);
 
-		protected char[] Sample;
+		protected char[] sample;
 
 		protected override void PullSamples()
 		{
-			Sample = new char[ExpectedChannels];
+			sample = new char[expectedChannels];
 
 			try
 			{
-				double lastTimeStamp = Inlet.PullSample(Sample, 0.0f);
+				double lastTimeStamp = inlet.PullSample(sample, 0.0f);
 
 				if (Math.Abs(lastTimeStamp) > Constants.TOLERANCE)
 				{
 					// do not miss the first one found
-					Process(Sample, lastTimeStamp);
+					Process(sample, lastTimeStamp);
 					// pull as long samples are available
-					while (Math.Abs(lastTimeStamp = Inlet.PullSample(Sample, 0.0f)) > Constants.TOLERANCE) { Process(Sample, lastTimeStamp); }
+					while (Math.Abs(lastTimeStamp = inlet.PullSample(sample, 0.0f)) > Constants.TOLERANCE) { Process(sample, lastTimeStamp); }
 				}
 			}
-			catch (ArgumentException aex)
+			catch (ArgumentException e)
 			{
 				Debug.LogError("An Error on pulling samples deactivating LSL inlet on...", this);
 				enabled = false;
-				Debug.LogException(aex, this);
+				Debug.LogException(e, this);
 			}
 		}
 	}
@@ -229,29 +229,29 @@ namespace LSL4Unity.Scripts
 		/// <inheritdoc cref="InletFloatSamples.Process"/>
 		protected abstract void Process(string[] sample, double time);
 
-		protected string[] Sample;
+		protected string[] sample;
 
 		protected override void PullSamples()
 		{
-			Sample = new string[ExpectedChannels];
+			sample = new string[expectedChannels];
 
 			try
 			{
-				double lastTimeStamp = Inlet.PullSample(Sample, 0.0f);
+				double lastTimeStamp = inlet.PullSample(sample, 0.0f);
 
 				if (Math.Abs(lastTimeStamp) > Constants.TOLERANCE)
 				{
 					// do not miss the first one found
-					Process(Sample, lastTimeStamp);
+					Process(sample, lastTimeStamp);
 					// pull as long samples are available
-					while (Math.Abs(lastTimeStamp = Inlet.PullSample(Sample, 0.0f)) > Constants.TOLERANCE) { Process(Sample, lastTimeStamp); }
+					while (Math.Abs(lastTimeStamp = inlet.PullSample(sample, 0.0f)) > Constants.TOLERANCE) { Process(sample, lastTimeStamp); }
 				}
 			}
-			catch (ArgumentException aex)
+			catch (ArgumentException e)
 			{
 				Debug.LogError("An Error on pulling samples deactivating LSL inlet on...", this);
 				enabled = false;
-				Debug.LogException(aex, this);
+				Debug.LogException(e, this);
 			}
 		}
 	}
@@ -262,29 +262,29 @@ namespace LSL4Unity.Scripts
 		/// <inheritdoc cref="InletFloatSamples.Process"/>
 		protected abstract void Process(short[] sample, double time);
 
-		protected short[] Sample;
+		protected short[] sample;
 
 		protected override void PullSamples()
 		{
-			Sample = new short[ExpectedChannels];
+			sample = new short[expectedChannels];
 
 			try
 			{
-				double lastTimeStamp = Inlet.PullSample(Sample, 0.0f);
+				double lastTimeStamp = inlet.PullSample(sample, 0.0f);
 
 				if (Math.Abs(lastTimeStamp) > Constants.TOLERANCE)
 				{
 					// do not miss the first one found
-					Process(Sample, lastTimeStamp);
+					Process(sample, lastTimeStamp);
 					// pull as long samples are available
-					while (Math.Abs(lastTimeStamp = Inlet.PullSample(Sample, 0.0f)) > Constants.TOLERANCE) { Process(Sample, lastTimeStamp); }
+					while (Math.Abs(lastTimeStamp = inlet.PullSample(sample, 0.0f)) > Constants.TOLERANCE) { Process(sample, lastTimeStamp); }
 				}
 			}
-			catch (ArgumentException aex)
+			catch (ArgumentException e)
 			{
 				Debug.LogError("An Error on pulling samples deactivating LSL inlet on...", this);
 				enabled = false;
-				Debug.LogException(aex, this);
+				Debug.LogException(e, this);
 			}
 		}
 	}

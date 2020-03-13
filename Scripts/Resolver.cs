@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,29 +6,29 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
 
-namespace LSL4Unity.Scripts
+namespace LSL4Unity
 {
 	/// <summary> Encapsulates the lookup logic for LSL streams with an event based appraoch your custom stream inlet implementations could be subscribed to the On. </summary>
 	public class Resolver : MonoBehaviour, IEventSystemHandler
 	{
-		public StreamEvent OnStreamFound     = new StreamEvent();
-		public StreamEvent OnStreamLost      = new StreamEvent();
-		public float       ForgetStreamAfter = 1.0f;
+		public StreamEvent onStreamFound     = new StreamEvent();
+		public StreamEvent onStreamLost      = new StreamEvent();
+		public float       forgetStreamAfter = 1.0f;
 
-		public  List<LSLStreamInfoWrapper> KnownStreams;
-		private liblsl.ContinuousResolver  _resolver;
+		public  List<LSLStreamInfoWrapper> streams;
+		private liblsl.ContinuousResolver  resolver;
 
 		/// <summary> Use this for initialization. </summary>
 		private void Start()
 		{
-			_resolver = new liblsl.ContinuousResolver(ForgetStreamAfter);
+			resolver = new liblsl.ContinuousResolver(forgetStreamAfter);
 			StartCoroutine(ResolveContinuously());
 		}
 
 		public bool IsStreamAvailable(out LSLStreamInfoWrapper info, string streamName = "", string streamType = "", string hostName = "")
 		{
-			var result = KnownStreams.Where(i => (streamName.Length == 0 || i.Name.Equals(streamName)) && (streamType.Length == 0 || i.Type.Equals(streamType))
-																									   && (hostName.Length == 0 || i.Type.Equals(hostName)))
+			var result = streams.Where(i => (streamName.Length == 0 || i.name.Equals(streamName)) && (streamType.Length == 0 || i.type.Equals(streamType))
+																									   && (hostName.Length == 0 || i.type.Equals(hostName)))
 				.ToList();
 
 			if (result.Any())
@@ -44,30 +44,30 @@ namespace LSL4Unity.Scripts
 		{
 			while (true)
 			{
-				var results = _resolver.Results();
+				var results = resolver.Results();
 
-				foreach (var item in KnownStreams)
+				foreach (var item in streams)
 				{
-					if (!results.Any(r => r.Name().Equals(item.Name)))
+					if (!results.Any(r => r.Name().Equals(item.name)))
 					{
-						if (OnStreamLost.GetPersistentEventCount() > 0) { OnStreamLost.Invoke(item); }
+						if (onStreamLost.GetPersistentEventCount() > 0) { onStreamLost.Invoke(item); }
 					}
 				}
 
 				// remove lost streams from cache
-				KnownStreams.RemoveAll(s => !results.Any(r => r.Name().Equals(s.Name)));
+				streams.RemoveAll(s => !results.Any(r => r.Name().Equals(s.name)));
 
 				// add new found streams to the cache
 				foreach (var item in results)
 				{
-					if (!KnownStreams.Any(s => s.Name == item.Name() && s.Type == item.Type()))
+					if (!streams.Any(s => s.name == item.Name() && s.type == item.Type()))
 					{
 						Debug.Log($"Found new Stream {item.Name()}");
 
 						var newStreamInfo = new LSLStreamInfoWrapper(item);
-						KnownStreams.Add(newStreamInfo);
+						streams.Add(newStreamInfo);
 
-						if (OnStreamFound.GetPersistentEventCount() > 0) { OnStreamFound.Invoke(newStreamInfo); }
+						if (onStreamFound.GetPersistentEventCount() > 0) { onStreamFound.Invoke(newStreamInfo); }
 					}
 				}
 				yield return new WaitForSecondsRealtime(0.1f);
@@ -78,8 +78,8 @@ namespace LSL4Unity.Scripts
 	[Serializable]
 	public class LSLStreamInfoWrapper
 	{
-		public string Name;
-		public string Type;
+		public string name;
+		public string type;
 
 		public liblsl.StreamInfo Item { get; }
 
@@ -94,8 +94,8 @@ namespace LSL4Unity.Scripts
 		public LSLStreamInfoWrapper(liblsl.StreamInfo item)
 		{
 			Item          = item;
-			Name          = item.Name();
-			Type          = item.Type();
+			name          = item.Name();
+			type          = item.Type();
 			ChannelCount  = item.ChannelCount();
 			StreamUid     = item.Uid();
 			SessionId     = item.SessionId();

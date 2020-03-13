@@ -1,6 +1,4 @@
-using System;
-
-namespace LSL4Unity.Scripts.OV.Template
+namespace LSL4Unity.OV.Template
 {
 	/// <summary> Implementation for a Inlet receiving Matrix (double) from OpenViBE. </summary>
 	/// <seealso cref="OVDoubleInlet" />
@@ -27,10 +25,10 @@ namespace LSL4Unity.Scripts.OV.Template
 
 		protected override void Process(double[] input, double time)
 		{
-			if (NChannel == -1) { NChannel = (int) (input[0]); }
+			if (NChannel == -1) { NChannel = (int) input[0]; }
 			else if (NSample == -1)
 			{
-				NSample = (int) (input[0]);
+				NSample = (int) input[0];
 				Matrix  = new double[NChannel, NSample];
 				ResetMatrix();
 			}

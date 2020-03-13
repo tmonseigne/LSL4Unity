@@ -1,5 +1,4 @@
-﻿using System;
-using LSL4Unity.Scripts;
+using System;
 using UnityEditor;
 
 namespace LSL4Unity.Editor
@@ -13,10 +12,10 @@ namespace LSL4Unity.Editor
 			{
 				if (monoScript.GetClass() != null)
 				{
-					foreach (var a in Attribute.GetCustomAttributes(monoScript.GetClass(), typeof(ScriptOrder)))
+					foreach (Attribute a in Attribute.GetCustomAttributes(monoScript.GetClass(), typeof(ScriptOrder)))
 					{
-						var currentOrder = MonoImporter.GetExecutionOrder(monoScript);
-						var newOrder     = ((ScriptOrder) a).Order;
+						int currentOrder = MonoImporter.GetExecutionOrder(monoScript);
+						int newOrder     = ((ScriptOrder)a).order;
 						if (currentOrder != newOrder) { MonoImporter.SetExecutionOrder(monoScript, newOrder); }
 					}
 				}

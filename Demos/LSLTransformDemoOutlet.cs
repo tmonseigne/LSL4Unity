@@ -1,71 +1,67 @@
-using LSL4Unity.Scripts;
 using UnityEngine;
 
 namespace LSL4Unity.Demos
 {
-	/// <summary>
-	/// An reusable example of an outlet which provides the orientation of an entity to LSL
-	/// </summary>
+	/// <summary> An reusable example of an outlet which provides the orientation of an entity to LSL. </summary>
 	public class LSLTransformDemoOutlet : MonoBehaviour
 	{
 		private const string UNIQUE_SOURCE_ID = "D256CFBDBA3145978CFA641403219531";
 
-		private liblsl.StreamOutlet _outlet;
-		private liblsl.StreamInfo   _streamInfo;
-		public  liblsl.StreamInfo   GetStreamInfo() { return _streamInfo; }
+		private liblsl.StreamOutlet outlet;
+		private liblsl.StreamInfo   info;
+		//public  liblsl.StreamInfo   GetStreamInfo() { return info; }
+
+		public string streamName   = "BeMoBI.Unity.Orientation.<Add_a_entity_id_here>";
+		public string streamType   = "Unity.Quaternion";
+		public int    channelCount = 4;
+
+		public MomentForSampling sampling;
+		public Transform         sampleSource;
 
 		/// <summary> Use a array to reduce allocation costs. </summary>
-		private float[] _currentSample;
+		private float[] sample;
 
-		private double _dataRate;
+		private double dataRate;
 
-		public double GetDataRate() { return _dataRate; }
-		public bool   HasConsumer() { return _outlet != null && _outlet.HaveConsumers(); }
-
-		public string StreamName   = "BeMoBI.Unity.Orientation.<Add_a_entity_id_here>";
-		public string StreamType   = "Unity.Quaternion";
-		public int    ChannelCount = 4;
-
-		public MomentForSampling Sampling;
-
-		public Transform SampleSource;
+		public double GetDataRate() { return dataRate; }
+		public bool   HasConsumer() { return outlet != null && outlet.HaveConsumers(); }
 
 		private void Start()
 		{
 			// initialize the array once
-			_currentSample = new float[ChannelCount];
-			_dataRate      = LSLUtils.GetSamplingRateFor(Sampling);
-			_streamInfo    = new liblsl.StreamInfo(StreamName, StreamType, ChannelCount, _dataRate, liblsl.channel_format_t.cf_float32, UNIQUE_SOURCE_ID);
-			_outlet        = new liblsl.StreamOutlet(_streamInfo);
+			sample = new float[channelCount];
+			dataRate      = LSLUtils.GetSamplingRateFor(sampling);
+			info          = new liblsl.StreamInfo(streamName, streamType, channelCount, dataRate, liblsl.channel_format_t.cf_float32, UNIQUE_SOURCE_ID);
+			outlet        = new liblsl.StreamOutlet(info);
 		}
 
 		private void PushSample()
 		{
-			if (_outlet == null) { return; }
-			var rotation = SampleSource.rotation;
+			if (outlet == null) { return; }
+			var rotation = sampleSource.rotation;
 
 			// reuse the array for each sample to reduce allocation costs
-			_currentSample[0] = rotation.x;
-			_currentSample[1] = rotation.y;
-			_currentSample[2] = rotation.z;
-			_currentSample[3] = rotation.w;
+			sample[0] = rotation.x;
+			sample[1] = rotation.y;
+			sample[2] = rotation.z;
+			sample[3] = rotation.w;
 
-			_outlet.PushSample(_currentSample, liblsl.LocalClock());
+			outlet.PushSample(sample, liblsl.LocalClock());
 		}
 
 		private void FixedUpdate()
 		{
-			if (Sampling == MomentForSampling.FixedUpdate) { PushSample(); }
+			if (sampling == MomentForSampling.FixedUpdate) { PushSample(); }
 		}
 
 		private void Update()
 		{
-			if (Sampling == MomentForSampling.Update) { PushSample(); }
+			if (sampling == MomentForSampling.Update) { PushSample(); }
 		}
 
 		private void LateUpdate()
 		{
-			if (Sampling == MomentForSampling.LateUpdate) { PushSample(); }
+			if (sampling == MomentForSampling.LateUpdate) { PushSample(); }
 		}
 	}
 }

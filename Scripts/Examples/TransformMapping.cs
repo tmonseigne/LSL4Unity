@@ -1,10 +1,10 @@
 using UnityEngine;
 
-namespace LSL4Unity.Scripts.Examples
+namespace LSL4Unity.Examples
 {
 	public class TransformMapping : AFloatInlet
 	{
-		public Transform TargetTransform;
+		public Transform targetTransform;
 
 		protected override void Process(float[] sample, double time)
 		{
@@ -17,7 +17,7 @@ namespace LSL4Unity.Scripts.Examples
 			var targetRotation = Quaternion.Euler(x, y, z);
 
 			// apply the rotation to the target transform
-			TargetTransform.rotation = targetRotation;
+			targetTransform.rotation = targetRotation;
 		}
 	}
 }

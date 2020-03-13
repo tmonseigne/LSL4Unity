@@ -1,4 +1,3 @@
-﻿using LSL4Unity.Scripts;
 using UnityEditor;
 
 namespace LSL4Unity.Editor

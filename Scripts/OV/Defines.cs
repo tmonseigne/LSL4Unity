@@ -1,11 +1,14 @@
-﻿namespace LSL4Unity.Scripts.OV
+namespace LSL4Unity.OV
 {
-	internal static class Constants
+	public static class Constants
 	{
 		public const double TOLERANCE = 1e-6;
 	}
 
-	internal static class GDFStimulations
+	/// <summary> List of GDF Stimulations. </summary>
+	/// <remarks> You cna use nameof operator to see the name instead of the value of the staimulation in log or other. </remarks>
+	/// <seealso cref="https://docs.microsoft.com/dotnet/csharp/language-reference/operators/nameof"/>
+	public static class GDFStimulations
 	{
 		public const int GDF_ARTIFACT_EOG_LARGE             = 00257;
 		public const int GDF_ARTIFACT_ECG                   = 00258;
@@ -122,7 +125,10 @@
 		public const int GDF_NON_EQUIDISTANT_SAMPLING_VALUE = 32767;
 	}
 
-	internal static class Stimulations
+	/// <summary> List of OpenViBE Stimulations. </summary>
+	/// <remarks> You cna use nameof operator to see the name instead of the value of the staimulation in log or other. </remarks>
+	/// <seealso cref="https://docs.microsoft.com/dotnet/csharp/language-reference/operators/nameof"/>
+	public static class Stimulations
 	{
 		public const int NUMBER_00 = 00000;
 		public const int NUMBER_01 = 00001;

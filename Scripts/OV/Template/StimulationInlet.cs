@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace LSL4Unity.Scripts.OV.Template
+namespace LSL4Unity.OV.Template
 {
 	/// <summary> Implementation for a Inlet receiving Stimulations (int) from OpenViBE. </summary>
 	/// <seealso cref="OVFloatInlet" />

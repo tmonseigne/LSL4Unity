@@ -1,6 +1,6 @@
-﻿using UnityEngine;
+using UnityEngine;
 
-namespace LSL4Unity.Scripts.Examples
+namespace LSL4Unity.Examples
 {
 	/// <summary>
 	/// Example that works with the Resolver component.
@@ -13,13 +13,9 @@ namespace LSL4Unity.Scripts.Examples
 	/// </summary>
 	public class DemoInletForFloatSamples : InletFloatSamples
 	{
-		public Transform TargetTransform;
-
-		public bool UseX;
-		public bool UseY;
-		public bool UseZ;
-
-		private bool _pullSamplesContinuously = false;
+		public  Transform targetTransform;
+		public  bool      useX, useY, useZ;
+		private bool      pullContinuously = false;
 
 		//void Start()
 		//{
@@ -31,7 +27,7 @@ namespace LSL4Unity.Scripts.Examples
 		protected override bool IsTheExpected(LSLStreamInfoWrapper stream)
 		{
 			// the base implementation just checks for stream name and type
-			var predicate = base.IsTheExpected(stream);
+			bool predicate = base.IsTheExpected(stream);
 			// add a more specific description for your stream here specifying hostname etc.
 			//predicate &= stream.HostName.Equals("Expected Hostname");
 			return predicate;
@@ -48,24 +44,24 @@ namespace LSL4Unity.Scripts.Examples
 		protected override void Process(float[] sample, double time)
 		{
 			//Assuming that a samples contains at least 3 values for x,y,z
-			float x = UseX ? sample[0] : 1;
-			float y = UseY ? sample[1] : 1;
-			float z = UseZ ? sample[2] : 1;
+			float x = useX ? sample[0] : 1;
+			float y = useY ? sample[1] : 1;
+			float z = useZ ? sample[2] : 1;
 
 			// we map the data to the scale factors
-			var targetScale = new Vector3(x, y, z);
+			Vector3 targetScale = new Vector3(x, y, z);
 
 			// apply the rotation to the target transform
-			TargetTransform.localScale = targetScale;
+			targetTransform.localScale = targetScale;
 		}
 
-		protected override void OnStreamAvailable() { _pullSamplesContinuously = true; }
+		protected override void OnStreamAvailable() { pullContinuously = true; }
 
-		protected override void OnStreamLost() { _pullSamplesContinuously = false; }
+		protected override void OnStreamLost() { pullContinuously = false; }
 
 		private void Update()
 		{
-			if (_pullSamplesContinuously) { PullSamples(); }
+			if (pullContinuously) { PullSamples(); }
 		}
 	}
 }

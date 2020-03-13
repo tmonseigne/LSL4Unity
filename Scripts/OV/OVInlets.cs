@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using UnityEngine;
 
-namespace LSL4Unity.Scripts.OV
+namespace LSL4Unity.OV
 {
 	/// <summary> Base Inlet for OpenViBE Link. </summary>
 	/// <seealso cref="MonoBehaviour" />

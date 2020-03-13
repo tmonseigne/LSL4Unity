@@ -29,7 +29,7 @@ namespace LSL4Unity
 		public const double DEDUCED_TIMESTAMP = -1.0;
 
 		/// <summary> A very large time duration (> 1 year) for timeout values. </summary>
-		/// <remarks>Note that significantly larger numbers can cause the timeout to be invalid on some operating systems (e.g., 32-bit UNIX).</remarks>
+		/// <remarks> Note that significantly larger numbers can cause the timeout to be invalid on some operating systems (e.g., 32-bit UNIX). </remarks>
 		public const double FOREVER = 32000000.0;
 
 		/// <summary> Data format of a channel (each transmitted sample holds an array of channels). </summary>

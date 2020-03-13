@@ -1,6 +1,6 @@
-﻿using System;
+using System;
 
-namespace LSL4Unity.Scripts
+namespace LSL4Unity
 {
 	/// <summary>
 	/// This attribute is used to define specific script execution orders when necessary!
@@ -9,8 +9,8 @@ namespace LSL4Unity.Scripts
 	/// </summary>
 	public class ScriptOrder : Attribute
 	{
-		public readonly int Order;
+		public readonly int order;
 
-		public ScriptOrder(int order) { Order = order; }
+		public ScriptOrder(int order) { this.order = order; }
 	}
 }

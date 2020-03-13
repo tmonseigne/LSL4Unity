@@ -1,7 +1,4 @@
-using System;
-using UnityEngine;
-
-namespace LSL4Unity.Scripts.OV.Template
+namespace LSL4Unity.OV.Template
 {
 	/// <summary> Just an example implementation for a Inlet receiving double values for OpenViBE Link. </summary>
 	/// <seealso cref="OVFloatInlet" />

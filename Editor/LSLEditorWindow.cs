@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
@@ -13,27 +13,27 @@ namespace LSL4Unity.Editor
 
 		//private const string CLICK_LOOK_UP_FIRST = "Click lookup first";
 
-		private readonly List<string> _listNamesOfStreams = new List<string>();
+		private readonly List<string> namesOfStreams = new List<string>();
 
-		private Vector2 _scrollVector;
-		private string  _streamLookUpResult;
+		private Vector2 scrollVector;
+		private string  streamLookUpResult;
 
-		private liblsl.ContinuousResolver _resolver;
-		private string                    _lslVersionInfos;
+		private liblsl.ContinuousResolver resolver;
+		private string                    lslVersionInfos;
 
 		public void Init()
 		{
-			_resolver = new liblsl.ContinuousResolver();
+			resolver = new liblsl.ContinuousResolver();
 
-			var libVersion      = liblsl.LibraryVersion();
-			var protocolVersion = liblsl.ProtocolVersion();
+			int libVersion      = liblsl.LibraryVersion();
+			int protocolVersion = liblsl.ProtocolVersion();
 
-			var libMajor  = libVersion / 100;
-			var libMinor  = libVersion % 100;
-			var protMajor = protocolVersion / 100;
-			var protMinor = protocolVersion % 100;
+			int libMajor  = libVersion / 100;
+			int libMinor  = libVersion % 100;
+			int protMajor = protocolVersion / 100;
+			int protMinor = protocolVersion % 100;
 
-			_lslVersionInfos = $"You are using LSL library: {libMajor}.{libMinor} implementing protocol version: {protMajor}.{protMinor}";
+			lslVersionInfos = $"You are using LSL library: {libMajor}.{libMinor} implementing protocol version: {protMajor}.{protMinor}";
 
 			titleContent = new GUIContent("LSL Utility");
 		}
@@ -42,20 +42,20 @@ namespace LSL4Unity.Editor
 
 		private void OnGUI()
 		{
-			if (_resolver == null) { Init(); }
+			if (resolver == null) { Init(); }
 
 			UpdateStreams();
 
 			EditorGUILayout.BeginVertical();
 			EditorGUILayout.Space();
-			EditorGUILayout.LabelField(_lslVersionInfos, EditorStyles.miniLabel);
+			EditorGUILayout.LabelField(lslVersionInfos, EditorStyles.miniLabel);
 			EditorGUILayout.BeginHorizontal();
-			EditorGUILayout.LabelField(_streamLookUpResult, EditorStyles.boldLabel);
+			EditorGUILayout.LabelField(streamLookUpResult, EditorStyles.boldLabel);
 			EditorGUILayout.EndHorizontal();
 			EditorGUILayout.Space();
 			EditorGUILayout.Separator();
 
-			_scrollVector = EditorGUILayout.BeginScrollView(_scrollVector, GUILayout.Width(EditorGUIUtility.currentViewWidth));
+			scrollVector = EditorGUILayout.BeginScrollView(scrollVector, GUILayout.Width(EditorGUIUtility.currentViewWidth));
 			GUILayoutOption fieldWidth = GUILayout.Width(EditorGUIUtility.currentViewWidth / 4.3f);
 
 			EditorGUILayout.BeginHorizontal();
@@ -66,7 +66,7 @@ namespace LSL4Unity.Editor
 			EditorGUILayout.LabelField("Data Rate", EditorStyles.boldLabel, fieldWidth);
 			EditorGUILayout.EndHorizontal();
 
-			foreach (var item in _listNamesOfStreams)
+			foreach (string item in namesOfStreams)
 			{
 				string[] s = item.Split(' ');
 
@@ -83,14 +83,14 @@ namespace LSL4Unity.Editor
 
 		private void UpdateStreams()
 		{
-			_listNamesOfStreams.Clear();
-			_streamInfos = _resolver.Results();
+			namesOfStreams.Clear();
+			_streamInfos = resolver.Results();
 
-			if (_streamInfos.Length == 0) { _streamLookUpResult = NO_STREAMS_FOUND; }
+			if (_streamInfos.Length == 0) { streamLookUpResult = NO_STREAMS_FOUND; }
 			else
 			{
-				foreach (var item in _streamInfos) { _listNamesOfStreams.Add($"{item.Name()} {item.Type()} {item.Hostname()} {item.Sampling()}"); }
-				_streamLookUpResult = _listNamesOfStreams.Count + N_STREAMS_FOUND;
+				foreach (liblsl.StreamInfo item in _streamInfos) { namesOfStreams.Add($"{item.Name()} {item.Type()} {item.Hostname()} {item.Sampling()}"); }
+				streamLookUpResult = namesOfStreams.Count + N_STREAMS_FOUND;
 			}
 		}
 	}
