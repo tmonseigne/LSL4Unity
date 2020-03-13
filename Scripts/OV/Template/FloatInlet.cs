@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using UnityEngine;
 
 namespace LSL4Unity.Scripts.OV.Template
@@ -7,9 +7,9 @@ namespace LSL4Unity.Scripts.OV.Template
 	/// <seealso cref="OVFloatInlet" />
 	public class FloatInlet : OVFloatInlet
 	{
-		public float[] LastSample;
+		public float[] LastSample { get; private set; }
 
 		/// <inheritdoc cref="OVFloatInlet.Process"/>
-		protected override void Process(float[] sample, double time) { LastSample = sample; }
+		protected override void Process(float[] input, double time) { LastSample = input; }
 	}
 }

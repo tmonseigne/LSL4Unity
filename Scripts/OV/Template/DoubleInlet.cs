@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using UnityEngine;
 
 namespace LSL4Unity.Scripts.OV.Template
@@ -7,9 +7,9 @@ namespace LSL4Unity.Scripts.OV.Template
 	/// <seealso cref="OVFloatInlet" />
 	public class DoubleInlet : OVDoubleInlet
 	{
-		public double[] LastSample;
+		public double[] LastSample { get; private set; }
 
 		/// <inheritdoc cref="OVDoubleInlet.Process"/>
-		protected override void Process(double[] sample, double time) { LastSample = sample; }
+		protected override void Process(double[] input, double time) { LastSample = input; }
 	}
 }

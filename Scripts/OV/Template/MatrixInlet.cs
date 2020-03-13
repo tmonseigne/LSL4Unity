@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 
 namespace LSL4Unity.Scripts.OV.Template
 {
@@ -25,12 +25,12 @@ namespace LSL4Unity.Scripts.OV.Template
 			_curSample  = 0;
 		}
 
-		protected override void Process(double[] sample, double time)
+		protected override void Process(double[] input, double time)
 		{
-			if (NChannel == -1) { NChannel = (int) (sample[0]); }
+			if (NChannel == -1) { NChannel = (int) (input[0]); }
 			else if (NSample == -1)
 			{
-				NSample = (int) (sample[0]);
+				NSample = (int) (input[0]);
 				Matrix  = new double[NChannel, NSample];
 				ResetMatrix();
 			}

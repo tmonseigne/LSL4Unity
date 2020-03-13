@@ -1,4 +1,4 @@
-﻿using LSL4Unity.Scripts;
+using LSL4Unity.Scripts;
 using UnityEngine;
 
 namespace LSL4Unity.Demos

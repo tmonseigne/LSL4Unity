@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 
 namespace LSL4Unity.Scripts.OV.Template
 {
@@ -6,13 +6,13 @@ namespace LSL4Unity.Scripts.OV.Template
 	/// <seealso cref="OVFloatInlet" />
 	public class StimulationInlet : OVIntInlet
 	{
-		public int[] LastSample;
+		public int[] LastSample { get; private set; }
 
 		/// <inheritdoc cref="OVIntInlet.Process"/>
-		protected override void Process(int[] sample, double time)
+		protected override void Process(int[] input, double time)
 		{
-			LastSample = sample;
-			Debug.Log($"Got {sample.Length} ints at {time}");
+			LastSample = input;
+			Debug.Log($"Got {input.Length} ints at {time}");
 		}
 	}
 }

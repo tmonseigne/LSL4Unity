@@ -1,29 +1,32 @@
-﻿using System;
+using System;
 using System.Collections;
 using UnityEngine;
 
 namespace LSL4Unity.Scripts.OV
 {
-	/// <summary> Base Inlet for OpenViBE Link </summary>
-	/// <seealso cref="UnityEngine.MonoBehaviour" />
-	public abstract class OVInlet : MonoBehaviour
+	/// <summary> Base Inlet for OpenViBE Link. </summary>
+	/// <seealso cref="MonoBehaviour" />
+	public abstract class OVInlet<T> : MonoBehaviour
 	{
-		public enum UpdateMoment { FixedUpdate, Update }
+		private enum UpdateMoment { FixedUpdate, Update }
 
-		public UpdateMoment Moment;
+		[SerializeField] private UpdateMoment moment     = UpdateMoment.Update;
+		[SerializeField] private string       streamName = "ovSignal";
 
-		public string StreamName = "ovSignal";
+		public string StreamName => streamName;
 
-		protected liblsl.StreamInlet        Inlet;
-		private   liblsl.StreamInfo[]       _results;
-		private   liblsl.ContinuousResolver _resolver;
+		protected liblsl.StreamInlet        inlet;
+		private   liblsl.ContinuousResolver resolver;
 
-		protected int ExpectedChannels = 0;
+		private   bool readyToResolve   = true;
+		protected int  expectedChannels = 0;
+		protected T[]  samples;
+
 
 		/// <summary> Start is called before the first frame update. </summary>
 		private void Start()
 		{
-			var hasAName = StreamName.Length != 0;
+			bool hasAName = streamName.Length != 0;
 
 			if (!hasAName)
 			{
@@ -32,8 +35,8 @@ namespace LSL4Unity.Scripts.OV
 				return;
 			}
 
-			Debug.Log("Creating LSL resolver for stream " + StreamName);
-			_resolver = new liblsl.ContinuousResolver("name", StreamName);
+			Debug.Log("Creating LSL resolver for stream " + streamName);
+			resolver = new liblsl.ContinuousResolver("name", streamName);
 
 			StartCoroutine(ResolveExpectedStream());
 		}
@@ -41,132 +44,130 @@ namespace LSL4Unity.Scripts.OV
 		/// <summary> Fixupdate is called once per physics framerate. </summary>
 		private void FixedUpdate()
 		{
-			if (Moment == UpdateMoment.FixedUpdate && Inlet != null) { PullSamples(); }
+			if (moment == UpdateMoment.FixedUpdate && inlet != null) { PullSamples(); }
 		}
 
 		/// <summary> Update is called once per frame. </summary>
 		private void Update()
 		{
-			if (Moment == UpdateMoment.Update && Inlet != null) { PullSamples(); }
+			if (moment == UpdateMoment.Update && inlet != null) { PullSamples(); }
 		}
 
 		/// <summary> Resolves the stream. </summary>
 		/// <returns></returns>
 		private IEnumerator ResolveExpectedStream()
 		{
-			_results = _resolver.Results();
-			yield return new WaitUntil(() => _results.Length > 0);
+			yield return new WaitUntil(() => readyToResolve); // False mutex to wait Found Stream before search an other
+			readyToResolve = false;                           // Avoïd double resolver
 
-			Debug.Log($"Resolving Stream : {StreamName}");
+			liblsl.StreamInfo[] results = resolver.Results();
+			yield return new WaitUntil(() => results.Length > 0);
 
-			Inlet            = new liblsl.StreamInlet(_results[0]);
-			ExpectedChannels = Inlet.Info().ChannelCount();
+			Debug.Log($"Resolving Stream : {streamName}");
 
+			inlet            = new liblsl.StreamInlet(results[0]);
+			expectedChannels = inlet.Info().ChannelCount();
+
+			readyToResolve = true;
 			yield return null;
 		}
 
 		/// <summary> Pull the samples. </summary>
 		protected abstract void PullSamples();
-	}
-
-	public abstract class OVFloatInlet : OVInlet
-	{
-		private float[] _sample;
-
-		/// <inheritdoc cref="OVInlet.PullSamples"/>
-		protected override void PullSamples()
-		{
-			_sample = new float[ExpectedChannels];
-
-			try
-			{
-				double lastTimeStamp = Inlet.PullSample(_sample, 0.0f);
-
-				if (Math.Abs(lastTimeStamp) > Constants.TOLERANCE)
-				{
-					// do not miss the first one found
-					Process(_sample, lastTimeStamp);
-					// pull as long samples are available
-					while (Math.Abs(lastTimeStamp = Inlet.PullSample(_sample, 0.0f)) > Constants.TOLERANCE) { Process(_sample, lastTimeStamp); }
-				}
-			}
-			catch (ArgumentException aex)
-			{
-				Debug.LogError("An Error on pulling samples deactivating LSL inlet on...", this);
-				enabled = false;
-				Debug.LogException(aex, this);
-			}
-		}
 
 		/// <summary> Override this method in the subclass to specify what should happen when samples are available. </summary>
-		/// <param name="sample"> The Incomming Sample. </param>
+		/// <param name="input"> The Incomming Sample. </param>
 		/// <param name="time"> The current Time. </param>
-		protected abstract void Process(float[] sample, double time);
+		protected abstract void Process(T[] input, double time);
 	}
 
-	public abstract class OVDoubleInlet : OVInlet
+	/// <summary> Float Inlet for OpenViBE Link. </summary>
+	/// <seealso cref="OVInlet{T}" />
+	public abstract class OVFloatInlet : OVInlet<float>
 	{
-		private double[] _sample;
-
-		/// <inheritdoc cref="OVInlet.PullSamples"/>
+		/// <inheritdoc cref="OVInlet{T}.PullSamples"/>
 		protected override void PullSamples()
 		{
-			_sample = new double[ExpectedChannels];
+			samples = new float[expectedChannels];
 
 			try
 			{
-				double lastTimeStamp = Inlet.PullSample(_sample, 0.0f);
+				double lastTimeStamp = inlet.PullSample(samples, 0.0f);
 
 				if (Math.Abs(lastTimeStamp) > Constants.TOLERANCE)
 				{
 					// do not miss the first one found
-					Process(_sample, lastTimeStamp);
+					Process(samples, lastTimeStamp);
 					// pull as long samples are available
-					while (Math.Abs(lastTimeStamp = Inlet.PullSample(_sample, 0.0f)) > Constants.TOLERANCE) { Process(_sample, lastTimeStamp); }
+					while (Math.Abs(lastTimeStamp = inlet.PullSample(samples, 0.0f)) > Constants.TOLERANCE) { Process(samples, lastTimeStamp); }
 				}
 			}
-			catch (ArgumentException aex)
+			catch (ArgumentException e)
 			{
 				Debug.LogError("An Error on pulling samples deactivating LSL inlet on...", this);
 				enabled = false;
-				Debug.LogException(aex, this);
+				Debug.LogException(e, this);
 			}
 		}
-
-		/// <inheritdoc cref="OVFloatInlet.Process"/>
-		protected abstract void Process(double[] sample, double time);
 	}
 
-	public abstract class OVIntInlet : OVInlet
+	/// <summary> Double Inlet for OpenViBE Link. </summary>
+	/// <seealso cref="OVInlet{T}" />
+	public abstract class OVDoubleInlet : OVInlet<double>
 	{
-		private int[] _sample;
-
-		/// <inheritdoc cref="OVInlet.PullSamples"/>
+		/// <inheritdoc cref="OVInlet{T}.PullSamples"/>
 		protected override void PullSamples()
 		{
-			_sample = new int[ExpectedChannels];
+			samples = new double[expectedChannels];
 
 			try
 			{
-				double lastTimeStamp = Inlet.PullSample(_sample, 0.0f);
+				double lastTimeStamp = inlet.PullSample(samples, 0.0f);
 
 				if (Math.Abs(lastTimeStamp) > Constants.TOLERANCE)
 				{
 					// do not miss the first one found
-					Process(_sample, lastTimeStamp);
+					Process(samples, lastTimeStamp);
 					// pull as long samples are available
-					while (Math.Abs(lastTimeStamp = Inlet.PullSample(_sample, 0.0f)) > Constants.TOLERANCE) { Process(_sample, lastTimeStamp); }
+					while (Math.Abs(lastTimeStamp = inlet.PullSample(samples, 0.0f)) > Constants.TOLERANCE) { Process(samples, lastTimeStamp); }
 				}
 			}
-			catch (ArgumentException aex)
+			catch (ArgumentException e)
 			{
 				Debug.LogError("An Error on pulling samples deactivating LSL inlet on...", this);
 				enabled = false;
-				Debug.LogException(aex, this);
+				Debug.LogException(e, this);
 			}
 		}
+	}
 
-		/// <inheritdoc cref="OVFloatInlet.Process"/>
-		protected abstract void Process(int[] sample, double time);
+	/// <summary> Int Inlet for OpenViBE Link. </summary>
+	/// <seealso cref="OVInlet{T}" />
+	public abstract class OVIntInlet : OVInlet<int>
+	{
+		/// <inheritdoc cref="OVInlet{T}.PullSamples"/>
+		protected override void PullSamples()
+		{
+			samples = new int[expectedChannels];
+
+			try
+			{
+				double lastTimeStamp = inlet.PullSample(samples, 0.0f);
+
+				if (Math.Abs(lastTimeStamp) > Constants.TOLERANCE)
+				{
+					// do not miss the first one found
+					Process(samples, lastTimeStamp);
+					// pull as long samples are available
+					while (Math.Abs(lastTimeStamp = inlet.PullSample(samples, 0.0f)) > Constants.TOLERANCE) { Process(samples, lastTimeStamp); }
+				}
+			}
+			catch (ArgumentException e)
+			{
+				Debug.LogError("An Error on pulling samples deactivating LSL inlet on...", this);
+				enabled = false;
+				Debug.LogException(e, this);
+			}
+		}
 	}
 }

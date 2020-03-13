@@ -47,7 +47,7 @@ namespace LSL4Unity.Scripts.Examples
 		/// <param name="time"> The current Time. </param>
 		protected override void Process(float[] sample, double time)
 		{
-			//Assuming that a sample contains at least 3 values for x,y,z
+			//Assuming that a samples contains at least 3 values for x,y,z
 			float x = UseX ? sample[0] : 1;
 			float y = UseY ? sample[1] : 1;
 			float z = UseZ ? sample[2] : 1;
