@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using UnityEngine;
 
 namespace LSL4Unity.Scripts
@@ -7,12 +7,10 @@ namespace LSL4Unity.Scripts
 	{
 		private const int DEFAULT_PLATTFORM_SPECIFIC_FRAMERATE = -1;
 
-		/// <summary>
-		/// - EXPERIMENTAL -
-		/// Use this to get the sampling rate on which most post processing procedures rely - like importing recorded date as .xdf file to EEGLAB.
-		/// </summary>
-		/// <param name="moment">Enumeration value for FixedUpdate, Update, LateUpdate ...</param>
-		/// <param name="setRefreshRateToDisplay">Set this to false, if another framerate has been specified manually</param>
+		/// <summary> - EXPERIMENTAL -
+		/// Use this to get the sampling rate on which most post processing procedures rely - like importing recorded date as .xdf file to EEGLAB. </summary>
+		/// <param name="moment"> Enumeration value for FixedUpdate, Update, LateUpdate ... </param>
+		/// <param name="setRefreshRateToDisplay"> Set this to false, if another framerate has been specified manually </param>
 		/// <returns></returns>
 		public static float GetSamplingRateFor(MomentForSampling moment, bool setRefreshRateToDisplay = true)
 		{

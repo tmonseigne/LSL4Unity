@@ -5,7 +5,6 @@ namespace LSL4Unity.Scripts
 {
 	public enum MomentForSampling { Update, FixedUpdate, LateUpdate }
 
-
 	public class LSLOutlet : MonoBehaviour
 	{
 		private liblsl.StreamOutlet _outlet;
@@ -18,7 +17,7 @@ namespace LSL4Unity.Scripts
 
 		private Stopwatch _watch;
 
-		// Use this for initialization
+		/// <summary> Use this for initialization. </summary>
 		private void Start()
 		{
 			_watch = new Stopwatch();

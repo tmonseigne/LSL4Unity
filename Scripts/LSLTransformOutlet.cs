@@ -4,9 +4,7 @@ using UnityEngine;
 
 namespace LSL4Unity.Scripts
 {
-	/// <summary>
-	/// An reusable example of an outlet which provides the orientation and world position of an entity of an Unity Scene to LSL
-	/// </summary>
+	/// <summary> An reusable example of an outlet which provides the orientation and world position of an entity of an Unity Scene to LSL. </summary>
 	public class LSLTransformOutlet : MonoBehaviour
 	{
 		private const string UNIQUE_SOURCE_ID_SUFFIX = "63CE5B03731944F6AC30DBB04B451A94";
@@ -18,10 +16,7 @@ namespace LSL4Unity.Scripts
 
 		private int _channelCount = 0;
 
-		/// <summary>
-		/// Use a array to reduce allocation costs
-		/// and reuse it for each sampling call
-		/// </summary>
+		/// <summary> Use a array to reduce allocation costs and reuse it for each sampling call. </summary>
 		private float[] _currentSample;
 
 		public Transform SampleSource;
@@ -33,9 +28,7 @@ namespace LSL4Unity.Scripts
 		public bool StreamRotationAsEuler      = true;
 		public bool StreamPosition             = true;
 
-		/// <summary>
-		/// Due to an instable framerate we assume a irregular data rate.
-		/// </summary>
+		/// <summary> Due to an instable framerate we assume a irregular data rate. </summary>
 		private const double DATA_RATE = liblsl.IRREGULAR_RATE;
 
 		private void Awake()
@@ -48,13 +41,10 @@ namespace LSL4Unity.Scripts
 		private void Start()
 		{
 			var channelDefinitions = SetupChannels();
-
-			_channelCount = channelDefinitions.Count;
-
 			// initialize the array once
+			_channelCount  = channelDefinitions.Count;
 			_currentSample = new float[_channelCount];
-
-			_streamInfo = new liblsl.StreamInfo(StreamName, StreamType, _channelCount, DATA_RATE, liblsl.channel_format_t.cf_float32, _uniqueSourceId);
+			_streamInfo    = new liblsl.StreamInfo(StreamName, StreamType, _channelCount, DATA_RATE, liblsl.channel_format_t.cf_float32, _uniqueSourceId);
 
 			// it's not possible to create a XMLElement before and append it.
 			liblsl.XMLElement chns = _streamInfo.Desc().AppendChild("channels");

@@ -34,7 +34,7 @@ namespace LSL4Unity.Scripts
 		}
 
 		/// <summary> Callback method for the Resolver gets called each time the resolver found a stream. </summary>
-		/// <param name="stream"></param>
+		/// <param name="stream"> The stream. </param>
 		public virtual void AStreamIsFound(LSLStreamInfoWrapper stream)
 		{
 			if (!IsTheExpected(stream)) { return; }
@@ -47,10 +47,8 @@ namespace LSL4Unity.Scripts
 			OnStreamAvailable();
 		}
 
-		/// <summary>
-		/// Callback method for the Resolver gets called each time the resolver misses a stream within its cache
-		/// </summary>
-		/// <param name="stream"></param>
+		/// <summary> Callback method for the Resolver gets called each time the resolver misses a stream within its cache. </summary>
+		/// <param name="stream"> The stream. </param>
 		public virtual void AStreamGotLost(LSLStreamInfoWrapper stream)
 		{
 			if (!IsTheExpected(stream)) { return; }
@@ -60,6 +58,9 @@ namespace LSL4Unity.Scripts
 			OnStreamLost();
 		}
 
+		/// <summary> Determines if the specified stream is the expected stream. </summary>
+		/// <param name="stream"> The stream. </param>
+		/// <returns> <c>true</c> if if the specified stream is the expected stream; otherwise, <c>false</c>. </returns>
 		protected virtual bool IsTheExpected(LSLStreamInfoWrapper stream)
 		{
 			bool predicate = StreamName.Equals(stream.Name);
@@ -68,14 +69,19 @@ namespace LSL4Unity.Scripts
 			return predicate;
 		}
 
+		/// <summary> Pull the samples. </summary>
 		protected abstract void PullSamples();
 
+		/// <summary> Called when a stream is available. </summary>
+		/// <exception cref="NotImplementedException">Please override this method in a derived class!</exception>
 		protected virtual void OnStreamAvailable()
 		{
 			// base implementation may not decide what happens when the stream gets available
 			throw new NotImplementedException("Please override this method in a derived class!");
 		}
 
+		/// <summary> Called when a stream is lost. </summary>
+		/// <exception cref="NotImplementedException">Please override this method in a derived class!</exception>
 		protected virtual void OnStreamLost()
 		{
 			// base implementation may not decide what happens when the stream gets lost
@@ -83,8 +89,12 @@ namespace LSL4Unity.Scripts
 		}
 	}
 
+	/// <inheritdoc/>
 	public abstract class InletFloatSamples : ABaseInlet
 	{
+		/// <summary> Override this method in the subclass to specify what should happen when samples are available. </summary>
+		/// <param name="sample"> The Incomming Sample. </param>
+		/// <param name="time"> The current Time. </param>
 		protected abstract void Process(float[] sample, double time);
 
 		protected float[] Sample;
@@ -114,8 +124,10 @@ namespace LSL4Unity.Scripts
 		}
 	}
 
+	/// <inheritdoc/>
 	public abstract class InletDoubleSamples : ABaseInlet
 	{
+		/// <inheritdoc cref="InletFloatSamples.Process"/>
 		protected abstract void Process(double[] sample, double time);
 
 		protected double[] Sample;
@@ -145,8 +157,10 @@ namespace LSL4Unity.Scripts
 		}
 	}
 
+	/// <inheritdoc/>
 	public abstract class InletIntSamples : ABaseInlet
 	{
+		/// <inheritdoc cref="InletFloatSamples.Process"/>
 		protected abstract void Process(int[] sample, double time);
 
 		protected int[] Sample;
@@ -176,8 +190,10 @@ namespace LSL4Unity.Scripts
 		}
 	}
 
+	/// <inheritdoc/>
 	public abstract class InletCharSamples : ABaseInlet
 	{
+		/// <inheritdoc cref="InletFloatSamples.Process"/>
 		protected abstract void Process(char[] sample, double time);
 
 		protected char[] Sample;
@@ -207,8 +223,10 @@ namespace LSL4Unity.Scripts
 		}
 	}
 
+	/// <inheritdoc/>
 	public abstract class InletStringSamples : ABaseInlet
 	{
+		/// <inheritdoc cref="InletFloatSamples.Process"/>
 		protected abstract void Process(string[] sample, double time);
 
 		protected string[] Sample;
@@ -238,8 +256,10 @@ namespace LSL4Unity.Scripts
 		}
 	}
 
+	/// <inheritdoc/>
 	public abstract class InletShortSamples : ABaseInlet
 	{
+		/// <inheritdoc cref="InletFloatSamples.Process"/>
 		protected abstract void Process(short[] sample, double time);
 
 		protected short[] Sample;

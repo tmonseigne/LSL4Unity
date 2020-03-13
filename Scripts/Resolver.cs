@@ -8,10 +8,7 @@ using UnityEngine.EventSystems;
 
 namespace LSL4Unity.Scripts
 {
-	/// <summary>
-	/// Encapsulates the lookup logic for LSL streams with an event based appraoch
-	/// your custom stream inlet implementations could be subscribed to the On
-	/// </summary>
+	/// <summary> Encapsulates the lookup logic for LSL streams with an event based appraoch your custom stream inlet implementations could be subscribed to the On. </summary>
 	public class Resolver : MonoBehaviour, IEventSystemHandler
 	{
 		public StreamEvent OnStreamFound     = new StreamEvent();
@@ -21,18 +18,18 @@ namespace LSL4Unity.Scripts
 		public  List<LSLStreamInfoWrapper> KnownStreams;
 		private liblsl.ContinuousResolver  _resolver;
 
-		// Use this for initialization
+		/// <summary> Use this for initialization. </summary>
 		private void Start()
 		{
 			_resolver = new liblsl.ContinuousResolver(ForgetStreamAfter);
-
 			StartCoroutine(ResolveContinuously());
 		}
 
 		public bool IsStreamAvailable(out LSLStreamInfoWrapper info, string streamName = "", string streamType = "", string hostName = "")
 		{
-			var result = KnownStreams.Where(i => (streamName == "" || i.Name.Equals(streamName)) && (streamType == "" || i.Type.Equals(streamType))
-																								 && (hostName == "" || i.Type.Equals(hostName))).ToList();
+			var result = KnownStreams.Where(i => (streamName.Length == 0 || i.Name.Equals(streamName)) && (streamType.Length == 0 || i.Type.Equals(streamType))
+																								  && (hostName.Length == 0 || i.Type.Equals(hostName)))
+				.ToList();
 
 			if (result.Any())
 			{

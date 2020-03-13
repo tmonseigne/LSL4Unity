@@ -43,8 +43,8 @@ namespace LSL4Unity.Scripts.Examples
 		/// coroutines for more complexe processing tasks to distribute processing time over
 		/// several frames
 		/// </summary>
-		/// <param name="sample"></param>
-		/// <param name="time"></param>
+		/// <param name="sample"> The Incomming Sample. </param>
+		/// <param name="time"> The current Time. </param>
 		protected override void Process(float[] sample, double time)
 		{
 			//Assuming that a sample contains at least 3 values for x,y,z
