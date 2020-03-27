@@ -1,0 +1,927 @@
+{
+  "sitemap": {
+    "fileOptions": {
+      "api/*": {
+        "baseUrl": "https://tmonseigne.github.io/LSL4Unity/",
+        "changefreq": "daily"
+      }
+    },
+    "baseUrl": "https://tmonseigne.github.io/LSL4Unity/",
+    "changefreq": "weekly"
+  },
+  "homepages": [],
+  "source_base_path": "D:/a/LSL4Unity/LSL4Unity/Documentation",
+  "xrefmap": "xrefmap.yml",
+  "files": [
+    {
+      "type": "Resource",
+      "output": {
+        "resource": {
+          "relative_path": "index.json"
+        }
+      },
+      "is_incremental": false
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/LSL4Unity.ABaseInlet.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/LSL4Unity.ABaseInlet.html",
+          "hash": "oLscNndd1NGYbYayNJs1Tw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/LSL4Unity.ACharInlet.UpdateMoment.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/LSL4Unity.ACharInlet.UpdateMoment.html",
+          "hash": "mzUwiB9N7z5xFLiRgc0gyg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/LSL4Unity.ACharInlet.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/LSL4Unity.ACharInlet.html",
+          "hash": "wdaQSktSMMP/GccFmjg4xg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/LSL4Unity.ADoubleInlet.UpdateMoment.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/LSL4Unity.ADoubleInlet.UpdateMoment.html",
+          "hash": "aTAwfT+P3/YoGelKanKhOA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/LSL4Unity.ADoubleInlet.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/LSL4Unity.ADoubleInlet.html",
+          "hash": "Hd+mgbGLnSNGit9CrV5FHA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/LSL4Unity.AFloatInlet.UpdateMoment.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/LSL4Unity.AFloatInlet.UpdateMoment.html",
+          "hash": "5enlP0pRA15RScpB0OK89g=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/LSL4Unity.AFloatInlet.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/LSL4Unity.AFloatInlet.html",
+          "hash": "1OEHu+1r6+lhQd9CLNd5Lg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/LSL4Unity.AIntInlet.UpdateMoment.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/LSL4Unity.AIntInlet.UpdateMoment.html",
+          "hash": "BDjnMeEyRMZ6ny0mlsiDYw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/LSL4Unity.AIntInlet.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/LSL4Unity.AIntInlet.html",
+          "hash": "1MxEwYqqrYiIUrMlgDn14Q=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/LSL4Unity.AShortInlet.UpdateMoment.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/LSL4Unity.AShortInlet.UpdateMoment.html",
+          "hash": "jGnJzQZd9qR61K41ELKCFg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/LSL4Unity.AShortInlet.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/LSL4Unity.AShortInlet.html",
+          "hash": "rVJbIF4fN6gC2fRyh+x68Q=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/LSL4Unity.AStringInlet.UpdateMoment.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/LSL4Unity.AStringInlet.UpdateMoment.html",
+          "hash": "eu11+sfeb5Ou1uchfZw95w=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/LSL4Unity.AStringInlet.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/LSL4Unity.AStringInlet.html",
+          "hash": "I0ASJpQU5XpA8tt8GBylBw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/LSL4Unity.Demos.CubeRotation.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/LSL4Unity.Demos.CubeRotation.html",
+          "hash": "NEHWc4EPrc8ygsVqOtHR8g=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/LSL4Unity.Demos.LSLTransformDemoOutlet.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/LSL4Unity.Demos.LSLTransformDemoOutlet.html",
+          "hash": "QLVP03av66KJ99oJmtpcXg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/LSL4Unity.Demos.RandomMarker.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/LSL4Unity.Demos.RandomMarker.html",
+          "hash": "4ls9GuPEC3ptoN5cAnGXdg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/LSL4Unity.Demos.StreamInfo.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/LSL4Unity.Demos.StreamInfo.html",
+          "hash": "Z+y4pMLTOUi+1JJ2c/G2Tg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/LSL4Unity.Demos.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/LSL4Unity.Demos.html",
+          "hash": "EdiTPQgqpOrjd38CsxaPQg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/LSL4Unity.Editor.BuildHooks.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/LSL4Unity.Editor.BuildHooks.html",
+          "hash": "3seG9QHK1ojre/isoBBbwQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/LSL4Unity.Editor.LSLEditorIntegration.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/LSL4Unity.Editor.LSLEditorIntegration.html",
+          "hash": "sTW8PxQbyL7useuWQnN7Sg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/LSL4Unity.Editor.LSLShowStreamsWindow.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/LSL4Unity.Editor.LSLShowStreamsWindow.html",
+          "hash": "RmkJqHhhv2gHsjK+3g+KqA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/LSL4Unity.Editor.TimeSyncEditor.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/LSL4Unity.Editor.TimeSyncEditor.html",
+          "hash": "Z943P9QhSUbCS3EIA/p6Aw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/LSL4Unity.Editor.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/LSL4Unity.Editor.html",
+          "hash": "gCtLVEWqh07wSVM4XaQ8QQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/LSL4Unity.Examples.DemoInletForFloatSamples.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/LSL4Unity.Examples.DemoInletForFloatSamples.html",
+          "hash": "QM2HYZkugneZzYWYLdDmvQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/LSL4Unity.Examples.ExampleFloatInlet.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/LSL4Unity.Examples.ExampleFloatInlet.html",
+          "hash": "e8jGlfvWynIFCbnR6iPY+Q=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/LSL4Unity.Examples.ScaleMapping.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/LSL4Unity.Examples.ScaleMapping.html",
+          "hash": "XPlboX6MREN4J5N2FphilA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/LSL4Unity.Examples.TransformMapping.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/LSL4Unity.Examples.TransformMapping.html",
+          "hash": "Qiqvjwv+3yPXON5Ux3drUw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/LSL4Unity.Examples.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/LSL4Unity.Examples.html",
+          "hash": "5WTxQ5uAsJQ6oSkqVBk4FQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/LSL4Unity.InletCharSamples.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/LSL4Unity.InletCharSamples.html",
+          "hash": "GWgdrxxbg9EQ4ds3W33Y/Q=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/LSL4Unity.InletDoubleSamples.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/LSL4Unity.InletDoubleSamples.html",
+          "hash": "mobr0/+IEA5pB3fxwEh6vw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/LSL4Unity.InletFloatSamples.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/LSL4Unity.InletFloatSamples.html",
+          "hash": "tAzdRr3zmd8e0QQTG/xNuA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/LSL4Unity.InletIntSamples.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/LSL4Unity.InletIntSamples.html",
+          "hash": "dTddthoRsON+2C1ZbqqIaQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/LSL4Unity.InletShortSamples.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/LSL4Unity.InletShortSamples.html",
+          "hash": "48jijwD+3AlsQfkUyc3yFw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/LSL4Unity.InletStringSamples.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/LSL4Unity.InletStringSamples.html",
+          "hash": "xog/+Xc5TqUgvgVSFc9NXw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/LSL4Unity.LSLMarkerStream.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/LSL4Unity.LSLMarkerStream.html",
+          "hash": "i/KbFYGbIu5DO3GqrFKurA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/LSL4Unity.LSLOutlet.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/LSL4Unity.LSLOutlet.html",
+          "hash": "eKIczkhx3kYHfNseBHACqw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/LSL4Unity.LSLStreamInfoWrapper.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/LSL4Unity.LSLStreamInfoWrapper.html",
+          "hash": "zl/9CH8XE5vGe6k6gA5LuA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/LSL4Unity.LSLTimeSync.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/LSL4Unity.LSLTimeSync.html",
+          "hash": "Z8klJ6SxBjPHKv6ypd3Z+A=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/LSL4Unity.LSLTransformOutlet.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/LSL4Unity.LSLTransformOutlet.html",
+          "hash": "mW4NgzCZNpR+cwKp8+A0dQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/LSL4Unity.LSLUtils.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/LSL4Unity.LSLUtils.html",
+          "hash": "0bQ2ZjVXl5bLFDEMaV7zLQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/LSL4Unity.MomentForSampling.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/LSL4Unity.MomentForSampling.html",
+          "hash": "COc1yywmZGh63vOH1GcXjQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/LSL4Unity.OV.Constants.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/LSL4Unity.OV.Constants.html",
+          "hash": "4ULncqnot6490kSdTM9sUA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/LSL4Unity.OV.GDFStimulations.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/LSL4Unity.OV.GDFStimulations.html",
+          "hash": "mUMNnBqOWwxTgIfL/K4Qvg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/LSL4Unity.OV.OVDoubleInlet.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/LSL4Unity.OV.OVDoubleInlet.html",
+          "hash": "T1wE5Irqll5ksLOmPH93nA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/LSL4Unity.OV.OVFloatInlet.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/LSL4Unity.OV.OVFloatInlet.html",
+          "hash": "WeZooYlTVJL+AXyJoQp1tw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/LSL4Unity.OV.OVInlet-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/LSL4Unity.OV.OVInlet-1.html",
+          "hash": "Tau67R+ILyf6wFfR1miJqA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/LSL4Unity.OV.OVIntInlet.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/LSL4Unity.OV.OVIntInlet.html",
+          "hash": "d8gR8W4/2ie+xbEXh8TrfA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/LSL4Unity.OV.Stimulations.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/LSL4Unity.OV.Stimulations.html",
+          "hash": "Mkpr6+FABKhZ+zUAMs1VvA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/LSL4Unity.OV.Template.DoubleInlet.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/LSL4Unity.OV.Template.DoubleInlet.html",
+          "hash": "s98l+/KGYCPWIWPbofAHZg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/LSL4Unity.OV.Template.FloatInlet.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/LSL4Unity.OV.Template.FloatInlet.html",
+          "hash": "kAbICpp5BHrUv1e3ljeW/A=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/LSL4Unity.OV.Template.MatrixInlet.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/LSL4Unity.OV.Template.MatrixInlet.html",
+          "hash": "RxLkEg+B/PqGUYctwoD6mQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/LSL4Unity.OV.Template.StimulationInlet.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/LSL4Unity.OV.Template.StimulationInlet.html",
+          "hash": "aZpqL1/tywsr/CsYNEHZSQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/LSL4Unity.OV.Template.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/LSL4Unity.OV.Template.html",
+          "hash": "20WhuaLvTImQIFPb9oWHsQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/LSL4Unity.OV.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/LSL4Unity.OV.html",
+          "hash": "VJ09JKf/9v7LkPFFePpVMw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/LSL4Unity.Resolver.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/LSL4Unity.Resolver.html",
+          "hash": "uzSebXnkv/NaGVGDdA6Fbw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/LSL4Unity.ScriptOrder.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/LSL4Unity.ScriptOrder.html",
+          "hash": "8Mts5ijlj/t7oKzXnpsc8w=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/LSL4Unity.StreamEvent.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/LSL4Unity.StreamEvent.html",
+          "hash": "PNSFgILCBHwQ7qAGxz8aGg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/LSL4Unity.liblsl.ContinuousResolver.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/LSL4Unity.liblsl.ContinuousResolver.html",
+          "hash": "uJflHfiU0J0xwxjt3WLCZA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/LSL4Unity.liblsl.InternalException.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/LSL4Unity.liblsl.InternalException.html",
+          "hash": "UzVOGj9pu5M0R+gHtXF9cw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/LSL4Unity.liblsl.LostException.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/LSL4Unity.liblsl.LostException.html",
+          "hash": "I672qUyLZh9OvPlNCtZ8ag=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/LSL4Unity.liblsl.StreamInfo.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/LSL4Unity.liblsl.StreamInfo.html",
+          "hash": "2ipnPOALI4LDqOIT9zUNLw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/LSL4Unity.liblsl.StreamInlet.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/LSL4Unity.liblsl.StreamInlet.html",
+          "hash": "Ywe8xwM79qftqtqhRp/F0A=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/LSL4Unity.liblsl.StreamOutlet.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/LSL4Unity.liblsl.StreamOutlet.html",
+          "hash": "RtTCZVbllSI74IsOspq25A=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/LSL4Unity.liblsl.XMLElement.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/LSL4Unity.liblsl.XMLElement.html",
+          "hash": "FH5x5hw5cXaLpATB4Vt0Pg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/LSL4Unity.liblsl.channel_format_t.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/LSL4Unity.liblsl.channel_format_t.html",
+          "hash": "hieSGliSg2TZw1YWHurG1w=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/LSL4Unity.liblsl.processing_options_t.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/LSL4Unity.liblsl.processing_options_t.html",
+          "hash": "RvOiMWDpf+ETDjG6bdBMKg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/LSL4Unity.liblsl.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/LSL4Unity.liblsl.html",
+          "hash": "kHjCy7f6UmgxeJePDuPQ1w=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/LSL4Unity.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/LSL4Unity.html",
+          "hash": "6LFCIZ5ChmelL6iElf3m/g=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "api/toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/toc.html",
+          "hash": "xKKd7B4wulzfwtoT4v9AEQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "index.md",
+      "output": {
+        ".html": {
+          "relative_path": "index.html",
+          "hash": "eKCwS0lv2BMYOo8iiyDObw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "toc.html",
+          "hash": "WNocBWyhn4XHPI36Ko79Rw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    }
+  ],
+  "incremental_info": [
+    {
+      "status": {
+        "can_incremental": false,
+        "details": "Cannot build incrementally because last build info is missing.",
+        "incrementalPhase": "build",
+        "total_file_count": 0,
+        "skipped_file_count": 0,
+        "full_build_reason_code": "NoAvailableBuildCache"
+      },
+      "processors": {
+        "ConceptualDocumentProcessor": {
+          "can_incremental": false,
+          "incrementalPhase": "build",
+          "total_file_count": 1,
+          "skipped_file_count": 0
+        },
+        "ManagedReferenceDocumentProcessor": {
+          "can_incremental": false,
+          "incrementalPhase": "build",
+          "total_file_count": 68,
+          "skipped_file_count": 0
+        },
+        "TocDocumentProcessor": {
+          "can_incremental": false,
+          "details": "Processor TocDocumentProcessor cannot support incremental build because the processor doesn't implement ISupportIncrementalDocumentProcessor interface.",
+          "incrementalPhase": "build",
+          "total_file_count": 0,
+          "skipped_file_count": 0
+        }
+      }
+    },
+    {
+      "status": {
+        "can_incremental": false,
+        "details": "Cannot support incremental post processing, the reason is: should not trace intermediate info.",
+        "incrementalPhase": "postProcessing",
+        "total_file_count": 0,
+        "skipped_file_count": 0
+      },
+      "processors": {}
+    }
+  ],
+  "version_info": {},
+  "groups": [
+    {
+      "xrefmap": "xrefmap.yml"
+    }
+  ]
+}

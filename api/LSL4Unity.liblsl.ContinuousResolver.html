@@ -1,0 +1,310 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class liblsl.ContinuousResolver
+   | LSL 4 Unity documentation </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class liblsl.ContinuousResolver
+   | LSL 4 Unity documentation ">
+    <meta name="generator" content="docfx 2.51.0.0">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    <meta property="docfx:rel" content="../">
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list"></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="LSL4Unity.liblsl.ContinuousResolver">
+  
+  
+  <h1 id="LSL4Unity_liblsl_ContinuousResolver" data-uid="LSL4Unity.liblsl.ContinuousResolver" class="text-break">Class liblsl.ContinuousResolver
+  </h1>
+  <div class="markdown level0 summary"><p>A convenience class that resolves streams continuously in the background throughout 
+its lifetime and which can be queried at any time for the set of streams that are currently  visible on the network. </p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+  <div class="inheritance">
+    <h5>Inheritance</h5>
+    <div class="level0"><span class="xref">System.Object</span></div>
+    <div class="level1"><span class="xref">liblsl.ContinuousResolver</span></div>
+  </div>
+  <div class="inheritedMembers">
+    <h5>Inherited Members</h5>
+    <div>
+      <span class="xref">System.Object.ToString()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.Equals(System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.Equals(System.Object, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.ReferenceEquals(System.Object, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.GetHashCode()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.GetType()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.MemberwiseClone()</span>
+    </div>
+  </div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="LSL4Unity.html">LSL4Unity</a></h6>
+  <h6><strong>Assembly</strong>: cs.temp.dll.dll</h6>
+  <h5 id="LSL4Unity_liblsl_ContinuousResolver_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class ContinuousResolver</code></pre>
+  </div>
+  <h3 id="constructors">Constructors
+  </h3>
+  
+  
+  <a id="LSL4Unity_liblsl_ContinuousResolver__ctor_" data-uid="LSL4Unity.liblsl.ContinuousResolver.#ctor*"></a>
+  <h4 id="LSL4Unity_liblsl_ContinuousResolver__ctor_System_Double_" data-uid="LSL4Unity.liblsl.ContinuousResolver.#ctor(System.Double)">ContinuousResolver(Double)</h4>
+  <div class="markdown level1 summary"><p>Initializes a new instance of the <a class="xref" href="LSL4Unity.liblsl.ContinuousResolver.html">liblsl.ContinuousResolver</a> class that resolves all streams on the network. </p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ContinuousResolver(double forgetAfter = 5)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Double</span></td>
+        <td><span class="parametername">forgetAfter</span></td>
+        <td><p>When a stream is no longer visible on the network (e.g., because it was shut down),
+this is the time in seconds after which it is no longer reported by the resolver.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="LSL4Unity_liblsl_ContinuousResolver__ctor_" data-uid="LSL4Unity.liblsl.ContinuousResolver.#ctor*"></a>
+  <h4 id="LSL4Unity_liblsl_ContinuousResolver__ctor_System_String_System_Double_" data-uid="LSL4Unity.liblsl.ContinuousResolver.#ctor(System.String,System.Double)">ContinuousResolver(String, Double)</h4>
+  <div class="markdown level1 summary"><p>Initializes a new instance of the <a class="xref" href="LSL4Unity.liblsl.ContinuousResolver.html">liblsl.ContinuousResolver</a> class that resolves all streams that match a given XPath 1.0 predicate. </p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ContinuousResolver(string pred, double forgetAfter = 5)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">pred</span></td>
+        <td><p>The predicate string, e.g. &quot;name=&apos;BioSemi&apos;&quot; or &quot;type=&apos;EEG&apos; and starts-with(name,&apos;BioSemi&apos;) and count(info/desc/channel)=32&quot; </p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Double</span></td>
+        <td><span class="parametername">forgetAfter</span></td>
+        <td><p>When a stream is no longer visible on the network (e.g., because it was shut down),
+this is the time in seconds after which it is no longer reported by the resolver.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="LSL4Unity_liblsl_ContinuousResolver__ctor_" data-uid="LSL4Unity.liblsl.ContinuousResolver.#ctor*"></a>
+  <h4 id="LSL4Unity_liblsl_ContinuousResolver__ctor_System_String_System_String_System_Double_" data-uid="LSL4Unity.liblsl.ContinuousResolver.#ctor(System.String,System.String,System.Double)">ContinuousResolver(String, String, Double)</h4>
+  <div class="markdown level1 summary"><p>Initializes a new instance of the <a class="xref" href="LSL4Unity.liblsl.ContinuousResolver.html">liblsl.ContinuousResolver</a> class that resolves all streams with a specific value for a given property. </p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ContinuousResolver(string prop, string value, double forgetAfter = 5)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">prop</span></td>
+        <td><p>The <a class="xref" href="LSL4Unity.liblsl.StreamInfo.html">liblsl.StreamInfo</a> property that should have a specific value (e.g., &quot;name&quot;, &quot;type&quot;, &quot;SourceId&quot;, or &quot;desc/manufaturer&quot;). </p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">value</span></td>
+        <td><p>The string value that the property should have (e.g., &quot;EEG&quot; as the type property). </p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Double</span></td>
+        <td><span class="parametername">forgetAfter</span></td>
+        <td><p>When a stream is no longer visible on the network (e.g., because it was shut down),
+this is the time in seconds after which it is no longer reported by the resolver.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="methods">Methods
+  </h3>
+  
+  
+  <a id="LSL4Unity_liblsl_ContinuousResolver_Finalize_" data-uid="LSL4Unity.liblsl.ContinuousResolver.Finalize*"></a>
+  <h4 id="LSL4Unity_liblsl_ContinuousResolver_Finalize" data-uid="LSL4Unity.liblsl.ContinuousResolver.Finalize">Finalize()</h4>
+  <div class="markdown level1 summary"><p>Finalizes an instance of the <a class="xref" href="LSL4Unity.liblsl.ContinuousResolver.html">liblsl.ContinuousResolver</a> class. </p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected void Finalize()</code></pre>
+  </div>
+  
+  
+  <a id="LSL4Unity_liblsl_ContinuousResolver_Results_" data-uid="LSL4Unity.liblsl.ContinuousResolver.Results*"></a>
+  <h4 id="LSL4Unity_liblsl_ContinuousResolver_Results" data-uid="LSL4Unity.liblsl.ContinuousResolver.Results">Results()</h4>
+  <div class="markdown level1 summary"><p>Obtain the set of currently present streams on the network (i.e. resolve result). </p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public liblsl.StreamInfo[] Results()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="LSL4Unity.liblsl.StreamInfo.html">liblsl.StreamInfo</a>[]</td>
+        <td><p>An array of matching stream info objects (excluding their meta-data), any of which can subsequently be used to open an inlet. </p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            LSL 4 Unity documentation
+            
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>

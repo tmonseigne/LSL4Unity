@@ -1,0 +1,1249 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class liblsl.StreamInlet
+   | LSL 4 Unity documentation </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class liblsl.StreamInlet
+   | LSL 4 Unity documentation ">
+    <meta name="generator" content="docfx 2.51.0.0">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    <meta property="docfx:rel" content="../">
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list"></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="LSL4Unity.liblsl.StreamInlet">
+  
+  
+  <h1 id="LSL4Unity_liblsl_StreamInlet" data-uid="LSL4Unity.liblsl.StreamInlet" class="text-break">Class liblsl.StreamInlet
+  </h1>
+  <div class="markdown level0 summary"><p>A stream inlet. </p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+  <div class="inheritance">
+    <h5>Inheritance</h5>
+    <div class="level0"><span class="xref">System.Object</span></div>
+    <div class="level1"><span class="xref">liblsl.StreamInlet</span></div>
+  </div>
+  <div class="inheritedMembers">
+    <h5>Inherited Members</h5>
+    <div>
+      <span class="xref">System.Object.ToString()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.Equals(System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.Equals(System.Object, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.ReferenceEquals(System.Object, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.GetHashCode()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.GetType()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.MemberwiseClone()</span>
+    </div>
+  </div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="LSL4Unity.html">LSL4Unity</a></h6>
+  <h6><strong>Assembly</strong>: cs.temp.dll.dll</h6>
+  <h5 id="LSL4Unity_liblsl_StreamInlet_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class StreamInlet</code></pre>
+  </div>
+  <h3 id="constructors">Constructors
+  </h3>
+  
+  
+  <a id="LSL4Unity_liblsl_StreamInlet__ctor_" data-uid="LSL4Unity.liblsl.StreamInlet.#ctor*"></a>
+  <h4 id="LSL4Unity_liblsl_StreamInlet__ctor_LSL4Unity_liblsl_StreamInfo_System_Int32_System_Int32_System_Boolean_" data-uid="LSL4Unity.liblsl.StreamInlet.#ctor(LSL4Unity.liblsl.StreamInfo,System.Int32,System.Int32,System.Boolean)">StreamInlet(liblsl.StreamInfo, Int32, Int32, Boolean)</h4>
+  <div class="markdown level1 summary"><p>Initializes a new instance of <a class="xref" href="LSL4Unity.liblsl.StreamInlet.html">liblsl.StreamInlet</a> from a resolved stream info. </p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public StreamInlet(liblsl.StreamInfo info, int maxBuflen = 360, int maxChunklen = 0, bool recover = true)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="LSL4Unity.liblsl.StreamInfo.html">liblsl.StreamInfo</a></td>
+        <td><span class="parametername">info</span></td>
+        <td><p>A resolved stream info object (as coming from one of the resolver functions). </p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">maxBuflen</span></td>
+        <td><p>Optionally the maximum amount of data to buffer
+(in seconds if there is a nominal sampling rate, otherwise x100 in samples).
+Recording applications want to use a fairly large buffer size here,
+while real-time applications would only buffer as much as they need to perform their next calculation. </p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">maxChunklen</span></td>
+        <td><p>Optionally the maximum size, in samples, at which chunks are transmitted
+(the default corresponds to the chunk sizes used by the sender).
+Recording applications can use a generous size here (leaving it to the network how to pack things),
+while real-time applications may want a finer (perhaps 1-sample) granularity.
+If left unspecified (=0), the sender determines the chunk granularity. </p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><span class="parametername">recover</span></td>
+        <td><p>Try to silently recover lost streams that are recoverable (=those that that have a SourceId set).
+In all other cases (recover is false or the stream is not recoverable) functions may throw a <a class="xref" href="LSL4Unity.liblsl.LostException.html">liblsl.LostException</a>
+if the stream&apos;s source is lost (e.g., due to an app or computer crash). </p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="LSL4Unity_liblsl_StreamInlet__ctor_LSL4Unity_liblsl_StreamInfo_System_Int32_System_Int32_System_Boolean__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>The <a class="xref" href="LSL4Unity.liblsl.StreamInlet.html">liblsl.StreamInlet</a> may also be constructed with a fully-specified <a class="xref" href="LSL4Unity.liblsl.StreamInfo.html">liblsl.StreamInfo</a>
+if the desired channel format and count is already known up-front,
+but this is strongly discouraged and should only ever be done if there is no time to resolve the stream up-front
+(e.g., due to limitations in the client program). </p>
+</div>
+  <h3 id="methods">Methods
+  </h3>
+  
+  
+  <a id="LSL4Unity_liblsl_StreamInlet_CloseStream_" data-uid="LSL4Unity.liblsl.StreamInlet.CloseStream*"></a>
+  <h4 id="LSL4Unity_liblsl_StreamInlet_CloseStream" data-uid="LSL4Unity.liblsl.StreamInlet.CloseStream">CloseStream()</h4>
+  <div class="markdown level1 summary"><p>Drop the current data stream. </p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void CloseStream()</code></pre>
+  </div>
+  
+  
+  <a id="LSL4Unity_liblsl_StreamInlet_Finalize_" data-uid="LSL4Unity.liblsl.StreamInlet.Finalize*"></a>
+  <h4 id="LSL4Unity_liblsl_StreamInlet_Finalize" data-uid="LSL4Unity.liblsl.StreamInlet.Finalize">Finalize()</h4>
+  <div class="markdown level1 summary"><p>Finalizes an instance of <a class="xref" href="LSL4Unity.liblsl.StreamInlet.html">liblsl.StreamInlet</a>. </p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected void Finalize()</code></pre>
+  </div>
+  
+  
+  <a id="LSL4Unity_liblsl_StreamInlet_Info_" data-uid="LSL4Unity.liblsl.StreamInlet.Info*"></a>
+  <h4 id="LSL4Unity_liblsl_StreamInlet_Info_System_Double_" data-uid="LSL4Unity.liblsl.StreamInlet.Info(System.Double)">Info(Double)</h4>
+  <div class="markdown level1 summary"><p>Retrieve the complete information of the given stream, including the extended description. </p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public liblsl.StreamInfo Info(double timeout = 32000000)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Double</span></td>
+        <td><span class="parametername">timeout</span></td>
+        <td><p>Optional timeout of the operation (default: no timeout). </p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="LSL4Unity.liblsl.StreamInfo.html">liblsl.StreamInfo</a></td>
+        <td><p><a class="xref" href="LSL4Unity.liblsl.StreamInfo.html">liblsl.StreamInfo</a>. </p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.TimeoutException</span></td>
+        <td><p>If the timeout expires. </p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="LSL4Unity.liblsl.LostException.html">liblsl.LostException</a></td>
+        <td><p>If the stream source has been lost. </p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="LSL4Unity_liblsl_StreamInlet_OpenStream_" data-uid="LSL4Unity.liblsl.StreamInlet.OpenStream*"></a>
+  <h4 id="LSL4Unity_liblsl_StreamInlet_OpenStream_System_Double_" data-uid="LSL4Unity.liblsl.StreamInlet.OpenStream(System.Double)">OpenStream(Double)</h4>
+  <div class="markdown level1 summary"><p>Subscribe to the data stream. </p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void OpenStream(double timeout = 32000000)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Double</span></td>
+        <td><span class="parametername">timeout</span></td>
+        <td><p>Optional timeout of the operation (default: no timeout).</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.TimeoutException</span></td>
+        <td><p>If the timeout expires. </p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="LSL4Unity.liblsl.LostException.html">liblsl.LostException</a></td>
+        <td><p>If the stream source has been lost. </p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="LSL4Unity_liblsl_StreamInlet_PullChunk_" data-uid="LSL4Unity.liblsl.StreamInlet.PullChunk*"></a>
+  <h4 id="LSL4Unity_liblsl_StreamInlet_PullChunk_System_Char_0__0___System_Double___System_Double_" data-uid="LSL4Unity.liblsl.StreamInlet.PullChunk(System.Char[0:,0:],System.Double[],System.Double)">PullChunk(Char[,], Double[], Double)</h4>
+  <div class="markdown level1 summary"><p>Pull a chunk of data from the inlet. </p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int PullChunk(char[, ] buffer, double[] times, double timeout = 0)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Char</span>[,]</td>
+        <td><span class="parametername">buffer</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Double</span>[]</td>
+        <td><span class="parametername">times</span></td>
+        <td><p>A pre-allocated buffer where time stamps shall be stored. </p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Double</span></td>
+        <td><span class="parametername">timeout</span></td>
+        <td><p>Optionally the timeout for this operation, if any.
+When the timeout expires, the function may return before the entire buffer is filled.
+The default value of 0.0 will retrieve only data available for immediate pickup.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><p>Number of samples written to the data and timestamp buffers.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="LSL4Unity.liblsl.LostException.html">liblsl.LostException</a></td>
+        <td><p>If the stream source has been lost. </p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="LSL4Unity_liblsl_StreamInlet_PullChunk_" data-uid="LSL4Unity.liblsl.StreamInlet.PullChunk*"></a>
+  <h4 id="LSL4Unity_liblsl_StreamInlet_PullChunk_System_Double_0__0___System_Double___System_Double_" data-uid="LSL4Unity.liblsl.StreamInlet.PullChunk(System.Double[0:,0:],System.Double[],System.Double)">PullChunk(Double[,], Double[], Double)</h4>
+  <div class="markdown level1 summary"><p>Pull a chunk of data from the inlet. </p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int PullChunk(double[, ] buffer, double[] times, double timeout = 0)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Double</span>[,]</td>
+        <td><span class="parametername">buffer</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Double</span>[]</td>
+        <td><span class="parametername">times</span></td>
+        <td><p>A pre-allocated buffer where time stamps shall be stored. </p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Double</span></td>
+        <td><span class="parametername">timeout</span></td>
+        <td><p>Optionally the timeout for this operation, if any.
+When the timeout expires, the function may return before the entire buffer is filled.
+The default value of 0.0 will retrieve only data available for immediate pickup.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><p>Number of samples written to the data and timestamp buffers.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="LSL4Unity.liblsl.LostException.html">liblsl.LostException</a></td>
+        <td><p>If the stream source has been lost. </p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="LSL4Unity_liblsl_StreamInlet_PullChunk_" data-uid="LSL4Unity.liblsl.StreamInlet.PullChunk*"></a>
+  <h4 id="LSL4Unity_liblsl_StreamInlet_PullChunk_System_Int16_0__0___System_Double___System_Double_" data-uid="LSL4Unity.liblsl.StreamInlet.PullChunk(System.Int16[0:,0:],System.Double[],System.Double)">PullChunk(Int16[,], Double[], Double)</h4>
+  <div class="markdown level1 summary"><p>Pull a chunk of data from the inlet. </p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int PullChunk(short[, ] buffer, double[] times, double timeout = 0)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int16</span>[,]</td>
+        <td><span class="parametername">buffer</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Double</span>[]</td>
+        <td><span class="parametername">times</span></td>
+        <td><p>A pre-allocated buffer where time stamps shall be stored. </p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Double</span></td>
+        <td><span class="parametername">timeout</span></td>
+        <td><p>Optionally the timeout for this operation, if any.
+When the timeout expires, the function may return before the entire buffer is filled.
+The default value of 0.0 will retrieve only data available for immediate pickup.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><p>Number of samples written to the data and timestamp buffers.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="LSL4Unity.liblsl.LostException.html">liblsl.LostException</a></td>
+        <td><p>If the stream source has been lost. </p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="LSL4Unity_liblsl_StreamInlet_PullChunk_" data-uid="LSL4Unity.liblsl.StreamInlet.PullChunk*"></a>
+  <h4 id="LSL4Unity_liblsl_StreamInlet_PullChunk_System_Int32_0__0___System_Double___System_Double_" data-uid="LSL4Unity.liblsl.StreamInlet.PullChunk(System.Int32[0:,0:],System.Double[],System.Double)">PullChunk(Int32[,], Double[], Double)</h4>
+  <div class="markdown level1 summary"><p>Pull a chunk of data from the inlet. </p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int PullChunk(int[, ] buffer, double[] times, double timeout = 0)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span>[,]</td>
+        <td><span class="parametername">buffer</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Double</span>[]</td>
+        <td><span class="parametername">times</span></td>
+        <td><p>A pre-allocated buffer where time stamps shall be stored. </p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Double</span></td>
+        <td><span class="parametername">timeout</span></td>
+        <td><p>Optionally the timeout for this operation, if any.
+When the timeout expires, the function may return before the entire buffer is filled.
+The default value of 0.0 will retrieve only data available for immediate pickup.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><p>Number of samples written to the data and timestamp buffers.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="LSL4Unity.liblsl.LostException.html">liblsl.LostException</a></td>
+        <td><p>If the stream source has been lost. </p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="LSL4Unity_liblsl_StreamInlet_PullChunk_" data-uid="LSL4Unity.liblsl.StreamInlet.PullChunk*"></a>
+  <h4 id="LSL4Unity_liblsl_StreamInlet_PullChunk_System_Single_0__0___System_Double___System_Double_" data-uid="LSL4Unity.liblsl.StreamInlet.PullChunk(System.Single[0:,0:],System.Double[],System.Double)">PullChunk(Single[,], Double[], Double)</h4>
+  <div class="markdown level1 summary"><p>Pull a chunk of data from the inlet. </p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int PullChunk(float[, ] buffer, double[] times, double timeout = 0)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Single</span>[,]</td>
+        <td><span class="parametername">buffer</span></td>
+        <td><p>A pre-allocated buffer where the channel data shall be stored. </p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Double</span>[]</td>
+        <td><span class="parametername">times</span></td>
+        <td><p>A pre-allocated buffer where time stamps shall be stored. </p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Double</span></td>
+        <td><span class="parametername">timeout</span></td>
+        <td><p>Optionally the timeout for this operation, if any.
+When the timeout expires, the function may return before the entire buffer is filled.
+The default value of 0.0 will retrieve only data available for immediate pickup.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><p>Number of samples written to the data and timestamp buffers.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="LSL4Unity.liblsl.LostException.html">liblsl.LostException</a></td>
+        <td><p>If the stream source has been lost. </p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="LSL4Unity_liblsl_StreamInlet_PullChunk_" data-uid="LSL4Unity.liblsl.StreamInlet.PullChunk*"></a>
+  <h4 id="LSL4Unity_liblsl_StreamInlet_PullChunk_System_String_0__0___System_Double___System_Double_" data-uid="LSL4Unity.liblsl.StreamInlet.PullChunk(System.String[0:,0:],System.Double[],System.Double)">PullChunk(String[,], Double[], Double)</h4>
+  <div class="markdown level1 summary"><p>Pull a chunk of data from the inlet. </p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int PullChunk(string[, ] buffer, double[] times, double timeout = 0)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span>[,]</td>
+        <td><span class="parametername">buffer</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Double</span>[]</td>
+        <td><span class="parametername">times</span></td>
+        <td><p>A pre-allocated buffer where time stamps shall be stored. </p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Double</span></td>
+        <td><span class="parametername">timeout</span></td>
+        <td><p>Optionally the timeout for this operation, if any.
+When the timeout expires, the function may return before the entire buffer is filled.
+The default value of 0.0 will retrieve only data available for immediate pickup.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><p>Number of samples written to the data and timestamp buffers.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="LSL4Unity.liblsl.LostException.html">liblsl.LostException</a></td>
+        <td><p>If the stream source has been lost. </p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="LSL4Unity_liblsl_StreamInlet_PullSample_" data-uid="LSL4Unity.liblsl.StreamInlet.PullSample*"></a>
+  <h4 id="LSL4Unity_liblsl_StreamInlet_PullSample_System_Char___System_Double_" data-uid="LSL4Unity.liblsl.StreamInlet.PullSample(System.Char[],System.Double)">PullSample(Char[], Double)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public double PullSample(char[] sample, double timeout = 32000000)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Char</span>[]</td>
+        <td><span class="parametername">sample</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Double</span></td>
+        <td><span class="parametername">timeout</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Double</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="LSL4Unity_liblsl_StreamInlet_PullSample_" data-uid="LSL4Unity.liblsl.StreamInlet.PullSample*"></a>
+  <h4 id="LSL4Unity_liblsl_StreamInlet_PullSample_System_Double___System_Double_" data-uid="LSL4Unity.liblsl.StreamInlet.PullSample(System.Double[],System.Double)">PullSample(Double[], Double)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public double PullSample(double[] sample, double timeout = 32000000)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Double</span>[]</td>
+        <td><span class="parametername">sample</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Double</span></td>
+        <td><span class="parametername">timeout</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Double</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="LSL4Unity_liblsl_StreamInlet_PullSample_" data-uid="LSL4Unity.liblsl.StreamInlet.PullSample*"></a>
+  <h4 id="LSL4Unity_liblsl_StreamInlet_PullSample_System_Int16___System_Double_" data-uid="LSL4Unity.liblsl.StreamInlet.PullSample(System.Int16[],System.Double)">PullSample(Int16[], Double)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public double PullSample(short[] sample, double timeout = 32000000)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int16</span>[]</td>
+        <td><span class="parametername">sample</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Double</span></td>
+        <td><span class="parametername">timeout</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Double</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="LSL4Unity_liblsl_StreamInlet_PullSample_" data-uid="LSL4Unity.liblsl.StreamInlet.PullSample*"></a>
+  <h4 id="LSL4Unity_liblsl_StreamInlet_PullSample_System_Int32___System_Double_" data-uid="LSL4Unity.liblsl.StreamInlet.PullSample(System.Int32[],System.Double)">PullSample(Int32[], Double)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public double PullSample(int[] sample, double timeout = 32000000)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span>[]</td>
+        <td><span class="parametername">sample</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Double</span></td>
+        <td><span class="parametername">timeout</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Double</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="LSL4Unity_liblsl_StreamInlet_PullSample_" data-uid="LSL4Unity.liblsl.StreamInlet.PullSample*"></a>
+  <h4 id="LSL4Unity_liblsl_StreamInlet_PullSample_System_Single___System_Double_" data-uid="LSL4Unity.liblsl.StreamInlet.PullSample(System.Single[],System.Double)">PullSample(Single[], Double)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public double PullSample(float[] sample, double timeout = 32000000)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Single</span>[]</td>
+        <td><span class="parametername">sample</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Double</span></td>
+        <td><span class="parametername">timeout</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Double</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="LSL4Unity_liblsl_StreamInlet_PullSample_" data-uid="LSL4Unity.liblsl.StreamInlet.PullSample*"></a>
+  <h4 id="LSL4Unity_liblsl_StreamInlet_PullSample_System_String___System_Double_" data-uid="LSL4Unity.liblsl.StreamInlet.PullSample(System.String[],System.Double)">PullSample(String[], Double)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public double PullSample(string[] sample, double timeout = 32000000)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span>[]</td>
+        <td><span class="parametername">sample</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Double</span></td>
+        <td><span class="parametername">timeout</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Double</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="LSL4Unity_liblsl_StreamInlet_SamplesAvailable_" data-uid="LSL4Unity.liblsl.StreamInlet.SamplesAvailable*"></a>
+  <h4 id="LSL4Unity_liblsl_StreamInlet_SamplesAvailable" data-uid="LSL4Unity.liblsl.StreamInlet.SamplesAvailable">SamplesAvailable()</h4>
+  <div class="markdown level1 summary"><p>Query whether samples are currently available for immediate pickup. </p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int SamplesAvailable()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><p>Number of samples available. </p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="LSL4Unity_liblsl_StreamInlet_SamplesAvailable_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>that it is not a good idea to use <a class="xref" href="LSL4Unity.liblsl.StreamInlet.html#LSL4Unity_liblsl_StreamInlet_SamplesAvailable">SamplesAvailable()</a> to determine whether a <code>pull_*()</code> call would block:
+to be sure, set the pull timeout to 0.0 or an acceptably low value.
+If the underlying implementation supports it, the value will be the number of samples available (otherwise it will be 1 or 0). </p>
+</div>
+  
+  
+  <a id="LSL4Unity_liblsl_StreamInlet_SetPostprocessing_" data-uid="LSL4Unity.liblsl.StreamInlet.SetPostprocessing*"></a>
+  <h4 id="LSL4Unity_liblsl_StreamInlet_SetPostprocessing_LSL4Unity_liblsl_processing_options_t_" data-uid="LSL4Unity.liblsl.StreamInlet.SetPostprocessing(LSL4Unity.liblsl.processing_options_t)">SetPostprocessing(liblsl.processing_options_t)</h4>
+  <div class="markdown level1 summary"><p>Set post-processing flags to use. </p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void SetPostprocessing(liblsl.processing_options_t flags = liblsl.processing_options_t.post_ALL)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="LSL4Unity.liblsl.processing_options_t.html">liblsl.processing_options_t</a></td>
+        <td><span class="parametername">flags</span></td>
+        <td><p>An integer that is the result of bitwise OR&apos;ing one or more options
+from <a class="xref" href="LSL4Unity.liblsl.processing_options_t.html">liblsl.processing_options_t</a> together (e.g., post_clocksync|post_dejitter); the default is to enable all options. </p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="LSL4Unity_liblsl_StreamInlet_SetPostprocessing_LSL4Unity_liblsl_processing_options_t__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>When you enable this, you will no longer receive or be able to recover the original time stamps. </p>
+</div>
+  
+  
+  <a id="LSL4Unity_liblsl_StreamInlet_TimeCorrection_" data-uid="LSL4Unity.liblsl.StreamInlet.TimeCorrection*"></a>
+  <h4 id="LSL4Unity_liblsl_StreamInlet_TimeCorrection_System_Double_" data-uid="LSL4Unity.liblsl.StreamInlet.TimeCorrection(System.Double)">TimeCorrection(Double)</h4>
+  <div class="markdown level1 summary"><p>Retrieve an estimated time correction offset for the given stream. </p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public double TimeCorrection(double timeout = 32000000)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Double</span></td>
+        <td><span class="parametername">timeout</span></td>
+        <td><p>Optional timeout to acquire the first time-correction estimate (default: no timeout). </p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Double</span></td>
+        <td><p>The time correction estimate. This is the number that needs to be added to a time stamp
+that was remotely generated via <code>lsl_local_clock()</code> to map it into the local clock domain of this machine. </p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.TimeoutException</span></td>
+        <td><p>If the timeout expires. </p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="LSL4Unity.liblsl.LostException.html">liblsl.LostException</a></td>
+        <td><p>If the stream source has been lost. </p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="LSL4Unity_liblsl_StreamInlet_WasClockReset_" data-uid="LSL4Unity.liblsl.StreamInlet.WasClockReset*"></a>
+  <h4 id="LSL4Unity_liblsl_StreamInlet_WasClockReset" data-uid="LSL4Unity.liblsl.StreamInlet.WasClockReset">WasClockReset()</h4>
+  <div class="markdown level1 summary"><p>Query whether the clock was potentially reset since the last call to <a class="xref" href="LSL4Unity.liblsl.StreamInlet.html#LSL4Unity_liblsl_StreamInlet_WasClockReset">WasClockReset()</a>. </p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool WasClockReset()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><p><code>true</code> if clock waas reset... </p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            LSL 4 Unity documentation
+            
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>

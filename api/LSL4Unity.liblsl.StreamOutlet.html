@@ -1,0 +1,1057 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class liblsl.StreamOutlet
+   | LSL 4 Unity documentation </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class liblsl.StreamOutlet
+   | LSL 4 Unity documentation ">
+    <meta name="generator" content="docfx 2.51.0.0">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    <meta property="docfx:rel" content="../">
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list"></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="LSL4Unity.liblsl.StreamOutlet">
+  
+  
+  <h1 id="LSL4Unity_liblsl_StreamOutlet" data-uid="LSL4Unity.liblsl.StreamOutlet" class="text-break">Class liblsl.StreamOutlet
+  </h1>
+  <div class="markdown level0 summary"><p>A stream outlet. </p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+  <div class="inheritance">
+    <h5>Inheritance</h5>
+    <div class="level0"><span class="xref">System.Object</span></div>
+    <div class="level1"><span class="xref">liblsl.StreamOutlet</span></div>
+  </div>
+  <div class="inheritedMembers">
+    <h5>Inherited Members</h5>
+    <div>
+      <span class="xref">System.Object.ToString()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.Equals(System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.Equals(System.Object, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.ReferenceEquals(System.Object, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.GetHashCode()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.GetType()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.MemberwiseClone()</span>
+    </div>
+  </div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="LSL4Unity.html">LSL4Unity</a></h6>
+  <h6><strong>Assembly</strong>: cs.temp.dll.dll</h6>
+  <h5 id="LSL4Unity_liblsl_StreamOutlet_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class StreamOutlet</code></pre>
+  </div>
+  <h3 id="constructors">Constructors
+  </h3>
+  
+  
+  <a id="LSL4Unity_liblsl_StreamOutlet__ctor_" data-uid="LSL4Unity.liblsl.StreamOutlet.#ctor*"></a>
+  <h4 id="LSL4Unity_liblsl_StreamOutlet__ctor_LSL4Unity_liblsl_StreamInfo_System_Int32_System_Int32_" data-uid="LSL4Unity.liblsl.StreamOutlet.#ctor(LSL4Unity.liblsl.StreamInfo,System.Int32,System.Int32)">StreamOutlet(liblsl.StreamInfo, Int32, Int32)</h4>
+  <div class="markdown level1 summary"><p>Initializes a new instance of <a class="xref" href="LSL4Unity.liblsl.StreamOutlet.html">liblsl.StreamOutlet</a>. This makes the stream discoverable. </p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public StreamOutlet(liblsl.StreamInfo info, int chunkSize = 0, int maxBuffered = 360)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="LSL4Unity.liblsl.StreamInfo.html">liblsl.StreamInfo</a></td>
+        <td><span class="parametername">info</span></td>
+        <td><p>The stream information to use for creating this stream. Stays constant over the lifetime of the outlet. </p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">chunkSize</span></td>
+        <td><p>Optionally the desired chunk granularity (in samples) for transmission.
+If unspecified, each push operation yields one chunk. Inlets can override this setting. </p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">maxBuffered</span></td>
+        <td><p>Optionally the maximum amount of data to buffer (in seconds if there is a nominal sampling rate, otherwise x100 in samples).
+The default is 6 minutes of data.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="methods">Methods
+  </h3>
+  
+  
+  <a id="LSL4Unity_liblsl_StreamOutlet_Finalize_" data-uid="LSL4Unity.liblsl.StreamOutlet.Finalize*"></a>
+  <h4 id="LSL4Unity_liblsl_StreamOutlet_Finalize" data-uid="LSL4Unity.liblsl.StreamOutlet.Finalize">Finalize()</h4>
+  <div class="markdown level1 summary"><p>Finalizes an instance of the <a class="xref" href="LSL4Unity.liblsl.StreamOutlet.html">liblsl.StreamOutlet</a>. </p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected void Finalize()</code></pre>
+  </div>
+  
+  
+  <a id="LSL4Unity_liblsl_StreamOutlet_HaveConsumers_" data-uid="LSL4Unity.liblsl.StreamOutlet.HaveConsumers*"></a>
+  <h4 id="LSL4Unity_liblsl_StreamOutlet_HaveConsumers" data-uid="LSL4Unity.liblsl.StreamOutlet.HaveConsumers">HaveConsumers()</h4>
+  <div class="markdown level1 summary"><p>Check whether consumers are currently registered. </p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool HaveConsumers()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><p><code>true</code> or <code>false</code>. </p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="LSL4Unity_liblsl_StreamOutlet_Info_" data-uid="LSL4Unity.liblsl.StreamOutlet.Info*"></a>
+  <h4 id="LSL4Unity_liblsl_StreamOutlet_Info" data-uid="LSL4Unity.liblsl.StreamOutlet.Info">Info()</h4>
+  <div class="markdown level1 summary"><p>Retrieve the stream info provided by this outlet. </p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public liblsl.StreamInfo Info()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="LSL4Unity.liblsl.StreamInfo.html">liblsl.StreamInfo</a></td>
+        <td><p>A <a class="xref" href="LSL4Unity.liblsl.StreamInfo.html">liblsl.StreamInfo</a> </p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="LSL4Unity_liblsl_StreamOutlet_PushChunk_" data-uid="LSL4Unity.liblsl.StreamOutlet.PushChunk*"></a>
+  <h4 id="LSL4Unity_liblsl_StreamOutlet_PushChunk_System_Char_0__0___System_Double_System_Boolean_" data-uid="LSL4Unity.liblsl.StreamOutlet.PushChunk(System.Char[0:,0:],System.Double,System.Boolean)">PushChunk(Char[,], Double, Boolean)</h4>
+  <div class="markdown level1 summary"><p>Push a chunk of samples into the outlet. Single time provided. </p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void PushChunk(char[, ] data, double time = 0, bool pushthrough = true)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Char</span>[,]</td>
+        <td><span class="parametername">data</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Double</span></td>
+        <td><span class="parametername">time</span></td>
+        <td><p>Optionally the capture time of the sample, in agreement with <a class="xref" href="LSL4Unity.liblsl.html#LSL4Unity_liblsl_LocalClock">LocalClock()</a>; if omitted, the current time is used. </p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><span class="parametername">pushthrough</span></td>
+        <td><p>Optionally whether to push the sample through to the receivers instead of buffering it with subsequent samples.
+Note that the chunkSize, if specified at outlet construction, takes precedence over the pushthrough flag.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="LSL4Unity_liblsl_StreamOutlet_PushChunk_" data-uid="LSL4Unity.liblsl.StreamOutlet.PushChunk*"></a>
+  <h4 id="LSL4Unity_liblsl_StreamOutlet_PushChunk_System_Char_0__0___System_Double___System_Boolean_" data-uid="LSL4Unity.liblsl.StreamOutlet.PushChunk(System.Char[0:,0:],System.Double[],System.Boolean)">PushChunk(Char[,], Double[], Boolean)</h4>
+  <div class="markdown level1 summary"><p>Push a chunk of multiplexed samples into the outlet. One time per sample is provided. </p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void PushChunk(char[, ] data, double[] times, bool pushthrough = true)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Char</span>[,]</td>
+        <td><span class="parametername">data</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Double</span>[]</td>
+        <td><span class="parametername">times</span></td>
+        <td><p>An array of time values holding time stamps for each sample in the data buffer. </p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><span class="parametername">pushthrough</span></td>
+        <td><p>Optionally whether to push the sample through to the receivers instead of buffering it with subsequent samples.
+Note that the chunkSize, if specified at outlet construction, takes precedence over the pushthrough flag.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="LSL4Unity_liblsl_StreamOutlet_PushChunk_" data-uid="LSL4Unity.liblsl.StreamOutlet.PushChunk*"></a>
+  <h4 id="LSL4Unity_liblsl_StreamOutlet_PushChunk_System_Double_0__0___System_Double_System_Boolean_" data-uid="LSL4Unity.liblsl.StreamOutlet.PushChunk(System.Double[0:,0:],System.Double,System.Boolean)">PushChunk(Double[,], Double, Boolean)</h4>
+  <div class="markdown level1 summary"><p>Push a chunk of samples into the outlet. Single time provided. </p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void PushChunk(double[, ] data, double time = 0, bool pushthrough = true)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Double</span>[,]</td>
+        <td><span class="parametername">data</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Double</span></td>
+        <td><span class="parametername">time</span></td>
+        <td><p>Optionally the capture time of the sample, in agreement with <a class="xref" href="LSL4Unity.liblsl.html#LSL4Unity_liblsl_LocalClock">LocalClock()</a>; if omitted, the current time is used. </p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><span class="parametername">pushthrough</span></td>
+        <td><p>Optionally whether to push the sample through to the receivers instead of buffering it with subsequent samples.
+Note that the chunkSize, if specified at outlet construction, takes precedence over the pushthrough flag.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="LSL4Unity_liblsl_StreamOutlet_PushChunk_" data-uid="LSL4Unity.liblsl.StreamOutlet.PushChunk*"></a>
+  <h4 id="LSL4Unity_liblsl_StreamOutlet_PushChunk_System_Double_0__0___System_Double___System_Boolean_" data-uid="LSL4Unity.liblsl.StreamOutlet.PushChunk(System.Double[0:,0:],System.Double[],System.Boolean)">PushChunk(Double[,], Double[], Boolean)</h4>
+  <div class="markdown level1 summary"><p>Push a chunk of multiplexed samples into the outlet. One time per sample is provided. </p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void PushChunk(double[, ] data, double[] times, bool pushthrough = true)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Double</span>[,]</td>
+        <td><span class="parametername">data</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Double</span>[]</td>
+        <td><span class="parametername">times</span></td>
+        <td><p>An array of time values holding time stamps for each sample in the data buffer. </p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><span class="parametername">pushthrough</span></td>
+        <td><p>Optionally whether to push the sample through to the receivers instead of buffering it with subsequent samples.
+Note that the chunkSize, if specified at outlet construction, takes precedence over the pushthrough flag.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="LSL4Unity_liblsl_StreamOutlet_PushChunk_" data-uid="LSL4Unity.liblsl.StreamOutlet.PushChunk*"></a>
+  <h4 id="LSL4Unity_liblsl_StreamOutlet_PushChunk_System_Int16_0__0___System_Double_System_Boolean_" data-uid="LSL4Unity.liblsl.StreamOutlet.PushChunk(System.Int16[0:,0:],System.Double,System.Boolean)">PushChunk(Int16[,], Double, Boolean)</h4>
+  <div class="markdown level1 summary"><p>Push a chunk of samples into the outlet. Single time provided. </p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void PushChunk(short[, ] data, double time = 0, bool pushthrough = true)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int16</span>[,]</td>
+        <td><span class="parametername">data</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Double</span></td>
+        <td><span class="parametername">time</span></td>
+        <td><p>Optionally the capture time of the sample, in agreement with <a class="xref" href="LSL4Unity.liblsl.html#LSL4Unity_liblsl_LocalClock">LocalClock()</a>; if omitted, the current time is used. </p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><span class="parametername">pushthrough</span></td>
+        <td><p>Optionally whether to push the sample through to the receivers instead of buffering it with subsequent samples.
+Note that the chunkSize, if specified at outlet construction, takes precedence over the pushthrough flag.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="LSL4Unity_liblsl_StreamOutlet_PushChunk_" data-uid="LSL4Unity.liblsl.StreamOutlet.PushChunk*"></a>
+  <h4 id="LSL4Unity_liblsl_StreamOutlet_PushChunk_System_Int16_0__0___System_Double___System_Boolean_" data-uid="LSL4Unity.liblsl.StreamOutlet.PushChunk(System.Int16[0:,0:],System.Double[],System.Boolean)">PushChunk(Int16[,], Double[], Boolean)</h4>
+  <div class="markdown level1 summary"><p>Push a chunk of multiplexed samples into the outlet. One time per sample is provided. </p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void PushChunk(short[, ] data, double[] times, bool pushthrough = true)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int16</span>[,]</td>
+        <td><span class="parametername">data</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Double</span>[]</td>
+        <td><span class="parametername">times</span></td>
+        <td><p>An array of time values holding time stamps for each sample in the data buffer. </p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><span class="parametername">pushthrough</span></td>
+        <td><p>Optionally whether to push the sample through to the receivers instead of buffering it with subsequent samples.
+Note that the chunkSize, if specified at outlet construction, takes precedence over the pushthrough flag.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="LSL4Unity_liblsl_StreamOutlet_PushChunk_" data-uid="LSL4Unity.liblsl.StreamOutlet.PushChunk*"></a>
+  <h4 id="LSL4Unity_liblsl_StreamOutlet_PushChunk_System_Int32_0__0___System_Double_System_Boolean_" data-uid="LSL4Unity.liblsl.StreamOutlet.PushChunk(System.Int32[0:,0:],System.Double,System.Boolean)">PushChunk(Int32[,], Double, Boolean)</h4>
+  <div class="markdown level1 summary"><p>Push a chunk of samples into the outlet. Single time provided. </p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void PushChunk(int[, ] data, double time = 0, bool pushthrough = true)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span>[,]</td>
+        <td><span class="parametername">data</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Double</span></td>
+        <td><span class="parametername">time</span></td>
+        <td><p>Optionally the capture time of the sample, in agreement with <a class="xref" href="LSL4Unity.liblsl.html#LSL4Unity_liblsl_LocalClock">LocalClock()</a>; if omitted, the current time is used. </p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><span class="parametername">pushthrough</span></td>
+        <td><p>Optionally whether to push the sample through to the receivers instead of buffering it with subsequent samples.
+Note that the chunkSize, if specified at outlet construction, takes precedence over the pushthrough flag.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="LSL4Unity_liblsl_StreamOutlet_PushChunk_" data-uid="LSL4Unity.liblsl.StreamOutlet.PushChunk*"></a>
+  <h4 id="LSL4Unity_liblsl_StreamOutlet_PushChunk_System_Int32_0__0___System_Double___System_Boolean_" data-uid="LSL4Unity.liblsl.StreamOutlet.PushChunk(System.Int32[0:,0:],System.Double[],System.Boolean)">PushChunk(Int32[,], Double[], Boolean)</h4>
+  <div class="markdown level1 summary"><p>Push a chunk of multiplexed samples into the outlet. One time per sample is provided. </p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void PushChunk(int[, ] data, double[] times, bool pushthrough = true)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span>[,]</td>
+        <td><span class="parametername">data</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Double</span>[]</td>
+        <td><span class="parametername">times</span></td>
+        <td><p>An array of time values holding time stamps for each sample in the data buffer. </p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><span class="parametername">pushthrough</span></td>
+        <td><p>Optionally whether to push the sample through to the receivers instead of buffering it with subsequent samples.
+Note that the chunkSize, if specified at outlet construction, takes precedence over the pushthrough flag.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="LSL4Unity_liblsl_StreamOutlet_PushChunk_" data-uid="LSL4Unity.liblsl.StreamOutlet.PushChunk*"></a>
+  <h4 id="LSL4Unity_liblsl_StreamOutlet_PushChunk_System_Single_0__0___System_Double_System_Boolean_" data-uid="LSL4Unity.liblsl.StreamOutlet.PushChunk(System.Single[0:,0:],System.Double,System.Boolean)">PushChunk(Single[,], Double, Boolean)</h4>
+  <div class="markdown level1 summary"><p>Push a chunk of samples into the outlet. Single time provided. </p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void PushChunk(float[, ] data, double time = 0, bool pushthrough = true)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Single</span>[,]</td>
+        <td><span class="parametername">data</span></td>
+        <td><p>A rectangular array of values for multiple samples. </p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Double</span></td>
+        <td><span class="parametername">time</span></td>
+        <td><p>Optionally the capture time of the sample, in agreement with <a class="xref" href="LSL4Unity.liblsl.html#LSL4Unity_liblsl_LocalClock">LocalClock()</a>; if omitted, the current time is used. </p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><span class="parametername">pushthrough</span></td>
+        <td><p>Optionally whether to push the sample through to the receivers instead of buffering it with subsequent samples.
+Note that the chunkSize, if specified at outlet construction, takes precedence over the pushthrough flag.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="LSL4Unity_liblsl_StreamOutlet_PushChunk_" data-uid="LSL4Unity.liblsl.StreamOutlet.PushChunk*"></a>
+  <h4 id="LSL4Unity_liblsl_StreamOutlet_PushChunk_System_Single_0__0___System_Double___System_Boolean_" data-uid="LSL4Unity.liblsl.StreamOutlet.PushChunk(System.Single[0:,0:],System.Double[],System.Boolean)">PushChunk(Single[,], Double[], Boolean)</h4>
+  <div class="markdown level1 summary"><p>Push a chunk of multiplexed samples into the outlet. One time per sample is provided. </p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void PushChunk(float[, ] data, double[] times, bool pushthrough = true)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Single</span>[,]</td>
+        <td><span class="parametername">data</span></td>
+        <td><p>A rectangular array of values for multiple samples. </p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Double</span>[]</td>
+        <td><span class="parametername">times</span></td>
+        <td><p>An array of time values holding time stamps for each sample in the data buffer. </p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><span class="parametername">pushthrough</span></td>
+        <td><p>Optionally whether to push the sample through to the receivers instead of buffering it with subsequent samples.
+Note that the chunkSize, if specified at outlet construction, takes precedence over the pushthrough flag.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="LSL4Unity_liblsl_StreamOutlet_PushChunk_" data-uid="LSL4Unity.liblsl.StreamOutlet.PushChunk*"></a>
+  <h4 id="LSL4Unity_liblsl_StreamOutlet_PushChunk_System_String_0__0___System_Double_System_Boolean_" data-uid="LSL4Unity.liblsl.StreamOutlet.PushChunk(System.String[0:,0:],System.Double,System.Boolean)">PushChunk(String[,], Double, Boolean)</h4>
+  <div class="markdown level1 summary"><p>Push a chunk of samples into the outlet. Single time provided. </p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void PushChunk(string[, ] data, double time = 0, bool pushthrough = true)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span>[,]</td>
+        <td><span class="parametername">data</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Double</span></td>
+        <td><span class="parametername">time</span></td>
+        <td><p>Optionally the capture time of the sample, in agreement with <a class="xref" href="LSL4Unity.liblsl.html#LSL4Unity_liblsl_LocalClock">LocalClock()</a>; if omitted, the current time is used. </p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><span class="parametername">pushthrough</span></td>
+        <td><p>Optionally whether to push the sample through to the receivers instead of buffering it with subsequent samples.
+Note that the chunkSize, if specified at outlet construction, takes precedence over the pushthrough flag.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="LSL4Unity_liblsl_StreamOutlet_PushChunk_" data-uid="LSL4Unity.liblsl.StreamOutlet.PushChunk*"></a>
+  <h4 id="LSL4Unity_liblsl_StreamOutlet_PushChunk_System_String_0__0___System_Double___System_Boolean_" data-uid="LSL4Unity.liblsl.StreamOutlet.PushChunk(System.String[0:,0:],System.Double[],System.Boolean)">PushChunk(String[,], Double[], Boolean)</h4>
+  <div class="markdown level1 summary"><p>Push a chunk of multiplexed samples into the outlet. One time per sample is provided. </p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void PushChunk(string[, ] data, double[] times, bool pushthrough = true)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span>[,]</td>
+        <td><span class="parametername">data</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Double</span>[]</td>
+        <td><span class="parametername">times</span></td>
+        <td><p>An array of time values holding time stamps for each sample in the data buffer. </p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><span class="parametername">pushthrough</span></td>
+        <td><p>Optionally whether to push the sample through to the receivers instead of buffering it with subsequent samples.
+Note that the chunkSize, if specified at outlet construction, takes precedence over the pushthrough flag.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="LSL4Unity_liblsl_StreamOutlet_PushSample_" data-uid="LSL4Unity.liblsl.StreamOutlet.PushSample*"></a>
+  <h4 id="LSL4Unity_liblsl_StreamOutlet_PushSample_System_Char___System_Double_System_Boolean_" data-uid="LSL4Unity.liblsl.StreamOutlet.PushSample(System.Char[],System.Double,System.Boolean)">PushSample(Char[], Double, Boolean)</h4>
+  <div class="markdown level1 summary"><p>Push an array of values as a sample into the outlet. </p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void PushSample(char[] data, double time = 0, bool pushthrough = true)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Char</span>[]</td>
+        <td><span class="parametername">data</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Double</span></td>
+        <td><span class="parametername">time</span></td>
+        <td><p>Optionally the capture time of the sample, in agreement with <a class="xref" href="LSL4Unity.liblsl.html#LSL4Unity_liblsl_LocalClock">LocalClock()</a>; if omitted, the current time is used. </p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><span class="parametername">pushthrough</span></td>
+        <td><p>Optionally whether to push the sample through to the receivers instead of buffering it with subsequent samples.
+Note that the chunk_size, if specified at outlet construction, takes precedence over the pushthrough flag.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="LSL4Unity_liblsl_StreamOutlet_PushSample_" data-uid="LSL4Unity.liblsl.StreamOutlet.PushSample*"></a>
+  <h4 id="LSL4Unity_liblsl_StreamOutlet_PushSample_System_Double___System_Double_System_Boolean_" data-uid="LSL4Unity.liblsl.StreamOutlet.PushSample(System.Double[],System.Double,System.Boolean)">PushSample(Double[], Double, Boolean)</h4>
+  <div class="markdown level1 summary"><p>Push an array of values as a sample into the outlet. </p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void PushSample(double[] data, double time = 0, bool pushthrough = true)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Double</span>[]</td>
+        <td><span class="parametername">data</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Double</span></td>
+        <td><span class="parametername">time</span></td>
+        <td><p>Optionally the capture time of the sample, in agreement with <a class="xref" href="LSL4Unity.liblsl.html#LSL4Unity_liblsl_LocalClock">LocalClock()</a>; if omitted, the current time is used. </p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><span class="parametername">pushthrough</span></td>
+        <td><p>Optionally whether to push the sample through to the receivers instead of buffering it with subsequent samples.
+Note that the chunk_size, if specified at outlet construction, takes precedence over the pushthrough flag.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="LSL4Unity_liblsl_StreamOutlet_PushSample_" data-uid="LSL4Unity.liblsl.StreamOutlet.PushSample*"></a>
+  <h4 id="LSL4Unity_liblsl_StreamOutlet_PushSample_System_Int16___System_Double_System_Boolean_" data-uid="LSL4Unity.liblsl.StreamOutlet.PushSample(System.Int16[],System.Double,System.Boolean)">PushSample(Int16[], Double, Boolean)</h4>
+  <div class="markdown level1 summary"><p>Push an array of values as a sample into the outlet. </p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void PushSample(short[] data, double time = 0, bool pushthrough = true)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int16</span>[]</td>
+        <td><span class="parametername">data</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Double</span></td>
+        <td><span class="parametername">time</span></td>
+        <td><p>Optionally the capture time of the sample, in agreement with <a class="xref" href="LSL4Unity.liblsl.html#LSL4Unity_liblsl_LocalClock">LocalClock()</a>; if omitted, the current time is used. </p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><span class="parametername">pushthrough</span></td>
+        <td><p>Optionally whether to push the sample through to the receivers instead of buffering it with subsequent samples.
+Note that the chunk_size, if specified at outlet construction, takes precedence over the pushthrough flag.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="LSL4Unity_liblsl_StreamOutlet_PushSample_" data-uid="LSL4Unity.liblsl.StreamOutlet.PushSample*"></a>
+  <h4 id="LSL4Unity_liblsl_StreamOutlet_PushSample_System_Int32___System_Double_System_Boolean_" data-uid="LSL4Unity.liblsl.StreamOutlet.PushSample(System.Int32[],System.Double,System.Boolean)">PushSample(Int32[], Double, Boolean)</h4>
+  <div class="markdown level1 summary"><p>Push an array of values as a sample into the outlet. </p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void PushSample(int[] data, double time = 0, bool pushthrough = true)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span>[]</td>
+        <td><span class="parametername">data</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Double</span></td>
+        <td><span class="parametername">time</span></td>
+        <td><p>Optionally the capture time of the sample, in agreement with <a class="xref" href="LSL4Unity.liblsl.html#LSL4Unity_liblsl_LocalClock">LocalClock()</a>; if omitted, the current time is used. </p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><span class="parametername">pushthrough</span></td>
+        <td><p>Optionally whether to push the sample through to the receivers instead of buffering it with subsequent samples.
+Note that the chunk_size, if specified at outlet construction, takes precedence over the pushthrough flag.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="LSL4Unity_liblsl_StreamOutlet_PushSample_" data-uid="LSL4Unity.liblsl.StreamOutlet.PushSample*"></a>
+  <h4 id="LSL4Unity_liblsl_StreamOutlet_PushSample_System_Single___System_Double_System_Boolean_" data-uid="LSL4Unity.liblsl.StreamOutlet.PushSample(System.Single[],System.Double,System.Boolean)">PushSample(Single[], Double, Boolean)</h4>
+  <div class="markdown level1 summary"><p>Push an array of values as a sample into the outlet. </p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void PushSample(float[] data, double time = 0, bool pushthrough = true)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Single</span>[]</td>
+        <td><span class="parametername">data</span></td>
+        <td><p>An array of values to push (one for each channel). </p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Double</span></td>
+        <td><span class="parametername">time</span></td>
+        <td><p>Optionally the capture time of the sample, in agreement with <a class="xref" href="LSL4Unity.liblsl.html#LSL4Unity_liblsl_LocalClock">LocalClock()</a>; if omitted, the current time is used. </p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><span class="parametername">pushthrough</span></td>
+        <td><p>Optionally whether to push the sample through to the receivers instead of buffering it with subsequent samples.
+Note that the chunk_size, if specified at outlet construction, takes precedence over the pushthrough flag.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="LSL4Unity_liblsl_StreamOutlet_PushSample_" data-uid="LSL4Unity.liblsl.StreamOutlet.PushSample*"></a>
+  <h4 id="LSL4Unity_liblsl_StreamOutlet_PushSample_System_String___System_Double_System_Boolean_" data-uid="LSL4Unity.liblsl.StreamOutlet.PushSample(System.String[],System.Double,System.Boolean)">PushSample(String[], Double, Boolean)</h4>
+  <div class="markdown level1 summary"><p>Push an array of values as a sample into the outlet. </p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void PushSample(string[] data, double time = 0, bool pushthrough = true)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span>[]</td>
+        <td><span class="parametername">data</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Double</span></td>
+        <td><span class="parametername">time</span></td>
+        <td><p>Optionally the capture time of the sample, in agreement with <a class="xref" href="LSL4Unity.liblsl.html#LSL4Unity_liblsl_LocalClock">LocalClock()</a>; if omitted, the current time is used. </p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><span class="parametername">pushthrough</span></td>
+        <td><p>Optionally whether to push the sample through to the receivers instead of buffering it with subsequent samples.
+Note that the chunk_size, if specified at outlet construction, takes precedence over the pushthrough flag.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="LSL4Unity_liblsl_StreamOutlet_WaitForConsumers_" data-uid="LSL4Unity.liblsl.StreamOutlet.WaitForConsumers*"></a>
+  <h4 id="LSL4Unity_liblsl_StreamOutlet_WaitForConsumers_System_Double_" data-uid="LSL4Unity.liblsl.StreamOutlet.WaitForConsumers(System.Double)">WaitForConsumers(Double)</h4>
+  <div class="markdown level1 summary"><p>Wait until some consumer shows up (without wasting resources). </p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool WaitForConsumers(double timeout)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Double</span></td>
+        <td><span class="parametername">timeout</span></td>
+        <td><p>The timeout.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><p>True if the wait was successful, false if the timeout expired. </p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            LSL 4 Unity documentation
+            
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>

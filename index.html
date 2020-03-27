@@ -1,0 +1,142 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>LSL4Unity | LSL 4 Unity documentation </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="LSL4Unity | LSL 4 Unity documentation ">
+    <meta name="generator" content="docfx 2.51.0.0">
+    
+    <link rel="shortcut icon" href="favicon.ico">
+    <link rel="stylesheet" href="styles/docfx.vendor.css">
+    <link rel="stylesheet" href="styles/docfx.css">
+    <link rel="stylesheet" href="styles/main.css">
+    <meta property="docfx:navrel" content="toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    <meta property="docfx:rel" content="">
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="index.html">
+                <img id="logo" class="svg" src="logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list"></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        <div class="article row grid">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+<h1 id="lsl4unity">LSL4Unity</h1>
+
+<p>A integration approach of the LabStreamingLayer Framework for Unity3D providing the following features.</p>
+<ul>
+<li>Simple Editor Integration to lookup LSL streams.</li>
+<li>Provides a ready to use Marker stream implementation.</li>
+<li>Basic implementations and examples for LSL inlets and outlets.</li>
+<li>Build hooks to copy correct platform library to the build directory</li>
+</ul>
+<p>See the <a href="https://github.com/xfleckx/LSL4Unity/wiki">Project Wiki</a> to get more details and installation instructions.
+Also, see the <a href="https://github.com/xfleckx/LSL4Unity/wiki/Tips-for-using-LSL4Unity">Tips</a>!</p>
+<p>This is still under active development, so if something did not work properly stay calm, create an issue on github.
+Contributions are welcome!</p>
+<p><strong>LSL ships a C# wrapper for the LSL lib - why should I use an additional wrapper?</strong></p>
+<p>Good question - LSL4Unity tries to provide an enhanced user experience within Unity.
+It is intented to solve several issues,</p>
+<ul>
+<li>instable framerates results in irregular sampling intervalls</li>
+<li>plattform dependent compilation</li>
+</ul>
+<p>when using an Game Engine - in this case Unity - as a data provider within your experiments.</p>
+<p>We also try to provide an easy start with predefined implementations which supports a integration into the EEGLAB, BCILAB and MoBILAB ecosystem. <strong>Far from finished :X</strong></p>
+<h2 id="compatibility-info">Compatibility info</h2>
+<p>Currently LSL <del>works only with x64 builds</del> might work x64 and x86 builds of Unity3D projects!
+I got the whole thing running on both platforms under Windows.</p>
+<p>Linux and MacOS X Support seems to be working at least in the editor but more testing is necessary.
+Contributions are welcome! Just try to build the example scene on your platform and report potential errors as issues!</p>
+<h2 id="dependencies">Dependencies</h2>
+<p>In the current Version, the Asset package ships a sligthly modified version of the C# LSL API and the plugin binaries.
+The LabStreaming Layer is original created by SCCN und could be found at <a href="https://github.com/sccn/labstreaminglayer">https://github.com/sccn/labstreaminglayer</a>.</p>
+<p>It&#39;s highly recommended to read the section about the <a href="https://labstreaminglayer.readthedocs.io/info/time_synchronization.html">Time Synchronization</a> before building your own experiments!</p>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/tmonseigne/LSL4Unity/blob/cf8d707687d28fa333beb10a015ec38fad0959bc/Documentation/index.md/#L1" class="contribution-link">Improve this Doc</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            LSL 4 Unity documentation
+            
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="styles/docfx.js"></script>
+    <script type="text/javascript" src="styles/main.js"></script>
+  </body>
+</html>
