@@ -5,48 +5,48 @@ namespace LSL4Unity.OV.Template
 	/// @todo Je dois d'abord vérifier si je ne peux pas envoyer le tableau d'un coup par LSL et le double ou float Inlet sera suffisant.
 	public class MatrixInlet : OVDoubleInlet
 	{
-		public int       NChannel = -1;
-		public int       NSample  = -1;
-		public double[,] Matrix;
-		public bool      ReadyToSend = false;
+		public int       nChannel = -1;
+		public int       nSample  = -1;
+		public double[,] matrix;
+		public bool      readyToSend = false;
 
-		private int _curChannel = -1;
-		private int _curSample  = -1;
+		private int curChannel = -1;
+		private int curSample  = -1;
 
 		private void ResetMatrix()
 		{
-			for (int i = 0; i < NChannel; i++)
+			for (int i = 0; i < nChannel; i++)
 			{
-				for (int j = 0; j < NSample; j++) { Matrix[i, j] = 0; }
+				for (int j = 0; j < nSample; j++) { matrix[i, j] = 0; }
 			}
-			_curChannel = 0;
-			_curSample  = 0;
+			curChannel = 0;
+			curSample  = 0;
 		}
 
 		protected override void Process(double[] input, double time)
 		{
-			if (NChannel == -1) { NChannel = (int) input[0]; }
-			else if (NSample == -1)
+			if (nChannel == -1) { nChannel = (int) input[0]; }
+			else if (nSample == -1)
 			{
-				NSample = (int) input[0];
-				Matrix  = new double[NChannel, NSample];
+				nSample = (int) input[0];
+				matrix  = new double[nChannel, nSample];
 				ResetMatrix();
 			}
 			else
 			{
 				// If We have complete the matrix
-				if (_curChannel == NChannel && _curSample == NSample) { ResetMatrix(); }
+				if (curChannel == nChannel && curSample == nSample) { ResetMatrix(); }
 				// Update Row and column
-				if (_curSample == NSample)
+				if (curSample == nSample)
 				{
-					_curChannel++;
-					_curSample = 0;
+					curChannel++;
+					curSample = 0;
 				}
-				else { _curSample++; }
+				else { curSample++; }
 
 
 				// If Now the matrix is completed
-				if (_curChannel == NChannel && _curSample == NSample) { ReadyToSend = true; }
+				if (curChannel == nChannel && curSample == nSample) { readyToSend = true; }
 			}
 		}
 	}

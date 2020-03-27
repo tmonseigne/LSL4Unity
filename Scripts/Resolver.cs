@@ -28,7 +28,7 @@ namespace LSL4Unity
 		public bool IsStreamAvailable(out LSLStreamInfoWrapper info, string streamName = "", string streamType = "", string hostName = "")
 		{
 			var result = streams.Where(i => (streamName.Length == 0 || i.name.Equals(streamName)) && (streamType.Length == 0 || i.type.Equals(streamType))
-																									   && (hostName.Length == 0 || i.type.Equals(hostName)))
+																								  && (hostName.Length == 0 || i.type.Equals(hostName)))
 				.ToList();
 
 			if (result.Any())
@@ -46,13 +46,13 @@ namespace LSL4Unity
 			{
 				var results = resolver.Results();
 
-				foreach (var item in streams)
-				{
-					if (!results.Any(r => r.Name().Equals(item.name)))
-					{
-						if (onStreamLost.GetPersistentEventCount() > 0) { onStreamLost.Invoke(item); }
-					}
-				}
+				//foreach (var item in streams) {
+				//if (!results.Any(r => r.Name().Equals(item.name))) { 
+				//if (onStreamLost.GetPersistentEventCount() > 0) { onStreamLost.Invoke(item); } } }
+				//Replace by LINQ Expression
+
+				foreach (LSLStreamInfoWrapper item in streams.Where(item => !results.Any(r => r.Name().Equals(item.name)))
+					.Where(item => onStreamLost.GetPersistentEventCount() > 0)) { onStreamLost.Invoke(item); }
 
 				// remove lost streams from cache
 				streams.RemoveAll(s => !results.Any(r => r.Name().Equals(s.name)));

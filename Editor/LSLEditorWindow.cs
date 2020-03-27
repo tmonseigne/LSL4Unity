@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEditor;
 using UnityEngine;
 
@@ -38,7 +39,7 @@ namespace LSL4Unity.Editor
 			titleContent = new GUIContent("LSL Utility");
 		}
 
-		private liblsl.StreamInfo[] _streamInfos = null;
+		private liblsl.StreamInfo[] streamInfos = null;
 
 		private void OnGUI()
 		{
@@ -66,10 +67,20 @@ namespace LSL4Unity.Editor
 			EditorGUILayout.LabelField("Data Rate", EditorStyles.boldLabel, fieldWidth);
 			EditorGUILayout.EndHorizontal();
 
-			foreach (string item in namesOfStreams)
+			//foreach (string item in namesOfStreams)
+			//{
+			//	string[] s = item.Split(' ');
+			//
+			//	EditorGUILayout.BeginHorizontal();
+			//	EditorGUILayout.LabelField(new GUIContent(s[0], s[0]), fieldWidth);
+			//	EditorGUILayout.LabelField(new GUIContent(s[1], s[1]), fieldWidth);
+			//	EditorGUILayout.LabelField(new GUIContent(s[2], s[2]), fieldWidth);
+			//	EditorGUILayout.LabelField(new GUIContent(s[3], s[3]), fieldWidth);
+			//	EditorGUILayout.EndHorizontal();
+			//}
+			//Replace by LINQ Expression
+			foreach (string[] s in namesOfStreams.Select(item => item.Split(' ')))
 			{
-				string[] s = item.Split(' ');
-
 				EditorGUILayout.BeginHorizontal();
 				EditorGUILayout.LabelField(new GUIContent(s[0], s[0]), fieldWidth);
 				EditorGUILayout.LabelField(new GUIContent(s[1], s[1]), fieldWidth);
@@ -77,6 +88,7 @@ namespace LSL4Unity.Editor
 				EditorGUILayout.LabelField(new GUIContent(s[3], s[3]), fieldWidth);
 				EditorGUILayout.EndHorizontal();
 			}
+
 			EditorGUILayout.EndScrollView();
 			EditorGUILayout.EndVertical();
 		}
@@ -84,12 +96,12 @@ namespace LSL4Unity.Editor
 		private void UpdateStreams()
 		{
 			namesOfStreams.Clear();
-			_streamInfos = resolver.Results();
+			streamInfos = resolver.Results();
 
-			if (_streamInfos.Length == 0) { streamLookUpResult = NO_STREAMS_FOUND; }
+			if (streamInfos.Length == 0) { streamLookUpResult = NO_STREAMS_FOUND; }
 			else
 			{
-				foreach (liblsl.StreamInfo item in _streamInfos) { namesOfStreams.Add($"{item.Name()} {item.Type()} {item.Hostname()} {item.Sampling()}"); }
+				foreach (liblsl.StreamInfo item in streamInfos) { namesOfStreams.Add($"{item.Name()} {item.Type()} {item.Hostname()} {item.Sampling()}"); }
 				streamLookUpResult = namesOfStreams.Count + N_STREAMS_FOUND;
 			}
 		}

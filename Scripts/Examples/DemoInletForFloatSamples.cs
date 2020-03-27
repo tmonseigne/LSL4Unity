@@ -39,14 +39,14 @@ namespace LSL4Unity.Examples
 		/// coroutines for more complexe processing tasks to distribute processing time over
 		/// several frames
 		/// </summary>
-		/// <param name="sample"> The Incomming Sample. </param>
+		/// <param name="data"> The Incomming Sample. </param>
 		/// <param name="time"> The current Time. </param>
-		protected override void Process(float[] sample, double time)
+		protected override void Process(float[] data, double time)
 		{
 			//Assuming that a samples contains at least 3 values for x,y,z
-			float x = useX ? sample[0] : 1;
-			float y = useY ? sample[1] : 1;
-			float z = useZ ? sample[2] : 1;
+			float x = useX ? data[0] : 1;
+			float y = useY ? data[1] : 1;
+			float z = useZ ? data[2] : 1;
 
 			// we map the data to the scale factors
 			Vector3 targetScale = new Vector3(x, y, z);

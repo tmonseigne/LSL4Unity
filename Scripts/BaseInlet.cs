@@ -93,9 +93,9 @@ namespace LSL4Unity
 	public abstract class InletFloatSamples : ABaseInlet
 	{
 		/// <summary> Override this method in the subclass to specify what should happen when samples are available. </summary>
-		/// <param name="sample"> The Incomming Sample. </param>
+		/// <param name="data"> The Incomming Sample. </param>
 		/// <param name="time"> The current Time. </param>
-		protected abstract void Process(float[] sample, double time);
+		protected abstract void Process(float[] data, double time);
 
 		protected float[] sample;
 

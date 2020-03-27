@@ -476,7 +476,7 @@ namespace LSL4Unity
 
 			yield return new WaitUntil(() => results.Length > 0);
 
-			inlet = new liblsl.StreamInlet(results[0]);
+			inlet            = new liblsl.StreamInlet(results[0]);
 			expectedChannels = inlet.Info().ChannelCount();
 
 			yield return null;

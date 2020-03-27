@@ -15,7 +15,7 @@ namespace LSL4Unity.Editor
 					foreach (Attribute a in Attribute.GetCustomAttributes(monoScript.GetClass(), typeof(ScriptOrder)))
 					{
 						int currentOrder = MonoImporter.GetExecutionOrder(monoScript);
-						int newOrder     = ((ScriptOrder)a).order;
+						int newOrder     = ((ScriptOrder) a).order;
 						if (currentOrder != newOrder) { MonoImporter.SetExecutionOrder(monoScript, newOrder); }
 					}
 				}

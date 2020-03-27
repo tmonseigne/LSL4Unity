@@ -1,0 +1,56 @@
+{
+	"metadata": [
+		{
+			"src": [
+				{
+					"src": "..",
+					"files": [
+						"**.cs"
+					]
+				}
+			],
+			"globalNamespaceId": "Global",
+			"filter": "filterConfig.yml",
+			"dest": "api"
+		}
+	],
+	"build": {
+		"globalMetadata": {
+			"_appTitle": "LSL 4 Unity documentation",
+			"_appFooter": "LSL 4 Unity documentation",
+			"_enableSearch": true
+		},
+		"content": [
+			{
+				"files": [
+					"toc.yml",
+					"index.md"
+				]
+			},
+			{
+				"src": "api",
+				"files": [
+					"*.yml"
+				],
+				"dest": "api"
+			}
+		],
+		"resource": [
+			{
+				"files": [
+					"resources/**/*"
+				]
+			}
+		],
+		"sitemap": {
+			"baseUrl": "https://tmonseigne.github.io/LSL4Unity/",
+			"changefreq": "weekly",
+			"fileOptions": {
+				"api/*": {
+					"changefreq": "daily"
+				}
+			}
+		},
+		"dest": "../_site"
+	}
+}
