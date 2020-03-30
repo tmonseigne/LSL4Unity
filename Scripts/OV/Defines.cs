@@ -6,8 +6,7 @@ namespace LSL4Unity.OV
 	}
 
 	/// <summary> List of GDF Stimulations. </summary>
-	/// <remarks> You can use nameof operator to see the name instead of the value of the staimulation in log or other. </remarks>
-	/// <seealso href="https://docs.microsoft.com/dotnet/csharp/language-reference/operators/nameof">nameof operator (C# reference)</seealso>
+	/// <remarks> You can use [nameof operator (C# reference)](https://docs.microsoft.com/dotnet/csharp/language-reference/operators/nameof) to see the name instead of the value of the staimulation in log or other. </remarks>
 	public static class GDFStimulations
 	{
 		public const int GDF_ARTIFACT_EOG_LARGE             = 00257;
@@ -126,8 +125,7 @@ namespace LSL4Unity.OV
 	}
 
 	/// <summary> List of OpenViBE Stimulations. </summary>
-	/// <remarks> You can use nameof operator to see the name instead of the value of the staimulation in log or other. </remarks>
-	/// <seealso href="https://docs.microsoft.com/dotnet/csharp/language-reference/operators/nameof">nameof operator (C# reference)</seealso>
+	/// <remarks> You can use [nameof operator (C# reference)](https://docs.microsoft.com/dotnet/csharp/language-reference/operators/nameof) to see the name instead of the value of the staimulation in log or other. </remarks>
 	public static class Stimulations
 	{
 		public const int NUMBER_00 = 00000;

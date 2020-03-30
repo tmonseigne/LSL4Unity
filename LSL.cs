@@ -15,22 +15,27 @@
 
 using System;
 using System.Runtime.InteropServices;
+using System.Runtime.Serialization;
 
 namespace LSL4Unity
 {
 	public class liblsl
 	{
 		/// <summary> Constant to indicate that a stream has variable sampling rate. </summary>
+		/// <value> Indicate that a stream has variable sampling rate. </value>
 		public const double IRREGULAR_RATE = 0.0;
 
-		/// <summary> Constant to indicate that a sample has the next successive time stamp. </summary>
+		/// <summary> Constant to indicate that a sample has the next successive time stamp.
+		/// 
 		/// This is an optional optimization to transmit less data per sample.
 		/// The stamp is then deduced from the preceding one according to the stream's sampling rate
-		/// (in the case of an irregular rate, the same time stamp as before will is assumed).
+		/// (in the case of an irregular rate, the same time stamp as before will is assumed). </summary>
+		/// <value> Indicate that a sample has the next successive time stamp. </value>
 		public const double DEDUCED_TIMESTAMP = -1.0;
 
 		/// <summary> A very large time duration (> 1 year) for timeout values. </summary>
 		/// <remarks> Note that significantly larger numbers can cause the timeout to be invalid on some operating systems (e.g., 32-bit UNIX). </remarks>
+		/// <value> A very large time duration (> 1 year). </value>
 		public const double FOREVER = 32000000.0;
 
 		/// <summary> Data format of a channel (each transmitted sample holds an array of channels). </summary>
@@ -39,7 +44,7 @@ namespace LSL4Unity
 			/// <summary> For up to 24-bit precision measurements in the appropriate physical unit. </summary>
 			cf_float32 = 1,
 
-			/// <summary> For universal numeric data as long as permitted by network & disk budget.
+			/// <summary> For universal numeric data as long as permitted by network and disk budget.  
 			/// (e.g., microvolts). Integers from -16777216 to 16777216 are represented accurately. </summary>
 			cf_double64 = 2,
 
@@ -50,15 +55,15 @@ namespace LSL4Unity
 			/// <summary> For high-rate digitized formats that require 32-bit precision. Depends critically on complex event descriptions, etc. </summary>
 			cf_int32 = 4,
 
-			/// <summary> For very high rate signals (40Khz+) or consumer-grade audio meta-data to represent meaningful units. </summary>
-			/// Useful for application event codes or other coded data.
+			/// <summary> For very high rate signals (40Khz+) or consumer-grade audio meta-data to represent meaningful units.  
+			/// Useful for application event codes or other coded data. </summary>
 			cf_int16 = 5,
 
 			/// <summary> For binary signals or other coded data. (for professional audio float is recommended). </summary>
 			cf_int8 = 6,
 
-			/// <summary> For now only for future compatibility. Support for this type is not yet exposed in all languages. </summary>
-			/// Not recommended for encoding string data.
+			/// <summary> For now only for future compatibility. Support for this type is not yet exposed in all languages.  
+			/// Not recommended for encoding string data. </summary>
 			cf_int64 = 7,
 
 			/// <summary> Can not be transmitted. Also, some builds of liblsl will not be able to send or receive data of this type. </summary>
@@ -88,23 +93,26 @@ namespace LSL4Unity
 			post_ALL = 1 | 2 | 4 | 8
 		}
 
-		/// <summary> Version of the lsl protocol. </summary>
-		/// The major version is <c>rotocolVersion()</c> / 100; The minor version is <c>rotocolVersion()</c> % 100;
-		/// Clients with different minor versions are protocol-compatible with each other while clients with different major versions will refuse to work together.
-		/// <returns> THe protocole version. </returns>
+		/// <summary> Version of the lsl protocol.
+		///
+		/// The major version is <see cref="ProtocolVersion"/> / 100; The minor version is <see cref="ProtocolVersion"/> % 100;
+		/// Clients with different minor versions are protocol-compatible with each other while clients with different major versions will refuse to work together.</summary>
+		/// <returns> The protocole version. </returns>
 		public static int ProtocolVersion() { return dll.lsl_protocol_version(); }
 
-		/// <summary> Version of the liblsl library. </summary>
-		/// The major version is LibraryVersion() / 100; The minor version is LibraryVersion() % 100;
-		/// <returns> THe library version. </returns>
+		/// <summary> Version of the liblsl library.
+		///
+		/// The major version is LibraryVersion() / 100; The minor version is LibraryVersion() % 100;</summary>
+		/// <returns> The library version. </returns>
 		public static int LibraryVersion() { return dll.lsl_library_version(); }
 
-		/// <summary> Obtain a local system time stamp in seconds. </summary>
+		/// <summary> Obtain a local system time stamp in seconds.
+		///
 		/// The resolution is better than a millisecond.
 		/// This reading can be used to assign time stamps to samples as they are being acquired.
 		/// If the "age" of a sample is known at a particular time (e.g., from USB transmission delays),
-		/// it can be used as an offset to LocalClock() to obtain a better estimate of when a sample was actually captured.
-		/// See <c>StreamOutlet::PushSample()</c> for a use case.
+		/// it can be used as an offset to LocalClock() to obtain a better estimate of when a sample was actually captured. 
+		/// See <c>StreamOutlet::PushSample()</c> for a use case. </summary>
 		/// <returns> The local system time stamp in seconds. </returns>
 		public static double LocalClock() { return dll.lsl_local_clock(); }
 
@@ -113,39 +121,45 @@ namespace LSL4Unity
 		// === Stream Declaration ===
 		// ==========================
 
-		/// <summary> The stream_info object stores the declaration of a data stream. </summary>
-		/// Represents the following information:
-		///  a) stream data format (#channels, channel format)
-		///  b) core information (stream name, content type, sampling rate)
-		///  c) optional meta-data about the stream content (channel labels, measurement units, etc.)
+		/// <summary> The stream_info object stores the declaration of a data stream.
 		///
-		/// Whenever a program wants to provide a new stream on the lab network it will typically first 
-		/// create a stream_info to describe its properties and then construct a stream_outlet with it to create
-		/// the stream on the network. Recipients who discover the outlet can query the stream_info; it is also
-		/// written to disk when recording the stream (playing a similar role as a file header).
+		/// Represents the following information:
+		/// 1. stream data format (#channels, channel format)
+		/// 1. core information (stream name, content type, sampling rate)
+		/// 1. optional meta-data about the stream content (channel labels, measurement units, etc.)
+		///
+		/// Whenever a program wants to provide a new stream on the lab network,
+		/// it will typically first create a stream_info to describe its properties
+		/// and then construct a stream_outlet with it to create the stream on the network.
+		/// Recipients who discover the outlet can query the stream_info; it is also written to disk when recording the stream
+		/// (playing a similar role as a file header).</summary>
 		public class StreamInfo
 		{
-			/// <summary> Initializes a new instance of the <see cref="StreamInfo"/> object. </summary>
-			/// Core stream information is specified here. Any remaining meta-data can be added later.
+			/// <summary> Initializes a new instance of the <see cref="StreamInfo"/> object.
+			///
+			/// Core stream information is specified here. Any remaining meta-data can be added later. </summary>
 			/// <param name="name"> Name of the stream. Describes the device (or product series) that this stream makes available (for use by programs, experimenters or data analysts).
-			/// Cannot be empty.</param>
+			/// Cannot be empty. </param>
 			/// <param name="type"> Content type of the stream.
-			/// Please see https://github.com/sccn/xdf/wiki/Meta-Data (or web search for: meta-data) for pre-defined content-type names, but you can also make up your own.
+			/// Please see [https://github.com/sccn/xdf/wiki/Meta-Data](https://github.com/sccn/xdf/wiki/Meta-Data) (or web search for: meta-data)
+			/// for pre-defined content-type names, but you can also make up your own.
 			/// The content type is the preferred way to find streams (as opposed to searching by name). </param>
 			/// <param name="channelCount"> Number of channels per sample. This stays constant for the lifetime of the stream. </param>
 			/// <param name="sampling"> The sampling rate (in Hz) as advertised by the data source, if regular (otherwise set to IRREGULAR_RATE). </param>
 			/// <param name="channelFormat"> Format/type of each channel.
-			/// If your channels have different formats, consider supplying multiple streams or use the largest type that can hold them all (such as cf_double64).</param>
+			/// If your channels have different formats, consider supplying multiple streams or use the largest type that can hold them all (such as cf_double64). </param>
 			/// <param name="sourceId"> Unique identifier of the device or source of the data, if available (such as the serial number).
 			/// This is critical for system robustness since it allows recipients to recover from failure even after the serving app, device or computer crashes
 			/// (just by finding a stream with the same source id on the network again).
-			/// Therefore, it is highly recommended to always try to provide whatever information can uniquely identify the data source itself.</param>
+			/// Therefore, it is highly recommended to always try to provide whatever information can uniquely identify the data source itself. </param>
 			public StreamInfo(string           name,                                        string type, int channelCount = 1, double sampling = IRREGULAR_RATE,
 							  channel_format_t channelFormat = channel_format_t.cf_float32, string sourceId = "")
 			{
 				obj = dll.lsl_create_streaminfo(name, type, channelCount, sampling, channelFormat, sourceId);
 			}
 
+			/// <summary> Initializes a new instance of the <see cref="StreamInfo"/> class. </summary>
+			/// <param name="handle"> The handle. </param>
 			public StreamInfo(IntPtr handle) { obj = handle; }
 
 			/// <summary> Finalizes an instance of the <see cref="StreamInfo"/> object. </summary>
@@ -156,42 +170,48 @@ namespace LSL4Unity
 			// ========================
 			// (these fields are assigned at construction)
 
-			/// <summary> Name of the stream. </summary>
+			/// <summary> Name of the stream.
+			///
 			/// This is a human-readable name. For streams offered by device modules,
 			/// it refers to the type of device or product series that is generating the data of the stream.
 			/// If the source is an application, the name may be a more generic or specific identifier.
-			/// Multiple streams with the same name can coexist, though potentially at the cost of ambiguity (for the recording app or experimenter).
+			/// Multiple streams with the same name can coexist, though potentially at the cost of ambiguity (for the recording app or experimenter). </summary>
 			/// <returns> The name of the stream. </returns>
 			public string Name() { return Marshal.PtrToStringAnsi(dll.lsl_get_name(obj)); }
 
-			/// <summary> Content type of the stream.  </summary>
+			/// <summary> Content type of the stream.
+			///
 			/// The content type is a short string such as "EEG", "Gaze" which describes the content carried by the channel (if known). 
 			/// If a stream contains mixed content this value need not be assigned but may instead be stored in the description of channel types.
 			/// To be useful to applications and automated processing systems using the recommended content types is preferred. 
-			/// Content types usually follow those pre-defined in https://github.com/sccn/xdf/wiki/Meta-Data (or web search for: XDF meta-data).
+			/// Content types usually follow those pre-defined in [https://github.com/sccn/xdf/wiki/Meta-Data](https://github.com/sccn/xdf/wiki/Meta-Data) (or web search for: XDF meta-data). </summary>
 			/// <returns> The content type of the stream (in <c>string</c>). </returns>
 			public string Type() { return Marshal.PtrToStringAnsi(dll.lsl_get_type(obj)); }
 
 			/// <summary> Number of channels of the stream. A stream has at least one channel; the channel count stays constant for all samples. </summary>
+			/// <returns> The Number of channels of the stream. </returns>
 			public int ChannelCount() { return dll.lsl_get_channel_count(obj); }
 
-			/// <summary> Sampling rate of the stream, according to the source (in Hz). </summary>
+			/// <summary> Sampling rate of the stream, according to the source (in Hz).
+			///
 			/// If a stream is irregularly sampled, this should be set to IRREGULAR_RATE.
 			/// Note that no data will be lost even if this sampling rate is incorrect or if a device has temporary
 			/// hiccups, since all samples will be recorded anyway (except for those dropped by the device itself). However,
 			/// when the recording is imported into an application, a good importer may correct such errors more accurately
-			/// if the advertised sampling rate was close to the specs of the device.
+			/// if the advertised sampling rate was close to the specs of the device. </summary>
 			/// <returns> The Sampling rate of the stream (in <c>double</c>). </returns>
 			public double Sampling() { return dll.lsl_get_nominal_srate(obj); }
 
-			/// <summary> Channel format of the stream. </summary>
-			/// All channels in a stream have the same format. However, a device might offer multiple time-synched streams each with its own format.
+			/// <summary> Channel format of the stream.
+			///
+			/// All channels in a stream have the same format. However, a device might offer multiple time-synched streams each with its own format. </summary>
 			/// <returns>The hannel format of the stream (in <see cref="channel_format_t"/> enum) </returns>
 			public channel_format_t ChannelFormat() { return dll.lsl_get_channel_format(obj); }
 
-			/// <summary> Unique identifier of the stream's source, if available. </summary>
+			/// <summary> Unique identifier of the stream's source, if available.
+			///
 			/// The unique source (or device) identifier is an optional piece of information that, if available,
-			/// allows that endpoints(such as the recording program) can re-acquire a stream automatically once it is back online.
+			/// allows that endpoints(such as the recording program) can re-acquire a stream automatically once it is back online. </summary>
 			/// <returns> The Identifier (in <c>string</c>). </returns>
 			public string SourceId() { return Marshal.PtrToStringAnsi(dll.lsl_get_source_id(obj)); }
 
@@ -205,20 +225,23 @@ namespace LSL4Unity
 			/// <returns> The protocol version (in <c>int</c>). </returns>
 			public int Version() { return dll.lsl_get_version(obj); }
 
-			/// <summary> Creation time stamp of the stream. </summary>
-			/// This is the time stamp when the stream was first created (as determined via LocalClock() on the providing machine).
+			/// <summary> Creation time stamp of the stream.
+			///
+			/// This is the time stamp when the stream was first created (as determined via LocalClock() on the providing machine). </summary>
 			/// <returns> The Time Stamp (in <c>double</c>). </returns>
 			public double CreatedAt() { return dll.lsl_get_created_at(obj); }
 
-			/// <summary> Unique ID of the stream outlet instance (once assigned). </summary>
-			/// This is a unique identifier of the stream outlet, and is guaranteed to be different across multiple instantiations of the same outlet (e.g., after a re-start).
+			/// <summary> Unique ID of the stream outlet instance (once assigned).
+			///
+			/// This is a unique identifier of the stream outlet, and is guaranteed to be different across multiple instantiations of the same outlet (e.g., after a re-start). </summary>
 			/// <returns> The Unique Identifier (in <c>string</c>). </returns>
 			public string Uid() { return Marshal.PtrToStringAnsi(dll.lsl_get_uid(obj)); }
 
-			/// <summary> Session ID for the given stream. </summary>
+			/// <summary> Session ID for the given stream.
+			///
 			/// The session id is an optional human-assigned identifier of the recording session.
 			/// While it is rarely used, it can be used to prevent concurrent recording activitites on the same sub-network (e.g., in multiple experiment areas)
-			/// from seeing each other's streams (assigned via a configuration file by the experimenter, see Network Connectivity in the LSL wiki).
+			/// from seeing each other's streams (assigned via a configuration file by the experimenter, see Network Connectivity in the LSL wiki). </summary>
 			/// <returns> The Session Identifier (in <c>string</c>). </returns>
 			public string SessionId() { return Marshal.PtrToStringAnsi(dll.lsl_get_session_id(obj)); }
 
@@ -230,24 +253,25 @@ namespace LSL4Unity
 			// === Data Description ===
 			// ========================
 
-			/// <summary> Extended description of the stream. </summary>
+			/// <summary> Extended description of the stream.
+			///
 			/// It is highly recommended that at least the channel labels are described here.
 			/// See code examples on the LSL wiki. Other information, such as amplifier settings, 
 			/// measurement units if deviating from defaults, setup information, subject information, etc., 
 			/// can be specified here, as well. Meta-data recommendations follow the XDF file format project
-			/// (github.com/sccn/xdf/wiki/Meta-Data or web search for: XDF meta-data).
-			///
+			/// ([https://github.com/sccn/xdf/wiki/Meta-Data](https://github.com/sccn/xdf/wiki/Meta-Data) or web search for: XDF meta-data). </summary>
 			/// <remarks>if you use a stream content type for which meta-data recommendations exist, please
 			/// try to lay out your meta-data in agreement with these recommendations for compatibility with other applications. </remarks>
 			/// <returns> A <see cref="XMLElement "/> containing the description. </returns>
 			public XMLElement Desc() { return new XMLElement(dll.lsl_get_desc(obj)); }
 
-			/// <summary> Retrieve the entire <see cref="StreamInfo"/> in XML format. </summary>
+			/// <summary> Retrieve the entire <see cref="StreamInfo"/> in XML format.
+			///
 			/// This yields an XML document (in string form) whose top-level element is &lt;info&gt;. The info element contains
 			/// one element for each field of the stream_info class, including:
 			///  a) the core elements <c>Name</c>, <c>Type</c>, <c>ChannelCount</c>, <c>Sampling</c>, <c>ChannelFormat</c>, <c>SourceId</c>
 			///  b) the misc elements <c>Version</c>, <c>CreatedAt</c>, <c>Uid</c>, <c>SessionId</c>, <c>v4address</c>, <c>v4data_port</c>, <c>v4service_port</c>, <c>v6address</c>, <c>v6data_port</c>, <c>v6service_port</c>
-			///  c) the extended description element <c>desc</c> with user-defined sub-elements.
+			///  c) the extended description element <c>desc</c> with user-defined sub-elements. </summary>
 			/// <returns> A <c>string</c> with the entire <see cref="StreamInfo"/>. </returns>
 			public string AsXML()
 			{
@@ -258,7 +282,7 @@ namespace LSL4Unity
 			}
 
 			/// <summary> Get access to the underlying handle. </summary>
-			/// <returns></returns>
+			/// <returns> the Handle. </returns>
 			public IntPtr Handle() { return obj; }
 
 			private readonly IntPtr obj;
@@ -269,8 +293,9 @@ namespace LSL4Unity
 		// ==== Stream Outlet ====
 		// =======================
 
-		/// <summary> A stream outlet. </summary>
-		/// Outlets are used to make streaming data (and the meta-data) available on the lab network.
+		/// <summary> A stream outlet.
+		///
+		/// Outlets are used to make streaming data (and the meta-data) available on the lab network. </summary>
 		public class StreamOutlet
 		{
 			/// <summary> Initializes a new instance of <see cref="StreamOutlet"/>. This makes the stream discoverable. </summary>
@@ -278,14 +303,15 @@ namespace LSL4Unity
 			/// <param name="chunkSize"> Optionally the desired chunk granularity (in samples) for transmission.
 			/// If unspecified, each push operation yields one chunk. Inlets can override this setting. </param>
 			/// <param name="maxBuffered">Optionally the maximum amount of data to buffer (in seconds if there is a nominal sampling rate, otherwise x100 in samples).
-			/// The default is 6 minutes of data.</param>
+			/// The default is 6 minutes of data. </param>
 			public StreamOutlet(StreamInfo info, int chunkSize = 0, int maxBuffered = 360)
 			{
 				obj = dll.lsl_create_outlet(info.Handle(), chunkSize, maxBuffered);
 			}
 
-			/// <summary> Finalizes an instance of the <see cref="StreamOutlet"/>. </summary>
-			/// The stream will no longer be discoverable after destruction and all paired inlets will stop delivering data.
+			/// <summary> Finalizes an instance of the <see cref="StreamOutlet"/>.
+			///
+			/// The stream will no longer be discoverable after destruction and all paired inlets will stop delivering data. </summary>
 			~StreamOutlet() { dll.lsl_destroy_outlet(obj); }
 
 
@@ -297,22 +323,27 @@ namespace LSL4Unity
 			/// <param name="data"> An array of values to push (one for each channel). </param>
 			/// <param name="time"> Optionally the capture time of the sample, in agreement with <see cref="LocalClock"/>; if omitted, the current time is used. </param>
 			/// <param name="pushthrough"> Optionally whether to push the sample through to the receivers instead of buffering it with subsequent samples.
-			/// Note that the chunk_size, if specified at outlet construction, takes precedence over the pushthrough flag.</param>
+			/// Note that the chunk_size, if specified at outlet construction, takes precedence over the pushthrough flag. </param>
 			public void PushSample(float[] data, double time = 0.0, bool pushthrough = true) { dll.lsl_push_sample_ftp(obj, data, time, pushthrough ? 1 : 0); }
 
 			/// <inheritdoc cref="PushSample(float[],double,bool)"/>
+			/// <param name="data"> An array of values to push (one for each channel). </param>
 			public void PushSample(double[] data, double time = 0.0, bool pushthrough = true) { dll.lsl_push_sample_dtp(obj, data, time, pushthrough ? 1 : 0); }
 
 			/// <inheritdoc cref="PushSample(float[],double,bool)"/>
+			/// <param name="data"> An array of values to push (one for each channel). </param>
 			public void PushSample(int[] data, double time = 0.0, bool pushthrough = true) { dll.lsl_push_sample_itp(obj, data, time, pushthrough ? 1 : 0); }
 
 			/// <inheritdoc cref="PushSample(float[],double,bool)"/>
+			/// <param name="data"> An array of values to push (one for each channel). </param>
 			public void PushSample(short[] data, double time = 0.0, bool pushthrough = true) { dll.lsl_push_sample_stp(obj, data, time, pushthrough ? 1 : 0); }
 
 			/// <inheritdoc cref="PushSample(float[],double,bool)"/>
+			/// <param name="data"> An array of values to push (one for each channel). </param>
 			public void PushSample(char[] data, double time = 0.0, bool pushthrough = true) { dll.lsl_push_sample_ctp(obj, data, time, pushthrough ? 1 : 0); }
 
 			/// <inheritdoc cref="PushSample(float[],double,bool)"/>
+			/// <param name="data"> An array of values to push (one for each channel). </param>
 			public void PushSample(string[] data, double time = 0.0, bool pushthrough = true)
 			{
 				dll.lsl_push_sample_strtp(obj, data, time, pushthrough ? 1 : 0);
@@ -327,37 +358,42 @@ namespace LSL4Unity
 			/// <param name="data"> A rectangular array of values for multiple samples. </param>
 			/// <param name="time"> Optionally the capture time of the sample, in agreement with <see cref="LocalClock"/>; if omitted, the current time is used. </param>
 			/// <param name="pushthrough"> Optionally whether to push the sample through to the receivers instead of buffering it with subsequent samples.
-			/// Note that the chunkSize, if specified at outlet construction, takes precedence over the pushthrough flag.</param>
+			/// Note that the chunkSize, if specified at outlet construction, takes precedence over the pushthrough flag. </param>
 			public void PushChunk(float[,] data, double time = 0.0, bool pushthrough = true)
 			{
 				dll.lsl_push_chunk_ftp(obj, data, (uint) data.Length, time, pushthrough ? 1 : 0);
 			}
 
 			/// <inheritdoc cref="PushChunk(float[,],double,bool)"/>
+			/// <param name="data"> A rectangular array of values for multiple samples. </param>
 			public void PushChunk(double[,] data, double time = 0.0, bool pushthrough = true)
 			{
 				dll.lsl_push_chunk_dtp(obj, data, (uint) data.Length, time, pushthrough ? 1 : 0);
 			}
 
 			/// <inheritdoc cref="PushChunk(float[,],double,bool)"/>
+			/// <param name="data"> A rectangular array of values for multiple samples. </param>
 			public void PushChunk(int[,] data, double time = 0.0, bool pushthrough = true)
 			{
 				dll.lsl_push_chunk_itp(obj, data, (uint) data.Length, time, pushthrough ? 1 : 0);
 			}
 
 			/// <inheritdoc cref="PushChunk(float[,],double,bool)"/>
+			/// <param name="data"> A rectangular array of values for multiple samples. </param>
 			public void PushChunk(short[,] data, double time = 0.0, bool pushthrough = true)
 			{
 				dll.lsl_push_chunk_stp(obj, data, (uint) data.Length, time, pushthrough ? 1 : 0);
 			}
 
 			/// <inheritdoc cref="PushChunk(float[,],double,bool)"/>
+			/// <param name="data"> A rectangular array of values for multiple samples. </param>
 			public void PushChunk(char[,] data, double time = 0.0, bool pushthrough = true)
 			{
 				dll.lsl_push_chunk_ctp(obj, data, (uint) data.Length, time, pushthrough ? 1 : 0);
 			}
 
 			/// <inheritdoc cref="PushChunk(float[,],double,bool)"/>
+			/// <param name="data"> A rectangular array of values for multiple samples. </param>
 			public void PushChunk(string[,] data, double time = 0.0, bool pushthrough = true)
 			{
 				dll.lsl_push_chunk_strtp(obj, data, (uint) data.Length, time, pushthrough ? 1 : 0);
@@ -366,39 +402,41 @@ namespace LSL4Unity
 
 			/// <summary> Push a chunk of multiplexed samples into the outlet. One time per sample is provided. </summary>
 			/// <param name="data"> A rectangular array of values for multiple samples. </param>
-			/// <param name="times"> An array of time values holding time stamps for each sample in the data buffer. </param>
-			/// <param name="pushthrough"> Optionally whether to push the sample through to the receivers instead of buffering it with subsequent samples.
-			/// Note that the chunkSize, if specified at outlet construction, takes precedence over the pushthrough flag.</param>
 			public void PushChunk(float[,] data, double[] times, bool pushthrough = true)
 			{
 				dll.lsl_push_chunk_ftnp(obj, data, (uint) data.Length, times, pushthrough ? 1 : 0);
 			}
 
 			/// <inheritdoc cref="PushChunk(float[,],double[],bool)"/>
+			/// <param name="data"> A rectangular array of values for multiple samples. </param>
 			public void PushChunk(double[,] data, double[] times, bool pushthrough = true)
 			{
 				dll.lsl_push_chunk_dtnp(obj, data, (uint) data.Length, times, pushthrough ? 1 : 0);
 			}
 
 			/// <inheritdoc cref="PushChunk(float[,],double[],bool)"/>
+			/// <param name="data"> A rectangular array of values for multiple samples. </param>
 			public void PushChunk(int[,] data, double[] times, bool pushthrough = true)
 			{
 				dll.lsl_push_chunk_itnp(obj, data, (uint) data.Length, times, pushthrough ? 1 : 0);
 			}
 
 			/// <inheritdoc cref="PushChunk(float[,],double[],bool)"/>
+			/// <param name="data"> A rectangular array of values for multiple samples. </param>
 			public void PushChunk(short[,] data, double[] times, bool pushthrough = true)
 			{
 				dll.lsl_push_chunk_stnp(obj, data, (uint) data.Length, times, pushthrough ? 1 : 0);
 			}
 
 			/// <inheritdoc cref="PushChunk(float[,],double[],bool)"/>
+			/// <param name="data"> A rectangular array of values for multiple samples. </param>
 			public void PushChunk(char[,] data, double[] times, bool pushthrough = true)
 			{
 				dll.lsl_push_chunk_ctnp(obj, data, (uint) data.Length, times, pushthrough ? 1 : 0);
 			}
 
 			/// <inheritdoc cref="PushChunk(float[,],double[],bool)"/>
+			/// <param name="data"> A rectangular array of values for multiple samples. </param>
 			public void PushChunk(string[,] data, double[] times, bool pushthrough = true)
 			{
 				dll.lsl_push_chunk_strtnp(obj, data, (uint) data.Length, times, pushthrough ? 1 : 0);
@@ -409,18 +447,20 @@ namespace LSL4Unity
 			// === Miscellaneous Functions ===
 			// ===============================
 
-			/// <summary> Check whether consumers are currently registered. </summary>
-			///  While it does not hurt, there is technically no reason to push samples if there is no consumer.
+			/// <summary> Check whether consumers are currently registered.
+			///
+			///  While it does not hurt, there is technically no reason to push samples if there is no consumer. </summary>
 			/// <returns> <c>true</c> or <c>false</c>. </returns>
 			public bool HaveConsumers() { return dll.lsl_have_consumers(obj) > 0; }
 
 			/// <summary> Wait until some consumer shows up (without wasting resources). </summary>
-			/// <param name="timeout"> The timeout.</param>
+			/// <param name="timeout"> The timeout. </param>
 			/// <returns> True if the wait was successful, false if the timeout expired. </returns>
 			public bool WaitForConsumers(double timeout) { return dll.lsl_wait_for_consumers(obj) > 0; }
 
-			/// <summary> Retrieve the stream info provided by this outlet. </summary>
-			/// This is what was used to create the stream (and also has the Additional Network Information fields assigned).
+			/// <summary> Retrieve the stream info provided by this outlet.
+			///
+			/// This is what was used to create the stream (and also has the Additional Network Information fields assigned). </summary>
 			/// <returns> A <see cref="StreamInfo"/> </returns>
 			public StreamInfo Info() { return new StreamInfo(dll.lsl_get_info(obj)); }
 
@@ -432,12 +472,13 @@ namespace LSL4Unity
 		// ==== Resolve Functions ====
 		// ===========================
 
-		/// <summary> Resolve all streams on the network. </summary>
+		/// <summary> Resolve all streams on the network.
+		///
 		/// This function returns all currently available streams from any outlet on the network.
 		/// The network is usually the subnet specified at the local router,
 		/// but may also include a multicast group of machines (given that the network supports it), or list of hostnames.
 		/// These details may optionally be customized by the experimenter in a configuration file  (see Network Connectivity in the LSL wiki).
-		/// This is the default mechanism used by the browsing programs and the recording program.
+		/// This is the default mechanism used by the browsing programs and the recording program. </summary>
 		/// <param name="waitTime"> The waiting time for the operation, in seconds, to search for streams. </param>
 		/// <returns> An array of stream info objects (excluding their desc field), any of which can subsequently be used to open an inlet.
 		/// The full info can be retrieve from the inlet. </returns>
@@ -451,8 +492,9 @@ namespace LSL4Unity
 			return res;
 		}
 
-		/// <summary> Resolve all streams with a specific value for a given property. </summary>
-		/// If the goal is to resolve a specific stream, this method is preferred over resolving all streams and then selecting the desired one.
+		/// <summary> Resolve all streams with a specific value for a given property.
+		///
+		/// If the goal is to resolve a specific stream, this method is preferred over resolving all streams and then selecting the desired one.</summary>
 		/// <param name="prop"> The <see cref="StreamInfo"/> property that should have a specific value (e.g., "name", "type", "SourceId", or "desc/manufaturer"). </param>
 		/// <param name="value"> The string value that the property should have (e.g., "EEG" as the type property). </param>
 		/// <param name="minimum"> Optionally return at least this number of streams. </param>
@@ -468,15 +510,16 @@ namespace LSL4Unity
 			return res;
 		}
 
-		/// <summary> Resolve all streams that match a given predicate. </summary>
+		/// <summary> Resolve all streams that match a given predicate.
+		///
 		/// Advanced query that allows to impose more conditions on the retrieved streams;
-		/// the given string is an XPath 1.0 predicate for the info node (omitting the surrounding []'s),
+		/// the given string is an XPath 1.0 predicate for the info node (omitting the surrounding []'s). </summary>
 		/// <param name="pred"> The predicate string, e.g. "name='BioSemi'" or "type='EEG' and starts-with(name,'BioSemi') and count(info/desc/channel)=32". </param>
 		/// <param name="minimum"> Optionally return at least this number of streams. </param>
 		/// <param name="timeout"> Optionally a timeout of the operation, in seconds (default: no timeout).
 		/// If the timeout expires, less than the desired number of streams (possibly none) will be returned. </param>
 		/// <returns> An array of matching stream info objects (excluding their meta-data), any of which can subsequently be used to open an inlet. </returns>
-		/// <seealso cref="http://en.wikipedia.org/w/index.php?title=XPath_1.0&oldid=474981951"/>
+		/// <remarks> See Also : [Wikipedia XPath 1.0](http://en.wikipedia.org/w/index.php?title=XPath_1.0). </remarks>
 		public static StreamInfo[] ResolveStream(string pred, int minimum = 1, double timeout = FOREVER)
 		{
 			IntPtr[]     buf = new IntPtr[1024];
@@ -491,8 +534,9 @@ namespace LSL4Unity
 		// ==== Stream Inlet ====
 		// ======================
 
-		/// <summary> A stream inlet. </summary>
-		/// Inlets are used to receive streaming data (and meta-data) from the lab network.
+		/// <summary> A stream inlet.
+		///
+		/// Inlets are used to receive streaming data (and meta-data) from the lab network. </summary>
 		public class StreamInlet
 		{
 			/// <summary> Initializes a new instance of <see cref="StreamInlet"/> from a resolved stream info. </summary>
@@ -518,12 +562,14 @@ namespace LSL4Unity
 				obj = dll.lsl_create_inlet(info.Handle(), maxBuflen, maxChunklen, recover ? 1 : 0);
 			}
 
-			/// <summary> Finalizes an instance of <see cref="StreamInlet"/>. </summary>
-			/// The inlet will automatically disconnect if destroyed.
+			/// <summary> Finalizes an instance of <see cref="StreamInlet"/>.
+			///
+			/// The inlet will automatically disconnect if destroyed. </summary>
 			~StreamInlet() { dll.lsl_destroy_inlet(obj); }
 
-			/// <summary> Retrieve the complete information of the given stream, including the extended description. </summary>
-			/// Can be invoked at any time of the stream's lifetime.
+			/// <summary> Retrieve the complete information of the given stream, including the extended description.
+			///
+			/// Can be invoked at any time of the stream's lifetime.  </summary>
 			/// <param name="timeout"> Optional timeout of the operation (default: no timeout). </param>
 			/// <returns> <see cref="StreamInfo"/>. </returns>
 			/// <exception cref="TimeoutException"> If the timeout expires. </exception>
@@ -536,11 +582,12 @@ namespace LSL4Unity
 				return new StreamInfo(res);
 			}
 
-			/// <summary> Subscribe to the data stream. </summary>
+			/// <summary> Subscribe to the data stream.
+			///
 			/// All samples pushed in at the other end from this moment onwards will be queued and 
 			/// eventually be delivered in response to <see cref="PullSample(float[],double)"/> or <see cref="PullChunk(float[,],double[],double)"/> calls. 
-			/// Pulling a sample without some preceding OpenStream is permitted (the stream will then be opened implicitly).
-			/// <param name="timeout"> Optional timeout of the operation (default: no timeout).</param>
+			/// Pulling a sample without some preceding OpenStream is permitted (the stream will then be opened implicitly). </summary>
+			/// <param name="timeout"> Optional timeout of the operation (default: no timeout). </param>
 			/// <exception cref="TimeoutException"> If the timeout expires. </exception>
 			/// <exception cref="LostException"> If the stream source has been lost. </exception>
 			public void OpenStream(double timeout = FOREVER)
@@ -550,26 +597,29 @@ namespace LSL4Unity
 				CheckError(ec);
 			}
 
-			/// <summary> Set post-processing flags to use. </summary>
+			/// <summary> Set post-processing flags to use.
+			///
 			/// By default, the inlet performs NO post-processing and returns the ground-truth time stamps,
 			/// which can then be manually synchronized using TimeCorrection(), and then smoothed/dejittered if desired.
-			/// This function allows automating these two and possibly more operations.
+			/// This function allows automating these two and possibly more operations. </summary>
 			/// <param name="flags"> An integer that is the result of bitwise OR'ing one or more options
 			/// from <see cref="processing_options_t"/> together (e.g., post_clocksync|post_dejitter); the default is to enable all options. </param>
 			/// <remarks> When you enable this, you will no longer receive or be able to recover the original time stamps. </remarks>
 			public void SetPostprocessing(processing_options_t flags = processing_options_t.post_ALL) { dll.lsl_set_postprocessing(obj, flags); }
 
-			/// <summary> Drop the current data stream. </summary>
+			/// <summary> Drop the current data stream.
+			/// 
 			/// All samples that are still buffered or in flight will be dropped and transmission 
 			/// and buffering of data for this inlet will be stopped. If an application stops being 
 			/// interested in data from a source (temporarily or not) but keeps the outlet alive, 
-			/// it should call CloseStream() to not waste unnecessary system and network resources.
+			/// it should call CloseStream() to not waste unnecessary system and network resources. </summary>
 			public void CloseStream() { dll.lsl_close_stream(obj); }
 
-			/// <summary> Retrieve an estimated time correction offset for the given stream. </summary>
+			/// <summary> Retrieve an estimated time correction offset for the given stream.
+			///
 			/// The first call to this function takes several miliseconds until a reliable first estimate is obtained.
 			/// Subsequent calls are instantaneous (and rely on periodic background updates).
-			/// The precision of these estimates should be below 1 ms (empirically within +/-0.2 ms).
+			/// The precision of these estimates should be below 1 ms (empirically within +/-0.2 ms). </summary>
 			/// <param name="timeout"> Optional timeout to acquire the first time-correction estimate (default: no timeout). </param>
 			/// <returns> The time correction estimate. This is the number that needs to be added to a time stamp
 			/// that was remotely generated via <c>lsl_local_clock()</c> to map it into the local clock domain of this machine. </returns>
@@ -587,7 +637,7 @@ namespace LSL4Unity
 			// === Pulling a sample from the inlet ===
 			// =======================================
 
-			/// <summary> Pull a sample from the inlet and read it into an array of values. Handles type checking & conversion. </summary>
+			/// <summary> Pull a sample from the inlet and read it into an array of values. Handles type checking and conversion. </summary>
 			/// <param name="sample"> An array to hold the resulting values. </param>
 			/// <param name="timeout"> Optional, the timeout for this operation, if any. Use 0.0 to make the function non-blocking. </param>
 			/// <returns>The capture time of the sample on the remote machine, or 0.0 if no new sample was available.
@@ -602,6 +652,7 @@ namespace LSL4Unity
 			}
 
 			/// <inheritdoc cref="PullSample(float[],double)"/>
+			/// <param name="sample"> An array to hold the resulting values. </param>
 			public double PullSample(double[] sample, double timeout = FOREVER)
 			{
 				int    ec  = 0;
@@ -611,6 +662,7 @@ namespace LSL4Unity
 			}
 
 			/// <inheritdoc cref="PullSample(float[],double)"/>
+			/// <param name="sample"> An array to hold the resulting values. </param>
 			public double PullSample(int[] sample, double timeout = FOREVER)
 			{
 				int    ec  = 0;
@@ -620,6 +672,7 @@ namespace LSL4Unity
 			}
 
 			/// <inheritdoc cref="PullSample(float[],double)"/>
+			/// <param name="sample"> An array to hold the resulting values. </param>
 			public double PullSample(short[] sample, double timeout = FOREVER)
 			{
 				int    ec  = 0;
@@ -629,6 +682,7 @@ namespace LSL4Unity
 			}
 
 			/// <inheritdoc cref="PullSample(float[],double)"/>
+			/// <param name="sample"> An array to hold the resulting values. </param>
 			public double PullSample(char[] sample, double timeout = FOREVER)
 			{
 				int    ec  = 0;
@@ -638,6 +692,7 @@ namespace LSL4Unity
 			}
 
 			/// <inheritdoc cref="PullSample(float[],double)"/>
+			/// <param name="sample"> An array to hold the resulting values. </param>
 			public double PullSample(string[] sample, double timeout = FOREVER)
 			{
 				int      ec  = 0;
@@ -665,7 +720,7 @@ namespace LSL4Unity
 			/// <param name="times"> A pre-allocated buffer where time stamps shall be stored. </param>
 			/// <param name="timeout"> Optionally the timeout for this operation, if any.
 			/// When the timeout expires, the function may return before the entire buffer is filled.
-			/// The default value of 0.0 will retrieve only data available for immediate pickup.</param>
+			/// The default value of 0.0 will retrieve only data available for immediate pickup. </param>
 			/// <returns> Number of samples written to the data and timestamp buffers.</returns>
 			/// <exception cref="LostException"> If the stream source has been lost. </exception>
 			public int PullChunk(float[,] buffer, double[] times, double timeout = 0.0)
@@ -677,6 +732,7 @@ namespace LSL4Unity
 			}
 
 			/// <inheritdoc cref="PullChunk(float[,],double[],double)"/>
+			/// <param name="buffer"> A pre-allocated buffer where the channel data shall be stored. </param>
 			public int PullChunk(double[,] buffer, double[] times, double timeout = 0.0)
 			{
 				int  ec  = 0;
@@ -686,6 +742,7 @@ namespace LSL4Unity
 			}
 
 			/// <inheritdoc cref="PullChunk(float[,],double[],double)"/>
+			/// <param name="buffer"> A pre-allocated buffer where the channel data shall be stored. </param>
 			public int PullChunk(int[,] buffer, double[] times, double timeout = 0.0)
 			{
 				int  ec  = 0;
@@ -695,6 +752,7 @@ namespace LSL4Unity
 			}
 
 			/// <inheritdoc cref="PullChunk(float[,],double[],double)"/>
+			/// <param name="buffer"> A pre-allocated buffer where the channel data shall be stored. </param>
 			public int PullChunk(short[,] buffer, double[] times, double timeout = 0.0)
 			{
 				int  ec  = 0;
@@ -704,6 +762,7 @@ namespace LSL4Unity
 			}
 
 			/// <inheritdoc cref="PullChunk(float[,],double[],double)"/>
+			/// <param name="buffer"> A pre-allocated buffer where the channel data shall be stored. </param>
 			public int PullChunk(char[,] buffer, double[] times, double timeout = 0.0)
 			{
 				int  ec  = 0;
@@ -713,6 +772,7 @@ namespace LSL4Unity
 			}
 
 			/// <inheritdoc cref="PullChunk(float[,],double[],double)"/>
+			/// <param name="buffer"> A pre-allocated buffer where the channel data shall be stored. </param>
 			public int PullChunk(string[,] buffer, double[] times, double timeout = 0.0)
 			{
 				int       ec  = 0;
@@ -743,13 +803,11 @@ namespace LSL4Unity
 			/// If the underlying implementation supports it, the value will be the number of samples available (otherwise it will be 1 or 0). </remarks>
 			public int SamplesAvailable() { return (int) dll.lsl_samples_available(obj); }
 
-			/**
-			* 
-			*/
-			/// <summary> Query whether the clock was potentially reset since the last call to <see cref="WasClockReset"/>. </summary>
+			/// <summary> Query whether the clock was potentially reset since the last call to <see cref="WasClockReset"/>.
+			///
 			/// This is a rarely-used function that is only useful to applications that combine multiple <see cref="TimeCorrection"/> values to estimate precise clock drift;
-			/// it allows to tolerate cases where the source machine was hot-swapped or restarted in between two measurements.
-			/// <returns> <c>true</c> if clock waas reset... </returns>
+			/// it allows to tolerate cases where the source machine was hot-swapped or restarted in between two measurements. </summary>
+			/// <returns> <c>true</c> if clock was reset... </returns>
 			public bool WasClockReset() { return (int) dll.lsl_was_clock_reset(obj) != 0; }
 
 			private readonly IntPtr obj;
@@ -760,10 +818,11 @@ namespace LSL4Unity
 		// ==== XML Element ====
 		// =====================
 
-		/// <summary> A lightweight XML element tree; models the <see cref="StreamInfo.Desc"/> field of <see cref="StreamInfo"/>. </summary>
+		/// <summary> A lightweight XML element tree; models the <see cref="StreamInfo.Desc"/> field of <see cref="StreamInfo"/>.
+		///
 		/// Has a name and can have multiple named children or have text content as value; attributes are omitted.
-		/// Insider note: The interface is modeled after a subset of pugixml's node type and is compatible with it.
-		/// <seealso cref="http://pugixml.googlecode.com/svn/tags/latest/docs/manual/access.html"/>
+		/// Insider note: The interface is modeled after a subset of pugixml's node type and is compatible with it. </summary>
+		/// <remarks> See Also : [http://pugixml.googlecode.com/svn/tags/latest/docs/manual/access.html](http://pugixml.googlecode.com/svn/tags/latest/docs/manual/access.html). </remarks>
 		public struct XMLElement
 		{
 			/// <summary> Initializes a new instance of <see cref="XMLElement"/> struct. </summary>
@@ -773,89 +832,128 @@ namespace LSL4Unity
 			// === Tree Navigation ===
 
 			/// <summary> Get the first child of the element. </summary>
+			/// <returns> New <see cref="XMLElement"/>. </returns>
 			public XMLElement FirstChild() { return new XMLElement(dll.lsl_first_child(obj)); }
 
 			/// <summary> Get the last child of the element. </summary>
+			/// <returns> New <see cref="XMLElement"/>. </returns>
 			public XMLElement LastChild() { return new XMLElement(dll.lsl_last_child(obj)); }
 
 			/// <summary> Get the next sibling in the children list of the parent node. </summary>
+			/// <returns> New <see cref="XMLElement"/>. </returns>
 			public XMLElement NextSibling() { return new XMLElement(dll.lsl_next_sibling(obj)); }
 
 			/// <summary> Get the previous sibling in the children list of the parent node. </summary>
+			/// <returns> New <see cref="XMLElement"/>. </returns>
 			public XMLElement PreviousSibling() { return new XMLElement(dll.lsl_previous_sibling(obj)); }
 
 			/// <summary> Get the parent node. </summary>
+			/// <returns> New <see cref="XMLElement"/>. </returns>
 			public XMLElement Parent() { return new XMLElement(dll.lsl_parent(obj)); }
 
 
 			// === Tree Navigation by Name ===
 
 			/// <summary> Get a child with a specified name. </summary>
+			/// <param name="name"> The child name. </param>
+			/// <returns> New <see cref="XMLElement"/>. </returns>
 			public XMLElement Child(string name) { return new XMLElement(dll.lsl_child(obj, name)); }
 
 			/// <summary> Get the next sibling with the specified name. </summary>
+			/// <param name="name"> The next sibling name. </param>
+			/// <returns> New <see cref="XMLElement"/>. </returns>
 			public XMLElement NextSibling(string name) { return new XMLElement(dll.lsl_next_sibling_n(obj, name)); }
 
 			/// <summary> Get the previous sibling with the specified name. </summary>
+			/// <param name="name"> The previous sibling name. </param>
+			/// <returns> New <see cref="XMLElement"/>. </returns>
 			public XMLElement PreviousSibling(string name) { return new XMLElement(dll.lsl_previous_sibling_n(obj, name)); }
 
 
 			// === Content Queries ===
 
 			/// <summary> Whether this node is empty. </summary>
+			/// <returns> <c>true</c> or <c>false</c>. </returns>
 			public bool Empty() { return dll.lsl_empty(obj) != 0; }
 
 			/// <summary> Whether this is a text body (instead of an XML element). True both for plain char data and CData. </summary>
+			/// <returns> <c>true</c> or <c>false</c>. </returns>
 			public bool IsText() { return dll.lsl_is_text(obj) != 0; }
 
 			/// <summary> Name of the element. </summary>
+			/// <returns> the name as <c>string</c>. </returns>
 			public string Name() { return Marshal.PtrToStringAnsi(dll.lsl_name(obj)); }
 
 			/// <summary> Value of the element. </summary>
+			/// <returns> the value as <c>string</c>. </returns>
 			public string Value() { return Marshal.PtrToStringAnsi(dll.lsl_value(obj)); }
 
 			/// <summary> Get child value (value of the first child that is text). </summary>
+			/// <returns> the child value as <c>string</c>. </returns>
 			public string ChildValue() { return Marshal.PtrToStringAnsi(dll.lsl_child_value(obj)); }
 
 			/// <summary> Get child value of a child with a specified name. </summary>
+			/// <param name="name"> The child name. </param>
+			/// <returns> the child value as <c>string</c>. </returns>
 			public string ChildValue(string name) { return Marshal.PtrToStringAnsi(dll.lsl_child_value_n(obj, name)); }
 
 
 			// === Modification ===
 
 			/// <summary> Append a child node with a given name, which has a (nameless) plain-text child with the given text value. </summary>
+			/// <param name="name"> The child name. </param>
+			/// <param name="value"> The child value. </param>
+			/// <returns> New <see cref="XMLElement"/>. </returns>
 			public XMLElement AppendChildValue(string name, string value) { return new XMLElement(dll.lsl_append_child_value(obj, name, value)); }
 
 			/// <summary> Prepend a child node with a given name, which has a (nameless) plain-text child with the given text value. </summary>
+			/// <param name="name"> The child name. </param>
+			/// <param name="value"> The child value. </param>
+			/// <returns> New <see cref="XMLElement"/>. </returns>
 			public XMLElement PrependChildValue(string name, string value) { return new XMLElement(dll.lsl_prepend_child_value(obj, name, value)); }
 
 			/// <summary> Set the text value of the (nameless) plain-text child of a named child node. </summary>
+			/// <param name="name"> The child name. </param>
+			/// <param name="value"> The child value. </param>
+			/// <returns> True if the wait was successful, false otherwise. </returns>
 			public bool SetChildValue(string name, string value) { return dll.lsl_set_child_value(obj, name, value) != 0; }
 
 			/// <summary> Set the element's name. </summary>
+			/// <param name="name"> The new name. </param>
 			/// <returns> <c>false</c> if the node is empty. </returns>
 			public bool SetName(string name) { return dll.lsl_set_name(obj, name) != 0; }
 
 			/// <summary> Set the element's value. </summary>
+			/// <param name="value"> The new value. </param>
 			/// <returns> <c>false</c> if the node is empty. </returns>
 			public bool SetValue(string value) { return dll.lsl_set_value(obj, value) != 0; }
 
 			/// <summary> Append a child element with the specified name. </summary>
+			/// <param name="name"> The child name. </param>
+			/// <returns> New <see cref="XMLElement"/>. </returns>
 			public XMLElement AppendChild(string name) { return new XMLElement(dll.lsl_append_child(obj, name)); }
 
 			/// <summary> Prepend a child element with the specified name. </summary>
+			/// <param name="name"> The child name. </param>
+			/// <returns> New <see cref="XMLElement"/>. </returns>
 			public XMLElement PrependChild(string name) { return new XMLElement(dll.lsl_prepend_child(obj, name)); }
 
 			/// <summary> Append a copy of the specified element as a child. </summary>
+			/// <param name="e"> The element to copy. </param>
+			/// <returns> New <see cref="XMLElement"/>. </returns>
 			public XMLElement AppendCopy(XMLElement e) { return new XMLElement(dll.lsl_append_copy(obj, e.obj)); }
 
 			/// <summary> Prepend a child element with the specified name. </summary>
+			/// <param name="e"> The element to copy. </param>
+			/// <returns> New <see cref="XMLElement"/>. </returns>
 			public XMLElement PrependCopy(XMLElement e) { return new XMLElement(dll.lsl_prepend_copy(obj, e.obj)); }
 
 			/// <summary> Remove a child element with the specified name. </summary>
+			/// <param name="name"> The child name. </param>
 			public void RemoveChild(string name) { dll.lsl_remove_child_n(obj, name); }
 
 			/// <summary> Remove a specified child element. </summary>
+			/// <param name="e"> The element to remove. </param>
 			public void RemoveChild(XMLElement e) { dll.lsl_remove_child(obj, e.obj); }
 
 			private readonly IntPtr obj;
@@ -870,28 +968,31 @@ namespace LSL4Unity
 		/// its lifetime and which can be queried at any time for the set of streams that are currently  visible on the network. </summary>
 		public class ContinuousResolver
 		{
-			/// <summary> Initializes a new instance of the <see cref="ContinuousResolver"/> class that resolves all streams on the network. </summary>
-			/// This is analogous to the functionality offered by the free function <see cref="ResolveStreams"/>.
+			/// <summary> Initializes a new instance of the <see cref="ContinuousResolver"/> class that resolves all streams on the network.
+			/// 
+			/// This is analogous to the functionality offered by the free function <see cref="ResolveStreams"/>.</summary>
 			/// <param name="forgetAfter"> When a stream is no longer visible on the network (e.g., because it was shut down),
-			/// this is the time in seconds after which it is no longer reported by the resolver.</param>
+			/// this is the time in seconds after which it is no longer reported by the resolver. </param>
 			public ContinuousResolver(double forgetAfter = 5.0) { obj = dll.lsl_create_continuous_resolver(forgetAfter); }
 
-			/// <summary> Initializes a new instance of the <see cref="ContinuousResolver"/> class that resolves all streams with a specific value for a given property. </summary>
-			/// This is analogous to the functionality provided by the free function <see cref="liblsl.ResolveStream(string,string,int,double)"/>.
+			/// <summary> Initializes a new instance of the <see cref="ContinuousResolver"/> class that resolves all streams with a specific value for a given property.
+			/// 
+			/// This is analogous to the functionality provided by the free function <see cref="ResolveStream(string,string,int,double)"/>.</summary>
 			/// <param name="prop"> The <see cref="StreamInfo"/> property that should have a specific value (e.g., "name", "type", "SourceId", or "desc/manufaturer"). </param>
 			/// <param name="value"> The string value that the property should have (e.g., "EEG" as the type property). </param>
 			/// <param name="forgetAfter"> When a stream is no longer visible on the network (e.g., because it was shut down),
-			/// this is the time in seconds after which it is no longer reported by the resolver.</param>
+			/// this is the time in seconds after which it is no longer reported by the resolver. </param>
 			public ContinuousResolver(string prop, string value, double forgetAfter = 5.0)
 			{
 				obj = dll.lsl_create_continuous_resolver_byprop(prop, value, forgetAfter);
 			}
 
-			/// <summary> Initializes a new instance of the <see cref="ContinuousResolver"/> class that resolves all streams that match a given XPath 1.0 predicate. </summary>
+			/// <summary> Initializes a new instance of the <see cref="ContinuousResolver"/> class that resolves all streams that match a given XPath 1.0 predicate.
+			/// 
+			/// This is analogous to the functionality provided by the free function <see cref="ResolveStream(string,int,double)"/>. </summary>
 			/// <param name="pred"> The predicate string, e.g. "name='BioSemi'" or "type='EEG' and starts-with(name,'BioSemi') and count(info/desc/channel)=32" </param>
-			/// This is analogous to the functionality provided by the free function <see cref="liblsl.ResolveStream(string,int,double)"/>.
 			/// <param name="forgetAfter"> When a stream is no longer visible on the network (e.g., because it was shut down),
-			/// this is the time in seconds after which it is no longer reported by the resolver.</param>
+			/// this is the time in seconds after which it is no longer reported by the resolver. </param>
 			public ContinuousResolver(string pred, double forgetAfter = 5.0) { obj = dll.lsl_create_continuous_resolver_bypred(pred, forgetAfter); }
 
 			/// <summary> Finalizes an instance of the <see cref="ContinuousResolver"/> class. </summary>
@@ -920,9 +1021,9 @@ namespace LSL4Unity
 		public class LostException : Exception
 		{
 			public LostException() { }
-			public LostException(string                                            message) { }
-			public LostException(string                                            message, Exception                                     inner) { }
-			protected LostException(System.Runtime.Serialization.SerializationInfo info,    System.Runtime.Serialization.StreamingContext context) { }
+			public LostException(string               message) { }
+			public LostException(string               message, Exception        inner) { }
+			protected LostException(SerializationInfo info,    StreamingContext context) { }
 		}
 
 		/// <summary> Exception class that indicates that an internal error has occurred inside liblsl. </summary>
@@ -930,9 +1031,9 @@ namespace LSL4Unity
 		public class InternalException : Exception
 		{
 			public InternalException() { }
-			public InternalException(string                                            message) { }
-			public InternalException(string                                            message, Exception                                     inner) { }
-			protected InternalException(System.Runtime.Serialization.SerializationInfo info,    System.Runtime.Serialization.StreamingContext context) { }
+			public InternalException(string               message) { }
+			public InternalException(string               message, Exception        inner) { }
+			protected InternalException(SerializationInfo info,    StreamingContext context) { }
 		}
 
 		/// <summary> Check an error condition and throw an exception if appropriate. </summary>
@@ -946,14 +1047,14 @@ namespace LSL4Unity
 		{
 			if (code < 0)
 			{
-				throw code switch
+				switch (code)
 				{
-					-1 => new TimeoutException("The operation failed due to a timeout."),
-					-2 => new LostException("The stream has been lost."),
-					-3 => new ArgumentException("An argument was incorrectly specified (e.g., wrong format or wrong length)."),
-					-4 => new InternalException("An internal internal error has occurred."),
-					_ => new Exception("An unknown error has occurred.")
-				};
+					case -1: throw new TimeoutException("The operation failed due to a timeout.");
+					case -2: throw new LostException("The stream has been lost.");
+					case -3: throw new ArgumentException("An argument was incorrectly specified (e.g., wrong format or wrong length).");
+					case -4: throw new InternalException("An internal internal error has occurred.");
+					default: throw new Exception("An unknown error has occurred.");
+				}
 			}
 		}
 

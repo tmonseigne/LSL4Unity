@@ -1,6 +1,8 @@
 # LSL4Unity
 
-A integration approach of the LabStreamingLayer Framework for Unity3D providing the following features.
+[![Build Status](https://github.com/tmonseigne/LSL4Unity/workflows/Build%20and%20deploy%20documentation/badge.svg)](https://tmonseigne.github.io/LSL4Unity/)
+
+**It's a Forks** of an integration approach of the LabStreamingLayer Framework for Unity3D providing the following features.
 
 * Simple Editor Integration to lookup LSL streams.
 * Provides a ready to use Marker stream implementation.
@@ -39,3 +41,16 @@ In the current Version, the Asset package ships a sligthly modified version of t
 The LabStreaming Layer is original created by SCCN und could be found at <https://github.com/sccn/labstreaminglayer>.
 
 It's highly recommended to read the section about the [Time Synchronization](https://labstreaminglayer.readthedocs.io/info/time_synchronization.html) before building your own experiments!
+
+## My changes
+
+**V1.0** :
+
+* Update of coding rules and standard uses.
+* Documenting of source code.
+* Add OpenViBE Inlets and templates.
+
+**Current Version** :
+
+* Remove Original Examples and demos.
+* Update Documentation.
