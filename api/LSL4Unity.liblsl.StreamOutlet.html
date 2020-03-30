@@ -83,7 +83,8 @@
   
   <h1 id="LSL4Unity_liblsl_StreamOutlet" data-uid="LSL4Unity.liblsl.StreamOutlet" class="text-break">Class liblsl.StreamOutlet
   </h1>
-  <div class="markdown level0 summary"><p>A stream outlet. </p>
+  <div class="markdown level0 summary"><p>A stream outlet.</p>
+<p>Outlets are used to make streaming data (and the meta-data) available on the lab network. </p>
 </div>
   <div class="markdown level0 conceptual"></div>
   <div class="inheritance">
@@ -161,7 +162,7 @@ If unspecified, each push operation yields one chunk. Inlets can override this s
         <td><span class="xref">System.Int32</span></td>
         <td><span class="parametername">maxBuffered</span></td>
         <td><p>Optionally the maximum amount of data to buffer (in seconds if there is a nominal sampling rate, otherwise x100 in samples).
-The default is 6 minutes of data.</p>
+The default is 6 minutes of data. </p>
 </td>
       </tr>
     </tbody>
@@ -172,7 +173,8 @@ The default is 6 minutes of data.</p>
   
   <a id="LSL4Unity_liblsl_StreamOutlet_Finalize_" data-uid="LSL4Unity.liblsl.StreamOutlet.Finalize*"></a>
   <h4 id="LSL4Unity_liblsl_StreamOutlet_Finalize" data-uid="LSL4Unity.liblsl.StreamOutlet.Finalize">Finalize()</h4>
-  <div class="markdown level1 summary"><p>Finalizes an instance of the <a class="xref" href="LSL4Unity.liblsl.StreamOutlet.html">liblsl.StreamOutlet</a>. </p>
+  <div class="markdown level1 summary"><p>Finalizes an instance of the <a class="xref" href="LSL4Unity.liblsl.StreamOutlet.html">liblsl.StreamOutlet</a>.</p>
+<p>The stream will no longer be discoverable after destruction and all paired inlets will stop delivering data. </p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -183,7 +185,8 @@ The default is 6 minutes of data.</p>
   
   <a id="LSL4Unity_liblsl_StreamOutlet_HaveConsumers_" data-uid="LSL4Unity.liblsl.StreamOutlet.HaveConsumers*"></a>
   <h4 id="LSL4Unity_liblsl_StreamOutlet_HaveConsumers" data-uid="LSL4Unity.liblsl.StreamOutlet.HaveConsumers">HaveConsumers()</h4>
-  <div class="markdown level1 summary"><p>Check whether consumers are currently registered. </p>
+  <div class="markdown level1 summary"><p>Check whether consumers are currently registered.</p>
+<p>While it does not hurt, there is technically no reason to push samples if there is no consumer. </p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -210,7 +213,8 @@ The default is 6 minutes of data.</p>
   
   <a id="LSL4Unity_liblsl_StreamOutlet_Info_" data-uid="LSL4Unity.liblsl.StreamOutlet.Info*"></a>
   <h4 id="LSL4Unity_liblsl_StreamOutlet_Info" data-uid="LSL4Unity.liblsl.StreamOutlet.Info">Info()</h4>
-  <div class="markdown level1 summary"><p>Retrieve the stream info provided by this outlet. </p>
+  <div class="markdown level1 summary"><p>Retrieve the stream info provided by this outlet.</p>
+<p>This is what was used to create the stream (and also has the Additional Network Information fields assigned). </p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -257,7 +261,8 @@ The default is 6 minutes of data.</p>
       <tr>
         <td><span class="xref">System.Char</span>[,]</td>
         <td><span class="parametername">data</span></td>
-        <td></td>
+        <td><p>A rectangular array of values for multiple samples. </p>
+</td>
       </tr>
       <tr>
         <td><span class="xref">System.Double</span></td>
@@ -269,7 +274,7 @@ The default is 6 minutes of data.</p>
         <td><span class="xref">System.Boolean</span></td>
         <td><span class="parametername">pushthrough</span></td>
         <td><p>Optionally whether to push the sample through to the receivers instead of buffering it with subsequent samples.
-Note that the chunkSize, if specified at outlet construction, takes precedence over the pushthrough flag.</p>
+Note that the chunkSize, if specified at outlet construction, takes precedence over the pushthrough flag. </p>
 </td>
       </tr>
     </tbody>
@@ -298,20 +303,18 @@ Note that the chunkSize, if specified at outlet construction, takes precedence o
       <tr>
         <td><span class="xref">System.Char</span>[,]</td>
         <td><span class="parametername">data</span></td>
-        <td></td>
+        <td><p>A rectangular array of values for multiple samples. </p>
+</td>
       </tr>
       <tr>
         <td><span class="xref">System.Double</span>[]</td>
         <td><span class="parametername">times</span></td>
-        <td><p>An array of time values holding time stamps for each sample in the data buffer. </p>
-</td>
+        <td></td>
       </tr>
       <tr>
         <td><span class="xref">System.Boolean</span></td>
         <td><span class="parametername">pushthrough</span></td>
-        <td><p>Optionally whether to push the sample through to the receivers instead of buffering it with subsequent samples.
-Note that the chunkSize, if specified at outlet construction, takes precedence over the pushthrough flag.</p>
-</td>
+        <td></td>
       </tr>
     </tbody>
   </table>
@@ -339,7 +342,8 @@ Note that the chunkSize, if specified at outlet construction, takes precedence o
       <tr>
         <td><span class="xref">System.Double</span>[,]</td>
         <td><span class="parametername">data</span></td>
-        <td></td>
+        <td><p>A rectangular array of values for multiple samples. </p>
+</td>
       </tr>
       <tr>
         <td><span class="xref">System.Double</span></td>
@@ -351,7 +355,7 @@ Note that the chunkSize, if specified at outlet construction, takes precedence o
         <td><span class="xref">System.Boolean</span></td>
         <td><span class="parametername">pushthrough</span></td>
         <td><p>Optionally whether to push the sample through to the receivers instead of buffering it with subsequent samples.
-Note that the chunkSize, if specified at outlet construction, takes precedence over the pushthrough flag.</p>
+Note that the chunkSize, if specified at outlet construction, takes precedence over the pushthrough flag. </p>
 </td>
       </tr>
     </tbody>
@@ -380,20 +384,18 @@ Note that the chunkSize, if specified at outlet construction, takes precedence o
       <tr>
         <td><span class="xref">System.Double</span>[,]</td>
         <td><span class="parametername">data</span></td>
-        <td></td>
+        <td><p>A rectangular array of values for multiple samples. </p>
+</td>
       </tr>
       <tr>
         <td><span class="xref">System.Double</span>[]</td>
         <td><span class="parametername">times</span></td>
-        <td><p>An array of time values holding time stamps for each sample in the data buffer. </p>
-</td>
+        <td></td>
       </tr>
       <tr>
         <td><span class="xref">System.Boolean</span></td>
         <td><span class="parametername">pushthrough</span></td>
-        <td><p>Optionally whether to push the sample through to the receivers instead of buffering it with subsequent samples.
-Note that the chunkSize, if specified at outlet construction, takes precedence over the pushthrough flag.</p>
-</td>
+        <td></td>
       </tr>
     </tbody>
   </table>
@@ -421,7 +423,8 @@ Note that the chunkSize, if specified at outlet construction, takes precedence o
       <tr>
         <td><span class="xref">System.Int16</span>[,]</td>
         <td><span class="parametername">data</span></td>
-        <td></td>
+        <td><p>A rectangular array of values for multiple samples. </p>
+</td>
       </tr>
       <tr>
         <td><span class="xref">System.Double</span></td>
@@ -433,7 +436,7 @@ Note that the chunkSize, if specified at outlet construction, takes precedence o
         <td><span class="xref">System.Boolean</span></td>
         <td><span class="parametername">pushthrough</span></td>
         <td><p>Optionally whether to push the sample through to the receivers instead of buffering it with subsequent samples.
-Note that the chunkSize, if specified at outlet construction, takes precedence over the pushthrough flag.</p>
+Note that the chunkSize, if specified at outlet construction, takes precedence over the pushthrough flag. </p>
 </td>
       </tr>
     </tbody>
@@ -462,20 +465,18 @@ Note that the chunkSize, if specified at outlet construction, takes precedence o
       <tr>
         <td><span class="xref">System.Int16</span>[,]</td>
         <td><span class="parametername">data</span></td>
-        <td></td>
+        <td><p>A rectangular array of values for multiple samples. </p>
+</td>
       </tr>
       <tr>
         <td><span class="xref">System.Double</span>[]</td>
         <td><span class="parametername">times</span></td>
-        <td><p>An array of time values holding time stamps for each sample in the data buffer. </p>
-</td>
+        <td></td>
       </tr>
       <tr>
         <td><span class="xref">System.Boolean</span></td>
         <td><span class="parametername">pushthrough</span></td>
-        <td><p>Optionally whether to push the sample through to the receivers instead of buffering it with subsequent samples.
-Note that the chunkSize, if specified at outlet construction, takes precedence over the pushthrough flag.</p>
-</td>
+        <td></td>
       </tr>
     </tbody>
   </table>
@@ -503,7 +504,8 @@ Note that the chunkSize, if specified at outlet construction, takes precedence o
       <tr>
         <td><span class="xref">System.Int32</span>[,]</td>
         <td><span class="parametername">data</span></td>
-        <td></td>
+        <td><p>A rectangular array of values for multiple samples. </p>
+</td>
       </tr>
       <tr>
         <td><span class="xref">System.Double</span></td>
@@ -515,7 +517,7 @@ Note that the chunkSize, if specified at outlet construction, takes precedence o
         <td><span class="xref">System.Boolean</span></td>
         <td><span class="parametername">pushthrough</span></td>
         <td><p>Optionally whether to push the sample through to the receivers instead of buffering it with subsequent samples.
-Note that the chunkSize, if specified at outlet construction, takes precedence over the pushthrough flag.</p>
+Note that the chunkSize, if specified at outlet construction, takes precedence over the pushthrough flag. </p>
 </td>
       </tr>
     </tbody>
@@ -544,20 +546,18 @@ Note that the chunkSize, if specified at outlet construction, takes precedence o
       <tr>
         <td><span class="xref">System.Int32</span>[,]</td>
         <td><span class="parametername">data</span></td>
-        <td></td>
+        <td><p>A rectangular array of values for multiple samples. </p>
+</td>
       </tr>
       <tr>
         <td><span class="xref">System.Double</span>[]</td>
         <td><span class="parametername">times</span></td>
-        <td><p>An array of time values holding time stamps for each sample in the data buffer. </p>
-</td>
+        <td></td>
       </tr>
       <tr>
         <td><span class="xref">System.Boolean</span></td>
         <td><span class="parametername">pushthrough</span></td>
-        <td><p>Optionally whether to push the sample through to the receivers instead of buffering it with subsequent samples.
-Note that the chunkSize, if specified at outlet construction, takes precedence over the pushthrough flag.</p>
-</td>
+        <td></td>
       </tr>
     </tbody>
   </table>
@@ -598,7 +598,7 @@ Note that the chunkSize, if specified at outlet construction, takes precedence o
         <td><span class="xref">System.Boolean</span></td>
         <td><span class="parametername">pushthrough</span></td>
         <td><p>Optionally whether to push the sample through to the receivers instead of buffering it with subsequent samples.
-Note that the chunkSize, if specified at outlet construction, takes precedence over the pushthrough flag.</p>
+Note that the chunkSize, if specified at outlet construction, takes precedence over the pushthrough flag. </p>
 </td>
       </tr>
     </tbody>
@@ -633,15 +633,12 @@ Note that the chunkSize, if specified at outlet construction, takes precedence o
       <tr>
         <td><span class="xref">System.Double</span>[]</td>
         <td><span class="parametername">times</span></td>
-        <td><p>An array of time values holding time stamps for each sample in the data buffer. </p>
-</td>
+        <td></td>
       </tr>
       <tr>
         <td><span class="xref">System.Boolean</span></td>
         <td><span class="parametername">pushthrough</span></td>
-        <td><p>Optionally whether to push the sample through to the receivers instead of buffering it with subsequent samples.
-Note that the chunkSize, if specified at outlet construction, takes precedence over the pushthrough flag.</p>
-</td>
+        <td></td>
       </tr>
     </tbody>
   </table>
@@ -669,7 +666,8 @@ Note that the chunkSize, if specified at outlet construction, takes precedence o
       <tr>
         <td><span class="xref">System.String</span>[,]</td>
         <td><span class="parametername">data</span></td>
-        <td></td>
+        <td><p>A rectangular array of values for multiple samples. </p>
+</td>
       </tr>
       <tr>
         <td><span class="xref">System.Double</span></td>
@@ -681,7 +679,7 @@ Note that the chunkSize, if specified at outlet construction, takes precedence o
         <td><span class="xref">System.Boolean</span></td>
         <td><span class="parametername">pushthrough</span></td>
         <td><p>Optionally whether to push the sample through to the receivers instead of buffering it with subsequent samples.
-Note that the chunkSize, if specified at outlet construction, takes precedence over the pushthrough flag.</p>
+Note that the chunkSize, if specified at outlet construction, takes precedence over the pushthrough flag. </p>
 </td>
       </tr>
     </tbody>
@@ -710,20 +708,18 @@ Note that the chunkSize, if specified at outlet construction, takes precedence o
       <tr>
         <td><span class="xref">System.String</span>[,]</td>
         <td><span class="parametername">data</span></td>
-        <td></td>
+        <td><p>A rectangular array of values for multiple samples. </p>
+</td>
       </tr>
       <tr>
         <td><span class="xref">System.Double</span>[]</td>
         <td><span class="parametername">times</span></td>
-        <td><p>An array of time values holding time stamps for each sample in the data buffer. </p>
-</td>
+        <td></td>
       </tr>
       <tr>
         <td><span class="xref">System.Boolean</span></td>
         <td><span class="parametername">pushthrough</span></td>
-        <td><p>Optionally whether to push the sample through to the receivers instead of buffering it with subsequent samples.
-Note that the chunkSize, if specified at outlet construction, takes precedence over the pushthrough flag.</p>
-</td>
+        <td></td>
       </tr>
     </tbody>
   </table>
@@ -751,7 +747,8 @@ Note that the chunkSize, if specified at outlet construction, takes precedence o
       <tr>
         <td><span class="xref">System.Char</span>[]</td>
         <td><span class="parametername">data</span></td>
-        <td></td>
+        <td><p>An array of values to push (one for each channel). </p>
+</td>
       </tr>
       <tr>
         <td><span class="xref">System.Double</span></td>
@@ -763,7 +760,7 @@ Note that the chunkSize, if specified at outlet construction, takes precedence o
         <td><span class="xref">System.Boolean</span></td>
         <td><span class="parametername">pushthrough</span></td>
         <td><p>Optionally whether to push the sample through to the receivers instead of buffering it with subsequent samples.
-Note that the chunk_size, if specified at outlet construction, takes precedence over the pushthrough flag.</p>
+Note that the chunk_size, if specified at outlet construction, takes precedence over the pushthrough flag. </p>
 </td>
       </tr>
     </tbody>
@@ -792,7 +789,8 @@ Note that the chunk_size, if specified at outlet construction, takes precedence 
       <tr>
         <td><span class="xref">System.Double</span>[]</td>
         <td><span class="parametername">data</span></td>
-        <td></td>
+        <td><p>An array of values to push (one for each channel). </p>
+</td>
       </tr>
       <tr>
         <td><span class="xref">System.Double</span></td>
@@ -804,7 +802,7 @@ Note that the chunk_size, if specified at outlet construction, takes precedence 
         <td><span class="xref">System.Boolean</span></td>
         <td><span class="parametername">pushthrough</span></td>
         <td><p>Optionally whether to push the sample through to the receivers instead of buffering it with subsequent samples.
-Note that the chunk_size, if specified at outlet construction, takes precedence over the pushthrough flag.</p>
+Note that the chunk_size, if specified at outlet construction, takes precedence over the pushthrough flag. </p>
 </td>
       </tr>
     </tbody>
@@ -833,7 +831,8 @@ Note that the chunk_size, if specified at outlet construction, takes precedence 
       <tr>
         <td><span class="xref">System.Int16</span>[]</td>
         <td><span class="parametername">data</span></td>
-        <td></td>
+        <td><p>An array of values to push (one for each channel). </p>
+</td>
       </tr>
       <tr>
         <td><span class="xref">System.Double</span></td>
@@ -845,7 +844,7 @@ Note that the chunk_size, if specified at outlet construction, takes precedence 
         <td><span class="xref">System.Boolean</span></td>
         <td><span class="parametername">pushthrough</span></td>
         <td><p>Optionally whether to push the sample through to the receivers instead of buffering it with subsequent samples.
-Note that the chunk_size, if specified at outlet construction, takes precedence over the pushthrough flag.</p>
+Note that the chunk_size, if specified at outlet construction, takes precedence over the pushthrough flag. </p>
 </td>
       </tr>
     </tbody>
@@ -874,7 +873,8 @@ Note that the chunk_size, if specified at outlet construction, takes precedence 
       <tr>
         <td><span class="xref">System.Int32</span>[]</td>
         <td><span class="parametername">data</span></td>
-        <td></td>
+        <td><p>An array of values to push (one for each channel). </p>
+</td>
       </tr>
       <tr>
         <td><span class="xref">System.Double</span></td>
@@ -886,7 +886,7 @@ Note that the chunk_size, if specified at outlet construction, takes precedence 
         <td><span class="xref">System.Boolean</span></td>
         <td><span class="parametername">pushthrough</span></td>
         <td><p>Optionally whether to push the sample through to the receivers instead of buffering it with subsequent samples.
-Note that the chunk_size, if specified at outlet construction, takes precedence over the pushthrough flag.</p>
+Note that the chunk_size, if specified at outlet construction, takes precedence over the pushthrough flag. </p>
 </td>
       </tr>
     </tbody>
@@ -928,7 +928,7 @@ Note that the chunk_size, if specified at outlet construction, takes precedence 
         <td><span class="xref">System.Boolean</span></td>
         <td><span class="parametername">pushthrough</span></td>
         <td><p>Optionally whether to push the sample through to the receivers instead of buffering it with subsequent samples.
-Note that the chunk_size, if specified at outlet construction, takes precedence over the pushthrough flag.</p>
+Note that the chunk_size, if specified at outlet construction, takes precedence over the pushthrough flag. </p>
 </td>
       </tr>
     </tbody>
@@ -957,7 +957,8 @@ Note that the chunk_size, if specified at outlet construction, takes precedence 
       <tr>
         <td><span class="xref">System.String</span>[]</td>
         <td><span class="parametername">data</span></td>
-        <td></td>
+        <td><p>An array of values to push (one for each channel). </p>
+</td>
       </tr>
       <tr>
         <td><span class="xref">System.Double</span></td>
@@ -969,7 +970,7 @@ Note that the chunk_size, if specified at outlet construction, takes precedence 
         <td><span class="xref">System.Boolean</span></td>
         <td><span class="parametername">pushthrough</span></td>
         <td><p>Optionally whether to push the sample through to the receivers instead of buffering it with subsequent samples.
-Note that the chunk_size, if specified at outlet construction, takes precedence over the pushthrough flag.</p>
+Note that the chunk_size, if specified at outlet construction, takes precedence over the pushthrough flag. </p>
 </td>
       </tr>
     </tbody>
@@ -998,7 +999,7 @@ Note that the chunk_size, if specified at outlet construction, takes precedence 
       <tr>
         <td><span class="xref">System.Double</span></td>
         <td><span class="parametername">timeout</span></td>
-        <td><p>The timeout.</p>
+        <td><p>The timeout. </p>
 </td>
       </tr>
     </tbody>

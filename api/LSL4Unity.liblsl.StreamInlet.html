@@ -83,7 +83,8 @@
   
   <h1 id="LSL4Unity_liblsl_StreamInlet" data-uid="LSL4Unity.liblsl.StreamInlet" class="text-break">Class liblsl.StreamInlet
   </h1>
-  <div class="markdown level0 summary"><p>A stream inlet. </p>
+  <div class="markdown level0 summary"><p>A stream inlet.</p>
+<p>Inlets are used to receive streaming data (and meta-data) from the lab network. </p>
 </div>
   <div class="markdown level0 conceptual"></div>
   <div class="inheritance">
@@ -191,7 +192,11 @@ but this is strongly discouraged and should only ever be done if there is no tim
   
   <a id="LSL4Unity_liblsl_StreamInlet_CloseStream_" data-uid="LSL4Unity.liblsl.StreamInlet.CloseStream*"></a>
   <h4 id="LSL4Unity_liblsl_StreamInlet_CloseStream" data-uid="LSL4Unity.liblsl.StreamInlet.CloseStream">CloseStream()</h4>
-  <div class="markdown level1 summary"><p>Drop the current data stream. </p>
+  <div class="markdown level1 summary"><p>Drop the current data stream.</p>
+<p>All samples that are still buffered or in flight will be dropped and transmission 
+and buffering of data for this inlet will be stopped. If an application stops being 
+interested in data from a source (temporarily or not) but keeps the outlet alive, 
+it should call CloseStream() to not waste unnecessary system and network resources. </p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -202,7 +207,8 @@ but this is strongly discouraged and should only ever be done if there is no tim
   
   <a id="LSL4Unity_liblsl_StreamInlet_Finalize_" data-uid="LSL4Unity.liblsl.StreamInlet.Finalize*"></a>
   <h4 id="LSL4Unity_liblsl_StreamInlet_Finalize" data-uid="LSL4Unity.liblsl.StreamInlet.Finalize">Finalize()</h4>
-  <div class="markdown level1 summary"><p>Finalizes an instance of <a class="xref" href="LSL4Unity.liblsl.StreamInlet.html">liblsl.StreamInlet</a>. </p>
+  <div class="markdown level1 summary"><p>Finalizes an instance of <a class="xref" href="LSL4Unity.liblsl.StreamInlet.html">liblsl.StreamInlet</a>.</p>
+<p>The inlet will automatically disconnect if destroyed. </p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -213,7 +219,8 @@ but this is strongly discouraged and should only ever be done if there is no tim
   
   <a id="LSL4Unity_liblsl_StreamInlet_Info_" data-uid="LSL4Unity.liblsl.StreamInlet.Info*"></a>
   <h4 id="LSL4Unity_liblsl_StreamInlet_Info_System_Double_" data-uid="LSL4Unity.liblsl.StreamInlet.Info(System.Double)">Info(Double)</h4>
-  <div class="markdown level1 summary"><p>Retrieve the complete information of the given stream, including the extended description. </p>
+  <div class="markdown level1 summary"><p>Retrieve the complete information of the given stream, including the extended description.</p>
+<p>Can be invoked at any time of the stream&apos;s lifetime.  </p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -279,7 +286,10 @@ but this is strongly discouraged and should only ever be done if there is no tim
   
   <a id="LSL4Unity_liblsl_StreamInlet_OpenStream_" data-uid="LSL4Unity.liblsl.StreamInlet.OpenStream*"></a>
   <h4 id="LSL4Unity_liblsl_StreamInlet_OpenStream_System_Double_" data-uid="LSL4Unity.liblsl.StreamInlet.OpenStream(System.Double)">OpenStream(Double)</h4>
-  <div class="markdown level1 summary"><p>Subscribe to the data stream. </p>
+  <div class="markdown level1 summary"><p>Subscribe to the data stream.</p>
+<p>All samples pushed in at the other end from this moment onwards will be queued and 
+eventually be delivered in response to <a class="xref" href="LSL4Unity.liblsl.StreamInlet.html#LSL4Unity_liblsl_StreamInlet_PullSample_System_Single___System_Double_">PullSample(Single[], Double)</a> or <a class="xref" href="LSL4Unity.liblsl.StreamInlet.html#LSL4Unity_liblsl_StreamInlet_PullChunk_System_Single_0__0___System_Double___System_Double_">PullChunk(Single[,], Double[], Double)</a> calls. 
+Pulling a sample without some preceding OpenStream is permitted (the stream will then be opened implicitly). </p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -299,7 +309,7 @@ but this is strongly discouraged and should only ever be done if there is no tim
       <tr>
         <td><span class="xref">System.Double</span></td>
         <td><span class="parametername">timeout</span></td>
-        <td><p>Optional timeout of the operation (default: no timeout).</p>
+        <td><p>Optional timeout of the operation (default: no timeout). </p>
 </td>
       </tr>
     </tbody>
@@ -349,7 +359,8 @@ but this is strongly discouraged and should only ever be done if there is no tim
       <tr>
         <td><span class="xref">System.Char</span>[,]</td>
         <td><span class="parametername">buffer</span></td>
-        <td></td>
+        <td><p>A pre-allocated buffer where the channel data shall be stored. </p>
+</td>
       </tr>
       <tr>
         <td><span class="xref">System.Double</span>[]</td>
@@ -362,7 +373,7 @@ but this is strongly discouraged and should only ever be done if there is no tim
         <td><span class="parametername">timeout</span></td>
         <td><p>Optionally the timeout for this operation, if any.
 When the timeout expires, the function may return before the entire buffer is filled.
-The default value of 0.0 will retrieve only data available for immediate pickup.</p>
+The default value of 0.0 will retrieve only data available for immediate pickup. </p>
 </td>
       </tr>
     </tbody>
@@ -423,7 +434,8 @@ The default value of 0.0 will retrieve only data available for immediate pickup.
       <tr>
         <td><span class="xref">System.Double</span>[,]</td>
         <td><span class="parametername">buffer</span></td>
-        <td></td>
+        <td><p>A pre-allocated buffer where the channel data shall be stored. </p>
+</td>
       </tr>
       <tr>
         <td><span class="xref">System.Double</span>[]</td>
@@ -436,7 +448,7 @@ The default value of 0.0 will retrieve only data available for immediate pickup.
         <td><span class="parametername">timeout</span></td>
         <td><p>Optionally the timeout for this operation, if any.
 When the timeout expires, the function may return before the entire buffer is filled.
-The default value of 0.0 will retrieve only data available for immediate pickup.</p>
+The default value of 0.0 will retrieve only data available for immediate pickup. </p>
 </td>
       </tr>
     </tbody>
@@ -497,7 +509,8 @@ The default value of 0.0 will retrieve only data available for immediate pickup.
       <tr>
         <td><span class="xref">System.Int16</span>[,]</td>
         <td><span class="parametername">buffer</span></td>
-        <td></td>
+        <td><p>A pre-allocated buffer where the channel data shall be stored. </p>
+</td>
       </tr>
       <tr>
         <td><span class="xref">System.Double</span>[]</td>
@@ -510,7 +523,7 @@ The default value of 0.0 will retrieve only data available for immediate pickup.
         <td><span class="parametername">timeout</span></td>
         <td><p>Optionally the timeout for this operation, if any.
 When the timeout expires, the function may return before the entire buffer is filled.
-The default value of 0.0 will retrieve only data available for immediate pickup.</p>
+The default value of 0.0 will retrieve only data available for immediate pickup. </p>
 </td>
       </tr>
     </tbody>
@@ -571,7 +584,8 @@ The default value of 0.0 will retrieve only data available for immediate pickup.
       <tr>
         <td><span class="xref">System.Int32</span>[,]</td>
         <td><span class="parametername">buffer</span></td>
-        <td></td>
+        <td><p>A pre-allocated buffer where the channel data shall be stored. </p>
+</td>
       </tr>
       <tr>
         <td><span class="xref">System.Double</span>[]</td>
@@ -584,7 +598,7 @@ The default value of 0.0 will retrieve only data available for immediate pickup.
         <td><span class="parametername">timeout</span></td>
         <td><p>Optionally the timeout for this operation, if any.
 When the timeout expires, the function may return before the entire buffer is filled.
-The default value of 0.0 will retrieve only data available for immediate pickup.</p>
+The default value of 0.0 will retrieve only data available for immediate pickup. </p>
 </td>
       </tr>
     </tbody>
@@ -659,7 +673,7 @@ The default value of 0.0 will retrieve only data available for immediate pickup.
         <td><span class="parametername">timeout</span></td>
         <td><p>Optionally the timeout for this operation, if any.
 When the timeout expires, the function may return before the entire buffer is filled.
-The default value of 0.0 will retrieve only data available for immediate pickup.</p>
+The default value of 0.0 will retrieve only data available for immediate pickup. </p>
 </td>
       </tr>
     </tbody>
@@ -720,7 +734,8 @@ The default value of 0.0 will retrieve only data available for immediate pickup.
       <tr>
         <td><span class="xref">System.String</span>[,]</td>
         <td><span class="parametername">buffer</span></td>
-        <td></td>
+        <td><p>A pre-allocated buffer where the channel data shall be stored. </p>
+</td>
       </tr>
       <tr>
         <td><span class="xref">System.Double</span>[]</td>
@@ -733,7 +748,7 @@ The default value of 0.0 will retrieve only data available for immediate pickup.
         <td><span class="parametername">timeout</span></td>
         <td><p>Optionally the timeout for this operation, if any.
 When the timeout expires, the function may return before the entire buffer is filled.
-The default value of 0.0 will retrieve only data available for immediate pickup.</p>
+The default value of 0.0 will retrieve only data available for immediate pickup. </p>
 </td>
       </tr>
     </tbody>
@@ -774,7 +789,8 @@ The default value of 0.0 will retrieve only data available for immediate pickup.
   
   <a id="LSL4Unity_liblsl_StreamInlet_PullSample_" data-uid="LSL4Unity.liblsl.StreamInlet.PullSample*"></a>
   <h4 id="LSL4Unity_liblsl_StreamInlet_PullSample_System_Char___System_Double_" data-uid="LSL4Unity.liblsl.StreamInlet.PullSample(System.Char[],System.Double)">PullSample(Char[], Double)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Pull a sample from the inlet and read it into an array of values. Handles type checking and conversion. </p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -793,12 +809,14 @@ The default value of 0.0 will retrieve only data available for immediate pickup.
       <tr>
         <td><span class="xref">System.Char</span>[]</td>
         <td><span class="parametername">sample</span></td>
-        <td></td>
+        <td><p>An array to hold the resulting values. </p>
+</td>
       </tr>
       <tr>
         <td><span class="xref">System.Double</span></td>
         <td><span class="parametername">timeout</span></td>
-        <td></td>
+        <td><p>Optional, the timeout for this operation, if any. Use 0.0 to make the function non-blocking. </p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -813,7 +831,25 @@ The default value of 0.0 will retrieve only data available for immediate pickup.
     <tbody>
       <tr>
         <td><span class="xref">System.Double</span></td>
-        <td></td>
+        <td><p>The capture time of the sample on the remote machine, or 0.0 if no new sample was available.
+To remap this time stamp to the local clock, add the value returned by <a class="xref" href="LSL4Unity.liblsl.StreamInlet.html#LSL4Unity_liblsl_StreamInlet_TimeCorrection_System_Double_">TimeCorrection(Double)</a> to it. </p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="LSL4Unity.liblsl.LostException.html">liblsl.LostException</a></td>
+        <td><p>If the stream source has been lost. </p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -821,7 +857,8 @@ The default value of 0.0 will retrieve only data available for immediate pickup.
   
   <a id="LSL4Unity_liblsl_StreamInlet_PullSample_" data-uid="LSL4Unity.liblsl.StreamInlet.PullSample*"></a>
   <h4 id="LSL4Unity_liblsl_StreamInlet_PullSample_System_Double___System_Double_" data-uid="LSL4Unity.liblsl.StreamInlet.PullSample(System.Double[],System.Double)">PullSample(Double[], Double)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Pull a sample from the inlet and read it into an array of values. Handles type checking and conversion. </p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -840,12 +877,14 @@ The default value of 0.0 will retrieve only data available for immediate pickup.
       <tr>
         <td><span class="xref">System.Double</span>[]</td>
         <td><span class="parametername">sample</span></td>
-        <td></td>
+        <td><p>An array to hold the resulting values. </p>
+</td>
       </tr>
       <tr>
         <td><span class="xref">System.Double</span></td>
         <td><span class="parametername">timeout</span></td>
-        <td></td>
+        <td><p>Optional, the timeout for this operation, if any. Use 0.0 to make the function non-blocking. </p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -860,7 +899,25 @@ The default value of 0.0 will retrieve only data available for immediate pickup.
     <tbody>
       <tr>
         <td><span class="xref">System.Double</span></td>
-        <td></td>
+        <td><p>The capture time of the sample on the remote machine, or 0.0 if no new sample was available.
+To remap this time stamp to the local clock, add the value returned by <a class="xref" href="LSL4Unity.liblsl.StreamInlet.html#LSL4Unity_liblsl_StreamInlet_TimeCorrection_System_Double_">TimeCorrection(Double)</a> to it. </p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="LSL4Unity.liblsl.LostException.html">liblsl.LostException</a></td>
+        <td><p>If the stream source has been lost. </p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -868,7 +925,8 @@ The default value of 0.0 will retrieve only data available for immediate pickup.
   
   <a id="LSL4Unity_liblsl_StreamInlet_PullSample_" data-uid="LSL4Unity.liblsl.StreamInlet.PullSample*"></a>
   <h4 id="LSL4Unity_liblsl_StreamInlet_PullSample_System_Int16___System_Double_" data-uid="LSL4Unity.liblsl.StreamInlet.PullSample(System.Int16[],System.Double)">PullSample(Int16[], Double)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Pull a sample from the inlet and read it into an array of values. Handles type checking and conversion. </p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -887,12 +945,14 @@ The default value of 0.0 will retrieve only data available for immediate pickup.
       <tr>
         <td><span class="xref">System.Int16</span>[]</td>
         <td><span class="parametername">sample</span></td>
-        <td></td>
+        <td><p>An array to hold the resulting values. </p>
+</td>
       </tr>
       <tr>
         <td><span class="xref">System.Double</span></td>
         <td><span class="parametername">timeout</span></td>
-        <td></td>
+        <td><p>Optional, the timeout for this operation, if any. Use 0.0 to make the function non-blocking. </p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -907,7 +967,25 @@ The default value of 0.0 will retrieve only data available for immediate pickup.
     <tbody>
       <tr>
         <td><span class="xref">System.Double</span></td>
-        <td></td>
+        <td><p>The capture time of the sample on the remote machine, or 0.0 if no new sample was available.
+To remap this time stamp to the local clock, add the value returned by <a class="xref" href="LSL4Unity.liblsl.StreamInlet.html#LSL4Unity_liblsl_StreamInlet_TimeCorrection_System_Double_">TimeCorrection(Double)</a> to it. </p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="LSL4Unity.liblsl.LostException.html">liblsl.LostException</a></td>
+        <td><p>If the stream source has been lost. </p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -915,7 +993,8 @@ The default value of 0.0 will retrieve only data available for immediate pickup.
   
   <a id="LSL4Unity_liblsl_StreamInlet_PullSample_" data-uid="LSL4Unity.liblsl.StreamInlet.PullSample*"></a>
   <h4 id="LSL4Unity_liblsl_StreamInlet_PullSample_System_Int32___System_Double_" data-uid="LSL4Unity.liblsl.StreamInlet.PullSample(System.Int32[],System.Double)">PullSample(Int32[], Double)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Pull a sample from the inlet and read it into an array of values. Handles type checking and conversion. </p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -934,12 +1013,14 @@ The default value of 0.0 will retrieve only data available for immediate pickup.
       <tr>
         <td><span class="xref">System.Int32</span>[]</td>
         <td><span class="parametername">sample</span></td>
-        <td></td>
+        <td><p>An array to hold the resulting values. </p>
+</td>
       </tr>
       <tr>
         <td><span class="xref">System.Double</span></td>
         <td><span class="parametername">timeout</span></td>
-        <td></td>
+        <td><p>Optional, the timeout for this operation, if any. Use 0.0 to make the function non-blocking. </p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -954,7 +1035,25 @@ The default value of 0.0 will retrieve only data available for immediate pickup.
     <tbody>
       <tr>
         <td><span class="xref">System.Double</span></td>
-        <td></td>
+        <td><p>The capture time of the sample on the remote machine, or 0.0 if no new sample was available.
+To remap this time stamp to the local clock, add the value returned by <a class="xref" href="LSL4Unity.liblsl.StreamInlet.html#LSL4Unity_liblsl_StreamInlet_TimeCorrection_System_Double_">TimeCorrection(Double)</a> to it. </p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="LSL4Unity.liblsl.LostException.html">liblsl.LostException</a></td>
+        <td><p>If the stream source has been lost. </p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -962,7 +1061,8 @@ The default value of 0.0 will retrieve only data available for immediate pickup.
   
   <a id="LSL4Unity_liblsl_StreamInlet_PullSample_" data-uid="LSL4Unity.liblsl.StreamInlet.PullSample*"></a>
   <h4 id="LSL4Unity_liblsl_StreamInlet_PullSample_System_Single___System_Double_" data-uid="LSL4Unity.liblsl.StreamInlet.PullSample(System.Single[],System.Double)">PullSample(Single[], Double)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Pull a sample from the inlet and read it into an array of values. Handles type checking and conversion. </p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -981,12 +1081,14 @@ The default value of 0.0 will retrieve only data available for immediate pickup.
       <tr>
         <td><span class="xref">System.Single</span>[]</td>
         <td><span class="parametername">sample</span></td>
-        <td></td>
+        <td><p>An array to hold the resulting values. </p>
+</td>
       </tr>
       <tr>
         <td><span class="xref">System.Double</span></td>
         <td><span class="parametername">timeout</span></td>
-        <td></td>
+        <td><p>Optional, the timeout for this operation, if any. Use 0.0 to make the function non-blocking. </p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -1001,7 +1103,25 @@ The default value of 0.0 will retrieve only data available for immediate pickup.
     <tbody>
       <tr>
         <td><span class="xref">System.Double</span></td>
-        <td></td>
+        <td><p>The capture time of the sample on the remote machine, or 0.0 if no new sample was available.
+To remap this time stamp to the local clock, add the value returned by <a class="xref" href="LSL4Unity.liblsl.StreamInlet.html#LSL4Unity_liblsl_StreamInlet_TimeCorrection_System_Double_">TimeCorrection(Double)</a> to it. </p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="LSL4Unity.liblsl.LostException.html">liblsl.LostException</a></td>
+        <td><p>If the stream source has been lost. </p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -1009,7 +1129,8 @@ The default value of 0.0 will retrieve only data available for immediate pickup.
   
   <a id="LSL4Unity_liblsl_StreamInlet_PullSample_" data-uid="LSL4Unity.liblsl.StreamInlet.PullSample*"></a>
   <h4 id="LSL4Unity_liblsl_StreamInlet_PullSample_System_String___System_Double_" data-uid="LSL4Unity.liblsl.StreamInlet.PullSample(System.String[],System.Double)">PullSample(String[], Double)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Pull a sample from the inlet and read it into an array of values. Handles type checking and conversion. </p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -1028,12 +1149,14 @@ The default value of 0.0 will retrieve only data available for immediate pickup.
       <tr>
         <td><span class="xref">System.String</span>[]</td>
         <td><span class="parametername">sample</span></td>
-        <td></td>
+        <td><p>An array to hold the resulting values. </p>
+</td>
       </tr>
       <tr>
         <td><span class="xref">System.Double</span></td>
         <td><span class="parametername">timeout</span></td>
-        <td></td>
+        <td><p>Optional, the timeout for this operation, if any. Use 0.0 to make the function non-blocking. </p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -1048,7 +1171,25 @@ The default value of 0.0 will retrieve only data available for immediate pickup.
     <tbody>
       <tr>
         <td><span class="xref">System.Double</span></td>
-        <td></td>
+        <td><p>The capture time of the sample on the remote machine, or 0.0 if no new sample was available.
+To remap this time stamp to the local clock, add the value returned by <a class="xref" href="LSL4Unity.liblsl.StreamInlet.html#LSL4Unity_liblsl_StreamInlet_TimeCorrection_System_Double_">TimeCorrection(Double)</a> to it. </p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="LSL4Unity.liblsl.LostException.html">liblsl.LostException</a></td>
+        <td><p>If the stream source has been lost. </p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -1088,7 +1229,10 @@ If the underlying implementation supports it, the value will be the number of sa
   
   <a id="LSL4Unity_liblsl_StreamInlet_SetPostprocessing_" data-uid="LSL4Unity.liblsl.StreamInlet.SetPostprocessing*"></a>
   <h4 id="LSL4Unity_liblsl_StreamInlet_SetPostprocessing_LSL4Unity_liblsl_processing_options_t_" data-uid="LSL4Unity.liblsl.StreamInlet.SetPostprocessing(LSL4Unity.liblsl.processing_options_t)">SetPostprocessing(liblsl.processing_options_t)</h4>
-  <div class="markdown level1 summary"><p>Set post-processing flags to use. </p>
+  <div class="markdown level1 summary"><p>Set post-processing flags to use.</p>
+<p>By default, the inlet performs NO post-processing and returns the ground-truth time stamps,
+which can then be manually synchronized using TimeCorrection(), and then smoothed/dejittered if desired.
+This function allows automating these two and possibly more operations. </p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -1121,7 +1265,10 @@ from <a class="xref" href="LSL4Unity.liblsl.processing_options_t.html">liblsl.pr
   
   <a id="LSL4Unity_liblsl_StreamInlet_TimeCorrection_" data-uid="LSL4Unity.liblsl.StreamInlet.TimeCorrection*"></a>
   <h4 id="LSL4Unity_liblsl_StreamInlet_TimeCorrection_System_Double_" data-uid="LSL4Unity.liblsl.StreamInlet.TimeCorrection(System.Double)">TimeCorrection(Double)</h4>
-  <div class="markdown level1 summary"><p>Retrieve an estimated time correction offset for the given stream. </p>
+  <div class="markdown level1 summary"><p>Retrieve an estimated time correction offset for the given stream.</p>
+<p>The first call to this function takes several miliseconds until a reliable first estimate is obtained.
+Subsequent calls are instantaneous (and rely on periodic background updates).
+The precision of these estimates should be below 1 ms (empirically within +/-0.2 ms). </p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -1188,7 +1335,9 @@ that was remotely generated via <code>lsl_local_clock()</code> to map it into th
   
   <a id="LSL4Unity_liblsl_StreamInlet_WasClockReset_" data-uid="LSL4Unity.liblsl.StreamInlet.WasClockReset*"></a>
   <h4 id="LSL4Unity_liblsl_StreamInlet_WasClockReset" data-uid="LSL4Unity.liblsl.StreamInlet.WasClockReset">WasClockReset()</h4>
-  <div class="markdown level1 summary"><p>Query whether the clock was potentially reset since the last call to <a class="xref" href="LSL4Unity.liblsl.StreamInlet.html#LSL4Unity_liblsl_StreamInlet_WasClockReset">WasClockReset()</a>. </p>
+  <div class="markdown level1 summary"><p>Query whether the clock was potentially reset since the last call to <a class="xref" href="LSL4Unity.liblsl.StreamInlet.html#LSL4Unity_liblsl_StreamInlet_WasClockReset">WasClockReset()</a>.</p>
+<p>This is a rarely-used function that is only useful to applications that combine multiple <a class="xref" href="LSL4Unity.liblsl.StreamInlet.html#LSL4Unity_liblsl_StreamInlet_TimeCorrection_System_Double_">TimeCorrection(Double)</a> values to estimate precise clock drift;
+it allows to tolerate cases where the source machine was hot-swapped or restarted in between two measurements. </p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -1206,7 +1355,7 @@ that was remotely generated via <code>lsl_local_clock()</code> to map it into th
     <tbody>
       <tr>
         <td><span class="xref">System.Boolean</span></td>
-        <td><p><code>true</code> if clock waas reset... </p>
+        <td><p><code>true</code> if clock was reset... </p>
 </td>
       </tr>
     </tbody>

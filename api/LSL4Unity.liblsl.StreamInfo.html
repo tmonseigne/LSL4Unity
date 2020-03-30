@@ -83,7 +83,18 @@
   
   <h1 id="LSL4Unity_liblsl_StreamInfo" data-uid="LSL4Unity.liblsl.StreamInfo" class="text-break">Class liblsl.StreamInfo
   </h1>
-  <div class="markdown level0 summary"><p>The stream_info object stores the declaration of a data stream. </p>
+  <div class="markdown level0 summary"><p>The stream_info object stores the declaration of a data stream.</p>
+<p>Represents the following information:</p>
+<ol>
+<li>stream data format (#channels, channel format)</li>
+<li>core information (stream name, content type, sampling rate)</li>
+<li>optional meta-data about the stream content (channel labels, measurement units, etc.)</li>
+</ol>
+<p>Whenever a program wants to provide a new stream on the lab network,
+it will typically first create a stream_info to describe its properties
+and then construct a stream_outlet with it to create the stream on the network.
+Recipients who discover the outlet can query the stream_info; it is also written to disk when recording the stream
+(playing a similar role as a file header).</p>
 </div>
   <div class="markdown level0 conceptual"></div>
   <div class="inheritance">
@@ -127,7 +138,8 @@
   
   <a id="LSL4Unity_liblsl_StreamInfo__ctor_" data-uid="LSL4Unity.liblsl.StreamInfo.#ctor*"></a>
   <h4 id="LSL4Unity_liblsl_StreamInfo__ctor_System_IntPtr_" data-uid="LSL4Unity.liblsl.StreamInfo.#ctor(System.IntPtr)">StreamInfo(IntPtr)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Initializes a new instance of the <a class="xref" href="LSL4Unity.liblsl.StreamInfo.html">liblsl.StreamInfo</a> class. </p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -146,7 +158,8 @@
       <tr>
         <td><span class="xref">System.IntPtr</span></td>
         <td><span class="parametername">handle</span></td>
-        <td></td>
+        <td><p>The handle. </p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -154,7 +167,8 @@
   
   <a id="LSL4Unity_liblsl_StreamInfo__ctor_" data-uid="LSL4Unity.liblsl.StreamInfo.#ctor*"></a>
   <h4 id="LSL4Unity_liblsl_StreamInfo__ctor_System_String_System_String_System_Int32_System_Double_LSL4Unity_liblsl_channel_format_t_System_String_" data-uid="LSL4Unity.liblsl.StreamInfo.#ctor(System.String,System.String,System.Int32,System.Double,LSL4Unity.liblsl.channel_format_t,System.String)">StreamInfo(String, String, Int32, Double, liblsl.channel_format_t, String)</h4>
-  <div class="markdown level1 summary"><p>Initializes a new instance of the <a class="xref" href="LSL4Unity.liblsl.StreamInfo.html">liblsl.StreamInfo</a> object. </p>
+  <div class="markdown level1 summary"><p>Initializes a new instance of the <a class="xref" href="LSL4Unity.liblsl.StreamInfo.html">liblsl.StreamInfo</a> object.</p>
+<p>Core stream information is specified here. Any remaining meta-data can be added later. </p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -175,14 +189,15 @@
         <td><span class="xref">System.String</span></td>
         <td><span class="parametername">name</span></td>
         <td><p>Name of the stream. Describes the device (or product series) that this stream makes available (for use by programs, experimenters or data analysts).
-Cannot be empty.</p>
+Cannot be empty. </p>
 </td>
       </tr>
       <tr>
         <td><span class="xref">System.String</span></td>
         <td><span class="parametername">type</span></td>
         <td><p>Content type of the stream.
-Please see <a href="https://github.com/sccn/xdf/wiki/Meta-Data">https://github.com/sccn/xdf/wiki/Meta-Data</a> (or web search for: meta-data) for pre-defined content-type names, but you can also make up your own.
+Please see <a href="https://github.com/sccn/xdf/wiki/Meta-Data">https://github.com/sccn/xdf/wiki/Meta-Data</a> (or web search for: meta-data)
+for pre-defined content-type names, but you can also make up your own.
 The content type is the preferred way to find streams (as opposed to searching by name). </p>
 </td>
       </tr>
@@ -202,7 +217,7 @@ The content type is the preferred way to find streams (as opposed to searching b
         <td><a class="xref" href="LSL4Unity.liblsl.channel_format_t.html">liblsl.channel_format_t</a></td>
         <td><span class="parametername">channelFormat</span></td>
         <td><p>Format/type of each channel.
-If your channels have different formats, consider supplying multiple streams or use the largest type that can hold them all (such as cf_double64).</p>
+If your channels have different formats, consider supplying multiple streams or use the largest type that can hold them all (such as cf_double64). </p>
 </td>
       </tr>
       <tr>
@@ -211,7 +226,7 @@ If your channels have different formats, consider supplying multiple streams or 
         <td><p>Unique identifier of the device or source of the data, if available (such as the serial number).
 This is critical for system robustness since it allows recipients to recover from failure even after the serving app, device or computer crashes
 (just by finding a stream with the same source id on the network again).
-Therefore, it is highly recommended to always try to provide whatever information can uniquely identify the data source itself.</p>
+Therefore, it is highly recommended to always try to provide whatever information can uniquely identify the data source itself. </p>
 </td>
       </tr>
     </tbody>
@@ -222,7 +237,12 @@ Therefore, it is highly recommended to always try to provide whatever informatio
   
   <a id="LSL4Unity_liblsl_StreamInfo_AsXML_" data-uid="LSL4Unity.liblsl.StreamInfo.AsXML*"></a>
   <h4 id="LSL4Unity_liblsl_StreamInfo_AsXML" data-uid="LSL4Unity.liblsl.StreamInfo.AsXML">AsXML()</h4>
-  <div class="markdown level1 summary"><p>Retrieve the entire <a class="xref" href="LSL4Unity.liblsl.StreamInfo.html">liblsl.StreamInfo</a> in XML format. </p>
+  <div class="markdown level1 summary"><p>Retrieve the entire <a class="xref" href="LSL4Unity.liblsl.StreamInfo.html">liblsl.StreamInfo</a> in XML format.</p>
+<p>This yields an XML document (in string form) whose top-level element is &lt;info&gt;. The info element contains
+one element for each field of the stream_info class, including:
+a) the core elements <code>Name</code>, <code>Type</code>, <code>ChannelCount</code>, <code>Sampling</code>, <code>ChannelFormat</code>, <code>SourceId</code>
+b) the misc elements <code>Version</code>, <code>CreatedAt</code>, <code>Uid</code>, <code>SessionId</code>, <code>v4address</code>, <code>v4data_port</code>, <code>v4service_port</code>, <code>v6address</code>, <code>v6data_port</code>, <code>v6service_port</code>
+c) the extended description element <code>desc</code> with user-defined sub-elements. </p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -267,7 +287,8 @@ Therefore, it is highly recommended to always try to provide whatever informatio
     <tbody>
       <tr>
         <td><span class="xref">System.Int32</span></td>
-        <td></td>
+        <td><p>The Number of channels of the stream. </p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -275,7 +296,8 @@ Therefore, it is highly recommended to always try to provide whatever informatio
   
   <a id="LSL4Unity_liblsl_StreamInfo_ChannelFormat_" data-uid="LSL4Unity.liblsl.StreamInfo.ChannelFormat*"></a>
   <h4 id="LSL4Unity_liblsl_StreamInfo_ChannelFormat" data-uid="LSL4Unity.liblsl.StreamInfo.ChannelFormat">ChannelFormat()</h4>
-  <div class="markdown level1 summary"><p>Channel format of the stream. </p>
+  <div class="markdown level1 summary"><p>Channel format of the stream.</p>
+<p>All channels in a stream have the same format. However, a device might offer multiple time-synched streams each with its own format. </p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -302,7 +324,8 @@ Therefore, it is highly recommended to always try to provide whatever informatio
   
   <a id="LSL4Unity_liblsl_StreamInfo_CreatedAt_" data-uid="LSL4Unity.liblsl.StreamInfo.CreatedAt*"></a>
   <h4 id="LSL4Unity_liblsl_StreamInfo_CreatedAt" data-uid="LSL4Unity.liblsl.StreamInfo.CreatedAt">CreatedAt()</h4>
-  <div class="markdown level1 summary"><p>Creation time stamp of the stream. </p>
+  <div class="markdown level1 summary"><p>Creation time stamp of the stream.</p>
+<p>This is the time stamp when the stream was first created (as determined via LocalClock() on the providing machine). </p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -329,7 +352,12 @@ Therefore, it is highly recommended to always try to provide whatever informatio
   
   <a id="LSL4Unity_liblsl_StreamInfo_Desc_" data-uid="LSL4Unity.liblsl.StreamInfo.Desc*"></a>
   <h4 id="LSL4Unity_liblsl_StreamInfo_Desc" data-uid="LSL4Unity.liblsl.StreamInfo.Desc">Desc()</h4>
-  <div class="markdown level1 summary"><p>Extended description of the stream. </p>
+  <div class="markdown level1 summary"><p>Extended description of the stream.</p>
+<p>It is highly recommended that at least the channel labels are described here.
+See code examples on the LSL wiki. Other information, such as amplifier settings, 
+measurement units if deviating from defaults, setup information, subject information, etc., 
+can be specified here, as well. Meta-data recommendations follow the XDF file format project
+(<a href="https://github.com/sccn/xdf/wiki/Meta-Data">https://github.com/sccn/xdf/wiki/Meta-Data</a> or web search for: XDF meta-data). </p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -389,7 +417,8 @@ try to lay out your meta-data in agreement with these recommendations for compat
     <tbody>
       <tr>
         <td><span class="xref">System.IntPtr</span></td>
-        <td></td>
+        <td><p>the Handle. </p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -424,7 +453,11 @@ try to lay out your meta-data in agreement with these recommendations for compat
   
   <a id="LSL4Unity_liblsl_StreamInfo_Name_" data-uid="LSL4Unity.liblsl.StreamInfo.Name*"></a>
   <h4 id="LSL4Unity_liblsl_StreamInfo_Name" data-uid="LSL4Unity.liblsl.StreamInfo.Name">Name()</h4>
-  <div class="markdown level1 summary"><p>Name of the stream. </p>
+  <div class="markdown level1 summary"><p>Name of the stream.</p>
+<p>This is a human-readable name. For streams offered by device modules,
+it refers to the type of device or product series that is generating the data of the stream.
+If the source is an application, the name may be a more generic or specific identifier.
+Multiple streams with the same name can coexist, though potentially at the cost of ambiguity (for the recording app or experimenter). </p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -451,7 +484,12 @@ try to lay out your meta-data in agreement with these recommendations for compat
   
   <a id="LSL4Unity_liblsl_StreamInfo_Sampling_" data-uid="LSL4Unity.liblsl.StreamInfo.Sampling*"></a>
   <h4 id="LSL4Unity_liblsl_StreamInfo_Sampling" data-uid="LSL4Unity.liblsl.StreamInfo.Sampling">Sampling()</h4>
-  <div class="markdown level1 summary"><p>Sampling rate of the stream, according to the source (in Hz). </p>
+  <div class="markdown level1 summary"><p>Sampling rate of the stream, according to the source (in Hz).</p>
+<p>If a stream is irregularly sampled, this should be set to IRREGULAR_RATE.
+Note that no data will be lost even if this sampling rate is incorrect or if a device has temporary
+hiccups, since all samples will be recorded anyway (except for those dropped by the device itself). However,
+when the recording is imported into an application, a good importer may correct such errors more accurately
+if the advertised sampling rate was close to the specs of the device. </p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -478,7 +516,10 @@ try to lay out your meta-data in agreement with these recommendations for compat
   
   <a id="LSL4Unity_liblsl_StreamInfo_SessionId_" data-uid="LSL4Unity.liblsl.StreamInfo.SessionId*"></a>
   <h4 id="LSL4Unity_liblsl_StreamInfo_SessionId" data-uid="LSL4Unity.liblsl.StreamInfo.SessionId">SessionId()</h4>
-  <div class="markdown level1 summary"><p>Session ID for the given stream. </p>
+  <div class="markdown level1 summary"><p>Session ID for the given stream.</p>
+<p>The session id is an optional human-assigned identifier of the recording session.
+While it is rarely used, it can be used to prevent concurrent recording activitites on the same sub-network (e.g., in multiple experiment areas)
+from seeing each other&apos;s streams (assigned via a configuration file by the experimenter, see Network Connectivity in the LSL wiki). </p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -505,7 +546,9 @@ try to lay out your meta-data in agreement with these recommendations for compat
   
   <a id="LSL4Unity_liblsl_StreamInfo_SourceId_" data-uid="LSL4Unity.liblsl.StreamInfo.SourceId*"></a>
   <h4 id="LSL4Unity_liblsl_StreamInfo_SourceId" data-uid="LSL4Unity.liblsl.StreamInfo.SourceId">SourceId()</h4>
-  <div class="markdown level1 summary"><p>Unique identifier of the stream&apos;s source, if available. </p>
+  <div class="markdown level1 summary"><p>Unique identifier of the stream&apos;s source, if available.</p>
+<p>The unique source (or device) identifier is an optional piece of information that, if available,
+allows that endpoints(such as the recording program) can re-acquire a stream automatically once it is back online. </p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -532,7 +575,11 @@ try to lay out your meta-data in agreement with these recommendations for compat
   
   <a id="LSL4Unity_liblsl_StreamInfo_Type_" data-uid="LSL4Unity.liblsl.StreamInfo.Type*"></a>
   <h4 id="LSL4Unity_liblsl_StreamInfo_Type" data-uid="LSL4Unity.liblsl.StreamInfo.Type">Type()</h4>
-  <div class="markdown level1 summary"><p>Content type of the stream.  </p>
+  <div class="markdown level1 summary"><p>Content type of the stream.</p>
+<p>The content type is a short string such as &quot;EEG&quot;, &quot;Gaze&quot; which describes the content carried by the channel (if known). 
+If a stream contains mixed content this value need not be assigned but may instead be stored in the description of channel types.
+To be useful to applications and automated processing systems using the recommended content types is preferred. 
+Content types usually follow those pre-defined in <a href="https://github.com/sccn/xdf/wiki/Meta-Data">https://github.com/sccn/xdf/wiki/Meta-Data</a> (or web search for: XDF meta-data). </p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -559,7 +606,8 @@ try to lay out your meta-data in agreement with these recommendations for compat
   
   <a id="LSL4Unity_liblsl_StreamInfo_Uid_" data-uid="LSL4Unity.liblsl.StreamInfo.Uid*"></a>
   <h4 id="LSL4Unity_liblsl_StreamInfo_Uid" data-uid="LSL4Unity.liblsl.StreamInfo.Uid">Uid()</h4>
-  <div class="markdown level1 summary"><p>Unique ID of the stream outlet instance (once assigned). </p>
+  <div class="markdown level1 summary"><p>Unique ID of the stream outlet instance (once assigned).</p>
+<p>This is a unique identifier of the stream outlet, and is guaranteed to be different across multiple instantiations of the same outlet (e.g., after a re-start). </p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>

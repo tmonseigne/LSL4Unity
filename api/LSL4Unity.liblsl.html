@@ -125,7 +125,10 @@
   
   
   <h4 id="LSL4Unity_liblsl_DEDUCED_TIMESTAMP" data-uid="LSL4Unity.liblsl.DEDUCED_TIMESTAMP">DEDUCED_TIMESTAMP</h4>
-  <div class="markdown level1 summary"><p>Constant to indicate that a sample has the next successive time stamp. </p>
+  <div class="markdown level1 summary"><p>Constant to indicate that a sample has the next successive time stamp.</p>
+<p>This is an optional optimization to transmit less data per sample.
+The stamp is then deduced from the preceding one according to the stream&apos;s sampling rate
+(in the case of an irregular rate, the same time stamp as before will is assumed). </p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -143,7 +146,8 @@
     <tbody>
       <tr>
         <td><span class="xref">System.Double</span></td>
-        <td></td>
+        <td><p>Indicate that a sample has the next successive time stamp. </p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -168,7 +172,8 @@
     <tbody>
       <tr>
         <td><span class="xref">System.Double</span></td>
-        <td></td>
+        <td><p>A very large time duration (&gt; 1 year). </p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -196,7 +201,8 @@
     <tbody>
       <tr>
         <td><span class="xref">System.Double</span></td>
-        <td></td>
+        <td><p>Indicate that a stream has variable sampling rate. </p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -271,7 +277,8 @@
   
   <a id="LSL4Unity_liblsl_LibraryVersion_" data-uid="LSL4Unity.liblsl.LibraryVersion*"></a>
   <h4 id="LSL4Unity_liblsl_LibraryVersion" data-uid="LSL4Unity.liblsl.LibraryVersion">LibraryVersion()</h4>
-  <div class="markdown level1 summary"><p>Version of the liblsl library. </p>
+  <div class="markdown level1 summary"><p>Version of the liblsl library.</p>
+<p>The major version is LibraryVersion() / 100; The minor version is LibraryVersion() % 100;</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -289,7 +296,7 @@
     <tbody>
       <tr>
         <td><span class="xref">System.Int32</span></td>
-        <td><p>THe library version. </p>
+        <td><p>The library version. </p>
 </td>
       </tr>
     </tbody>
@@ -298,7 +305,12 @@
   
   <a id="LSL4Unity_liblsl_LocalClock_" data-uid="LSL4Unity.liblsl.LocalClock*"></a>
   <h4 id="LSL4Unity_liblsl_LocalClock" data-uid="LSL4Unity.liblsl.LocalClock">LocalClock()</h4>
-  <div class="markdown level1 summary"><p>Obtain a local system time stamp in seconds. </p>
+  <div class="markdown level1 summary"><p>Obtain a local system time stamp in seconds.</p>
+<p>The resolution is better than a millisecond.
+This reading can be used to assign time stamps to samples as they are being acquired.
+If the &quot;age&quot; of a sample is known at a particular time (e.g., from USB transmission delays),
+it can be used as an offset to LocalClock() to obtain a better estimate of when a sample was actually captured. 
+See <code>StreamOutlet::PushSample()</code> for a use case. </p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -325,7 +337,9 @@
   
   <a id="LSL4Unity_liblsl_ProtocolVersion_" data-uid="LSL4Unity.liblsl.ProtocolVersion*"></a>
   <h4 id="LSL4Unity_liblsl_ProtocolVersion" data-uid="LSL4Unity.liblsl.ProtocolVersion">ProtocolVersion()</h4>
-  <div class="markdown level1 summary"><p>Version of the lsl protocol. </p>
+  <div class="markdown level1 summary"><p>Version of the lsl protocol.</p>
+<p>The major version is <a class="xref" href="LSL4Unity.liblsl.html#LSL4Unity_liblsl_ProtocolVersion">ProtocolVersion()</a> / 100; The minor version is <a class="xref" href="LSL4Unity.liblsl.html#LSL4Unity_liblsl_ProtocolVersion">ProtocolVersion()</a> % 100;
+Clients with different minor versions are protocol-compatible with each other while clients with different major versions will refuse to work together.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -343,7 +357,7 @@
     <tbody>
       <tr>
         <td><span class="xref">System.Int32</span></td>
-        <td><p>THe protocole version. </p>
+        <td><p>The protocole version. </p>
 </td>
       </tr>
     </tbody>
@@ -352,7 +366,10 @@
   
   <a id="LSL4Unity_liblsl_ResolveStream_" data-uid="LSL4Unity.liblsl.ResolveStream*"></a>
   <h4 id="LSL4Unity_liblsl_ResolveStream_System_String_System_Int32_System_Double_" data-uid="LSL4Unity.liblsl.ResolveStream(System.String,System.Int32,System.Double)">ResolveStream(String, Int32, Double)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Resolve all streams that match a given predicate.</p>
+<p>Advanced query that allows to impose more conditions on the retrieved streams;
+the given string is an XPath 1.0 predicate for the info node (omitting the surrounding []&apos;s). </p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -371,17 +388,21 @@
       <tr>
         <td><span class="xref">System.String</span></td>
         <td><span class="parametername">pred</span></td>
-        <td></td>
+        <td><p>The predicate string, e.g. &quot;name=&apos;BioSemi&apos;&quot; or &quot;type=&apos;EEG&apos; and starts-with(name,&apos;BioSemi&apos;) and count(info/desc/channel)=32&quot;. </p>
+</td>
       </tr>
       <tr>
         <td><span class="xref">System.Int32</span></td>
         <td><span class="parametername">minimum</span></td>
-        <td></td>
+        <td><p>Optionally return at least this number of streams. </p>
+</td>
       </tr>
       <tr>
         <td><span class="xref">System.Double</span></td>
         <td><span class="parametername">timeout</span></td>
-        <td></td>
+        <td><p>Optionally a timeout of the operation, in seconds (default: no timeout).
+If the timeout expires, less than the desired number of streams (possibly none) will be returned. </p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -396,15 +417,20 @@
     <tbody>
       <tr>
         <td><a class="xref" href="LSL4Unity.liblsl.StreamInfo.html">liblsl.StreamInfo</a>[]</td>
-        <td></td>
+        <td><p>An array of matching stream info objects (excluding their meta-data), any of which can subsequently be used to open an inlet. </p>
+</td>
       </tr>
     </tbody>
   </table>
+  <h5 id="LSL4Unity_liblsl_ResolveStream_System_String_System_Int32_System_Double__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>See Also : <a href="http://en.wikipedia.org/w/index.php?title=XPath_1.0">Wikipedia XPath 1.0</a>. </p>
+</div>
   
   
   <a id="LSL4Unity_liblsl_ResolveStream_" data-uid="LSL4Unity.liblsl.ResolveStream*"></a>
   <h4 id="LSL4Unity_liblsl_ResolveStream_System_String_System_String_System_Int32_System_Double_" data-uid="LSL4Unity.liblsl.ResolveStream(System.String,System.String,System.Int32,System.Double)">ResolveStream(String, String, Int32, Double)</h4>
-  <div class="markdown level1 summary"><p>Resolve all streams with a specific value for a given property. </p>
+  <div class="markdown level1 summary"><p>Resolve all streams with a specific value for a given property.</p>
+<p>If the goal is to resolve a specific stream, this method is preferred over resolving all streams and then selecting the desired one.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -468,7 +494,12 @@ If the timeout expires, less than the desired number of streams (possibly none) 
   
   <a id="LSL4Unity_liblsl_ResolveStreams_" data-uid="LSL4Unity.liblsl.ResolveStreams*"></a>
   <h4 id="LSL4Unity_liblsl_ResolveStreams_System_Double_" data-uid="LSL4Unity.liblsl.ResolveStreams(System.Double)">ResolveStreams(Double)</h4>
-  <div class="markdown level1 summary"><p>Resolve all streams on the network. </p>
+  <div class="markdown level1 summary"><p>Resolve all streams on the network.</p>
+<p>This function returns all currently available streams from any outlet on the network.
+The network is usually the subnet specified at the local router,
+but may also include a multicast group of machines (given that the network supports it), or list of hostnames.
+These details may optionally be customized by the experimenter in a configuration file  (see Network Connectivity in the LSL wiki).
+This is the default mechanism used by the browsing programs and the recording program. </p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
