@@ -53,4 +53,5 @@ It's highly recommended to read the section about the [Time Synchronization](htt
 **Current Version** :
 
 * Remove Original Examples and demos.
+* Add Github Action to auto-generate doc.
 * Update Documentation.
