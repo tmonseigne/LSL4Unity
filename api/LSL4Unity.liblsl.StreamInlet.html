@@ -89,32 +89,8 @@
   <div class="markdown level0 conceptual"></div>
   <div class="inheritance">
     <h5>Inheritance</h5>
-    <div class="level0"><span class="xref">System.Object</span></div>
+    <div class="level0"><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object">Object</a></div>
     <div class="level1"><span class="xref">liblsl.StreamInlet</span></div>
-  </div>
-  <div class="inheritedMembers">
-    <h5>Inherited Members</h5>
-    <div>
-      <span class="xref">System.Object.ToString()</span>
-    </div>
-    <div>
-      <span class="xref">System.Object.Equals(System.Object)</span>
-    </div>
-    <div>
-      <span class="xref">System.Object.Equals(System.Object, System.Object)</span>
-    </div>
-    <div>
-      <span class="xref">System.Object.ReferenceEquals(System.Object, System.Object)</span>
-    </div>
-    <div>
-      <span class="xref">System.Object.GetHashCode()</span>
-    </div>
-    <div>
-      <span class="xref">System.Object.GetType()</span>
-    </div>
-    <div>
-      <span class="xref">System.Object.MemberwiseClone()</span>
-    </div>
   </div>
   <h6><strong>Namespace</strong>: <a class="xref" href="LSL4Unity.html">LSL4Unity</a></h6>
   <h6><strong>Assembly</strong>: cs.temp.dll.dll</h6>
@@ -152,7 +128,7 @@
 </td>
       </tr>
       <tr>
-        <td><span class="xref">System.Int32</span></td>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a></td>
         <td><span class="parametername">maxBuflen</span></td>
         <td><p>Optionally the maximum amount of data to buffer
 (in seconds if there is a nominal sampling rate, otherwise x100 in samples).
@@ -161,7 +137,7 @@ while real-time applications would only buffer as much as they need to perform t
 </td>
       </tr>
       <tr>
-        <td><span class="xref">System.Int32</span></td>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a></td>
         <td><span class="parametername">maxChunklen</span></td>
         <td><p>Optionally the maximum size, in samples, at which chunks are transmitted
 (the default corresponds to the chunk sizes used by the sender).
@@ -171,7 +147,7 @@ If left unspecified (=0), the sender determines the chunk granularity. </p>
 </td>
       </tr>
       <tr>
-        <td><span class="xref">System.Boolean</span></td>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
         <td><span class="parametername">recover</span></td>
         <td><p>Try to silently recover lost streams that are recoverable (=those that that have a SourceId set).
 In all other cases (recover is false or the stream is not recoverable) functions may throw a <a class="xref" href="LSL4Unity.liblsl.LostException.html">liblsl.LostException</a>
@@ -238,7 +214,7 @@ it should call CloseStream() to not waste unnecessary system and network resourc
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Double</span></td>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.double">Double</a></td>
         <td><span class="parametername">timeout</span></td>
         <td><p>Optional timeout of the operation (default: no timeout). </p>
 </td>
@@ -271,7 +247,7 @@ it should call CloseStream() to not waste unnecessary system and network resourc
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.TimeoutException</span></td>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.timeoutexception">TimeoutException</a></td>
         <td><p>If the timeout expires. </p>
 </td>
       </tr>
@@ -307,7 +283,7 @@ Pulling a sample without some preceding OpenStream is permitted (the stream will
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Double</span></td>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.double">Double</a></td>
         <td><span class="parametername">timeout</span></td>
         <td><p>Optional timeout of the operation (default: no timeout). </p>
 </td>
@@ -324,7 +300,7 @@ Pulling a sample without some preceding OpenStream is permitted (the stream will
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.TimeoutException</span></td>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.timeoutexception">TimeoutException</a></td>
         <td><p>If the timeout expires. </p>
 </td>
       </tr>
@@ -357,19 +333,19 @@ Pulling a sample without some preceding OpenStream is permitted (the stream will
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Char</span>[,]</td>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.char">Char</a>[,]</td>
         <td><span class="parametername">buffer</span></td>
         <td><p>A pre-allocated buffer where the channel data shall be stored. </p>
 </td>
       </tr>
       <tr>
-        <td><span class="xref">System.Double</span>[]</td>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.double">Double</a>[]</td>
         <td><span class="parametername">times</span></td>
         <td><p>A pre-allocated buffer where time stamps shall be stored. </p>
 </td>
       </tr>
       <tr>
-        <td><span class="xref">System.Double</span></td>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.double">Double</a></td>
         <td><span class="parametername">timeout</span></td>
         <td><p>Optionally the timeout for this operation, if any.
 When the timeout expires, the function may return before the entire buffer is filled.
@@ -388,7 +364,7 @@ The default value of 0.0 will retrieve only data available for immediate pickup.
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Int32</span></td>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a></td>
         <td><p>Number of samples written to the data and timestamp buffers.</p>
 </td>
       </tr>
@@ -432,19 +408,19 @@ The default value of 0.0 will retrieve only data available for immediate pickup.
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Double</span>[,]</td>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.double">Double</a>[,]</td>
         <td><span class="parametername">buffer</span></td>
         <td><p>A pre-allocated buffer where the channel data shall be stored. </p>
 </td>
       </tr>
       <tr>
-        <td><span class="xref">System.Double</span>[]</td>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.double">Double</a>[]</td>
         <td><span class="parametername">times</span></td>
         <td><p>A pre-allocated buffer where time stamps shall be stored. </p>
 </td>
       </tr>
       <tr>
-        <td><span class="xref">System.Double</span></td>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.double">Double</a></td>
         <td><span class="parametername">timeout</span></td>
         <td><p>Optionally the timeout for this operation, if any.
 When the timeout expires, the function may return before the entire buffer is filled.
@@ -463,7 +439,7 @@ The default value of 0.0 will retrieve only data available for immediate pickup.
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Int32</span></td>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a></td>
         <td><p>Number of samples written to the data and timestamp buffers.</p>
 </td>
       </tr>
@@ -507,19 +483,19 @@ The default value of 0.0 will retrieve only data available for immediate pickup.
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Int16</span>[,]</td>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int16">Int16</a>[,]</td>
         <td><span class="parametername">buffer</span></td>
         <td><p>A pre-allocated buffer where the channel data shall be stored. </p>
 </td>
       </tr>
       <tr>
-        <td><span class="xref">System.Double</span>[]</td>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.double">Double</a>[]</td>
         <td><span class="parametername">times</span></td>
         <td><p>A pre-allocated buffer where time stamps shall be stored. </p>
 </td>
       </tr>
       <tr>
-        <td><span class="xref">System.Double</span></td>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.double">Double</a></td>
         <td><span class="parametername">timeout</span></td>
         <td><p>Optionally the timeout for this operation, if any.
 When the timeout expires, the function may return before the entire buffer is filled.
@@ -538,7 +514,7 @@ The default value of 0.0 will retrieve only data available for immediate pickup.
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Int32</span></td>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a></td>
         <td><p>Number of samples written to the data and timestamp buffers.</p>
 </td>
       </tr>
@@ -582,19 +558,19 @@ The default value of 0.0 will retrieve only data available for immediate pickup.
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Int32</span>[,]</td>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a>[,]</td>
         <td><span class="parametername">buffer</span></td>
         <td><p>A pre-allocated buffer where the channel data shall be stored. </p>
 </td>
       </tr>
       <tr>
-        <td><span class="xref">System.Double</span>[]</td>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.double">Double</a>[]</td>
         <td><span class="parametername">times</span></td>
         <td><p>A pre-allocated buffer where time stamps shall be stored. </p>
 </td>
       </tr>
       <tr>
-        <td><span class="xref">System.Double</span></td>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.double">Double</a></td>
         <td><span class="parametername">timeout</span></td>
         <td><p>Optionally the timeout for this operation, if any.
 When the timeout expires, the function may return before the entire buffer is filled.
@@ -613,7 +589,7 @@ The default value of 0.0 will retrieve only data available for immediate pickup.
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Int32</span></td>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a></td>
         <td><p>Number of samples written to the data and timestamp buffers.</p>
 </td>
       </tr>
@@ -657,19 +633,19 @@ The default value of 0.0 will retrieve only data available for immediate pickup.
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Single</span>[,]</td>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.single">Single</a>[,]</td>
         <td><span class="parametername">buffer</span></td>
         <td><p>A pre-allocated buffer where the channel data shall be stored. </p>
 </td>
       </tr>
       <tr>
-        <td><span class="xref">System.Double</span>[]</td>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.double">Double</a>[]</td>
         <td><span class="parametername">times</span></td>
         <td><p>A pre-allocated buffer where time stamps shall be stored. </p>
 </td>
       </tr>
       <tr>
-        <td><span class="xref">System.Double</span></td>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.double">Double</a></td>
         <td><span class="parametername">timeout</span></td>
         <td><p>Optionally the timeout for this operation, if any.
 When the timeout expires, the function may return before the entire buffer is filled.
@@ -688,7 +664,7 @@ The default value of 0.0 will retrieve only data available for immediate pickup.
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Int32</span></td>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a></td>
         <td><p>Number of samples written to the data and timestamp buffers.</p>
 </td>
       </tr>
@@ -732,19 +708,19 @@ The default value of 0.0 will retrieve only data available for immediate pickup.
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.String</span>[,]</td>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a>[,]</td>
         <td><span class="parametername">buffer</span></td>
         <td><p>A pre-allocated buffer where the channel data shall be stored. </p>
 </td>
       </tr>
       <tr>
-        <td><span class="xref">System.Double</span>[]</td>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.double">Double</a>[]</td>
         <td><span class="parametername">times</span></td>
         <td><p>A pre-allocated buffer where time stamps shall be stored. </p>
 </td>
       </tr>
       <tr>
-        <td><span class="xref">System.Double</span></td>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.double">Double</a></td>
         <td><span class="parametername">timeout</span></td>
         <td><p>Optionally the timeout for this operation, if any.
 When the timeout expires, the function may return before the entire buffer is filled.
@@ -763,7 +739,7 @@ The default value of 0.0 will retrieve only data available for immediate pickup.
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Int32</span></td>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a></td>
         <td><p>Number of samples written to the data and timestamp buffers.</p>
 </td>
       </tr>
@@ -807,13 +783,13 @@ The default value of 0.0 will retrieve only data available for immediate pickup.
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Char</span>[]</td>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.char">Char</a>[]</td>
         <td><span class="parametername">sample</span></td>
         <td><p>An array to hold the resulting values. </p>
 </td>
       </tr>
       <tr>
-        <td><span class="xref">System.Double</span></td>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.double">Double</a></td>
         <td><span class="parametername">timeout</span></td>
         <td><p>Optional, the timeout for this operation, if any. Use 0.0 to make the function non-blocking. </p>
 </td>
@@ -830,7 +806,7 @@ The default value of 0.0 will retrieve only data available for immediate pickup.
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Double</span></td>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.double">Double</a></td>
         <td><p>The capture time of the sample on the remote machine, or 0.0 if no new sample was available.
 To remap this time stamp to the local clock, add the value returned by <a class="xref" href="LSL4Unity.liblsl.StreamInlet.html#LSL4Unity_liblsl_StreamInlet_TimeCorrection_System_Double_">TimeCorrection(Double)</a> to it. </p>
 </td>
@@ -875,13 +851,13 @@ To remap this time stamp to the local clock, add the value returned by <a class=
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Double</span>[]</td>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.double">Double</a>[]</td>
         <td><span class="parametername">sample</span></td>
         <td><p>An array to hold the resulting values. </p>
 </td>
       </tr>
       <tr>
-        <td><span class="xref">System.Double</span></td>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.double">Double</a></td>
         <td><span class="parametername">timeout</span></td>
         <td><p>Optional, the timeout for this operation, if any. Use 0.0 to make the function non-blocking. </p>
 </td>
@@ -898,7 +874,7 @@ To remap this time stamp to the local clock, add the value returned by <a class=
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Double</span></td>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.double">Double</a></td>
         <td><p>The capture time of the sample on the remote machine, or 0.0 if no new sample was available.
 To remap this time stamp to the local clock, add the value returned by <a class="xref" href="LSL4Unity.liblsl.StreamInlet.html#LSL4Unity_liblsl_StreamInlet_TimeCorrection_System_Double_">TimeCorrection(Double)</a> to it. </p>
 </td>
@@ -943,13 +919,13 @@ To remap this time stamp to the local clock, add the value returned by <a class=
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Int16</span>[]</td>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int16">Int16</a>[]</td>
         <td><span class="parametername">sample</span></td>
         <td><p>An array to hold the resulting values. </p>
 </td>
       </tr>
       <tr>
-        <td><span class="xref">System.Double</span></td>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.double">Double</a></td>
         <td><span class="parametername">timeout</span></td>
         <td><p>Optional, the timeout for this operation, if any. Use 0.0 to make the function non-blocking. </p>
 </td>
@@ -966,7 +942,7 @@ To remap this time stamp to the local clock, add the value returned by <a class=
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Double</span></td>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.double">Double</a></td>
         <td><p>The capture time of the sample on the remote machine, or 0.0 if no new sample was available.
 To remap this time stamp to the local clock, add the value returned by <a class="xref" href="LSL4Unity.liblsl.StreamInlet.html#LSL4Unity_liblsl_StreamInlet_TimeCorrection_System_Double_">TimeCorrection(Double)</a> to it. </p>
 </td>
@@ -1011,13 +987,13 @@ To remap this time stamp to the local clock, add the value returned by <a class=
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Int32</span>[]</td>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a>[]</td>
         <td><span class="parametername">sample</span></td>
         <td><p>An array to hold the resulting values. </p>
 </td>
       </tr>
       <tr>
-        <td><span class="xref">System.Double</span></td>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.double">Double</a></td>
         <td><span class="parametername">timeout</span></td>
         <td><p>Optional, the timeout for this operation, if any. Use 0.0 to make the function non-blocking. </p>
 </td>
@@ -1034,7 +1010,7 @@ To remap this time stamp to the local clock, add the value returned by <a class=
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Double</span></td>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.double">Double</a></td>
         <td><p>The capture time of the sample on the remote machine, or 0.0 if no new sample was available.
 To remap this time stamp to the local clock, add the value returned by <a class="xref" href="LSL4Unity.liblsl.StreamInlet.html#LSL4Unity_liblsl_StreamInlet_TimeCorrection_System_Double_">TimeCorrection(Double)</a> to it. </p>
 </td>
@@ -1079,13 +1055,13 @@ To remap this time stamp to the local clock, add the value returned by <a class=
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Single</span>[]</td>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.single">Single</a>[]</td>
         <td><span class="parametername">sample</span></td>
         <td><p>An array to hold the resulting values. </p>
 </td>
       </tr>
       <tr>
-        <td><span class="xref">System.Double</span></td>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.double">Double</a></td>
         <td><span class="parametername">timeout</span></td>
         <td><p>Optional, the timeout for this operation, if any. Use 0.0 to make the function non-blocking. </p>
 </td>
@@ -1102,7 +1078,7 @@ To remap this time stamp to the local clock, add the value returned by <a class=
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Double</span></td>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.double">Double</a></td>
         <td><p>The capture time of the sample on the remote machine, or 0.0 if no new sample was available.
 To remap this time stamp to the local clock, add the value returned by <a class="xref" href="LSL4Unity.liblsl.StreamInlet.html#LSL4Unity_liblsl_StreamInlet_TimeCorrection_System_Double_">TimeCorrection(Double)</a> to it. </p>
 </td>
@@ -1147,13 +1123,13 @@ To remap this time stamp to the local clock, add the value returned by <a class=
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.String</span>[]</td>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a>[]</td>
         <td><span class="parametername">sample</span></td>
         <td><p>An array to hold the resulting values. </p>
 </td>
       </tr>
       <tr>
-        <td><span class="xref">System.Double</span></td>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.double">Double</a></td>
         <td><span class="parametername">timeout</span></td>
         <td><p>Optional, the timeout for this operation, if any. Use 0.0 to make the function non-blocking. </p>
 </td>
@@ -1170,7 +1146,7 @@ To remap this time stamp to the local clock, add the value returned by <a class=
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Double</span></td>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.double">Double</a></td>
         <td><p>The capture time of the sample on the remote machine, or 0.0 if no new sample was available.
 To remap this time stamp to the local clock, add the value returned by <a class="xref" href="LSL4Unity.liblsl.StreamInlet.html#LSL4Unity_liblsl_StreamInlet_TimeCorrection_System_Double_">TimeCorrection(Double)</a> to it. </p>
 </td>
@@ -1214,7 +1190,7 @@ To remap this time stamp to the local clock, add the value returned by <a class=
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Int32</span></td>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a></td>
         <td><p>Number of samples available. </p>
 </td>
       </tr>
@@ -1286,7 +1262,7 @@ The precision of these estimates should be below 1 ms (empirically within +/-0.2
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Double</span></td>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.double">Double</a></td>
         <td><span class="parametername">timeout</span></td>
         <td><p>Optional timeout to acquire the first time-correction estimate (default: no timeout). </p>
 </td>
@@ -1303,7 +1279,7 @@ The precision of these estimates should be below 1 ms (empirically within +/-0.2
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Double</span></td>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.double">Double</a></td>
         <td><p>The time correction estimate. This is the number that needs to be added to a time stamp
 that was remotely generated via <code>lsl_local_clock()</code> to map it into the local clock domain of this machine. </p>
 </td>
@@ -1320,7 +1296,7 @@ that was remotely generated via <code>lsl_local_clock()</code> to map it into th
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.TimeoutException</span></td>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.timeoutexception">TimeoutException</a></td>
         <td><p>If the timeout expires. </p>
 </td>
       </tr>
@@ -1354,7 +1330,7 @@ it allows to tolerate cases where the source machine was hot-swapped or restarte
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Boolean</span></td>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
         <td><p><code>true</code> if clock was reset... </p>
 </td>
       </tr>
