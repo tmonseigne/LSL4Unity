@@ -8,7 +8,7 @@ namespace LSL4Unity.OV
 	/// <seealso cref="MonoBehaviour" />
 	public abstract class OVInlet<T> : MonoBehaviour
 	{
-		private enum UpdateMoment { FixedUpdate, Update }
+		private enum UpdateMoment { FixedUpdate, Update, OnDemand }
 
 		[SerializeField] private UpdateMoment moment     = UpdateMoment.Update;
 		[SerializeField] private string       streamName = "ovSignal";
@@ -53,6 +53,9 @@ namespace LSL4Unity.OV
 			if (moment == UpdateMoment.Update && inlet != null) { PullSamples(); }
 		}
 
+		/// <summary> ForceUpdate is called when it's needed. </summary>
+		public void ForceUpdate() { PullSamples(); }
+
 		/// <summary> Resolves the stream. </summary>
 		/// <returns></returns>
 		private IEnumerator ResolveExpectedStream()
@@ -63,7 +66,7 @@ namespace LSL4Unity.OV
 			liblsl.StreamInfo[] results = resolver.Results();
 			yield return new WaitUntil(() => results.Length > 0);
 
-			Debug.Log($"Resolving Stream : {streamName}");
+			Debug.Log($"Resolving Stream : Name = {streamName}, Steam Info Name = {results[0].Name()}, Stream Info Type = ({results[0].Type()}");
 
 			inlet            = new liblsl.StreamInlet(results[0]);
 			expectedChannels = inlet.Info().ChannelCount();
