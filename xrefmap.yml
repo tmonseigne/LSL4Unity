@@ -2488,6 +2488,38 @@ references:
   isSpec: "True"
   fullName: LSL4Unity.OV.OVDoubleInlet.PullSamples
   nameWithType: OVDoubleInlet.PullSamples
+- uid: LSL4Unity.OV.OVDoubleOutlet
+  name: OVDoubleOutlet
+  href: api/LSL4Unity.OV.OVDoubleOutlet.html
+  commentId: T:LSL4Unity.OV.OVDoubleOutlet
+  fullName: LSL4Unity.OV.OVDoubleOutlet
+  nameWithType: OVDoubleOutlet
+- uid: LSL4Unity.OV.OVDoubleOutlet.#ctor
+  name: OVDoubleOutlet()
+  href: api/LSL4Unity.OV.OVDoubleOutlet.html#LSL4Unity_OV_OVDoubleOutlet__ctor
+  commentId: M:LSL4Unity.OV.OVDoubleOutlet.#ctor
+  fullName: LSL4Unity.OV.OVDoubleOutlet.OVDoubleOutlet()
+  nameWithType: OVDoubleOutlet.OVDoubleOutlet()
+- uid: LSL4Unity.OV.OVDoubleOutlet.#ctor*
+  name: OVDoubleOutlet
+  href: api/LSL4Unity.OV.OVDoubleOutlet.html#LSL4Unity_OV_OVDoubleOutlet__ctor_
+  commentId: Overload:LSL4Unity.OV.OVDoubleOutlet.#ctor
+  isSpec: "True"
+  fullName: LSL4Unity.OV.OVDoubleOutlet.OVDoubleOutlet
+  nameWithType: OVDoubleOutlet.OVDoubleOutlet
+- uid: LSL4Unity.OV.OVDoubleOutlet.PushSamples
+  name: PushSamples()
+  href: api/LSL4Unity.OV.OVDoubleOutlet.html#LSL4Unity_OV_OVDoubleOutlet_PushSamples
+  commentId: M:LSL4Unity.OV.OVDoubleOutlet.PushSamples
+  fullName: LSL4Unity.OV.OVDoubleOutlet.PushSamples()
+  nameWithType: OVDoubleOutlet.PushSamples()
+- uid: LSL4Unity.OV.OVDoubleOutlet.PushSamples*
+  name: PushSamples
+  href: api/LSL4Unity.OV.OVDoubleOutlet.html#LSL4Unity_OV_OVDoubleOutlet_PushSamples_
+  commentId: Overload:LSL4Unity.OV.OVDoubleOutlet.PushSamples
+  isSpec: "True"
+  fullName: LSL4Unity.OV.OVDoubleOutlet.PushSamples
+  nameWithType: OVDoubleOutlet.PushSamples
 - uid: LSL4Unity.OV.OVFloatInlet
   name: OVFloatInlet
   href: api/LSL4Unity.OV.OVFloatInlet.html
@@ -2507,6 +2539,38 @@ references:
   isSpec: "True"
   fullName: LSL4Unity.OV.OVFloatInlet.PullSamples
   nameWithType: OVFloatInlet.PullSamples
+- uid: LSL4Unity.OV.OVFloatOutlet
+  name: OVFloatOutlet
+  href: api/LSL4Unity.OV.OVFloatOutlet.html
+  commentId: T:LSL4Unity.OV.OVFloatOutlet
+  fullName: LSL4Unity.OV.OVFloatOutlet
+  nameWithType: OVFloatOutlet
+- uid: LSL4Unity.OV.OVFloatOutlet.#ctor
+  name: OVFloatOutlet()
+  href: api/LSL4Unity.OV.OVFloatOutlet.html#LSL4Unity_OV_OVFloatOutlet__ctor
+  commentId: M:LSL4Unity.OV.OVFloatOutlet.#ctor
+  fullName: LSL4Unity.OV.OVFloatOutlet.OVFloatOutlet()
+  nameWithType: OVFloatOutlet.OVFloatOutlet()
+- uid: LSL4Unity.OV.OVFloatOutlet.#ctor*
+  name: OVFloatOutlet
+  href: api/LSL4Unity.OV.OVFloatOutlet.html#LSL4Unity_OV_OVFloatOutlet__ctor_
+  commentId: Overload:LSL4Unity.OV.OVFloatOutlet.#ctor
+  isSpec: "True"
+  fullName: LSL4Unity.OV.OVFloatOutlet.OVFloatOutlet
+  nameWithType: OVFloatOutlet.OVFloatOutlet
+- uid: LSL4Unity.OV.OVFloatOutlet.PushSamples
+  name: PushSamples()
+  href: api/LSL4Unity.OV.OVFloatOutlet.html#LSL4Unity_OV_OVFloatOutlet_PushSamples
+  commentId: M:LSL4Unity.OV.OVFloatOutlet.PushSamples
+  fullName: LSL4Unity.OV.OVFloatOutlet.PushSamples()
+  nameWithType: OVFloatOutlet.PushSamples()
+- uid: LSL4Unity.OV.OVFloatOutlet.PushSamples*
+  name: PushSamples
+  href: api/LSL4Unity.OV.OVFloatOutlet.html#LSL4Unity_OV_OVFloatOutlet_PushSamples_
+  commentId: Overload:LSL4Unity.OV.OVFloatOutlet.PushSamples
+  isSpec: "True"
+  fullName: LSL4Unity.OV.OVFloatOutlet.PushSamples
+  nameWithType: OVFloatOutlet.PushSamples
 - uid: LSL4Unity.OV.OVInlet`1
   name: OVInlet<T>
   href: api/LSL4Unity.OV.OVInlet-1.html
@@ -2524,6 +2588,23 @@ references:
   fullName.vb: LSL4Unity.OV.OVInlet(Of T).expectedChannels
   nameWithType: OVInlet<T>.expectedChannels
   nameWithType.vb: OVInlet(Of T).expectedChannels
+- uid: LSL4Unity.OV.OVInlet`1.ForceUpdate
+  name: ForceUpdate()
+  href: api/LSL4Unity.OV.OVInlet-1.html#LSL4Unity_OV_OVInlet_1_ForceUpdate
+  commentId: M:LSL4Unity.OV.OVInlet`1.ForceUpdate
+  fullName: LSL4Unity.OV.OVInlet<T>.ForceUpdate()
+  fullName.vb: LSL4Unity.OV.OVInlet(Of T).ForceUpdate()
+  nameWithType: OVInlet<T>.ForceUpdate()
+  nameWithType.vb: OVInlet(Of T).ForceUpdate()
+- uid: LSL4Unity.OV.OVInlet`1.ForceUpdate*
+  name: ForceUpdate
+  href: api/LSL4Unity.OV.OVInlet-1.html#LSL4Unity_OV_OVInlet_1_ForceUpdate_
+  commentId: Overload:LSL4Unity.OV.OVInlet`1.ForceUpdate
+  isSpec: "True"
+  fullName: LSL4Unity.OV.OVInlet<T>.ForceUpdate
+  fullName.vb: LSL4Unity.OV.OVInlet(Of T).ForceUpdate
+  nameWithType: OVInlet<T>.ForceUpdate
+  nameWithType.vb: OVInlet(Of T).ForceUpdate
 - uid: LSL4Unity.OV.OVInlet`1.inlet
   name: inlet
   href: api/LSL4Unity.OV.OVInlet-1.html#LSL4Unity_OV_OVInlet_1_inlet
@@ -2611,6 +2692,199 @@ references:
   isSpec: "True"
   fullName: LSL4Unity.OV.OVIntInlet.PullSamples
   nameWithType: OVIntInlet.PullSamples
+- uid: LSL4Unity.OV.OVIntOutlet
+  name: OVIntOutlet
+  href: api/LSL4Unity.OV.OVIntOutlet.html
+  commentId: T:LSL4Unity.OV.OVIntOutlet
+  fullName: LSL4Unity.OV.OVIntOutlet
+  nameWithType: OVIntOutlet
+- uid: LSL4Unity.OV.OVIntOutlet.#ctor
+  name: OVIntOutlet()
+  href: api/LSL4Unity.OV.OVIntOutlet.html#LSL4Unity_OV_OVIntOutlet__ctor
+  commentId: M:LSL4Unity.OV.OVIntOutlet.#ctor
+  fullName: LSL4Unity.OV.OVIntOutlet.OVIntOutlet()
+  nameWithType: OVIntOutlet.OVIntOutlet()
+- uid: LSL4Unity.OV.OVIntOutlet.#ctor*
+  name: OVIntOutlet
+  href: api/LSL4Unity.OV.OVIntOutlet.html#LSL4Unity_OV_OVIntOutlet__ctor_
+  commentId: Overload:LSL4Unity.OV.OVIntOutlet.#ctor
+  isSpec: "True"
+  fullName: LSL4Unity.OV.OVIntOutlet.OVIntOutlet
+  nameWithType: OVIntOutlet.OVIntOutlet
+- uid: LSL4Unity.OV.OVIntOutlet.PushSamples
+  name: PushSamples()
+  href: api/LSL4Unity.OV.OVIntOutlet.html#LSL4Unity_OV_OVIntOutlet_PushSamples
+  commentId: M:LSL4Unity.OV.OVIntOutlet.PushSamples
+  fullName: LSL4Unity.OV.OVIntOutlet.PushSamples()
+  nameWithType: OVIntOutlet.PushSamples()
+- uid: LSL4Unity.OV.OVIntOutlet.PushSamples*
+  name: PushSamples
+  href: api/LSL4Unity.OV.OVIntOutlet.html#LSL4Unity_OV_OVIntOutlet_PushSamples_
+  commentId: Overload:LSL4Unity.OV.OVIntOutlet.PushSamples
+  isSpec: "True"
+  fullName: LSL4Unity.OV.OVIntOutlet.PushSamples
+  nameWithType: OVIntOutlet.PushSamples
+- uid: LSL4Unity.OV.OVOutlet`1
+  name: OVOutlet<T>
+  href: api/LSL4Unity.OV.OVOutlet-1.html
+  commentId: T:LSL4Unity.OV.OVOutlet`1
+  name.vb: OVOutlet(Of T)
+  fullName: LSL4Unity.OV.OVOutlet<T>
+  fullName.vb: LSL4Unity.OV.OVOutlet(Of T)
+  nameWithType: OVOutlet<T>
+  nameWithType.vb: OVOutlet(Of T)
+- uid: LSL4Unity.OV.OVOutlet`1.ChannelCount
+  name: ChannelCount
+  href: api/LSL4Unity.OV.OVOutlet-1.html#LSL4Unity_OV_OVOutlet_1_ChannelCount
+  commentId: P:LSL4Unity.OV.OVOutlet`1.ChannelCount
+  fullName: LSL4Unity.OV.OVOutlet<T>.ChannelCount
+  fullName.vb: LSL4Unity.OV.OVOutlet(Of T).ChannelCount
+  nameWithType: OVOutlet<T>.ChannelCount
+  nameWithType.vb: OVOutlet(Of T).ChannelCount
+- uid: LSL4Unity.OV.OVOutlet`1.ChannelCount*
+  name: ChannelCount
+  href: api/LSL4Unity.OV.OVOutlet-1.html#LSL4Unity_OV_OVOutlet_1_ChannelCount_
+  commentId: Overload:LSL4Unity.OV.OVOutlet`1.ChannelCount
+  isSpec: "True"
+  fullName: LSL4Unity.OV.OVOutlet<T>.ChannelCount
+  fullName.vb: LSL4Unity.OV.OVOutlet(Of T).ChannelCount
+  nameWithType: OVOutlet<T>.ChannelCount
+  nameWithType.vb: OVOutlet(Of T).ChannelCount
+- uid: LSL4Unity.OV.OVOutlet`1.ForceUpdate(`0[])
+  name: ForceUpdate(T[])
+  href: api/LSL4Unity.OV.OVOutlet-1.html#LSL4Unity_OV_OVOutlet_1_ForceUpdate__0___
+  commentId: M:LSL4Unity.OV.OVOutlet`1.ForceUpdate(`0[])
+  name.vb: ForceUpdate(T())
+  fullName: LSL4Unity.OV.OVOutlet<T>.ForceUpdate(T[])
+  fullName.vb: LSL4Unity.OV.OVOutlet(Of T).ForceUpdate(T())
+  nameWithType: OVOutlet<T>.ForceUpdate(T[])
+  nameWithType.vb: OVOutlet(Of T).ForceUpdate(T())
+- uid: LSL4Unity.OV.OVOutlet`1.ForceUpdate*
+  name: ForceUpdate
+  href: api/LSL4Unity.OV.OVOutlet-1.html#LSL4Unity_OV_OVOutlet_1_ForceUpdate_
+  commentId: Overload:LSL4Unity.OV.OVOutlet`1.ForceUpdate
+  isSpec: "True"
+  fullName: LSL4Unity.OV.OVOutlet<T>.ForceUpdate
+  fullName.vb: LSL4Unity.OV.OVOutlet(Of T).ForceUpdate
+  nameWithType: OVOutlet<T>.ForceUpdate
+  nameWithType.vb: OVOutlet(Of T).ForceUpdate
+- uid: LSL4Unity.OV.OVOutlet`1.info
+  name: info
+  href: api/LSL4Unity.OV.OVOutlet-1.html#LSL4Unity_OV_OVOutlet_1_info
+  commentId: F:LSL4Unity.OV.OVOutlet`1.info
+  fullName: LSL4Unity.OV.OVOutlet<T>.info
+  fullName.vb: LSL4Unity.OV.OVOutlet(Of T).info
+  nameWithType: OVOutlet<T>.info
+  nameWithType.vb: OVOutlet(Of T).info
+- uid: LSL4Unity.OV.OVOutlet`1.outlet
+  name: outlet
+  href: api/LSL4Unity.OV.OVOutlet-1.html#LSL4Unity_OV_OVOutlet_1_outlet
+  commentId: F:LSL4Unity.OV.OVOutlet`1.outlet
+  fullName: LSL4Unity.OV.OVOutlet<T>.outlet
+  fullName.vb: LSL4Unity.OV.OVOutlet(Of T).outlet
+  nameWithType: OVOutlet<T>.outlet
+  nameWithType.vb: OVOutlet(Of T).outlet
+- uid: LSL4Unity.OV.OVOutlet`1.Process(`0[])
+  name: Process(T[])
+  href: api/LSL4Unity.OV.OVOutlet-1.html#LSL4Unity_OV_OVOutlet_1_Process__0___
+  commentId: M:LSL4Unity.OV.OVOutlet`1.Process(`0[])
+  name.vb: Process(T())
+  fullName: LSL4Unity.OV.OVOutlet<T>.Process(T[])
+  fullName.vb: LSL4Unity.OV.OVOutlet(Of T).Process(T())
+  nameWithType: OVOutlet<T>.Process(T[])
+  nameWithType.vb: OVOutlet(Of T).Process(T())
+- uid: LSL4Unity.OV.OVOutlet`1.Process*
+  name: Process
+  href: api/LSL4Unity.OV.OVOutlet-1.html#LSL4Unity_OV_OVOutlet_1_Process_
+  commentId: Overload:LSL4Unity.OV.OVOutlet`1.Process
+  isSpec: "True"
+  fullName: LSL4Unity.OV.OVOutlet<T>.Process
+  fullName.vb: LSL4Unity.OV.OVOutlet(Of T).Process
+  nameWithType: OVOutlet<T>.Process
+  nameWithType.vb: OVOutlet(Of T).Process
+- uid: LSL4Unity.OV.OVOutlet`1.PushSamples
+  name: PushSamples()
+  href: api/LSL4Unity.OV.OVOutlet-1.html#LSL4Unity_OV_OVOutlet_1_PushSamples
+  commentId: M:LSL4Unity.OV.OVOutlet`1.PushSamples
+  fullName: LSL4Unity.OV.OVOutlet<T>.PushSamples()
+  fullName.vb: LSL4Unity.OV.OVOutlet(Of T).PushSamples()
+  nameWithType: OVOutlet<T>.PushSamples()
+  nameWithType.vb: OVOutlet(Of T).PushSamples()
+- uid: LSL4Unity.OV.OVOutlet`1.PushSamples*
+  name: PushSamples
+  href: api/LSL4Unity.OV.OVOutlet-1.html#LSL4Unity_OV_OVOutlet_1_PushSamples_
+  commentId: Overload:LSL4Unity.OV.OVOutlet`1.PushSamples
+  isSpec: "True"
+  fullName: LSL4Unity.OV.OVOutlet<T>.PushSamples
+  fullName.vb: LSL4Unity.OV.OVOutlet(Of T).PushSamples
+  nameWithType: OVOutlet<T>.PushSamples
+  nameWithType.vb: OVOutlet(Of T).PushSamples
+- uid: LSL4Unity.OV.OVOutlet`1.samples
+  name: samples
+  href: api/LSL4Unity.OV.OVOutlet-1.html#LSL4Unity_OV_OVOutlet_1_samples
+  commentId: F:LSL4Unity.OV.OVOutlet`1.samples
+  fullName: LSL4Unity.OV.OVOutlet<T>.samples
+  fullName.vb: LSL4Unity.OV.OVOutlet(Of T).samples
+  nameWithType: OVOutlet<T>.samples
+  nameWithType.vb: OVOutlet(Of T).samples
+- uid: LSL4Unity.OV.OVOutlet`1.StreamName
+  name: StreamName
+  href: api/LSL4Unity.OV.OVOutlet-1.html#LSL4Unity_OV_OVOutlet_1_StreamName
+  commentId: P:LSL4Unity.OV.OVOutlet`1.StreamName
+  fullName: LSL4Unity.OV.OVOutlet<T>.StreamName
+  fullName.vb: LSL4Unity.OV.OVOutlet(Of T).StreamName
+  nameWithType: OVOutlet<T>.StreamName
+  nameWithType.vb: OVOutlet(Of T).StreamName
+- uid: LSL4Unity.OV.OVOutlet`1.StreamName*
+  name: StreamName
+  href: api/LSL4Unity.OV.OVOutlet-1.html#LSL4Unity_OV_OVOutlet_1_StreamName_
+  commentId: Overload:LSL4Unity.OV.OVOutlet`1.StreamName
+  isSpec: "True"
+  fullName: LSL4Unity.OV.OVOutlet<T>.StreamName
+  fullName.vb: LSL4Unity.OV.OVOutlet(Of T).StreamName
+  nameWithType: OVOutlet<T>.StreamName
+  nameWithType.vb: OVOutlet(Of T).StreamName
+- uid: LSL4Unity.OV.OVOutlet`1.streamType
+  name: streamType
+  href: api/LSL4Unity.OV.OVOutlet-1.html#LSL4Unity_OV_OVOutlet_1_streamType
+  commentId: F:LSL4Unity.OV.OVOutlet`1.streamType
+  fullName: LSL4Unity.OV.OVOutlet<T>.streamType
+  fullName.vb: LSL4Unity.OV.OVOutlet(Of T).streamType
+  nameWithType: OVOutlet<T>.streamType
+  nameWithType.vb: OVOutlet(Of T).streamType
+- uid: LSL4Unity.OV.OVOutlet`1.StreamTypes
+  name: OVOutlet<T>.StreamTypes
+  href: api/LSL4Unity.OV.OVOutlet-1.StreamTypes.html
+  commentId: T:LSL4Unity.OV.OVOutlet`1.StreamTypes
+  name.vb: OVOutlet(Of T).StreamTypes
+  fullName: LSL4Unity.OV.OVOutlet<T>.StreamTypes
+  fullName.vb: LSL4Unity.OV.OVOutlet(Of T).StreamTypes
+  nameWithType: OVOutlet<T>.StreamTypes
+  nameWithType.vb: OVOutlet(Of T).StreamTypes
+- uid: LSL4Unity.OV.OVOutlet`1.StreamTypes.Double
+  name: Double
+  href: api/LSL4Unity.OV.OVOutlet-1.StreamTypes.html#LSL4Unity_OV_OVOutlet_1_StreamTypes_Double
+  commentId: F:LSL4Unity.OV.OVOutlet`1.StreamTypes.Double
+  fullName: LSL4Unity.OV.OVOutlet<T>.StreamTypes.Double
+  fullName.vb: LSL4Unity.OV.OVOutlet(Of T).StreamTypes.Double
+  nameWithType: OVOutlet<T>.StreamTypes.Double
+  nameWithType.vb: OVOutlet(Of T).StreamTypes.Double
+- uid: LSL4Unity.OV.OVOutlet`1.StreamTypes.Float
+  name: Float
+  href: api/LSL4Unity.OV.OVOutlet-1.StreamTypes.html#LSL4Unity_OV_OVOutlet_1_StreamTypes_Float
+  commentId: F:LSL4Unity.OV.OVOutlet`1.StreamTypes.Float
+  fullName: LSL4Unity.OV.OVOutlet<T>.StreamTypes.Float
+  fullName.vb: LSL4Unity.OV.OVOutlet(Of T).StreamTypes.Float
+  nameWithType: OVOutlet<T>.StreamTypes.Float
+  nameWithType.vb: OVOutlet(Of T).StreamTypes.Float
+- uid: LSL4Unity.OV.OVOutlet`1.StreamTypes.Int
+  name: Int
+  href: api/LSL4Unity.OV.OVOutlet-1.StreamTypes.html#LSL4Unity_OV_OVOutlet_1_StreamTypes_Int
+  commentId: F:LSL4Unity.OV.OVOutlet`1.StreamTypes.Int
+  fullName: LSL4Unity.OV.OVOutlet<T>.StreamTypes.Int
+  fullName.vb: LSL4Unity.OV.OVOutlet(Of T).StreamTypes.Int
+  nameWithType: OVOutlet<T>.StreamTypes.Int
+  nameWithType.vb: OVOutlet(Of T).StreamTypes.Int
 - uid: LSL4Unity.OV.Stimulations
   name: Stimulations
   href: api/LSL4Unity.OV.Stimulations.html
@@ -3722,6 +3996,28 @@ references:
   isSpec: "True"
   fullName: LSL4Unity.OV.Template.StimulationInlet.Process
   nameWithType: StimulationInlet.Process
+- uid: LSL4Unity.OV.Template.StimulationOutlet
+  name: StimulationOutlet
+  href: api/LSL4Unity.OV.Template.StimulationOutlet.html
+  commentId: T:LSL4Unity.OV.Template.StimulationOutlet
+  fullName: LSL4Unity.OV.Template.StimulationOutlet
+  nameWithType: StimulationOutlet
+- uid: LSL4Unity.OV.Template.StimulationOutlet.Process(System.Int32[])
+  name: Process(Int32[])
+  href: api/LSL4Unity.OV.Template.StimulationOutlet.html#LSL4Unity_OV_Template_StimulationOutlet_Process_System_Int32___
+  commentId: M:LSL4Unity.OV.Template.StimulationOutlet.Process(System.Int32[])
+  name.vb: Process(Int32())
+  fullName: LSL4Unity.OV.Template.StimulationOutlet.Process(System.Int32[])
+  fullName.vb: LSL4Unity.OV.Template.StimulationOutlet.Process(System.Int32())
+  nameWithType: StimulationOutlet.Process(Int32[])
+  nameWithType.vb: StimulationOutlet.Process(Int32())
+- uid: LSL4Unity.OV.Template.StimulationOutlet.Process*
+  name: Process
+  href: api/LSL4Unity.OV.Template.StimulationOutlet.html#LSL4Unity_OV_Template_StimulationOutlet_Process_
+  commentId: Overload:LSL4Unity.OV.Template.StimulationOutlet.Process
+  isSpec: "True"
+  fullName: LSL4Unity.OV.Template.StimulationOutlet.Process
+  nameWithType: StimulationOutlet.Process
 - uid: LSL4Unity.Resolver
   name: Resolver
   href: api/LSL4Unity.Resolver.html

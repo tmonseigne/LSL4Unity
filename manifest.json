@@ -196,7 +196,19 @@
       "output": {
         ".html": {
           "relative_path": "api/LSL4Unity.OV.OVDoubleInlet.html",
-          "hash": "6VpI3Sk8LfPLZL+8TwEmmg=="
+          "hash": "AP8dRdjcXYp7sa/YtGP01A=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/LSL4Unity.OV.OVDoubleOutlet.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/LSL4Unity.OV.OVDoubleOutlet.html",
+          "hash": "Ar1MVZVYY+Bkr30G6pps0w=="
         }
       },
       "is_incremental": false,
@@ -208,7 +220,19 @@
       "output": {
         ".html": {
           "relative_path": "api/LSL4Unity.OV.OVFloatInlet.html",
-          "hash": "ySx+eECTBERLBsjGfSqCng=="
+          "hash": "k1f9DCUMRzj/gmqIYaeJwA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/LSL4Unity.OV.OVFloatOutlet.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/LSL4Unity.OV.OVFloatOutlet.html",
+          "hash": "rurBsQ0inqJeIU8+B4RVJA=="
         }
       },
       "is_incremental": false,
@@ -220,7 +244,7 @@
       "output": {
         ".html": {
           "relative_path": "api/LSL4Unity.OV.OVInlet-1.html",
-          "hash": "Gihf5VkSyQCViRqb4NTt2Q=="
+          "hash": "vfmL1F/HnJz32GPEGcKf0Q=="
         }
       },
       "is_incremental": false,
@@ -232,7 +256,43 @@
       "output": {
         ".html": {
           "relative_path": "api/LSL4Unity.OV.OVIntInlet.html",
-          "hash": "n6vWqAbLgACmj4IjhT1hAw=="
+          "hash": "wIA9CcSclcNLqHLBW3VLKg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/LSL4Unity.OV.OVIntOutlet.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/LSL4Unity.OV.OVIntOutlet.html",
+          "hash": "lAr+Rw23pYl1B163iwXY0Q=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/LSL4Unity.OV.OVOutlet-1.StreamTypes.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/LSL4Unity.OV.OVOutlet-1.StreamTypes.html",
+          "hash": "+Vt8VF9Bwt4UGgyTvxRkiA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/LSL4Unity.OV.OVOutlet-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/LSL4Unity.OV.OVOutlet-1.html",
+          "hash": "SV8IjnTix58XZPKHVAqr/Q=="
         }
       },
       "is_incremental": false,
@@ -256,7 +316,7 @@
       "output": {
         ".html": {
           "relative_path": "api/LSL4Unity.OV.Template.DoubleInlet.html",
-          "hash": "K8B1Uum9HkdoWTmCdf/j8A=="
+          "hash": "sNIQyicnDnguSPqbtDlM/Q=="
         }
       },
       "is_incremental": false,
@@ -268,7 +328,7 @@
       "output": {
         ".html": {
           "relative_path": "api/LSL4Unity.OV.Template.FloatInlet.html",
-          "hash": "OLdq4YSzneN5SJKFihd8YA=="
+          "hash": "XSwsUBiOp3DBN9Pr9YmqZw=="
         }
       },
       "is_incremental": false,
@@ -280,7 +340,7 @@
       "output": {
         ".html": {
           "relative_path": "api/LSL4Unity.OV.Template.MatrixInlet.html",
-          "hash": "gw0rwoDb58p2R8iP9PrBuQ=="
+          "hash": "d38OiRvSSpQSOqBlSaOHfg=="
         }
       },
       "is_incremental": false,
@@ -292,7 +352,19 @@
       "output": {
         ".html": {
           "relative_path": "api/LSL4Unity.OV.Template.StimulationInlet.html",
-          "hash": "/9qT1k/KNUQW9vMz4RB0wg=="
+          "hash": "/aGcOcCdNBqgJ6+fm//swQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/LSL4Unity.OV.Template.StimulationOutlet.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/LSL4Unity.OV.Template.StimulationOutlet.html",
+          "hash": "aEDnszq1L/6TVbwAHcmKuQ=="
         }
       },
       "is_incremental": false,
@@ -304,7 +376,7 @@
       "output": {
         ".html": {
           "relative_path": "api/LSL4Unity.OV.Template.html",
-          "hash": "20WhuaLvTImQIFPb9oWHsQ=="
+          "hash": "OLECslcjfZmLFVEQIPXNTg=="
         }
       },
       "is_incremental": false,
@@ -316,7 +388,7 @@
       "output": {
         ".html": {
           "relative_path": "api/LSL4Unity.OV.html",
-          "hash": "VJ09JKf/9v7LkPFFePpVMw=="
+          "hash": "IXquslfVwDwm2eTvZ3Icow=="
         }
       },
       "is_incremental": false,
@@ -496,7 +568,7 @@
       "output": {
         ".html": {
           "relative_path": "api/toc.html",
-          "hash": "+JQfqSiIhor4Vk+ssuJrEQ=="
+          "hash": "UYTz24Q+c6bev8yOq/I8yA=="
         }
       },
       "is_incremental": false,
@@ -508,7 +580,7 @@
       "output": {
         ".html": {
           "relative_path": "index.html",
-          "hash": "laOZ4lIJaC6oBre2CzaIxg=="
+          "hash": "d3X9DIzCWxlyd7hDWv86wA=="
         }
       },
       "is_incremental": false,
@@ -547,7 +619,7 @@
         "ManagedReferenceDocumentProcessor": {
           "can_incremental": false,
           "incrementalPhase": "build",
-          "total_file_count": 39,
+          "total_file_count": 45,
           "skipped_file_count": 0
         },
         "TocDocumentProcessor": {
