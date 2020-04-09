@@ -10,13 +10,16 @@ namespace LSL4Unity.Editor
 		private const string LIB_LSL_NAME = "liblsl";
 		private const string PLUGIN_DIR   = "Plugins";
 
+		/// <summary> Called after the build. See also <see cref="PostProcessBuildAttribute"/>. </summary>
+		/// <param name="target"> The build target. </param>
+		/// <param name="path"> The build path. </param>
 		[PostProcessBuild(1)]
-		public static void OnPostprocessBuild(BuildTarget target, string buildPath)
+		public static void OnPostprocessBuild(BuildTarget target, string path)
 		{
-			if (buildPath != null)
+			if (path != null)
 			{
-				var buildDir     = Path.GetFileNameWithoutExtension(buildPath);
-				var buildHostDir = buildPath.Replace(Path.GetFileName(buildPath), "");
+				var buildDir     = Path.GetFileNameWithoutExtension(path);
+				var buildHostDir = path.Replace(Path.GetFileName(path), "");
 				var dataDir      = buildDir + "_Data";
 				var dataPath     = Path.Combine(buildHostDir, dataDir);
 				var pluginDir    = Path.Combine(dataPath,     PLUGIN_DIR);
@@ -39,6 +42,11 @@ namespace LSL4Unity.Editor
 			}
 		}
 
+		/// <summary> Renames the library file. </summary>
+		/// <param name="pluginDir"> The plugin directory. </param>
+		/// <param name="srcName"> Name of the source file. </param>
+		/// <param name="oldName"> Name of the old. </param>
+		/// <param name="extension"> The extension. </param>
 		private static void RenameLibFile(string pluginDir, string srcName, string oldName, string extension)
 		{
 			var oldFile = Path.Combine(pluginDir, oldName + extension);

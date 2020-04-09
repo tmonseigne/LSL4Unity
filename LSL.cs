@@ -102,7 +102,7 @@ namespace LSL4Unity
 
 		/// <summary> Version of the liblsl library.
 		///
-		/// The major version is LibraryVersion() / 100; The minor version is LibraryVersion() % 100;</summary>
+		/// The major version is <see cref="LibraryVersion"/> / 100; The minor version is <see cref="LibraryVersion"/> % 100;</summary>
 		/// <returns> The library version. </returns>
 		public static int LibraryVersion() { return dll.lsl_library_version(); }
 
@@ -514,7 +514,7 @@ namespace LSL4Unity
 		///
 		/// Advanced query that allows to impose more conditions on the retrieved streams;
 		/// the given string is an XPath 1.0 predicate for the info node (omitting the surrounding []'s). </summary>
-		/// <param name="pred"> The predicate string, e.g. "name='BioSemi'" or "type='EEG' and starts-with(name,'BioSemi') and count(info/desc/channel)=32". </param>
+		/// <param name="pred"> The predicate string, e.g. "<c>name='BioSemi'</c>" or "<c>type='EEG' and starts-with(name,'BioSemi') and count(info/desc/channel)=32</c>". </param>
 		/// <param name="minimum"> Optionally return at least this number of streams. </param>
 		/// <param name="timeout"> Optionally a timeout of the operation, in seconds (default: no timeout).
 		/// If the timeout expires, less than the desired number of streams (possibly none) will be returned. </param>
