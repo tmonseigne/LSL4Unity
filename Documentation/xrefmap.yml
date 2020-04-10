@@ -3,6 +3,9 @@ references:
 - uid: UnityEditor.BuildTarget
   name: BuildTarget
   href: https://docs.unity3d.com/ScriptReference/BuildTarget.html
+- uid: UnityEditor.Callbacks.PostProcessBuildAttribute
+  name: PostProcessBuildAttribute
+  href: https://docs.unity3d.com/ScriptReference/Callbacks.PostProcessBuildAttribute.html
 - uid: UnityEditor.Callbacks.PostProcessBuildAttribute.#ctor*
   name: PostProcessBuildAttribute
   name.vb: 
@@ -812,6 +815,9 @@ references:
   nameWithType: HelpURLAttribute.URL
   nameWithType.vb: 
   IsValid: true
+- uid: UnityEngine.MonoBehavior
+  name: MonoBehavior
+  href: https://docs.unity3d.com/ScriptReference/MonoBehaviour.html
 - uid: UnityEngine.MonoBehaviour.#ctor*
   name: MonoBehaviour
   name.vb: 

@@ -51,7 +51,7 @@
 				}
 			}
 		},
-		"xref": [ "https://tmonseigne.github.io/LSL4Unity/xrefmap.yml" ],
+		"xref": [ "xrefmap.yml" ],
 		"xrefService": [ "https://xref.docs.microsoft.com/query?uid={uid}" ],
 		"dest": "../_site"
 	}
