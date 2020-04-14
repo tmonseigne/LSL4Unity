@@ -51,7 +51,7 @@
 				}
 			}
 		},
-		"xref": [ "xrefmap.yml" ],
+		"xref": [ "https://normanderwan.github.io/DocFxForUnity/Unity/2019.3/xrefmap.yml" ],
 		"xrefService": [ "https://xref.docs.microsoft.com/query?uid={uid}" ],
 		"dest": "../_site"
 	}
