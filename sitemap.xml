@@ -2,277 +2,277 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://tmonseigne.github.io/LSL4Unity/api/LSL4Unity.Editor.BuildHooks.html</loc>
-    <lastmod>2020-04-14T12:07:26+00:00</lastmod>
+    <lastmod>2020-04-14T01:12:05+00:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://tmonseigne.github.io/LSL4Unity/api/LSL4Unity.Editor.LSLEditorIntegration.html</loc>
-    <lastmod>2020-04-14T12:07:26+00:00</lastmod>
+    <lastmod>2020-04-14T01:12:05+00:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://tmonseigne.github.io/LSL4Unity/api/LSL4Unity.Editor.LSLShowStreamsWindow.html</loc>
-    <lastmod>2020-04-14T12:07:26+00:00</lastmod>
+    <lastmod>2020-04-14T01:12:05+00:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://tmonseigne.github.io/LSL4Unity/api/LSL4Unity.Editor.TimeSyncEditor.html</loc>
-    <lastmod>2020-04-14T12:07:26+00:00</lastmod>
+    <lastmod>2020-04-14T01:12:05+00:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://tmonseigne.github.io/LSL4Unity/api/LSL4Unity.Editor.html</loc>
-    <lastmod>2020-04-14T12:07:26+00:00</lastmod>
+    <lastmod>2020-04-14T01:12:05+00:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://tmonseigne.github.io/LSL4Unity/api/LSL4Unity.liblsl.channel_format_t.html</loc>
-    <lastmod>2020-04-14T12:07:26+00:00</lastmod>
+    <lastmod>2020-04-14T01:12:05+00:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://tmonseigne.github.io/LSL4Unity/api/LSL4Unity.liblsl.ContinuousResolver.html</loc>
-    <lastmod>2020-04-14T12:07:26+00:00</lastmod>
+    <lastmod>2020-04-14T01:12:05+00:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://tmonseigne.github.io/LSL4Unity/api/LSL4Unity.liblsl.InternalException.html</loc>
-    <lastmod>2020-04-14T12:07:26+00:00</lastmod>
+    <lastmod>2020-04-14T01:12:05+00:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://tmonseigne.github.io/LSL4Unity/api/LSL4Unity.liblsl.LostException.html</loc>
-    <lastmod>2020-04-14T12:07:26+00:00</lastmod>
+    <lastmod>2020-04-14T01:12:05+00:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://tmonseigne.github.io/LSL4Unity/api/LSL4Unity.liblsl.processing_options_t.html</loc>
-    <lastmod>2020-04-14T12:07:26+00:00</lastmod>
+    <lastmod>2020-04-14T01:12:05+00:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://tmonseigne.github.io/LSL4Unity/api/LSL4Unity.liblsl.StreamInfo.html</loc>
-    <lastmod>2020-04-14T12:07:26+00:00</lastmod>
+    <lastmod>2020-04-14T01:12:05+00:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://tmonseigne.github.io/LSL4Unity/api/LSL4Unity.liblsl.StreamInlet.html</loc>
-    <lastmod>2020-04-14T12:07:26+00:00</lastmod>
+    <lastmod>2020-04-14T01:12:05+00:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://tmonseigne.github.io/LSL4Unity/api/LSL4Unity.liblsl.StreamOutlet.html</loc>
-    <lastmod>2020-04-14T12:07:26+00:00</lastmod>
+    <lastmod>2020-04-14T01:12:05+00:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://tmonseigne.github.io/LSL4Unity/api/LSL4Unity.liblsl.XMLElement.html</loc>
-    <lastmod>2020-04-14T12:07:26+00:00</lastmod>
+    <lastmod>2020-04-14T01:12:05+00:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://tmonseigne.github.io/LSL4Unity/api/LSL4Unity.liblsl.html</loc>
-    <lastmod>2020-04-14T12:07:26+00:00</lastmod>
+    <lastmod>2020-04-14T01:12:05+00:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://tmonseigne.github.io/LSL4Unity/api/LSL4Unity.LSLMarkerStream.html</loc>
-    <lastmod>2020-04-14T12:07:26+00:00</lastmod>
+    <lastmod>2020-04-14T01:12:05+00:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://tmonseigne.github.io/LSL4Unity/api/LSL4Unity.LSLOutlet.html</loc>
-    <lastmod>2020-04-14T12:07:26+00:00</lastmod>
+    <lastmod>2020-04-14T01:12:05+00:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://tmonseigne.github.io/LSL4Unity/api/LSL4Unity.LSLStreamInfoWrapper.html</loc>
-    <lastmod>2020-04-14T12:07:26+00:00</lastmod>
+    <lastmod>2020-04-14T01:12:05+00:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://tmonseigne.github.io/LSL4Unity/api/LSL4Unity.LSLTimeSync.html</loc>
-    <lastmod>2020-04-14T12:07:26+00:00</lastmod>
+    <lastmod>2020-04-14T01:12:05+00:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://tmonseigne.github.io/LSL4Unity/api/LSL4Unity.LSLTransformOutlet.html</loc>
-    <lastmod>2020-04-14T12:07:26+00:00</lastmod>
+    <lastmod>2020-04-14T01:12:05+00:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://tmonseigne.github.io/LSL4Unity/api/LSL4Unity.LSLUtils.html</loc>
-    <lastmod>2020-04-14T12:07:26+00:00</lastmod>
+    <lastmod>2020-04-14T01:12:05+00:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://tmonseigne.github.io/LSL4Unity/api/LSL4Unity.MomentForSampling.html</loc>
-    <lastmod>2020-04-14T12:07:26+00:00</lastmod>
+    <lastmod>2020-04-14T01:12:05+00:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://tmonseigne.github.io/LSL4Unity/api/LSL4Unity.OV.Constants.html</loc>
-    <lastmod>2020-04-14T12:07:26+00:00</lastmod>
+    <lastmod>2020-04-14T01:12:05+00:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://tmonseigne.github.io/LSL4Unity/api/LSL4Unity.OV.GDFStimulations.html</loc>
-    <lastmod>2020-04-14T12:07:26+00:00</lastmod>
+    <lastmod>2020-04-14T01:12:05+00:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://tmonseigne.github.io/LSL4Unity/api/LSL4Unity.OV.OVDoubleInlet.html</loc>
-    <lastmod>2020-04-14T12:07:26+00:00</lastmod>
+    <lastmod>2020-04-14T01:12:05+00:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://tmonseigne.github.io/LSL4Unity/api/LSL4Unity.OV.OVDoubleOutlet.html</loc>
-    <lastmod>2020-04-14T12:07:26+00:00</lastmod>
+    <lastmod>2020-04-14T01:12:05+00:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://tmonseigne.github.io/LSL4Unity/api/LSL4Unity.OV.OVFloatInlet.html</loc>
-    <lastmod>2020-04-14T12:07:26+00:00</lastmod>
+    <lastmod>2020-04-14T01:12:05+00:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://tmonseigne.github.io/LSL4Unity/api/LSL4Unity.OV.OVFloatOutlet.html</loc>
-    <lastmod>2020-04-14T12:07:26+00:00</lastmod>
+    <lastmod>2020-04-14T01:12:05+00:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://tmonseigne.github.io/LSL4Unity/api/LSL4Unity.OV.OVInlet-1.html</loc>
-    <lastmod>2020-04-14T12:07:26+00:00</lastmod>
+    <lastmod>2020-04-14T01:12:05+00:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://tmonseigne.github.io/LSL4Unity/api/LSL4Unity.OV.OVIntInlet.html</loc>
-    <lastmod>2020-04-14T12:07:26+00:00</lastmod>
+    <lastmod>2020-04-14T01:12:05+00:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://tmonseigne.github.io/LSL4Unity/api/LSL4Unity.OV.OVIntOutlet.html</loc>
-    <lastmod>2020-04-14T12:07:26+00:00</lastmod>
+    <lastmod>2020-04-14T01:12:05+00:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://tmonseigne.github.io/LSL4Unity/api/LSL4Unity.OV.OVOutlet-1.StreamTypes.html</loc>
-    <lastmod>2020-04-14T12:07:26+00:00</lastmod>
+    <lastmod>2020-04-14T01:12:05+00:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://tmonseigne.github.io/LSL4Unity/api/LSL4Unity.OV.OVOutlet-1.html</loc>
-    <lastmod>2020-04-14T12:07:26+00:00</lastmod>
+    <lastmod>2020-04-14T01:12:05+00:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://tmonseigne.github.io/LSL4Unity/api/LSL4Unity.OV.Stimulations.html</loc>
-    <lastmod>2020-04-14T12:07:26+00:00</lastmod>
+    <lastmod>2020-04-14T01:12:05+00:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://tmonseigne.github.io/LSL4Unity/api/LSL4Unity.OV.Template.DoubleInlet.html</loc>
-    <lastmod>2020-04-14T12:07:26+00:00</lastmod>
+    <lastmod>2020-04-14T01:12:05+00:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://tmonseigne.github.io/LSL4Unity/api/LSL4Unity.OV.Template.FloatInlet.html</loc>
-    <lastmod>2020-04-14T12:07:26+00:00</lastmod>
+    <lastmod>2020-04-14T01:12:05+00:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://tmonseigne.github.io/LSL4Unity/api/LSL4Unity.OV.Template.MatrixInlet.html</loc>
-    <lastmod>2020-04-14T12:07:26+00:00</lastmod>
+    <lastmod>2020-04-14T01:12:05+00:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://tmonseigne.github.io/LSL4Unity/api/LSL4Unity.OV.Template.StimulationInlet.html</loc>
-    <lastmod>2020-04-14T12:07:26+00:00</lastmod>
+    <lastmod>2020-04-14T01:12:05+00:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://tmonseigne.github.io/LSL4Unity/api/LSL4Unity.OV.Template.StimulationOutlet.html</loc>
-    <lastmod>2020-04-14T12:07:26+00:00</lastmod>
+    <lastmod>2020-04-14T01:12:05+00:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://tmonseigne.github.io/LSL4Unity/api/LSL4Unity.OV.Template.html</loc>
-    <lastmod>2020-04-14T12:07:26+00:00</lastmod>
+    <lastmod>2020-04-14T01:12:05+00:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://tmonseigne.github.io/LSL4Unity/api/LSL4Unity.OV.html</loc>
-    <lastmod>2020-04-14T12:07:26+00:00</lastmod>
+    <lastmod>2020-04-14T01:12:05+00:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://tmonseigne.github.io/LSL4Unity/api/LSL4Unity.Resolver.html</loc>
-    <lastmod>2020-04-14T12:07:26+00:00</lastmod>
+    <lastmod>2020-04-14T01:12:05+00:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://tmonseigne.github.io/LSL4Unity/api/LSL4Unity.ScriptOrder.html</loc>
-    <lastmod>2020-04-14T12:07:26+00:00</lastmod>
+    <lastmod>2020-04-14T01:12:05+00:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://tmonseigne.github.io/LSL4Unity/api/LSL4Unity.StreamEvent.html</loc>
-    <lastmod>2020-04-14T12:07:26+00:00</lastmod>
+    <lastmod>2020-04-14T01:12:05+00:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://tmonseigne.github.io/LSL4Unity/api/LSL4Unity.html</loc>
-    <lastmod>2020-04-14T12:07:26+00:00</lastmod>
+    <lastmod>2020-04-14T01:12:05+00:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://tmonseigne.github.io/LSL4Unity/index.html</loc>
-    <lastmod>2020-04-14T12:07:26+00:00</lastmod>
+    <lastmod>2020-04-14T01:12:05+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
