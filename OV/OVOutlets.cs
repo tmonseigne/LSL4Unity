@@ -43,7 +43,7 @@ namespace LSL4Unity.OV
 			{
 				case StreamTypes.Double: return liblsl.channel_format_t.cf_double64;
 				case StreamTypes.Float:  return liblsl.channel_format_t.cf_float32;
-				case StreamTypes.Int:    return liblsl.channel_format_t.cf_int64;
+				case StreamTypes.Int:    return liblsl.channel_format_t.cf_int32;
 				default:                 throw new ArgumentOutOfRangeException();
 			}
 		}

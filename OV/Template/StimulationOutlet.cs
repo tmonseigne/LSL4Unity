@@ -6,7 +6,7 @@ namespace LSL4Unity.OV.Template
 	/// <seealso cref="OVIntOutlet" />
 	public class StimulationOutlet : OVIntOutlet
 	{
-		/// <inheritdoc cref="OVIntInlet.Process"/>
+		/// <inheritdoc cref="OVIntOutlet.Process"/>
 		protected override void Process(int[] input) { samples = input; }
 	}
 }
